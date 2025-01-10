@@ -2,6 +2,8 @@
 
 use App\Livewire\HomePage;
 use App\Livewire\Language;
+use App\Livewire\Taches\CreateTaches;
+use App\Livewire\Taches\TachesIndex;
 use App\Livewire\Tiers\TiersIndex;
 use App\Livewire\Projets\ProjetIndex;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +33,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/projets', ProjetIndex::class)->name('projets');
 
     Route::get('/projet/create', CreateProjet::class)->name('create-project');
+
+    Route::get('/taches', TachesIndex::class)->name('taches');
+    Route::get('/tache/create', CreateTaches::class)->name('create-tache');
 
 });

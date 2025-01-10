@@ -38,8 +38,8 @@ $configData = Helper::appClasses();
                         </a>
                     </li>
 
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
+                    <li class="menu-item {{ request()->routeIs('taches', 'create-tache') ? 'active' : '' }}">
+                        <a href="{{ route('taches')}}" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-checklist"></i>
                             <div data-i18n="Tâches">Tâches</div>
                         </a>
