@@ -31,63 +31,64 @@ $configData = Helper::appClasses();
                     </li>
 
                     <!-- Projets et Tâches -->
-                    <li class="menu-item">
-                    <a href="projets.html" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-folder"></i>
-                        <div data-i18n="Projets">Projets</div>
-                    </a>
+                    <li class="menu-item {{ request()->routeIs('projets', 'create-project') ? 'active' : '' }}">
+                        <a href="{{ route('projets')}}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-folder"></i>
+                            <div data-i18n="Projets">Projets</div>
+                        </a>
                     </li>
+
                     <li class="menu-item">
-                    <a href="taches.html" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-checklist"></i>
-                        <div data-i18n="Tâches">Tâches</div>
-                    </a>
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-checklist"></i>
+                            <div data-i18n="Tâches">Tâches</div>
+                        </a>
                     </li>
 
                     <!-- Modules (Menu déroulant) -->
                     <li class="menu-item">
-                    <a href="javascript:void(0)" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons ti ti-layout-grid"></i>
-                        <div data-i18n="Modules">Modules</div>
-                    </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                        <a href="commandes.html" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
-                            <div data-i18n="Commandes">Commandes</div>
+                        <a href="javascript:void(0)" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons ti ti-layout-grid"></i>
+                            <div data-i18n="Modules">Modules</div>
                         </a>
-                        </li>
-                        <li class="menu-item">
-                        <a href="facturation.html" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-file-invoice"></i>
-                            <div data-i18n="Facturation">Facturation</div>
-                        </a>
-                        </li>
-                        <li class="menu-item">
-                        <a href="banque-caisse.html" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-credit-card"></i>
-                            <div data-i18n="Banque/Caisse">Banque/Caisse</div>
-                        </a>
-                        </li>
-                        <li class="menu-item">
-                        <a href="comptabilite.html" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-calculator"></i>
-                            <div data-i18n="Comptabilité">Comptabilité</div>
-                        </a>
-                        </li>
-                        <li class="menu-item">
-                        <a href="agenda.html" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-calendar"></i>
-                            <div data-i18n="Agenda">Agenda</div>
-                        </a>
-                        </li>
-                        <li class="menu-item">
-                        <a href="outils.html" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-mail"></i>
-                            <div data-i18n="Outils">Email</div>
-                        </a>
-                        </li>
-                    </ul>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                            <a href="commandes.html" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
+                                <div data-i18n="Commandes">Commandes</div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                            <a href="facturation.html" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-file-invoice"></i>
+                                <div data-i18n="Facturation">Facturation</div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                            <a href="banque-caisse.html" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-credit-card"></i>
+                                <div data-i18n="Banque/Caisse">Banque/Caisse</div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                            <a href="comptabilite.html" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-calculator"></i>
+                                <div data-i18n="Comptabilité">Comptabilité</div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                            <a href="agenda.html" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-calendar"></i>
+                                <div data-i18n="Agenda">Agenda</div>
+                            </a>
+                            </li>
+                            <li class="menu-item">
+                            <a href="outils.html" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-mail"></i>
+                                <div data-i18n="Outils">Email</div>
+                            </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
                 </div>
