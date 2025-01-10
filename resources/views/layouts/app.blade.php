@@ -1,45 +1,56 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@isset($pageConfigs)
+{!! Helper::updatePageConfig($pageConfigs) !!}
+@endisset
+@php
+    $configData = Helper::appClasses();
+    use Illuminate\Support\Facades\Vite;
+    $menuCollapsed = ($configData['menuCollapsed'] === 'layout-menu-collapsed') ? json_encode(true) : false;
+@endphp
+<html lang="{{ session()->get('locale') ?? app()->getLocale() }}" class="{{ $configData['style'] }}-style {{($contentLayout ?? '')}} {{ ($navbarType ?? '') }} {{ ($menuFixed ?? '') }} {{ $menuCollapsed ?? '' }} {{ $menuFlipped ?? '' }} {{ $menuOffcanvas ?? '' }} {{ $footerFixed ?? '' }} {{ $customizerHidden ?? '' }}" dir="{{ $configData['textDirection'] }}" data-theme="{{ $configData['theme'] }}" data-assets-path="{{ asset('/assets') . '/' }}" data-base-url="{{url('/')}}" data-framework="laravel" data-template="{{ $configData['layout'] . '-menu-' . $configData['themeOpt'] . '-' . $configData['styleOpt'] }}" data-style="{{$configData['styleOptVal']}}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
         <title>{{ config('app.name', 'Laravel') }}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        @include('layouts/sections/assets/styles')
+        @include('layouts/sections/assets/scriptsIncludes')
         <!-- Styles -->
-        @livewireStyles
+        @stack('styles')
     </head>
-    <body class="font-sans antialiased">
-        <x-banner />
+    <body>
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+        <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+            <div class="layout-container">
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+                @include('layouts/sections/navbar')
+                <!-- Layout page -->
+                <div class="layout-page">
+                    <div class="content-wrapper">
+
+                        @include('layouts/sections/horizontalMenu')
+
+                            {{ $slot }}
+
+                        <div class="content-backdrop fade"></div>
+                        @include('layouts/sections/footer')
                     </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                </div>
+            </div>
         </div>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+
+        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+        <div class="drag-target"></div>
+
 
         @stack('modals')
 
-        @livewireScripts
+        @include('layouts/sections/assets/scripts')
+
+        @stack('scripts')
     </body>
 </html>
