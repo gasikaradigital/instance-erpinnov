@@ -7,27 +7,27 @@ $configData = Helper::appClasses();
                 <div class="container-xxl d-flex h-100">
                 <ul class="menu-inner pb-2 pb-xl-0">
                     <!-- Accueil -->
-                    <li class="menu-item active">
-                    <a href="/" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                        <div data-i18n="Accueil">Accueil</div>
-                    </a>
+                    <li class="menu-item {{ request()->routeIs('home') ? 'active' : '' }}">
+                        <a href="{{ route('home')}}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                            <div data-i18n="Accueil">Accueil</div>
+                        </a>
                     </li>
 
                     <!-- Tiers -->
-                    <li class="menu-item">
-                    <a href="{{ route('tiers')}}" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-users"></i>
-                        <div data-i18n="Tiers">Tiers</div>
-                    </a>
+                    <li class="menu-item {{ request()->routeIs('tiers') ? 'active' : '' }}">
+                        <a href="{{ route('tiers')}}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-users"></i>
+                            <div data-i18n="Tiers">Tiers</div>
+                        </a>
                     </li>
 
                     <!-- Produits/Services -->
-                    <li class="menu-item">
-                    <a href="produits-services.html" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-box"></i>
-                        <div data-i18n="Produits/Services">Produits/Services</div>
-                    </a>
+                    <li class="menu-item {{ request()->routeIs('produits', 'create-produits', 'create-services') ? 'active' : '' }}">
+                        <a href="{{ route('produits')}}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-box"></i>
+                            <div data-i18n="Produits/Services">Produits/Services</div>
+                        </a>
                     </li>
 
                     <!-- Projets et Tâches -->
@@ -83,8 +83,8 @@ $configData = Helper::appClasses();
                         </li>
                         <li class="menu-item">
                         <a href="outils.html" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-tools"></i>
-                            <div data-i18n="Outils">Outils</div>
+                            <i class="menu-icon tf-icons ti ti-mail"></i>
+                            <div data-i18n="Outils">Email</div>
                         </a>
                         </li>
                     </ul>
