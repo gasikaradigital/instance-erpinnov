@@ -4,40 +4,78 @@
             <thead>
                 <tr>
                     <th>Code</th>
-                    <th>Raison Sociale</th>
+                    <th>Nom</th>
                     <th>Type</th>
-                    <th>Contact</th>
+                    <th>Nature tiers</th>
                     <th>Email</th>
                     <th>Téléphone</th>
                     <th>Statut</th>
                     <th>Actions</th>
                 </tr>
             </thead>
+            @if(count($data ?? []) > 0)
+            @foreach($data as $tier)
             <tbody>
                 <tr>
-                    <td>CLI001</td>
+                    <td>{{ $tier->code_client }}</td>
+                    <td>{{ $tier->name }}</td>
                     <td>
-                        <div class="d-flex align-items-center">
-                            <div class="avatar me-2">
-                                <span class="avatar-initial rounded-circle bg-label-primary">
-                                    AC
-                                </span>
-                            </div>
-                            <div>
-                                ACME Corporation
-                                <br>
-                                <small class="text-muted">SIRET: 123456789</small>
-                            </div>
-                        </div>
+                    @switch($tier->typent_code)
+                        @case('TE_ADMIN')
+                            <span class="badge bg-label-primary">Administration</span>
+                        @break
+
+                        @case('TE_OTHER')
+                            <span class="badge bg-label-primary">Autre</span>
+                        @break
+
+                        @case('TE_GROUP')
+                            <span class="badge bg-label-primary">Grand Compte</span>
+                        @break
+
+                        @case('TE_MEDIUM')
+                            <span class="badge bg-label-primary">PME/PMI</span>
+                        @break
+
+                        @case('TE_PRIVATE')
+                            <span class="badge bg-label-primary">Particulier</span>
+                        @break
+
+                        @case('TE_SMALL')
+                            <span class="badge bg-label-primary">TPE</span>
+                        @break
+
+                        @default
+                            <span class="badge bg-label-primary"></span>
+                    @endswitch
                     </td>
                     <td>
-                        <span class="badge bg-label-primary">Client</span>
+                    @switch($tier->client)
+                        @case('2')
+                            <span class="badge bg-label-primary">Prospect</span>
+                        @break
+
+                        @case('3')
+                            <span class="badge bg-label-primary">Prospect/Client</span>
+                        @break
+
+                        @case('1')
+                            <span class="badge bg-label-primary">Client</span>
+                        @break
+
+                        @case('0')
+                            <span class="badge bg-label-primary">Ni client, ni prospect</span>
+                        @break
+                    @endswitch
                     </td>
-                    <td>John Doe</td>
-                    <td>contact@acme.com</td>
-                    <td>+33 1 23 45 67 89</td>
+                    <td>{{ $tier->email }}</td>
+                    <td>{{ $tier->phone}}</td>
                     <td>
+                    @if($tier->status == "1")
                         <span class="badge bg-label-success">Actif</span>
+                    @else
+                        <span class="Bagde bg-label-success"> Inactif</span>
+                    @endif
                     </td>
                     <td>
                         <div class="dropdown">
@@ -57,6 +95,9 @@
                 </tr>
                 <!-- Ajoutez d'autres lignes similaires pour plus d'exemples -->
             </tbody>
+            @endforeach
+            @endif
+            
         </table>
     </div>
 

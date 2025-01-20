@@ -97,11 +97,12 @@
                                             <div class="col-md-6">
                                                 <label class="form-label" for="status">Statut</label>
                                                 <select class="form-select" id="status" wire:model="status">
+                                                    <option value="">Choisissez</option>
                                                     <option value="1">En service</option>
                                                     <option value="0">Hors service</option>
                                                 </select>
                                             </div>
-                                            <div class="col-md-6">
+                                            <!-- <div class="col-md-6">
                                                 <label class="form-label">Durée du service</label>
                                                 <div class="input-group">
                                                     <input type="number" class="form-control" wire:model="duration_value" min="0" step="1">
@@ -113,7 +114,7 @@
                                                         <option value="y">Année(s)</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="d-flex justify-content-between mt-4">
                                             <button type="button" class="btn btn-label-secondary" onclick="history.back()">
@@ -192,7 +193,7 @@
                                 <div class="card mb-4">
                                     <div class="card-body">
                                         <div class="row g-3">
-                                            <div class="col-md-6">
+                                            <!-- <div class="col-md-6">
                                                 <label class="form-label" for="accountancy_code_sell">Code comptable vente</label>
                                                 <input type="text" class="form-control" id="accountancy_code_sell" wire:model="accountancy_code_sell">
                                                 <div class="form-text">Code comptable pour les ventes</div>
@@ -201,7 +202,7 @@
                                                 <label class="form-label" for="accountancy_code_buy">Code comptable achat</label>
                                                 <input type="text" class="form-control" id="accountancy_code_buy" wire:model="accountancy_code_buy">
                                                 <div class="form-text">Code comptable pour les achats</div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="d-flex justify-content-between mt-4">
                                             <button type="button" class="btn btn-label-secondary" wire:click="previousStep">

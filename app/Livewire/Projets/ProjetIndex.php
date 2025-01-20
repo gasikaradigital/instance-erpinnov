@@ -3,6 +3,11 @@
 namespace App\Livewire\Projets;
 
 use Livewire\Component;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Livewire\WithPagination;
 
 class ProjetIndex extends Component
@@ -71,8 +76,48 @@ class ProjetIndex extends Component
         //     ->orderBy('created_at', 'desc')
         //     ->paginate(10);
 
-        return view('livewire.projets.projet-index', [
-            // 'projects' => $projects
-        ]);
+        try {
+            $user = Auth::user();
+            $baseUrl = rtrim($user->url_dolibarr, '/');
+
+            $response = Http::withoutVerifying()
+                ->withHeaders([
+                    'DOLAPIKEY' => $user->api_key
+                ])->get($user->url_dolibarr . '/api/index.php/projects', [
+                    'limit' => 100,
+                    'sortfield' => 'dateo',
+                    'sortorder' => 'DESC'
+                ]);
+
+            if (!$response->successful()) {
+                throw new Exception('Erreur API: ' . $response->status());
+            }
+
+            $data = collect($response->json())->map(function($item) {
+                $projet = (object) $item;
+                $projet->date_start = isset($projet->dateo) ? $projet->dateo : null;
+                $projet->date_end = isset($projet->datee) ? $projet->datee : null;
+                $projet->status = $projet->status ?? 0;
+                $projet->title = $projet->title ?? $projet->ref;
+                return $projet;
+            })->all();
+            
+            return view('livewire.projets.projet-index', [
+                'data' => $data,
+                'title' => 'Liste des Projets'
+            ]);
+
+        } catch (Exception $e) {
+            Log::error('Erreur récupération projets:', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return view('livewire.projets.projet-index', [
+                'data' => [],
+                'title' => 'Liste des Projets',
+                'error' => "Une erreur s'est produite lors du chargement des projets."
+            ]);
+        }
     }
 }

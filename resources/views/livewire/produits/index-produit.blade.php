@@ -97,26 +97,24 @@
                             <th>Libellé</th>
                             <th>Prix HT</th>
                             <th>Prix TTC</th>
-                            <th>Stock</th>
                             <th>Statut</th>
                             <th>Type</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
+                    @if(count($data) > 0)
+                    @foreach($data as $produit)
                     <tbody>
                         <tr>
-                            <td><span class="fw-medium">PRD-001</span></td>
-                            <td>Produit test</td>
-                            <td>99.99 €</td>
-                            <td>119.99 €</td>
+                            <td><span class="fw-medium">{{ $produit->ref }}</span></td>
+                            <td>{{ $produit->label}}</td>
+                            <td>{{ $produit->price_ht_formatted }}</td>
+                            <td>{{ $produit->price_ttc_formatted }}</td>
                             <td>
-                                <span class="badge bg-label-success">50</span>
+                                <span class="badge bg-label-primary">{{ $produit->status_label }}</span>
                             </td>
                             <td>
-                                <span class="badge bg-label-primary">En vente</span>
-                            </td>
-                            <td>
-                                <span class="badge bg-label-info">Produit</span>
+                                <span class="badge bg-label-info">{{ $produit->type_label }}</span>
                             </td>
                             <td>
                                 <div class="dropdown">
@@ -138,6 +136,8 @@
                             </td>
                         </tr>
                     </tbody>
+                    @endforeach
+                    @endif
                 </table>
             </div>
 

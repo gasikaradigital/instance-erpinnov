@@ -22,38 +22,43 @@
                         <tr>
                             <th>Réf.</th>
                             <th>Titre</th>
-                            <th>Client</th>
-                            <th>Cée</th>
+                            <th>Description</th>
+                            <th>Crée</th>
                             <th>Fin</th>
-                            <th>Progression</th>
+                            <th>Montant opportunité</th>
                             <th>Statut</th>
-                            <th>Priorité</th>
+                            <th>Visibilité</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
+                    @if(count($data ?? [] > 0))
+                    @foreach($data as $projet)
                     <tbody>
                         {{-- @forelse($projects as $project) --}}
                         <tr>
                             <td>
-                                <span class="fw-medium">PRJ-2024-001</span>
+                                <span class="fw-medium">{{ $projet->ref}}</span>
                             </td>
-                            <td>Développement Site Web</td>
-                            <td>Client Example</td>
-                            <td>01/01/2024</td>
-                            <td>31/03/2024</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="progress w-100 me-2" style="height: 8px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 45%"></div>
-                                    </div>
-                                    <span class="text-muted">45%</span>
-                                </div>
-                            </td>
+                            <td>{{ $projet->title }}</td>
+                            <td>{{ $projet->description}}</td>
+                            <td>{{ date('d/m/Y', $projet->date_c) }}</td>
+                            <td>{{ date('d/m/Y', $projet->date_m) }}</td>
+                            <td>{{ $projet->budget_amount}}</td>
                             <td>
                                 <span class="badge bg-label-primary">En cours</span>
                             </td>
                             <td>
-                                <span class="badge bg-label-warning">Haute</span>
+                            @switch($projet->public)
+                                @case ('0')
+                                <span class="badge bg-label-warning">Contact asigné</span>
+                                @break
+                                
+                                @case ('1')
+                                <span class="badge bg-label-warning">Tout le monde</span>
+                                @break
+
+                            @endswitch
+                                
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -81,6 +86,8 @@
                         </tr>
                         {{-- @endforelse --}}
                     </tbody>
+                    @endforeach
+                    @endif
                 </table>
             </div>
 

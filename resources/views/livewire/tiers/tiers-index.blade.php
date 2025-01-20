@@ -18,7 +18,7 @@
     @endsection
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <livewire:tiers.statistique />
+        <livewire:tiers.statistique :data = "$data"/>
         <!-- Liste des Tiers -->
         <div class="card">
 
@@ -41,7 +41,7 @@
                 <!-- Filtres -->
                 <div class="row g-3 mt-3">
                     <div class="col-md-4">
-                        <select class="form-select">
+                        <select class="form-select" wire:model="type">
                             <option value="">Type de Tiers</option>
                             <option value="client">Client</option>
                             <option value="fournisseur">Fournisseur</option>
@@ -57,15 +57,17 @@
                     </div>
                     <div class="col-md-4">
                         <div class="input-group">
-                            <span class="input-group-text"><i class="ti ti-search"></i></span>
-                            <input type="text" class="form-control" placeholder="Rechercher...">
+                            <input type="text" class="form-control" placeholder="Rechercher..." wire:model="searchName">
+                            <button class="btn btn-outline-secondary" type="button" wire:click="performSearch"> <!-- Bouton pour effectuer la recherche -->
+                                <i class="ti ti-search"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
 
             </div>
 
-            <livewire:tiers.tiers-liste />
+            <livewire:tiers.tiers-liste :data="$data" />
         </div>
     </div>
     @include('livewire.tiers.modal.form')

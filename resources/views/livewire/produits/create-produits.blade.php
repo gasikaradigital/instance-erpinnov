@@ -108,15 +108,24 @@
                                                 <textarea class="form-control" id="description" wire:model="description" rows="3"></textarea>
                                             </div>
                                             <div class="col-md-6">
+                                                <label class="form-label" for="label">Barcode <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="label" wire:model="barcode" required>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <label class="form-label" for="status">Statut de vente</label>
                                                 <select class="form-select" id="status" wire:model="status">
+                                                    <option value="">Choisissez</option>
                                                     <option value="1">En vente</option>
                                                     <option value="0">Hors vente</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label" for="barcode">Code-barres</label>
-                                                <input type="text" class="form-control" id="barcode" wire:model="barcode">
+                                                <label class="form-label" for="status">Statut d'achat</label>
+                                                <select class="form-select" id="status" wire:model="status_buy">
+                                                    <option value="">Choisissez</option>
+                                                    <option value="1">En achat</option>
+                                                    <option value="0">Hors achat</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between mt-4">
