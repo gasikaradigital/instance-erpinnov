@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+@php
+$configData = Helper::appClasses();
+$isFront = true;
+
+$menuFixed = ($configData['layout'] === 'vertical') ? ($menuFixed ?? '') : (($configData['layout'] === 'front') ? '' : $configData['headerType']);
+$navbarType = ($configData['layout'] === 'vertical') ? ($configData['navbarType'] ?? '') : (($configData['layout'] === 'front') ? 'layout-navbar-fixed': '');
+$isFront = ($isFront ?? '') == true ? 'Front' : '';
+$contentLayout = (isset($container) ? (($container === 'container-xxl') ? "layout-compact" : "layout-wide") : "");
+@endphp
+
 @isset($pageConfigs)
 {!! Helper::updatePageConfig($pageConfigs) !!}
 @endisset
@@ -21,19 +31,14 @@
         @stack('styles')
     </head>
     <body>
-
-        <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+        <div class="layout-wrapper layout-content-navbar">
             <div class="layout-container">
-
-                @include('layouts/sections/navbar')
+                @include('layouts/sections/menu/verticalMenu')
                 <!-- Layout page -->
                 <div class="layout-page">
+                    @include('layouts/sections/navbar/navbar')
                     <div class="content-wrapper">
-
-                        @include('layouts/sections/horizontalMenu')
-
                             {{ $slot }}
-
                         <div class="content-backdrop fade"></div>
                         @include('layouts/sections/footer')
                     </div>
@@ -42,15 +47,10 @@
         </div>
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
-
         <!-- Drag Target Area To SlideIn Menu On Small Screens -->
         <div class="drag-target"></div>
-
-
         @stack('modals')
-
         @include('layouts/sections/assets/scripts')
-
         @stack('scripts')
     </body>
 </html>

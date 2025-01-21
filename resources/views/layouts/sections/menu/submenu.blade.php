@@ -44,7 +44,7 @@ use Illuminate\Support\Facades\Route;
 
         {{-- submenu --}}
         @if (isset($submenu->submenu))
-          @include('layouts.sections.submenu',['menu' => $submenu->submenu])
+          @include('layouts.sections.menu.submenu',['menu' => $submenu->submenu])
         @endif
       </li>
     @endforeach
