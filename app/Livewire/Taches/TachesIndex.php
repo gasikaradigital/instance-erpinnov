@@ -4,6 +4,13 @@ namespace App\Livewire\Taches;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Exception;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 
 class TachesIndex extends Component
 {
@@ -17,6 +24,11 @@ class TachesIndex extends Component
         'priority' => '',
         'assignee' => ''
     ];
+
+    // Constantes pour les statuts
+    const STATUS_DRAFT = 0;
+    const STATUS_OPENED = 1;
+    const STATUS_CLOSED = 2;
 
     public function sortBy($field)
     {
@@ -58,7 +70,7 @@ class TachesIndex extends Component
                 ->get($baseUrl . '/api/index.php/tasks', [
                     'limit' => 100,
                     'sortfield' => 't.dateo',
-                    'sortorder' => 'DESC'
+                    'sortorder' => 'ASC'
                 ]);
 
             if (!$response->successful()) {
@@ -106,7 +118,7 @@ class TachesIndex extends Component
 
                 return $task;
             })->all();
-dd($data);
+           
             return view('livewire.taches.taches-index', [
                 'data' => $data,
                 'title' => 'Toutes les Tâches'
@@ -125,5 +137,49 @@ dd($data);
             ]);
         }
 
+    }
+
+    /**
+     * Retourne le libellé du statut
+     */
+    private function getStatusLabel($status)
+    {
+        return match ($status) {
+            self::STATUS_DRAFT => 'Brouillon',
+            self::STATUS_OPENED => 'Ouverte',
+            self::STATUS_CLOSED => 'Fermée',
+            default => 'Inconnu'
+        };
+    }
+
+    /**
+     * Retourne la classe CSS du statut
+     */
+    private function getStatusClass($status)
+    {
+        return match ($status) {
+            self::STATUS_DRAFT => 'bg-gray-100 text-gray-800',
+            self::STATUS_OPENED => 'bg-green-100 text-green-800',
+            self::STATUS_CLOSED => 'bg-red-100 text-red-800',
+            default => 'bg-gray-100 text-gray-800'
+        };
+    }
+
+    /**
+     * Formate les heures de travail
+     */
+    private function formatWorkload($seconds)
+    {
+        $hours = round($seconds / 3600, 1);
+        return $hours . 'h';
+    }
+
+    /**
+     * Retourne le pourcentage de progression
+     */
+    private function calculateProgress($planned, $effective)
+    {
+        if ($planned <= 0) return 0;
+        return min(100, round(($effective / $planned) * 100));
     }
 }

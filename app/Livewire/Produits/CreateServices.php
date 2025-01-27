@@ -56,7 +56,7 @@ class CreateServices extends Component
 
         $validated=[
             'ref' => $this->ref,
-            'type' => '1',
+            'type' => 1,
             'label' => $this->label,
             'description' => $this->description,
             'status' => $this->status,

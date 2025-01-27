@@ -47,8 +47,8 @@
                             <div class="col-md-6">
                                 <label class="form-label">Référence <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <span class="input-group-text">PRJ-</span>
-                                    <input type="text" class="form-control" wire:model="ref" placeholder="2024-001">
+                                    <span class="input-group-text">PJ2501-</span>
+                                    <input type="text" class="form-control" wire:model="ref" placeholder="PJ2501-0001">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -85,10 +85,10 @@
                                     <span class="input-group-text">€</span>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <label class="form-label">Temps prévu (heures)</label>
                                 <input type="number" class="form-control" wire:model="planned_workload">
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
     <!-- État et priorité -->
     <div class="card mb-4">
         <div class="card-header">
-            <h5 class="mb-0">État et priorité</h5>
+            <h5 class="mb-0">État</h5>
         </div>
         <div class="card-body">
             <div class="mb-3">
@@ -24,7 +24,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label class="form-label">Priorité</label>
                 <select class="form-select" wire:model="priority">
                     <option value="0">Basse</option>
@@ -32,13 +32,28 @@
                     <option value="2">Haute</option>
                     <option value="3">Urgente</option>
                 </select>
-            </div>
+            </div> -->
             <div class="mb-3">
                 <label class="form-label">Visibilité</label>
                 <select class="form-select" wire:model="visibility">
                     <option value="0">Privé</option>
                     <option value="1">Public</option>
                 </select>
+            </div>
+            
+            <div class="mb-3">
+            <label for="volume">Statut opportunité</label>
+                <div class="input-group">
+                    <select class="form-select" id="volumeUnit">
+                        <option value="">Prospection</option>
+                        <option value="dm3">Qualification</option>
+                        <option value="">Proposition</option>
+                        <option value="">Négociation</option>
+                        <option value="">Gagné</option>
+                        <option value="">Perdu</option>
+                    </select>
+                    <input type="text" class="form-control" id="volume" disabled>
+                </div>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" wire:model="bill_time" id="bill_time">

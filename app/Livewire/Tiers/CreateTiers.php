@@ -2,16 +2,9 @@
 
 namespace App\Livewire\Tiers;
 
-use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Auth;
-
 use Livewire\Component;
 
-class TiersIndex extends Component
+class CreateTiers extends Component
 {
     public $typent_id;
     public $typent_code;
@@ -63,66 +56,6 @@ class TiersIndex extends Component
             'code_client' => $this->code_client,
             'code_fournisseur' => $this->code_fournisseur
         ];
-    }
-
-    public function render()
-    {
-        $user  = Auth::user();
-        
-        try {
-            // Récupération des tiers depuis l'API Dolibarr
-            $response = Http::withHeaders([
-                'DOLAPIKEY' =>  $user->api_key 
-            ])->get($user->url_dolibarr . '/api/index.php/thirdparties');
-
-            if (!$response->successful()) {
-                throw new Exception('Erreur API: ' . $response->status());
-            }
-
-            // Conversion du tableau en objets pour faciliter l'utilisation dans la vue
-            $this->data = collect($response->json())->map(function($item) {
-                $item = (object) $item;
-
-                // Récupérer le nom du pays si country_id existe
-                if (!empty($item->country_id)) {
-                    try {
-                        $countryResponse = Http::withHeaders([
-                            'DOLAPIKEY' => $user->api_key
-                        ])->get($user->url_dolibarr . '/api/index.php/setup/dictionary/countries/' . $item->country_id);
-
-                        if ($countryResponse->successful()) {
-                            $country = $countryResponse->json();
-                            $item->country = $country['label'] ?? 'N/A';
-                        }
-                    } catch (\Exception $e) {
-                        $item->country = 'N/A';
-                    }
-                } else {
-                    $item->country = 'N/A';
-                }
-
-                return $item;
-            })->all();
-            
-            //Récupération des codes clients qui sont déjà utilisé par d'autre tiers
-            foreach($this->data as $codeClient){
-                if($codeClient->code_client){
-                    $this->codeClient[] = $codeClient->code_client;
-                }
-            }
-            
-            return view('livewire.tiers.tiers-index', [
-                'data' => $this->data,
-                'title' => 'Liste des tiers'
-            ]);
-        } catch (Exception $e) {
-            Log::error('Erreur lors de la récupération des tiers: ' . $e->getMessage());
-            return view('livewire.tiers.tiers-index', [
-                'data' => [],
-                'error' => $e->getMessage(),
-                'title' => 'Liste des tiers'
-            ]);
-        }
     }
 
     public function setTypentCode($typentId)
@@ -262,4 +195,8 @@ class TiersIndex extends Component
         }
     }
 
+    public function render()
+    {
+        return view('livewire.tiers.create-tiers');
+    }
 }

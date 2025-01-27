@@ -28,21 +28,44 @@
                         <th>Temps prévu</th>
                         <th>Temps passé</th>
                         <th>Progrès</th>
-                        <th>Priorité</th>
-                        <th>Statut</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
+                @if(count($data ?? []) > 0)
+                @foreach($data as $tache)
                 <tbody>
                     <tr>
-                        <td colspan="11" class="text-center py-4">
-                            <div class="text-muted">Aucune tâche trouvée</div>
+                        <td class="text-center py-4">
+                            <div class="text-muted">{{ $tache->ref }}</div>
+                        </td>
+                        <td class="text-center py-4">
+                            <div class="text-muted">{{ $tache->description }}</div>
+                        </td>
+                        <td class="text-center py-4">
+                            <div class="text-muted">{{ $tache->project_title }}</div>
+                        </td>
+                        <td class="text-center py-4">
+                            <div class="text-muted">{{ $tache->date_start_formatted }}</div>
+                        </td>
+                        <td class="text-center py-4">
+                            <div class="text-muted">{{ $tache->date_end_formatted }}</div>
+                        </td>
+                        <td class="text-center py-4">
+                            <div class="text-muted">{{ $tache->planned_workload_formatted }}</div>
+                        </td>
+                        <td class="text-center py-4">
+                            <div class="text-muted">{{ $tache->duration_effective_formatted }}</div>
+                        </td>
+                        <td class="text-center py-4">
+                            <div class="text-muted">{{ $tache->progress }}%</div>
                         </td>
                     </tr>
                 </tbody>
+                @endforeach
+                @endif
             </table>
         </div>
     </div>
-
+    
 </div>
 </div>

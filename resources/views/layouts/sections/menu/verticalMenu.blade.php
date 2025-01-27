@@ -9,7 +9,8 @@ $currentRouteName = Route::currentRouteName();
   @if(!isset($navbarFull))
     <div class="app-brand demo">
       <a href="{{url('/')}}" class="app-brand-link">
-        <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20])</span>
+        <!-- <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20])</span> -->
+        <img src="{{ asset('assets/img/logo/logo.png')}}" alt="Logo de GasikaraDigital" height="20">
         <span class="app-brand-text demo menu-text fw-bold">{{config('variables.templateName')}}</span>
       </a>
 
@@ -32,12 +33,43 @@ $currentRouteName = Route::currentRouteName();
     </li>
 
     {{-- Tiers --}}
-    <li class="menu-item {{ $currentRouteName === 'tiers' ? 'active' : '' }}">
-      <a href="{{ route('tiers') }}" class="menu-link">
+
+    <li class="menu-item {{ in_array($currentRouteName, ['tiers', 'create-tiers']) ? 'active open' : '' }}">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-users"></i>
         <div>{{ __('Tiers') }}</div>
       </a>
+      <ul class="menu-sub">
+        <li class="menu-item {{ $currentRouteName === 'tiers' ? 'active' : '' }}">
+          <a href="{{ route('tiers') }}" class="menu-link">
+            <div>{{ __('Liste des tiers') }}</div>
+          </a>
+        </li>
+        <li class="menu-item {{ $currentRouteName === 'create-tiers' ? 'active' : '' }}">
+          <a href="{{ route('create-tiers') }}" class="menu-link">
+            <div>{{ __('Nouveau tiers') }}</div>
+          </a>
+        </li>
+        <li class="menu-item {{ $currentRouteName, ['contact', 'create-contact'] ? 'active open' : '' }}">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <div>{{ __('Contact') }}</div>
+          </a>
+          <ul class="menu-sub">
+            <li class="menu-item {{ $currentRouteName === 'contact' ? 'active' : '' }}">
+              <a href="{{ route('create-contact') }}" class="menu-link">
+                <div>{{ __('Liste contact') }}</div>
+              </a>
+            </li>
+            <li class="menu-item {{ $currentRouteName === 'create-contact' ? 'active' : '' }}">
+              <a href="{{ route('create-contact') }}" class="menu-link">
+                <div>{{ __('Nouveau contact') }}</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
+
 
     {{-- Produits --}}
     <li class="menu-item {{ in_array($currentRouteName, ['produits', 'create-produits', 'create-services']) ? 'active open' : '' }}">

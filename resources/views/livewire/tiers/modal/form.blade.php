@@ -60,10 +60,6 @@
                                             <option value="4">TPE</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label">Code fournisseur</label>
-                                        <input type="text" class="form-control" wire:model="code_fournisseur"/>
-                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
       return [];
     });
 
-    try{
+    /*try{
         $host = request()->getHost();
         $subdomain = "http://" . explode('.', $host)[0] . ".erpinnov.com";
         
@@ -73,6 +73,6 @@ class AppServiceProvider extends ServiceProvider
         }
     } catch(\Exception $e){
             dd($e->getMessage());
-    }
+    }*/
   }
 }

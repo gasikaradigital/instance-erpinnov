@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Projets;
 
+use Exception;
 use Livewire\Component;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -88,15 +89,13 @@ class ProjetIndex extends Component
                     'sortfield' => 'dateo',
                     'sortorder' => 'DESC'
                 ]);
-
+            
             if (!$response->successful()) {
                 throw new Exception('Erreur API: ' . $response->status());
             }
 
             $data = collect($response->json())->map(function($item) {
                 $projet = (object) $item;
-                $projet->date_start = isset($projet->dateo) ? $projet->dateo : null;
-                $projet->date_end = isset($projet->datee) ? $projet->datee : null;
                 $projet->status = $projet->status ?? 0;
                 $projet->title = $projet->title ?? $projet->ref;
                 return $projet;
@@ -108,6 +107,7 @@ class ProjetIndex extends Component
             ]);
 
         } catch (Exception $e) {
+            dd($e->getMessage());
             Log::error('Erreur récupération projets:', [
                 'message' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()

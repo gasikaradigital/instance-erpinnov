@@ -3,6 +3,13 @@
 namespace App\Livewire\Projets;
 
 use Livewire\Component;
+use Exception;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Livewire\WithPagination;
 
 class CreateProjet extends Component
 {
@@ -47,16 +54,57 @@ class CreateProjet extends Component
     }
 
     public function submit()
-    {
-        // Validation
-        $this->validate([
-            'ref' => 'required|unique:projects,ref',
-            'title' => 'required|min:3',
-            'status_id' => 'required|integer',
-            // Autres règles de validation
-        ]);
+    {   
+        try {
+            $user = Auth::user();
+            $baseUrl = rtrim($user->url_dolibarr, '/');
 
-        // Création du projet
+            $projectData = [
+                'ref' => $this->ref,
+                'title' => $this->title,
+                'status' => $this->status_id,
+                'statut' => $this->status_id,
+                'description' => $this->description ?? '',
+                'public' => $this->visibility ? 1 : 0,
+                'date_start' => Carbon::parse($this->start_date)->format('Y-m-d'),
+                'date_end' => strtotime(str_replace('/', '-', $this->end_date)),
+                'budget_amount' => $this->budget_amount ?? 0,
+            ];
+
+            Log::info('Tentative création projet:', [
+                'url' => $baseUrl . '/api/index.php/projects',
+                'data' => $projectData
+            ]);
+
+            $response = Http::withoutVerifying()
+                ->withHeaders([
+                    'DOLAPIKEY' => $user->api_key
+                ])
+                ->post($baseUrl . '/api/index.php/projects', $projectData);
+
+            if (!$response->successful()) {
+                $errorMessage = $response->body();
+                Log::error('Erreur API création projet:', [
+                    'status' => $response->status(),
+                    'body' => $errorMessage,
+                    'data' => $projectData
+                ]);
+                throw new Exception('Erreur création projet: ' . $errorMessage);
+            }
+
+            return redirect()
+                ->route('projets')
+                ->with('success', 'Projet créé avec succès');
+
+        } catch (Exception $e) {
+            Log::error('Erreur création projet:', [
+                'message' => $e->getMessage(),
+                'data' => $projectData ?? null
+            ]);
+            return back()
+                ->withInput()
+                ->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     public function render()

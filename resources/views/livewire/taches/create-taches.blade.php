@@ -1,9 +1,9 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <!-- En-tête -->
     <h4 class="fw-bold py-3 mb-4">
-        <span class="text-muted fw-light">Tâches /</span> Nouvelle tâche
+        <span class="text-muted fw-light">Tâches /</span> Nouvelle tâche 
     </h4>
-
+    @if(count($projects ?? []) > 0)
     <!-- Card principale -->
     <div class="card mb-4">
         <div class="card-header">
@@ -22,34 +22,33 @@
         <div class="card-body">
             <form>
                 <!-- Première section -->
-                <div class="row mb-4">
+                <!-- <div class="row mb-4">
                     <label class="col-sm-2 col-form-label">Référence</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" placeholder="Généré automatiquement si vide">
                     </div>
-                </div>
+                </div> -->
 
-                <div class="row mb-4">
+                <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Libellé <span class="text-danger">*</span></label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input type="text" class="form-control" required>
                     </div>
-                </div>
 
-                <!-- Projet parent -->
-                <div class="row mb-4">
                     <label class="col-sm-2 col-form-label">Projet parent</label>
-                    <div class="col-sm-10">
-                        <select class="form-select">
-                            <option value="">Sélectionner un projet</option>
+                    <div class="col-sm-4">
+                        <select class="form-select" wire:model="project_ref">
+                        @foreach($projects as $project)
+                            <option value="{{ $project->ref }}">{{ $project->title }}</option>  
+                        @endforeach
                         </select>
                     </div>
                 </div>
-
+        
                 <!-- Tâche parente -->
                 <div class="row mb-4">
                     <label class="col-sm-2 col-form-label">Tâche parente</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <select class="form-select">
                             <option value="">Sélectionner une tâche</option>
                         </select>
@@ -77,10 +76,7 @@
                             <span class="input-group-text">jours</span>
                         </div>
                     </div>
-                </div>
 
-                <!-- Progression -->
-                <div class="row mb-4">
                     <label class="col-sm-2 col-form-label">Progression</label>
                     <div class="col-sm-4">
                         <div class="input-group">
@@ -102,12 +98,9 @@
                             <option value="4">La plus haute</option>
                         </select>
                     </div>
-                </div>
 
-                <!-- Visibilité -->
-                <div class="row mb-4">
                     <label class="col-sm-2 col-form-label">Visibilité</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <select class="form-select">
                             <option value="0">Privée (visible par le créateur uniquement)</option>
                             <option value="1" selected>Tous les contacts du projet</option>
@@ -124,12 +117,9 @@
                             <span class="input-group-text">€</span>
                         </div>
                     </div>
-                </div>
 
-                <!-- Assignation -->
-                <div class="row mb-4">
                     <label class="col-sm-2 col-form-label">Assigné à</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <select class="form-select">
                             <option value="">Non assigné</option>
                         </select>
@@ -139,7 +129,7 @@
                 <!-- Description -->
                 <div class="row mb-4">
                     <label class="col-sm-2 col-form-label">Description</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <textarea class="form-control" rows="4"></textarea>
                     </div>
                 </div>
@@ -156,7 +146,7 @@
                             <i class="ti ti-device-floppy me-1"></i>
                             Créer brouillon
                         </button>
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-success" wire:click = "submit">
                             <i class="ti ti-device-floppy me-1"></i>
                             Créer et valider
                         </button>
@@ -165,4 +155,13 @@
             </form>
         </div>
     </div>
+    @else
+    <div class="card mb-4">
+        <h4 class="fw-bold py-3 mb-4">
+            Veuillez créer un nouveau projet pour poivoir asigner une tâche. 
+        </h4>
+    </div>
+    @endif
+    
+    
 </div>

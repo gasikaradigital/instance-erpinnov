@@ -41,8 +41,21 @@
                             </td>
                             <td>{{ $projet->title }}</td>
                             <td>{{ $projet->description}}</td>
-                            <td>{{ date('d/m/Y', $projet->date_c) }}</td>
-                            <td>{{ date('d/m/Y', $projet->date_m) }}</td>
+                            <td>@php
+                                    $timestamp = $projet->date_start; // Votre timestamp
+                                    $date = \Carbon\Carbon::createFromTimestamp($timestamp)->setTimezone('Europe/Paris');
+                                @endphp
+
+                                {{ $date->format('d/m/Y') }}
+                            </td>
+                            <td>
+                                @php
+                                    $timestamp = $projet->date_end; // Votre timestamp
+                                    $date = \Carbon\Carbon::createFromTimestamp($timestamp)->setTimezone('Europe/Paris');
+                                @endphp
+
+                                {{ $date->format('d/m/Y') }}
+                            </td>
                             <td>{{ $projet->budget_amount}}</td>
                             <td>
                                 <span class="badge bg-label-primary">En cours</span>
@@ -74,7 +87,12 @@
                                 </div>
                             </td>
                         </tr>
-                        {{-- @empty --}}
+                        
+                    </tbody>
+                    @endforeach
+                    @else
+                    <tbody>
+                    {{-- @empty --}}
                         <tr>
                             <td colspan="9" class="text-center py-4">
                                 <div class="text-center mb-3">
@@ -84,9 +102,8 @@
                                 <p class="text-muted mb-0">Commencez par créer un nouveau projet</p>
                             </td>
                         </tr>
-                        {{-- @endforelse --}}
+                    {{-- @endforelse --}}
                     </tbody>
-                    @endforeach
                     @endif
                 </table>
             </div>

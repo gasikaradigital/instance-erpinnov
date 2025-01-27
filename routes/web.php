@@ -5,6 +5,8 @@ use App\Livewire\Language;
 use App\Livewire\Taches\CreateTaches;
 use App\Livewire\Taches\TachesIndex;
 use App\Livewire\Tiers\TiersIndex;
+use App\Livewire\Tiers\CreateTiers;
+use App\Livewire\Tiers\CreateContact;
 use App\Livewire\Projets\ProjetIndex;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Projets\CreateProjet;
@@ -25,6 +27,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/home', HomePage::class)->name('home');
 
     Route::get('/tiers', TiersIndex::class)->name('tiers');
+    Route::get('/create/tiers', CreateTiers::class)->name('create-tiers');
+
+    Route::get('/contact', CreateContact::class)->name('contact');
+    Route::get('/create/contact', CreateContact::class)->name('create-contact');
 
     Route::get('/produits', IndexProduit::class)->name('produits');
     Route::get('/create/produits', CreateProduits::class)->name('create-produits');

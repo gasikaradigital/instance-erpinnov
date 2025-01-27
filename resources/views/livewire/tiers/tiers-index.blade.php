@@ -29,14 +29,6 @@
                     <div class="col-sm-6 col-8">
                         <h5 class="card-title mb-0">Liste des Tiers</h5>
                     </div>
-
-                    <!-- Bouton à droite -->
-                    <div class="col-sm-6 col-4 text-end">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tierModal">
-                            <i class="ti ti-plus me-1"></i>
-                            <span class="d-none d-sm-inline-block">Nouveau Tiers</span>
-                        </button>
-                    </div>
                 </div>
                 <!-- Filtres -->
                 <div class="row g-3 mt-3">
