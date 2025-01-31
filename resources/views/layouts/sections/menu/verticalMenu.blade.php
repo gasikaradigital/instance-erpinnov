@@ -44,10 +44,20 @@ $currentRouteName = Route::currentRouteName();
           <a href="{{ route('tiers') }}" class="menu-link">
             <div>{{ __('Liste des tiers') }}</div>
           </a>
+          <li class="menu-item {{ $currentRouteName === 'create-tiers' ? 'active' : '' }} ">
+            <a href="{{ route('create-tiers') }}" class="menu-link">
+              <div>{{ __('Nouveau tiers') }}</div>
+            </a>
+          </li>
         </li>
-        <li class="menu-item {{ $currentRouteName === 'create-tiers' ? 'active' : '' }}">
-          <a href="{{ route('create-tiers') }}" class="menu-link">
-            <div>{{ __('Nouveau tiers') }}</div>
+        <li class="menu-item {{ $currentRouteName === 'prospects' ? 'active' : '' }}">
+          <a href="{{ route('prospects') }}" class="menu-link">
+            <div>{{ __('Prospects') }}</div>
+          </a>
+        </li>
+        <li class="menu-item {{ $currentRouteName === 'create-prospects' ? 'active' : '' }} ">
+          <a href="{{ route('create-prospects') }}" class="menu-link">
+            <div>{{ __('Nouveau prospect') }}</div>
           </a>
         </li>
         <li class="menu-item {{ $currentRouteName, ['contact', 'create-contact'] ? 'active open' : '' }}">
@@ -75,7 +85,7 @@ $currentRouteName = Route::currentRouteName();
     <li class="menu-item {{ in_array($currentRouteName, ['produits', 'create-produits', 'create-services']) ? 'active open' : '' }}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-box"></i>
-        <div>{{ __('Produits') }}</div>
+        <div>{{ __('Produits / Services') }}</div>
       </a>
       <ul class="menu-sub">
         <li class="menu-item {{ $currentRouteName === 'produits' ? 'active' : '' }}">
@@ -116,7 +126,71 @@ $currentRouteName = Route::currentRouteName();
       </ul>
     </li>
 
-    {{-- Tâches --}}
+    {{-- Ventes --}}
+    <li class="menu-item {{ in_array($currentRouteName, ['vente', 'create-sale']) ? 'active open' : '' }}">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
+        <div>{{ __('Ventes') }}</div>
+      </a>
+    </li>
+
+    {{-- Factures --}}
+    <li class="menu-item {{ in_array($currentRouteName, ['facture', 'create-invoices']) ? 'active open' : '' }}">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons ti ti-file-dollar"></i>
+        <div>{{ __('Factures') }}</div>
+      </a>
+    </li>
+
+     {{-- Banque et caisse  À VERIFIER --}} 
+     <li class="menu-item {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons ti ti-building-bank"></i>
+        <div>{{ __('Banques / Caisses') }}</div>
+      </a>
+    </li>
+      
+    {{-- Comptabilité  À VERIFIER--}} 
+         <li class="menu-item {{ in_array($currentRouteName, ['comptabilite', 'create-accounting']) ? 'active open' : '' }}">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons ti ti-chart-bar"></i>
+            <div>{{ __('Comptabilités') }}</div>
+          </a>
+        </li>
+
+     {{-- GRH  À VERIFIER--}} 
+     <li class="menu-item {{ in_array($currentRouteName, ['grh', 'create-grh']) ? 'active open' : '' }}">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons ti ti-user"></i>
+        <div>{{ __('GRH') }}</div>
+      </a>
+    </li>
+
+         {{-- Email  À VERIFIER--}} 
+         <li class="menu-item {{ in_array($currentRouteName, ['email', 'create-mail']) ? 'active open' : '' }}">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons ti ti-mail"></i>
+            <div>{{ __('Email') }}</div>
+          </a>
+        </li>
+
+        {{-- Document À VERIFIER--}} 
+        <li class="menu-item {{ in_array($currentRouteName, ['document', 'create-document']) ? 'active open' : '' }}">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons ti ti-files"></i> 
+            <div>{{ __('Documents') }}</div>
+          </a>
+        </li>
+
+        {{-- Chat  À VERIFIER--}} 
+        <li class="menu-item {{ in_array($currentRouteName, ['chat', 'create-chat']) ? 'active open' : '' }}">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons ti ti-message-chatbot"></i>
+            <div>{{ __('Chat') }}</div>
+          </a>
+        </li>
+
+    {{-- Tâches
     <li class="menu-item {{ in_array($currentRouteName, ['taches', 'create-tache']) ? 'active open' : '' }}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-list-check"></i>
@@ -134,6 +208,6 @@ $currentRouteName = Route::currentRouteName();
           </a>
         </li>
       </ul>
-    </li>
+    </li> --}}
   </ul>
 </aside>
