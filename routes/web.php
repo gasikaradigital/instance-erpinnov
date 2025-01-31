@@ -6,14 +6,18 @@ use App\Livewire\Taches\CreateTaches;
 use App\Livewire\Taches\TachesIndex;
 use App\Livewire\Tiers\TiersIndex;
 use App\Livewire\Tiers\CreateTiers;
-use App\Livewire\Tiers\CreateContact;
 use App\Livewire\Projets\ProjetIndex;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Projets\CreateProjet;
 use App\Livewire\Produits\IndexProduit;
 use App\Livewire\Produits\CreateProduits;
 use App\Livewire\Produits\CreateServices;
-
+use App\Livewire\Tiers\ProspectsIndex;
+use App\Livewire\Tiers\CreateProspects;
+use App\Livewire\Tiers\ClientIndex;
+use App\Livewire\Tiers\CreateCustomer;
+use App\Livewire\Tiers\FournisseurIndex;
+use App\Livewire\Tiers\CreateSupplier;
 // Redirections
 Route::redirect('/', '/login');
 Route::redirect('/register', '/login');
@@ -30,11 +34,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/tiers', TiersIndex::class)->name('tiers');
     Route::get('/create/tiers', CreateTiers::class)->name('create-tiers');
     
-    Route::get('/prospects', TiersIndex::class)->name('prospects');
-    Route::get('/create/prospects', CreateTiers::class)->name('create-prospects');
-    
-    Route::get('/contact', CreateContact::class)->name('contact');
-    Route::get('/create/contact', CreateContact::class)->name('create-contact');
+    Route::get('/prospects', ProspectsIndex::class)->name('prospects');
+    Route::get('/create/prospects', CreateProspects::class)->name('create-prospects');
+
+    Route::get('/client', ClientIndex::class)->name('client');
+    Route::get('/create/customer', CreateCustomer::class)->name('create-customer');
+
+    Route::get('/fournisseur', FournisseurIndex::class)->name('fournisseur');
+    Route::get('/create/supplier', CreateSupplier::class)->name('create-supplier');
     
     Route::get('/produits', IndexProduit::class)->name('produits');
     Route::get('/create/produits', CreateProduits::class)->name('create-produits');
@@ -70,9 +77,4 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/chat', TiersIndex::class)->name('chat');
     Route::get('/create/chat', CreateTiers::class)->name('create-chat');
     
-   
-
-    
-
-
 });

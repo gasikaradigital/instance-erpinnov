@@ -1,13 +1,13 @@
-<div class="container-xxl flex-grow-1 {{ route('create-tiers') }}">
+<div class="container-xxl flex-grow-1 {{ route('create-customer') }}">
     <!-- En-tête -->
     <h4 class="fw-bold py-3 mb-2 ">
-        Nouveau tiers 
+        Nouveau client
     </h4>
     <div class="card mb-4 col-12 ">
             <form wire:submit.prevent="save" class="modal-content" id="addNewTierForm">
                 <!-- En-tête Modal -->
                 <div class="modal-header py-2 mx-2">
-                    <h5 class="modal-title">Ajouter un nouveau tiers</h5>
+                    <h5 class="modal-title">Ajouter un nouveau client</h5>
                 </div>
 
                 <!-- Corps Modal -->
