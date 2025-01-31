@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Devise</label>
-                                        <select class="select2 form-select" wire:model="status">
+                                        <select class="select2 form-select" wire:model="statut">
                                             <option value="1">Euro</option>
                                             <option value="0">Ariary</option>
                                         </select>

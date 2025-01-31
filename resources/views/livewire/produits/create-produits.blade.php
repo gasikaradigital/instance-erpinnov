@@ -89,86 +89,10 @@
 
                     <!-- Contenu du formulaire -->
                     <div class="bs-stepper-content p-0">
-                        <form wire:submit.prevent="submit">
+                        <form>
                             <!-- Étape 1: Informations générales -->
                             <div class="content {{ $currentStep == 1 ? 'active dstepper-block' : 'd-none' }}">
-                                <!-- <div class="card mb-4">
-                                    <div class="card-body">
-                                        <div class="row g-3">
-                                            <div class="col-md-12">
-                                                <label class="form-label" for="ref">Référence <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control w-25" id="ref" wire:model="ref" required>
-
-                                                <label class="form-label mt-3" for="label">Libellé <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control w-25" id="label" wire:model="label" required>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label class="form-label" for="status">Statut de vente</label>
-                                                <select class="form-select" id="status" wire:model="status">
-                                                    <option value="">Choisissez</option>
-                                                    <option value="1">En vente</option>
-                                                    <option value="0">Hors vente</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label class="form-label" for="status">Statut d'achat</label>
-                                                <select class="form-select" id="status" wire:model="status_buy">
-                                                    <option value="">Choisissez</option>
-                                                    <option value="1">En achat</option>
-                                                    <option value="0">Hors achat</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="d-flex align-items-center">
-                                                    <label class="form-label me-3" for="description">Utiliser les numéros de lots/série</label>
-                                                    <select class="form-select w-50" id="">
-                                                        <option value="">Non (lot/série non utilisé)</option>
-                                                        <option value="">Oui (lot/série requis)</option>
-                                                        <option value="">Oui (numéro de série unique requis)</option>
-                                                    </select>
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label" for="description">Description</label>
-                                                <textarea class="form-control" id="description" wire:model="description" rows="3"></textarea>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label class="form-label" for="label">Barcode <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="label" wire:model="barcode" required>
-                                            </div>
-                                            
-                                            <div class="col-md-3">
-                                                <label class="form-label" for="price">Prix de vente HT</label>
-                                                <div class="input-group">
-                                                    <input type="number" class="form-control" id="price" wire:model="price" step="0.01">
-                                                    <span class="input-group-text">€</span>
-                                                </div>
-                                                <div>
-                                                    <select name="" id="">
-                                                        <option value="">HT</option>
-                                                        <option value="">TTC</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between mt-4">
-                                            <button type="button" class="btn btn-label-secondary" onclick="history.back()">
-                                                <i class="ti ti-arrow-left me-sm-1"></i>
-                                                <span class="align-middle d-sm-inline-block d-none">Retour</span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary" wire:click="nextStep">
-                                                <span class="align-middle d-sm-inline-block d-none me-sm-1">Suivant</span>
-                                                <i class="ti ti-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="ref">Référence <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="ref" wire:model="ref" required placeholder="Entrez la référence">
-                                    </div>
                                     <div class="col-md-6">
                                         <label class="form-label" for="label">Libellé <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="label" wire:model="label" required placeholder="Entrez le libellé">
@@ -179,6 +103,7 @@
                                     <div class="col-md-6">
                                         <label class="form-label" for="status">Statut de vente</label>
                                         <select class="form-select" id="status" wire:model="status">
+                                            <option value=""></option>
                                             <option value="1">En vente</option>
                                             <option value="0">Hors vente</option>
                                         </select>
@@ -186,6 +111,7 @@
                                     <div class="col-md-6">
                                         <label class="form-label" for="status_buy">Statut d'achat</label>
                                         <select class="form-select" id="status_buy" wire:model="status_buy">
+                                            <option value=""></option>
                                             <option value="1">En achat</option>
                                             <option value="0">Hors achat</option>
                                         </select>
@@ -195,19 +121,21 @@
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <label class="form-label" for="lot_series">Utilisation des numéros de lots/série</label>
-                                        <select class="form-select" id="lot_series">
-                                            <option value="">Non (lot/série non utilisé)</option>
-                                            <option value="required">Oui (lot/série requis)</option>
-                                            <option value="unique">Oui (numéro de série unique requis)</option>
+                                        <select class="form-select" id="lot_series" wire:model="status_batch">
+                                            <option value=""></option>
+                                            <option value="0">Non (lot/série non utilisé)</option>
+                                            <option value="1">Oui (lot/série requis)</option>
+                                            <option value="2">Oui (numéro de série unique requis)</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label" for="DLC">DLC ou DMD/DLUO est obligatoie</label>
-                                        <select class="form-select" id="lot_series">
-                                            <option value="">Aucune</option>
-                                            <option value="required">DLC</option>
-                                            <option value="unique">DMD/DLUO</option>
-                                            <option value="">DLC et DMD/DLUO</option>
+                                        <select class="form-select" id="lot_series" wire:model="sell_or_eat_by_mandatory">
+                                            <option value=""></option>
+                                            <option value="0">Aucune</option>
+                                            <option value="1">DLC</option>
+                                            <option value="2">DMD/DLUO</option>
+                                            <option value="3">DLC et DMD/DLUO</option>
                                         </select>
                                     </div>
                                 </div>
@@ -222,7 +150,7 @@
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <label class="form-label" for="description">Description <span class="text-danger">*</span></label>
-                                        <textarea class="form-control" name="" id="" rows="3"></textarea> 
+                                        <textarea class="form-control" name="" id="" rows="3" wire:model="description"></textarea> 
                                     </div>
                                 </div>
 
@@ -243,54 +171,22 @@
                             <div class="content {{ $currentStep == 2 ? 'active dstepper-block' : 'd-none' }}">
                                 <div class="card mb-4">
                                     <div class="card-body">
-                                        <!-- <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <label class="form-label" for="price">Prix de vente</label>
-                                                <div class="input-group">
-                                                    <input type="number" class="form-control" id="price" wire:model="price" step="0.01">
-                                                    <span class="input-group-text">€</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label" for="tva_tx">TVA</label>
-                                                <select class="form-select" id="tva_tx" wire:model="tva_tx">
-                                                    <option value="20">20%</option>
-                                                    <option value="10">10%</option>
-                                                    <option value="5.5">5.5%</option>
-                                                    <option value="2.1">2.1%</option>
-                                                    <option value="0">0%</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label" for="price_ttc">Prix de vente TTC</label>
-                                                <div class="input-group">
-                                                    <input type="number" class="form-control" id="price_ttc" wire:model="price_ttc" step="0.01">
-                                                    <span class="input-group-text">€</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label" for="cost_price">Prix de revient</label>
-                                                <div class="input-group">
-                                                    <input type="number" class="form-control" id="cost_price" wire:model="cost_price" step="0.01">
-                                                    <span class="input-group-text">€</span>
-                                                </div>
-                                            </div>
-                                        </div> -->
+
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label class="form-label" for="barcode">URL publique <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="url" wire:model="barcode" required>
+                                                <input type="text" class="form-control" id="url" wire:model="url" required>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label class="form-label" for="description">Limite stock pour alerte <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="url" wire:model="barcode" required>
+                                                <input type="text" class="form-control" id="url" required>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="form-label" for="description"> Stock désiré optimal <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="url" wire:model="barcode" required>
+                                                <input type="text" class="form-control" id="url" required>
                                             </div>
                                         </div>
 
@@ -309,16 +205,16 @@
                                             <div class="col-md-4">
                                                 <label for="volume">Prix de vente</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="volume" disabled>
-                                                    <select class="form-select" id="volumeUnit">
-                                                        <option value="m3">HT</option>
-                                                        <option value="dm3">TTC</option>
+                                                    <input type="text" class="form-control" id="volume" wire:model="price">
+                                                    <select class="form-select" id="volumeUnit" wire:model="price_base_type">
+                                                        <option value="HT">HT</option>
+                                                        <option value="TTC">TTC</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="volume">Prix de vente min</label>
-                                                <input type="text" class="form-control" id="volume" disabled>
+                                                <input type="text" class="form-control" id="volume" wire:model="price_min">
                                             </div>
                                         </div>
 
@@ -326,9 +222,9 @@
                                             <div class="col-md-4">
                                                 <label for="volume">Poids</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="volume" disabled>
-                                                    <select class="form-select" id="volumeUnit">
-                                                        <option value="m3">tonne</option>
+                                                    <input type="text" class="form-control" id="volume" wire:model="weight" >
+                                                    <select class="form-select" id="volumeUnit" wire:model="weight_units">
+                                                        <option value="3">tonne</option>
                                                         <option value="dm3">Kg</option>
                                                         <option value="">g</option>
                                                     </select>
@@ -339,15 +235,15 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label for="length">Longueur (m)</label>
-                                                <input type="number" class="form-control" id="length" placeholder="Entrez la longueur">
+                                                <input type="number" class="form-control" id="length" wire:model="length" placeholder="Entrez la longueur">
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="width">Largeur (m)</label>
-                                                <input type="number" class="form-control" id="width" placeholder="Entrez la largeur">
+                                                <input type="number" class="form-control" id="width" wire:model="width" placeholder="Entrez la largeur">
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="height">Hauteur (m)</label>
-                                                <input type="number" class="form-control" id="height" placeholder="Entrez la hauteur">
+                                                <input type="number" class="form-control" id="height" wire:model="height" placeholder="Entrez la hauteur">
                                             </div>
                                         </div>
 
@@ -355,8 +251,8 @@
                                             <div class="col-md-4">
                                                 <label for="volume">Surface</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="volume" disabled>
-                                                    <select class="form-select" id="volumeUnit">
+                                                    <input type="text" class="form-control" id="volume">
+                                                    <select class="form-select" id="volumeUnit" wire:model="surface">
                                                         <option value="m3">cm²</option>
                                                         <option value="dm3">m²</option>
                             
@@ -366,7 +262,7 @@
                                             <div class="col-md-4">
                                                 <label for="volume">Volume</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="volume" disabled>
+                                                    <input type="text" class="form-control" id="volume" wire:model="volume" >
                                                     <select class="form-select" id="volumeUnit">
                                                         <option value="m3">m³</option>
                                                         <option value="dm3">dm³</option>
@@ -391,22 +287,22 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label for="length">Code comptable (vente)</label>
-                                                <input type="text" class="form-control" id="length" placeholder="Entrez la longueur">
+                                                <input type="text" class="form-control" id="length" wire:model="accountancy_code_sell">
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="width">Code comptable (vente à l'export)</label>
-                                                <input type="number" class="form-control" id="width" placeholder="Entrez la largeur">
+                                                <input type="text" class="form-control" id="width" wire:model="accountancy_code_sell_export">
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label for="length">Code comptable (achat)</label>
-                                                <input type="text" class="form-control" id="length" placeholder="Entrez la longueur">
+                                                <input type="text" class="form-control" id="length" wire:model="accountancy_code_buy">
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="width">Code comptable (achat import)</label>
-                                                <input type="number" class="form-control" id="width" placeholder="Entrez la largeur">
+                                                <input type="text" class="form-control" id="width" wire:model="accountancy_code_buy_export">
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between mt-4">
@@ -424,7 +320,7 @@
                             </div>
 
                             <!-- Étape 3: Stock -->
-                            <div class="content {{ $currentStep == 3 ? 'active dstepper-block' : 'd-none' }}">
+                            <!-- <div class="content {{ $currentStep == 3 ? 'active dstepper-block' : 'd-none' }}">
                                 <div class="card mb-4">
                                     <div class="card-body">
                                         <div class="row g-3">
@@ -459,10 +355,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Étape 4: Dimensions -->
-                            <div class="content {{ $currentStep == 4 ? 'active dstepper-block' : 'd-none' }}">
+                            <!-- <div class="content {{ $currentStep == 4 ? 'active dstepper-block' : 'd-none' }}">
                                 <div class="card mb-4">
                                     <div class="card-body">
                                         <div class="row g-3">
@@ -497,7 +393,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label" for="volume">Volume</label>
+                                                <label class="form-label" for="volume">Volume2</label>
                                                 <div class="input-group">
                                                     <input type="number" class="form-control" id="volume" wire:model="volume" step="0.01" min="0">
                                                     <select class="form-select" id="volume_units" wire:model="volume_units" style="max-width: 100px;">
@@ -515,12 +411,12 @@
                                             </button>
                                             <button type="submit" class="btn btn-success">
                                                 <i class="ti ti-device-floppy me-sm-1"></i>
-                                                <span class="align-middle d-sm-inline-block d-none">Enregistrer</span>
+                                                <span class="align-middle d-sm-inline-block d-none">Enregistrer2</span>
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                 </div>
