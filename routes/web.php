@@ -19,28 +19,60 @@ Route::redirect('/', '/login');
 Route::redirect('/register', '/login');
 
 
+
+
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function() {
 
     // locale
     Route::get('/lang/{locale}', Language::class)->name('lang');
-
     Route::get('/home', HomePage::class)->name('home');
-
+    
     Route::get('/tiers', TiersIndex::class)->name('tiers');
     Route::get('/create/tiers', CreateTiers::class)->name('create-tiers');
-
+    
+    Route::get('/prospects', TiersIndex::class)->name('prospects');
+    Route::get('/create/prospects', CreateTiers::class)->name('create-prospects');
+    
     Route::get('/contact', CreateContact::class)->name('contact');
     Route::get('/create/contact', CreateContact::class)->name('create-contact');
-
+    
     Route::get('/produits', IndexProduit::class)->name('produits');
     Route::get('/create/produits', CreateProduits::class)->name('create-produits');
     Route::get('/create/services', CreateServices::class)->name('create-services');
 
     Route::get('/projets', ProjetIndex::class)->name('projets');
-
     Route::get('/projet/create', CreateProjet::class)->name('create-project');
-
+    
     Route::get('/taches', TachesIndex::class)->name('taches');
-    Route::get('/tache/create', CreateTaches::class)->name('create-tache');
+    Route::get('/tache/create', CreateTaches::class)->name('create-tache');  
+
+    Route::get('/vente', TiersIndex::class)->name('vente');
+    Route::get('/create/sale', CreateTiers::class)->name('create-sale');
+
+    Route::get('/facture', TiersIndex::class)->name('facture');
+    Route::get('/create/invoices', CreateTiers::class)->name('create-invoices');
+
+    Route::get('/banque', TiersIndex::class)->name('banque');
+    Route::get('/create/bank', CreateTiers::class)->name('create-bank');
+
+    Route::get('/comptabilite', TiersIndex::class)->name('comptabilite');
+    Route::get('/create/accounting', CreateTiers::class)->name('create-accounting');
+
+    Route::get('/grh', TiersIndex::class)->name('grh');
+    Route::get('/create/grh', CreateTiers::class)->name('create-grh');
+
+    Route::get('/email', TiersIndex::class)->name('email');
+    Route::get('/create/mail', CreateTiers::class)->name('create-mail');
+
+    Route::get('/document', TiersIndex::class)->name('document');
+    Route::get('/create/document', CreateTiers::class)->name('create-document');
+
+    Route::get('/chat', TiersIndex::class)->name('chat');
+    Route::get('/create/chat', CreateTiers::class)->name('create-chat');
+    
+   
+
+    
+
 
 });

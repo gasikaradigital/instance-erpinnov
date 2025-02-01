@@ -29,6 +29,11 @@
                     <div class="col-sm-6 col-8">
                         <h5 class="card-title mb-0">Liste des Tiers</h5>
                     </div>
+                    <div class="col-sm-6 col-4 text-end">
+                        <a href="{{ route('create-tiers') }}" class="btn btn-primary">
+                            <i class="ti ti-plus"></i> Nouveau Tiers
+                        </a>
+                    </div>
                 </div>
                 <!-- Filtres -->
                 <div class="row g-3 mt-3">
