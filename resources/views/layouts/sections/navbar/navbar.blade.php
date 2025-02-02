@@ -15,7 +15,39 @@ $navbarDetached = ($navbarDetached ?? '');
                 <i class="ti ti-x ti-md align-middle"></i>
               </a>
             @endif
-          </div>
+        </div>
+        <ul class="navbar-nav flex-row align-items-center">
+          <li class="navbar-nav flex-row align-items-center">
+            <a href="{{ route('home')}}" class="menu-link">
+              <i class="menu-icon tf-icons ti ti-smart-home"></i>
+              <div data-i18n="Accueil">Accueil</div>
+            </a>
+          </li>
+
+          <!-- Tiers -->
+          <li class="nav-item dropdown-language dropdown">
+            <a href="{{ route('tiers') }}" class="menu-link {{ $currentRouteName === 'tiers' ? 'active' : '' }}" onclick="showTiersMenu(event)">
+              <i class="menu-icon tf-icons ti ti-users"></i>
+              <div data-i18n="Tiers">Tiers</div>
+            </a>
+          </li>
+
+          <!-- Produits -->
+          <li class="nav-item dropdown-language dropdown">
+            <a href="{{ route('produits')}}" class="menu-link">
+              <i class="menu-icon tf-icons ti ti-box"></i>
+              <div data-i18n="Produits/Services">Produits/Services</div>
+            </a>
+          </li>
+
+          <!-- Projets et Tâches -->
+          <li class="menu-item {{ request()->routeIs('projets', 'create-project') ? 'active' : '' }}">
+            <a href="{{ route('projets')}}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-folder"></i>
+                <div data-i18n="Projets">Projets</div>
+            </a>
+          </li>
+        </ul>
 
         <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
         <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">

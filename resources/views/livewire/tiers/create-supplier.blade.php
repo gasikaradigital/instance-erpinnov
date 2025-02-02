@@ -1,13 +1,13 @@
-<div class="container-xxl flex-grow-1 {{ route('create-tiers') }}">
+<div class="container-xxl flex-grow-1 {{ route('create-supplier') }}">
     <!-- En-tête -->
     <h4 class="fw-bold py-3 mb-2 ">
-        Nouveau tiers 
+        Nouveau fournisseur 
     </h4>
     <div class="card mb-4 col-12 ">
             <form wire:submit.prevent="save" class="modal-content" id="addNewTierForm">
                 <!-- En-tête Modal -->
                 <div class="modal-header py-2 mx-2">
-                    <h5 class="modal-title">Ajouter un nouveau tiers</h5>
+                    <h5 class="modal-title">Ajouter un nouveau fournisseur</h5>
                 </div>
 
                 <!-- Corps Modal -->
@@ -154,7 +154,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Devise</label>
-                                        <select class="select2 form-select" wire:model="statut">
+                                        <select class="select2 form-select" wire:model="status">
                                             <option value="1">Euro</option>
                                             <option value="0">Ariary</option>
                                         </select>

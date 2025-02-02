@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Route;
 $configData = Helper::appClasses();
 @endphp
 <!-- Menu -->
-<aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
+<aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme">
     <div class="container-xxl d-flex h-100">
     <ul class="menu-inner pb-2 pb-xl-0">
         <!-- Accueil -->
@@ -15,11 +15,12 @@ $configData = Helper::appClasses();
         </li>
 
         <!-- Tiers -->
+        
         <li class="menu-item {{ request()->routeIs('tiers') ? 'active' : '' }}">
-            <a href="{{ route('tiers')}}" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-users"></i>
-                <div data-i18n="Tiers">Tiers</div>
-            </a>
+                <a href="{{ route('tiers') }}" class="menu-link" onclick="showTiersMenu(event)">
+                    <i class="menu-icon tf-icons ti ti-users"></i>
+                    <div data-i18n="Tiers">Tiers</div>
+                </a>
         </li>
 
         <!-- Produits/Services -->
@@ -94,3 +95,9 @@ $configData = Helper::appClasses();
     </div>
 </aside>
 <!-- / Menu -->
+<script>
+    function showTiersMenu(event) {
+        event.preventDefault(); // Empêcher le comportement par défaut du lien
+        window.location.href = "{{ route('tiers') }}"; // Rediriger vers la route tiers
+    }
+</script>

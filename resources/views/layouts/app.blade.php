@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 @php
 $configData = Helper::appClasses();
+$currentRouteName = request()->route()->getName();
 $isFront = true;
 
 $menuFixed = ($configData['layout'] === 'vertical') ? ($menuFixed ?? '') : (($configData['layout'] === 'front') ? '' : $configData['headerType']);
@@ -29,28 +30,71 @@ $contentLayout = (isset($container) ? (($container === 'container-xxl') ? "layou
         @include('layouts/sections/assets/scriptsIncludes')
         <!-- Styles -->
         @stack('styles')
+        <style>
+            #menuTiers {
+                position: fixed;
+                left: -250px;
+                top: 0;
+                width: 250px;
+                height: 100%;
+                background: #fff;
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+                transition: left 0.3s ease-in-out;
+                z-index: 1000;
+            }
+
+            #menuTiers.active {
+                left: 0;
+            }
+        </style>
+
     </head>
     <body>
         <div class="layout-wrapper layout-content-navbar">
             <div class="layout-container">
-                @include('layouts/sections/menu/verticalMenu')
+            @if(request()->routeIs(["tiers" , "create-tiers", "prospects", "create-prospects", "client", "create-customer", "fournisseur", "create-supplier"]))
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                    @include('layouts.sections.menu.tiersMenu') <!-- Menu vertical Tiers -->
+                </aside>                        
+            @elseif(request()->routeIs(["produits", "create-produits", "create-services"]))
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                    @include('layouts.sections.menu.produitsMenu') <!-- Menu vertical Produits -->
+                </aside>
+            @elseif(request()->routeIs(["projets", "create-project", "taches", "create-tache"]))
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                    @include('layouts.sections.menu.projetsMenu')
+                </aside>
+            @endif
+                
+                
                 <!-- Layout page -->
                 <div class="layout-page">
                     @include('layouts/sections/navbar/navbar')
+                    
                     <div class="content-wrapper">
-                            {{ $slot }}
+                        {{ $slot }}
                         <div class="content-backdrop fade"></div>
                         @include('layouts/sections/footer')
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Scripts -->
+        <script>
+            function toggleMenuTiers() {
+                let menuTiers = document.getElementById('menuTiers');
+                menuTiers.classList.toggle('active');
+            }
+        </script>
+
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
-        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
         <div class="drag-target"></div>
         @stack('modals')
         @include('layouts/sections/assets/scripts')
         @stack('scripts')
     </body>
+
+
 </html>
