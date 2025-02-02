@@ -52,7 +52,11 @@ $contentLayout = (isset($container) ? (($container === 'container-xxl') ? "layou
     <body>
         <div class="layout-wrapper layout-content-navbar">
             <div class="layout-container">
-            @if(request()->routeIs(["tiers" , "create-tiers", "prospects", "create-prospects", "client", "create-customer", "fournisseur", "create-supplier"]))
+            @if(request()->routeIs('home'))
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                    @include('layouts.sections.menu.verticalMenu')
+                </aside>
+            @elseif(request()->routeIs(["tiers" , "create-tiers", "prospects", "create-prospects", "client", "create-customer", "fournisseur", "create-supplier"]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.tiersMenu') <!-- Menu vertical Tiers -->
                 </aside>                        

@@ -24,17 +24,17 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
-        {{-- Dashboard --}}
+        {{-- Accueil --}}
         <li class="menu-item {{ $currentRouteName === 'home' ? 'active' : '' }}">
             <a href="{{ route('home') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                <div>{{ __('Dashboard') }}</div>
+                <div>{{ __('Accueil') }}</div>
             </a>
         </li>
 
         {{-- Tiers --}}
 
-        <!-- <li class="menu-item {{ in_array($currentRouteName, ['tiers', 'create-tiers', 'prospects', 'create-prospects', 'client', 'create-customer', 'fournisseur', 'create-supplier']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['tiers', 'create-tiers', 'prospects', 'create-prospects', 'client', 'create-customer', 'fournisseur', 'create-supplier']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-users"></i>
                 <div>{{ __('Tiers') }}</div>
@@ -81,11 +81,11 @@
                     </a>
                 </li>
             </ul>
-        </li> -->
+        </li>
 
 
         {{-- Produits --}}
-        <!-- <li
+        <li
             class="menu-item {{ in_array($currentRouteName, ['produits', 'create-produits', 'create-services']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-box"></i>
@@ -108,10 +108,10 @@
                     </a>
                 </li>
             </ul>
-        </li> -->
+        </li>
 
         {{-- Projets --}}
-        <!-- <li class="menu-item {{ in_array($currentRouteName, ['projets', 'create-project']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['projets', 'create-project']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-folder"></i>
                 <div>{{ __('Projets') }}</div>
@@ -128,75 +128,75 @@
                     </a>
                 </li>
             </ul>
-        </li> -->
+        </li>
 
         {{-- Ventes --}}
-        <!-- <li class="menu-item {{ in_array($currentRouteName, ['vente', 'create-sale']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['vente', 'create-sale']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
                 <div>{{ __('Ventes') }}</div>
             </a>
-        </li> -->
+        </li>
 
         {{-- Factures --}}
-        <!-- <li class="menu-item {{ in_array($currentRouteName, ['facture', 'create-invoices']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['facture', 'create-invoices']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-file-dollar"></i>
                 <div>{{ __('Factures') }}</div>
             </a>
-        </li> -->
+        </li>
 
         {{-- Banque et caisse  À VERIFIER --}}
-        <!-- <li class="menu-item {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-building-bank"></i>
                 <div>{{ __('Banques / Caisses') }}</div>
             </a>
-        </li> -->
+        </li>
 
         {{-- Comptabilité  À VERIFIER --}}
-        <!-- <li
+        <li
             class="menu-item {{ in_array($currentRouteName, ['comptabilite', 'create-accounting']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-chart-bar"></i>
                 <div>{{ __('Comptabilités') }}</div>
             </a>
-        </li> -->
+        </li>
 
         {{-- GRH  À VERIFIER --}}
-        <!-- <li class="menu-item {{ in_array($currentRouteName, ['grh', 'create-grh']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['grh', 'create-grh']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-user"></i>
                 <div>{{ __('GRH') }}</div>
             </a>
-        </li> -->
+        </li>
 
         {{-- Email  À VERIFIER --}}
-        <!-- <li class="menu-item {{ in_array($currentRouteName, ['email', 'create-mail']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['email', 'create-mail']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-mail"></i>
                 <div>{{ __('Email') }}</div>
             </a>
-        </li> -->
+        </li>
 
         {{-- Document À VERIFIER --}}
-        <!-- <li class="menu-item {{ in_array($currentRouteName, ['document', 'create-document']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['document', 'create-document']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-files"></i>
                 <div>{{ __('Documents') }}</div>
             </a>
-        </li> -->
+        </li>
 
         {{-- Chat  À VERIFIER --}}
-        <!-- <li class="menu-item {{ in_array($currentRouteName, ['chat', 'create-chat']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['chat', 'create-chat']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-message-chatbot"></i>
                 <div>{{ __('Chat') }}</div>
             </a>
-        </li> -->
+        </li>
 
         {{-- Tâches --}}
-        <!-- <li class="menu-item {{ in_array($currentRouteName, ['taches', 'create-tache']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['taches', 'create-tache']) ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ti ti-list-check"></i>
             <div>{{ __('Tâches') }}</div>
@@ -213,6 +213,6 @@
             </a>
             </li>
         </ul>
-        </li>  -->
+        </li> 
     </ul>
 </aside>
