@@ -4,131 +4,240 @@
         Nouveau client
     </h4>
     <div class="card mb-4 col-12 ">
-            <form wire:submit.prevent="save" class="modal-content" id="addNewTierForm">
-                <!-- En-tête Modal -->
-                <div class="modal-header py-2 mx-2">
-                    <h5 class="modal-title">Ajouter un nouveau client</h5>
-                </div>
+        <form wire:submit.prevent="save" class="modal-content" id="addNewTierForm">
+            <!-- En-tête Modal -->
+            <div class="modal-header py-2 mx-2">
+                <h5 class="modal-title">Ajouter un nouveau client</h5>
+            </div>
 
-                <!-- Corps Modal -->
-                <div class="modal-body">
-                    <div class="row">
-                        <!-- Section 1: Informations générales -->
-                        <div class="col-12">
-                            <div class="card mb-4">
-                                <div class="card-header p-3">
-                                    <h6 class="card-title mb-0">1. Informations générales</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-3">
-                                        <div class="col-md-2">
-                                            <label class="form-label">Nom du tiers</label>
-                                            <input type="text" class="form-control" wire:model="name"/>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="form-label">Nom court/Alias</label>
-                                            <input type="text" class="form-control" wire:model="name_alias"/>
-                                        </div>
-                                        <!-- <div class="col-md-6">
+            <!-- Corps Modal -->
+            <div class="modal-body">
+                <div class="row">
+                    <!-- Section 1: Informations générales -->
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-header p-3">
+                                <h6 class="card-title mb-0">1. Informations générales</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-2">
+                                        <label class="form-label">Nom du tiers</label>
+                                        <input type="text" class="form-control" wire:model="name" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Nom court/Alias</label>
+                                        <input type="text" class="form-control" wire:model="name_alias" />
+                                    </div>
+                                    <!-- <div class="col-md-6">
                                             <label class="form-label">Référence externe</label>
                                             <input type="text" class="form-control" name="ref_ext" />
                                         </div> -->
-                                        <div class="col-md-2">
-                                            <label class="form-label">Nature de tiers <span class="text-danger">*</span></label>
-                                            <select class="select2 form-select" wire:model="client" required>
-                                                <option value="">Sélectionner</option>
-                                                <option value="1">Client</option>
-                                                <option value="2">Prospect</option>
-                                                <option value="3">Prospect/Client</option>
-                                                <option value="0">Ni prospect, ni client</option>
-                                            </select>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Nature de tiers <span
+                                                class="text-danger">*</span></label>
+                                        <select class="select2 form-select" wire:model="client" required>
+                                            <option value=""></option>
+                                            <option value="1">Client</option>
+                                            <option value="2" >Prospect</option>
+                                            <option value="3" selected>Prospect/Client</option>
+                                            <option value="0">Ni prospect, ni client</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <label class="form-label">Type du tiers <span
+                                                class="text-danger">*</span></label>
+                                                <i class="fas fa-info-circle" style="margin-left: 95px;"></i>
+                                        <select class="select2 form-select" wire:model="typent_id" required>
+                                            <option value="">Sélectionner</option>
+                                            <option value="5">Administration</option>
+                                            <option value="100">Autre</option>
+                                            <option value="2">Grand compte</option>
+                                            <option value="3">PME/MPI</option>
+                                            <option value="8">Particulier</option>
+                                            <option value="4">TPE</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Fournisseur <span class="text-danger">*</span></label>
+                                        <select class="select2 form-select" wire:model="fournisseur" required>
+                                            <option value="">Choisissez</option>
+                                            <option value="1">Oui</option>
+                                            <option value="0">Non</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Code-barres</label>
+                                        <i class="fas fa-barcode"></i>
+                                        <input type="text" class="form-control" wire:model="barcode" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Identité professionnel 1</label>
+                                        <input type="text" class="form-control" wire:model="id_pro" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Identité professionnel 2</label>
+                                        <input type="text" class="form-control" wire:model="id_pro2" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Identité professionnel 3</label>
+                                        <input type="text" class="form-control" wire:model="id_pro3" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Identité professionnel 4</label>
+                                        <input type="text" class="form-control" wire:model="id_pro4" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Identité professionnel 5</label>
+                                        <input type="text" class="form-control" wire:model="id_pro5" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Identité professionnel 6</label>
+                                        <input type="text" class="form-control" wire:model="id_pro6" />
+                                    </div>
+                                    <div class="col-md-2 d-flex flex-column">{{-- à modifier aprèS--}}
+                                        <label class="form-label">Assujetti à la TVA</label>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" wire:model="assujetiT" style="width: 45px; height:40px;"/>
                                         </div>
+                                    </div>
+                                    <div class="col-md-2"> 
+                                        <label class="form-label">Numéro TVA</label>
+                                        <input type="text" class="form-control" wire:model="numTVA" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Effectifs</label>
+                                        <i class="fas fa-info-circle" style="margin-left: 140px;"></i>
+                                        <select class="select2 form-select" wire:model="effectifr" required>
+                                            <option value=""></option>
+                                            <option value="1">1 - 5</option>
+                                            <option value="0">6 - 10</option>
+                                            <option value="0">11 - 50</option>
+                                            <option value="0">51 - 100</option>
+                                            <option value="0">101 - 500</option>
+                                            <option value="0">> 500</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
                                         
-                                        <div class="col-md-2">
-                                            <label class="form-label">Type du tiers <span class="text-danger">*</span></label>
-                                            <select class="select2 form-select" wire:model="typent_id" required>
-                                                <option value="">Sélectionner</option>
-                                                <option value="5">Administration</option>
-                                                <option value="100">Autre</option>
-                                                <option value="2">Grand compte</option>
-                                                <option value="3">PME/MPI</option>
-                                                <option value="8">Particulier</option>
-                                                <option value="4">TPE</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="form-label">Fournisseur <span class="text-danger">*</span></label>
-                                            <select class="select2 form-select" wire:model="fournisseur" required>
-                                                <option value="">Choisissez</option>
-                                                <option value="1">Oui</option>
-                                                <option value="0">Non</option>
-                                            </select>
-                                        </div>
+                                        <label class="form-label">Type d'entité légale</label>
+                                        <i class="fas fa-info-circle" style="margin-left: 70px;"></i>
+                                        <select class="select2 form-select" wire:model="typeEntite" required>
+                                            <option value=""></option>
+                                            <option value=""></option>
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-2"> 
+                                        <label class="form-label">Capital (Euros)</label>
+                                        <input type="text" class="form-control" wire:model="numTVA" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fas fa-tag"></i>
+                                        <label class="form-label">Tags/catégories clients/prosp.</label>
+                                        <input type="text" class="form-control" wire:model="tags" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Maison Mère</label>
+                                        <input type="text" class="form-control" wire:model="maisonMere" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Assigner des commerciaux</label>
+                                        <input type="text" class="form-control" wire:model="maisonMere" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Logo</label>
+                                        <input type="file" class="form-control" wire:model="logo"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Section 2: Coordonnées -->
-                        <div class="col-12">
-                            <div class="card mb-4">
-                                <div class="card-header p-3">
-                                    <h6 class="card-title mb-0">2. Coordonnées</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-3">
-                                        <div class="col-md-2">
-                                            <label class="form-label">Adresse</label>
-                                            <input type="text" class="form-control" wire:model="address"/>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="form-label">Code postal</label>
-                                            <input type="text" class="form-control" wire:model="zip"/>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="form-label">Ville</label>
-                                            <input type="text" class="form-control" wire:model="town"/>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="form-label">Pays</label>
-                                            <select class="select2 form-select" wire:model="country_id">
-                                                <option value="">Sélectionner</option>
-                                                <option value="1">France</option>
-                                                <option value="2">Belgique</option>
-                                                <option value="3">Suisse</option>
-                                                <option value="143">Madagascar</option>
+                    <!-- Section 2: Coordonnées -->
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-header p-3">
+                                <h6 class="card-title mb-0">2. Coordonnées</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-2">
+                                        <label class="form-label">Adresse</label>
+                                        <input type="text" class="form-control" wire:model="address" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Code postal</label>
+                                        <input type="text" class="form-control" wire:model="zip" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Ville</label>
+                                        <input type="text" class="form-control" wire:model="town" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fas fa-globe"></i>
+                                        <label class="form-label">Pays</label>
+                                        <i class="fas fa-info-circle" style="margin-left: 135px;"></i>
+                                        
+                                        <select class="select2 form-select" wire:model="country_id">
+                                            <option value="">Sélectionner</option>
+                                            <option value="1">France</option>
+                                            <option value="2">Belgique</option>
+                                            <option value="3">Suisse</option>
+                                            <option value="143">Madagascar</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fas fa-phone"></i>
+                                        <label class="form-label">Téléphone</label>
+                                        <input type="tel" class="form-control" wire:model="phone" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fas fa-at"></i>
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" wire:model="email" />
+                                    </div>
+                                    <div class="col-md-2">
+                                    
+                                        <label class="form-label">Facebook</label>
+                                        <input type="email" class="form-control" wire:model="facebook" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        <label class="form-label">Site web</label>
+                                        <input type="url" class="form-control" wire:model="url" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                        <label class="form-label">Département / Canton</label>
+                                        <i class="fas fa-info-circle" style="margin-left: 35px;"></i>
+                                        <div class="d-flex gap-2">
+                                            <select class="select2 form-select" wire:model="departement">
+                                                <option value=""></option>
+                                                <option value=""></option>
                                             </select>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label class="form-label">Téléphone</label>
-                                            <input type="tel" class="form-control" wire:model="phone"/>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="form-label">Email</label>
-                                            <input type="email" class="form-control" wire:model="email"/>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="form-label">Facebook</label>
-                                            <input type="email" class="form-control" wire:model="facebook"/>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="form-label">Site web</label>
-                                            <input type="url" class="form-control" wire:model="url"/>
-                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fas fa-fax"></i>
+                                        <label class="form-label">Fax</label>
+                                        <input type="text" class="form-control" wire:model="fax"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Section 3: Informations complémentaires -->
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header p-3">
-                                    <h6 class="card-title mb-0">3. Informations complémentaires</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-3">
-                                        <!-- <div class="col-md-6">
+                    <!-- Section 3: Informations complémentaires -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header p-3">
+                                <h6 class="card-title mb-0">3. Informations complémentaires</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <!-- <div class="col-md-6">
                                             <label class="form-label">N° TVA Intracommunautaire</label>
                                             <input type="text" class="form-control" wire:model="tva_intra"/>
                                         </div>
@@ -136,7 +245,7 @@
                                             <label class="form-label">Capital social</label>
                                             <input type="text" class="form-control" wire:model="capital"/>
                                         </div> -->
-                                        <!-- <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
                                             <label class="form-label">Effectif</label>
                                             <select class="select2 form-select" wire:model="fk_effectif">
                                                 <option value="">Sélectionner</option>
@@ -153,25 +262,40 @@
                                         </select>
                                     </div>
                                     <div class="col-md-2">
+                                        <i class="fas fa-euro-sign"></i>
                                         <label class="form-label">Devise</label>
                                         <select class="select2 form-select" wire:model="status">
                                             <option value="1">Euro</option>
                                             <option value="0">Ariary</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Nif</label>
-                                        <input type="text" class="form-control" wire:model="nif"/>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Incoterms</label>
+                                        <div class="d-flex gap-2">
+                                            <select class="select2 form-select" wire:model="incoterms">
+                                                <option value="">Sélectionner</option>
+                                                <option value="5">CFR</option>
+                                                <option value="6">CIF</option>
+                                                <option value="8">CIP</option>
+                                                <option value="7">CPT</option>
+                                                <option value="10">DAP</option>
+                                                <option value="9">DAT</option>
+                                                <option value="11">DDP</option>
+                                                <option value="12">DPU</option>
+                                                <option value="1">EXW</option>
+                                                <option value="3">FAS</option>
+                                                <option value="2">FCA</option>
+                                                <option value="4">FOB</option>
+                                            </select>
+                                            <input type="text" class="form-control" wire:model="incoterms" />
+                                        </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Stat</label>
-                                        <input type="text" class="form-control" wire:model="stat"/>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-            </div>
+                </div>
             </div>
             <!-- Pied Modal -->
             <div class="modal-footer py-4">
@@ -184,7 +308,7 @@
                     Enregistrer
                 </button>
             </div>
-            
+
         </form>
     </div>
 </div>
