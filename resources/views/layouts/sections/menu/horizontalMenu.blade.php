@@ -12,6 +12,7 @@
                     <i class="menu-icon tf-icons ti ti-smart-home"></i>
                     <div data-i18n="Accueil">Accueil</div>
                 </a>
+                
             </li>
 
             <!-- Tiers -->

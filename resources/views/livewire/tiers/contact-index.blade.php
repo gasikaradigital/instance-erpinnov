@@ -26,11 +26,11 @@
                 <div class="d-flex justify-content-between align-items-center row">
                     <!-- Titre à gauche -->
                     <div class="col-sm-6 col-8">
-                        <h5 class="card-title mb-0">Liste des Clients</h5>
+                        <h5 class="card-title mb-0">Liste des contacts</h5>
                     </div>
                     <div class="col-sm-6 col-4 text-end">
-                        <a href="{{ route('create-customer') }}" class="btn btn-primary">
-                            <i class="ti ti-plus"></i> Nouveau Client
+                        <a href="{{ route('create-contact') }}" class="btn btn-primary">
+                            <i class="ti ti-plus"></i> Nouveau Contact
                         </a>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                 </div>
 
             </div>
-            <livewire:tiers.client-liste/>
+            <livewire:tiers.contact-liste/>
         </div>
     </div>
 

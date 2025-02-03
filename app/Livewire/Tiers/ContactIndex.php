@@ -4,10 +4,10 @@ namespace App\Livewire\Tiers;
 
 use Livewire\Component;
 
-class ClientListe extends Component
+class ContactIndex extends Component
 {
     public function render()
     {
-        return view('livewire.tiers.client-liste');
+        return view('livewire.tiers.contact-index');
     }
 }

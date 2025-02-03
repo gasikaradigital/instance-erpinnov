@@ -32,89 +32,37 @@
             </a>
         </li>
 
-        {{-- Tiers --}}
+        {{-- Tableau de bord --}}
 
-        <li class="menu-item {{ in_array($currentRouteName, ['tiers', 'create-tiers', 'prospects', 'create-prospects', 'client', 'create-customer', 'fournisseur', 'create-supplier']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-users"></i>
-                <div>{{ __('Tiers') }}</div>
+        <li class="menu-item {{ in_array($currentRouteName, ['tiers', 'create-tiers', 'prospects', 'create-prospects', 'client', 'create-customer', 'fournisseur', 'create-supplier']) ? 'active ' : '' }}">
+            <a href="javascript:void(0);" class="menu-link fw-bold" >
+                <i class="fas fa-chart-bar fa-fw"></i>
+                <div>{{ __('Mon tableau de bord') }}</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ $currentRouteName === 'tiers' ? 'active' : '' }}">
-                    <a href="{{ route('tiers') }}" class="menu-link">
-                        <div>{{ __('Liste des tiers') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'create-tiers' ? 'active' : '' }} ">
-                    <a href="{{ route('create-tiers') }}" class="menu-link">
-                        <div>{{ __('Nouveau tiers') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'prospects' ? 'active' : '' }} ">
-                    <a href="{{ route('prospects') }}" class="menu-link">
-                        <div>{{ __('Prospects') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'create-prospects' ? 'active' : '' }} ">
-                    <a href="{{ route('create-prospects') }}" class="menu-link">
-                        <div>{{ __('Nouveau prospects') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'client' ? 'active' : '' }} ">
-                    <a href="{{ route('client') }}" class="menu-link">
-                        <div>{{ __('Clients') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'create-customer' ? 'active' : '' }} ">
-                    <a href="{{ route('create-customer') }}" class="menu-link">
-                        <div>{{ __('Nouveau client') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'fournisseur' ? 'active' : '' }} ">
-                    <a href="{{ route('fournisseur') }}" class="menu-link">
-                        <div>{{ __('Fournisseurs') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'create-supplier' ? 'active' : '' }} ">
-                    <a href="{{ route('create-supplier') }}" class="menu-link">
-                        <div>{{ __('Nouveau Fournisseur') }}</div>
-                    </a>
-                </li>
-            </ul>
         </li>
 
 
-        {{-- Produits --}}
+        {{-- Configuration --}}
         <li
             class="menu-item {{ in_array($currentRouteName, ['produits', 'create-produits', 'create-services']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-box"></i>
-                <div>{{ __('Produits / Services') }}</div>
+            <a href="javascript:void(0);" class="menu-link menu-toggle fw-bold">
+                <i class="fas fa-tools fa-fw"></i>
+                <div>{{ __('Configuration') }}</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ $currentRouteName === 'produits' ? 'active' : '' }}">
                     <a href="{{ route('produits') }}" class="menu-link">
-                        <div>{{ __('Liste des produits') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'create-produits' ? 'active' : '' }}">
-                    <a href="{{ route('create-produits') }}" class="menu-link">
-                        <div>{{ __('Nouveau produit') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'create-services' ? 'active' : '' }}">
-                    <a href="{{ route('create-services') }}" class="menu-link">
-                        <div>{{ __('Nouveau service') }}</div>
+                        <div>{{ __('Societé/Organisation') }}</div>
                     </a>
                 </li>
             </ul>
         </li>
 
-        {{-- Projets --}}
+        {{-- Outils d'administration --}}
         <li class="menu-item {{ in_array($currentRouteName, ['projets', 'create-project']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-folder"></i>
-                <div>{{ __('Projets') }}</div>
+            <a href="javascript:void(0);" class="menu-link menu-toggle fw-bold">
+                <i class="fas fa-server fa-fw"></i>
+                <div>{{ __("Outils d'administration") }}</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ $currentRouteName === 'projets' ? 'active' : '' }}">
@@ -130,89 +78,12 @@
             </ul>
         </li>
 
-        {{-- Ventes --}}
+        {{-- Utilisateurs & Groupes --}}
         <li class="menu-item {{ in_array($currentRouteName, ['vente', 'create-sale']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
-                <div>{{ __('Ventes') }}</div>
+            <a href="javascript:void(0);" class="menu-link menu-toggle fw-bold">
+                <i class="fas fa-user fa-fw"></i>
+                <div>{{ __('Utilisateurs & Groupes') }}</div>
             </a>
         </li>
-
-        {{-- Factures --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['facture', 'create-invoices']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-file-dollar"></i>
-                <div>{{ __('Factures') }}</div>
-            </a>
-        </li>
-
-        {{-- Banque et caisse  À VERIFIER --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-building-bank"></i>
-                <div>{{ __('Banques / Caisses') }}</div>
-            </a>
-        </li>
-
-        {{-- Comptabilité  À VERIFIER --}}
-        <li
-            class="menu-item {{ in_array($currentRouteName, ['comptabilite', 'create-accounting']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-chart-bar"></i>
-                <div>{{ __('Comptabilités') }}</div>
-            </a>
-        </li>
-
-        {{-- GRH  À VERIFIER --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['grh', 'create-grh']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-user"></i>
-                <div>{{ __('GRH') }}</div>
-            </a>
-        </li>
-
-        {{-- Email  À VERIFIER --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['email', 'create-mail']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-mail"></i>
-                <div>{{ __('Email') }}</div>
-            </a>
-        </li>
-
-        {{-- Document À VERIFIER --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['document', 'create-document']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-files"></i>
-                <div>{{ __('Documents') }}</div>
-            </a>
-        </li>
-
-        {{-- Chat  À VERIFIER --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['chat', 'create-chat']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-message-chatbot"></i>
-                <div>{{ __('Chat') }}</div>
-            </a>
-        </li>
-
-        {{-- Tâches --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['taches', 'create-tache']) ? 'active open' : '' }}">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons ti ti-list-check"></i>
-            <div>{{ __('Tâches') }}</div>
-        </a>
-        <ul class="menu-sub">
-            <li class="menu-item {{ $currentRouteName === 'taches' ? 'active' : '' }}">
-            <a href="{{ route('taches') }}" class="menu-link">
-                <div>{{ __('Liste des tâches') }}</div>
-            </a>
-            </li>
-            <li class="menu-item {{ $currentRouteName === 'create-tache' ? 'active' : '' }}">
-            <a href="{{ route('create-tache') }}" class="menu-link">
-                <div>{{ __('Nouvelle tâche') }}</div>
-            </a>
-            </li>
-        </ul>
-        </li> 
     </ul>
 </aside>

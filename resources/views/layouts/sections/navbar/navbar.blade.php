@@ -16,83 +16,93 @@ $navbarDetached = ($navbarDetached ?? '');
               </a>
             @endif
         </div>
-        <ul class="navbar-nav flex-row align-items-center">
-          <li class="navbar-nav flex-row align-items-center">
+        <ul class="navbar-nav flex-row align-items-center justify-content-center gap-3">
+          <li class="nav-item flex-column align-items-center d-xl-flex">
             <a href="{{ route('home')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Accueil') }}">
               <i class="menu-icon tf-icons ti ti-smart-home"></i>
             </a>
+            <div class="text-center" data-i18n="Accueil">Accueil</div>
           </li>
 
           <!-- Tiers -->
-          <li class="nav-item dropdown-language dropdown">
-            <a href="{{ route('tiers') }}" class="menu-link {{ $currentRouteName === 'tiers' ? 'active' : '' }}" onclick="showTiersMenu(event)" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Tiers') }}">
-              <i class="menu-icon tf-icons ti ti-users"></i>
-            </a>
-          </li>
+  <li class="nav-item flex-column align-items-center d-xl-flex">
+    <a href="{{ route('tiers') }}" class="menu-link {{ $currentRouteName === 'tiers' ? 'active' : '' }}" onclick="showTiersMenu(event)" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Tiers') }}">
+      <i class="menu-icon tf-icons ti ti-users"></i>
+    </a>
+    <div class="text-center" data-i18n="Tiers">Tiers</div>
+  </li>
+<!-- Produits -->
+<li class="nav-item flex-column align-items-center d-xl-flex">
+  <a href="{{ route('produits')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Ventes') }}">
+    <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
+  </a>
+  <div class="text-center" data-i18n="Ventes">Ventes</div>
+</li>
 
-          <!-- Produits -->
-          <li class="nav-item dropdown-language dropdown">
-            <a href="{{ route('produits')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Ventes') }}">
-              <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
-            </a>
-          </li>
-
-          <!-- Projets et Tâches -->
-          <li class="menu-item {{ request()->routeIs('projets', 'create-project') ? 'active' : '' }}">
-            <a href="{{ route('projets')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Projets') }}">
-                <i class="menu-icon tf-icons ti ti-folder"></i>
-            </a>
-          </li>
+<!-- Projets et Tâches -->
+<li class="menu-item flex-column align-items-center d-xl-flex {{ request()->routeIs('projets', 'create-project') ? 'active' : '' }}">
+  <a href="{{ route('projets')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Projets') }}">
+    <i class="menu-icon tf-icons ti ti-folder"></i>
+  </a>
+  <div class="text-center" data-i18n="Projets">Projets | Services</div>
+</li>
 
           {{-- Factures --}}
-          <li class="menu-item {{ in_array($currentRouteName, ['facture', 'create-invoices']) ? 'active open' : '' }}">
+          <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['facture', 'create-invoices']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Factures') }}">
                 <i class="menu-icon tf-icons ti ti-file-dollar"></i>
             </a>
+            <div data-i18n="Factures">Factures</div>
           </li>
 
           {{-- Banque et caisse  À VERIFIER --}}
-          <li class="menu-item {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
+          <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Banques / Caisses') }}">
                 <i class="menu-icon tf-icons ti ti-building-bank"></i>
             </a>
+            <div data-i18n="Banque">Banques | Caisses</div>
           </li>
 
 
           {{-- Comptabilité  À VERIFIER --}}
           <li
-            class="menu-item {{ in_array($currentRouteName, ['comptabilite', 'create-accounting']) ? 'active open' : '' }}">
+            class="menu-item flex-column align-items-center d-xl-flex{{ in_array($currentRouteName, ['comptabilite', 'create-accounting']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Comptabilité') }}">
                 <i class="menu-icon tf-icons ti ti-chart-bar"></i>
             </a>
+            <div data-i18n="Comptabilite">Comptabilités</div>
           </li>
 
           {{-- GRH  À VERIFIER --}}
-          <li class="menu-item {{ in_array($currentRouteName, ['grh', 'create-grh']) ? 'active open' : '' }}">
+          <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['grh', 'create-grh']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('GRH') }}">
                 <i class="menu-icon tf-icons ti ti-user"></i>
             </a>
+            <div data-i18n="GRH">GRH</div>
           </li>
 
           {{-- Email  À VERIFIER --}}
-          <li class="menu-item {{ in_array($currentRouteName, ['email', 'create-mail']) ? 'active open' : '' }}">
+          <li class="menu-item flex-column align-items-center d-xl-flex{{ in_array($currentRouteName, ['email', 'create-mail']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Email') }}">
                 <i class="menu-icon tf-icons ti ti-mail"></i>
             </a>
+            <div data-i18n="Email">Email</div>
           </li>
 
           {{-- Document À VERIFIER --}}
-          <li class="menu-item {{ in_array($currentRouteName, ['document', 'create-document']) ? 'active open' : '' }}">
+          <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['document', 'create-document']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Documents') }}">
                 <i class="menu-icon tf-icons ti ti-files"></i>
             </a>
+            <div data-i18n="Documents">Documents</div>
           </li>
 
           {{-- Chat  À VERIFIER --}}
-          <li class="menu-item {{ in_array($currentRouteName, ['chat', 'create-chat']) ? 'active open' : '' }}">
+          <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['chat', 'create-chat']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Chat') }}">
                 <i class="menu-icon tf-icons ti ti-message-chatbot"></i>
             </a>
+            <div data-i18n="Chat">Chat</div>
           </li>
         </ul>
 

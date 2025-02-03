@@ -1,13 +1,13 @@
 <div class="container-xxl flex-grow-1 {{ route('create-prospects') }}">
     <!-- En-tête -->
     <h4 class="fw-bold py-3 mb-2 ">
-        Nouveau prospects
+        Nouveau prospect
     </h4>
     <div class="card mb-4 col-12 ">
         <form wire:submit.prevent="save" class="modal-content" id="addNewTierForm">
             <!-- En-tête Modal -->
             <div class="modal-header py-2 mx-2">
-                <h5 class="modal-title">Ajouter un nouveau prospects</h5>
+                <h5 class="modal-title">Ajouter un nouveau prospect</h5>
             </div>
 
             <!-- Corps Modal -->
@@ -80,10 +80,26 @@
                                         <label class="form-label">Identité professionnel 2</label>
                                         <input type="text" class="form-control" wire:model="id_pro1" />
                                     </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Identité professionnel 3</label>
+                                        <input type="text" class="form-control" wire:model="id_pro3" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Identité professionnel 4</label>
+                                        <input type="text" class="form-control" wire:model="id_pro4" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Identité professionnel 5</label>
+                                        <input type="text" class="form-control" wire:model="id_pro5" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Identité professionnel 6</label>
+                                        <input type="text" class="form-control" wire:model="id_pro6" />
+                                    </div>
                                     <div class="col-md-2 d-flex flex-column">{{-- à modifier aprèS--}}
                                         <label class="form-label">Assujetti à la TVA</label>
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" wire:model="assujetiT" style="width: 45px; height:40px;"/>
+                                            <input type="checkbox" class="form-check-input" wire:model="assujetiT" />
                                         </div>
                                     </div>
                                     <div class="col-md-2"> 
