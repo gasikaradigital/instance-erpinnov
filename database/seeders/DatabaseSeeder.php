@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'test123',
-            'api_key' => 'jeS7wlwqnN0UwJpC0pRvKH7ffGEQie6Z',
-            'url_dolibarr' => 'http://franck-cor-dolibarr.erpinnov.com'
+            'api_key' => 'lOQVobrEX7JmZDLGscVFNlDpbnFiaFdm',
+            'url_dolibarr' => 'http://faniry-dolibarr.erpinnov.com'
         ]);
     }
 }
