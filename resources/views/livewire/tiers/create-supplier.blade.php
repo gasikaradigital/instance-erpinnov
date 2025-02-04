@@ -99,7 +99,7 @@
                                     <div class="col-md-2 d-flex flex-column">{{-- à modifier aprèS--}}
                                         <label class="form-label">Assujetti à la TVA</label>
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" wire:model="assujetiT" style="width: 45px; height:40px;"/>
+                                            <input type="checkbox" class="form-check-input" wire:model="assujetiT"/>
                                         </div>
                                     </div>
                                     <div class="col-md-2"> 

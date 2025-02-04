@@ -14,8 +14,8 @@ use App\Livewire\Produits\CreateProduits;
 use App\Livewire\Produits\CreateServices;
 use App\Livewire\Tiers\ProspectsIndex;
 use App\Livewire\Tiers\CreateProspects;
-use App\Livewire\Tiers\ClientIndex;
-use App\Livewire\Tiers\CreateCustomer;
+use App\Livewire\Tiers\ContactIndex;
+use App\Livewire\Tiers\CreateContact;
 use App\Livewire\Tiers\FournisseurIndex;
 use App\Livewire\Tiers\CreateSupplier;
 use App\Livewire\Factures\FacturesIndex;
@@ -27,9 +27,6 @@ use App\Livewire\Banques\CreateBanques;
 // Redirections
 Route::redirect('/', '/login');
 Route::redirect('/register', '/login');
-
-
-
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function() {
 
@@ -43,8 +40,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/prospects', ProspectsIndex::class)->name('prospects');
     Route::get('/create/prospects', CreateProspects::class)->name('create-prospects');
 
-    Route::get('/client', ClientIndex::class)->name('client');
-    Route::get('/create/customer', CreateCustomer::class)->name('create-customer');
+    Route::get('/contact', ContactIndex::class)->name('contact');
+    Route::get('/create/contact', CreateContact::class)->name('create-contact');
 
     Route::get('/fournisseur', FournisseurIndex::class)->name('fournisseur');
     Route::get('/create/supplier', CreateSupplier::class)->name('create-supplier');
