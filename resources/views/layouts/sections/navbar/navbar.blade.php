@@ -45,15 +45,15 @@ $navbarDetached = ($navbarDetached ?? '');
           </li>
 
           {{-- Factures --}}
-          <li class="menu-item {{ in_array($currentRouteName, ['facture', 'create-invoices']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Factures') }}">
+          <li class="menu-item {{ in_array($currentRouteName, ['factures', 'create-factures', 'factures-fournisseur', 'create-factures-fournisseur']) ? 'active open' : '' }}">
+            <a href="{{ route('factures') }}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Factures') }}">
                 <i class="menu-icon tf-icons ti ti-file-dollar"></i>
             </a>
           </li>
 
           {{-- Banque et caisse  À VERIFIER --}}
           <li class="menu-item {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Banques / Caisses') }}">
+            <a href="{{ route('banques') }}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Banques / Caisses') }}">
                 <i class="menu-icon tf-icons ti ti-building-bank"></i>
             </a>
           </li>

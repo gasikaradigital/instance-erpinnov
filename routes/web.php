@@ -18,6 +18,12 @@ use App\Livewire\Tiers\ClientIndex;
 use App\Livewire\Tiers\CreateCustomer;
 use App\Livewire\Tiers\FournisseurIndex;
 use App\Livewire\Tiers\CreateSupplier;
+use App\Livewire\Factures\FacturesIndex;
+use App\Livewire\Factures\FacturesFournisseurIndex;
+use App\Livewire\Factures\CreateFactures;
+use App\Livewire\Factures\CreateFacturesFournisseur;
+use App\Livewire\Banques\BanquesIndex;
+use App\Livewire\Banques\CreateBanques;
 // Redirections
 Route::redirect('/', '/login');
 Route::redirect('/register', '/login');
@@ -56,11 +62,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/vente', TiersIndex::class)->name('vente');
     Route::get('/create/sale', CreateTiers::class)->name('create-sale');
 
-    Route::get('/facture', TiersIndex::class)->name('facture');
-    Route::get('/create/invoices', CreateTiers::class)->name('create-invoices');
+    Route::get('/facture', FacturesIndex::class)->name('factures');
+    Route::get('/facture/fournisseur', FacturesFournisseurIndex::class)->name('factures-fournisseur');
+    Route::get('/create/factures', CreateFactures::class)->name('create-factures');
+    Route::get('/create/factures-fournisseur', CreateFacturesFournisseur::class)->name('create-factures-fournisseur');
 
-    Route::get('/banque', TiersIndex::class)->name('banque');
-    Route::get('/create/bank', CreateTiers::class)->name('create-bank');
+    Route::get('/banque', BanquesIndex::class)->name('banques');
+    Route::get('/create/banques', CreateBanques::class)->name('create-banques');
 
     Route::get('/comptabilite', TiersIndex::class)->name('comptabilite');
     Route::get('/create/accounting', CreateTiers::class)->name('create-accounting');

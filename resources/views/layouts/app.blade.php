@@ -68,6 +68,15 @@ $contentLayout = (isset($container) ? (($container === 'container-xxl') ? "layou
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.projetsMenu')
                 </aside>
+
+            @elseif(request()->routeIs(["factures", "create-factures", "factures-fournisseur", "create-factures-fournisseur"]))
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                    @include('layouts.sections.menu.facturesMenu')
+                </aside>
+            @elseif(request()->routeIs(["banques", "create-banques"]))
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                    @include('layouts.sections.menu.banquesMenu')
+                </aside>
             @endif
                 
                 

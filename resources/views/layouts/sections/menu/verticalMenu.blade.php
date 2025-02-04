@@ -139,16 +139,23 @@
         </li>
 
         {{-- Factures --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['facture', 'create-invoices']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['factures', 'create-invoices']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-file-dollar"></i>
                 <div>{{ __('Factures') }}</div>
             </a>
+            <ul class="menu-sub">
+                <li class="menu-item {{ $currentRouteName === 'factures' ? 'active' : '' }}">
+                    <a href="{{ route('factures') }}" class="menu-link">
+                        <div>{{ __('Liste des factures') }}</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         {{-- Banque et caisse  À VERIFIER --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <li class="menu-item {{ in_array($currentRouteName, ['banques', 'create-banques']) ? 'active open' : '' }}">
+            <a href="{{ route('banques') }}" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-building-bank"></i>
                 <div>{{ __('Banques / Caisses') }}</div>
             </a>

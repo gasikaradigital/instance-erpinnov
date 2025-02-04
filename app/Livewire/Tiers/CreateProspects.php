@@ -10,4 +10,9 @@ class CreateProspects extends Component
     {
         return view('livewire.tiers.create-prospects');
     }
+
+    public function submit()
+    {
+        //
+    }
 }
