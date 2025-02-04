@@ -1,0 +1,9 @@
+.navbar-nav div[data-i18n] {
+    font-size: 12px; /* Taille uniforme */
+    max-width: 60px; /* Largeur maximale */
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    overflow: hidden; /* Cache le texte qui dépasse */
+    text-overflow: ellipsis; /* Ajoute "..." pour les textes longs */
+    text-align: center; /* Centrer les textes */
+  }
+  

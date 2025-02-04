@@ -17,8 +17,8 @@
 
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <ul class="menu-inner py-1">
-        <li class="menu-item ">
-            <a href="#" class="menu-link fw-bold">
+        <li class="menu-item {{ $currentRouteName === 'tiers-dashboard' ? 'active' : '' }}">
+            <a href="{{Route('tiers-dashboard')}}" class="menu-link fw-bold">
                 <i class="menu-icon tf-icons ti ti-users"></i>
                 <div class="text-bold">{{ __('Tiers') }}</div>
             </a>
@@ -34,21 +34,14 @@
             </a>
         </li>
 
-        <li class="menu-item {{ $currentRouteName === 'create-prospects' ? 'active' : '' }}">
-            <a href="{{ route('create-prospects') }}" class="menu-link">
-                <div>{{ __('Créer un prospect') }}</div>
-            </a>
-        </li>
-
         <li class="menu-item {{ $currentRouteName === 'prospects' ? 'active' : '' }}">
             <a href="{{ route('prospects') }}" class="menu-link">
                 <div>{{ __('Liste des prospects') }}</div>
             </a>
         </li>
-
-        <li class="menu-item {{ $currentRouteName === 'create-supplier' ? 'active' : '' }}">
-            <a href="{{ route('create-supplier') }}" class="menu-link">
-                <div>{{ __('Créer un fournisseur') }}</div>
+        <li class="menu-item {{ $currentRouteName === 'tag-customer' ? 'active' : '' }}">
+            <a href="{{ route('tag-customer') }}" class="menu-link">
+                <div>{{ __('Tags/catégories prospects') }}</div>
             </a>
         </li>
 
@@ -57,7 +50,12 @@
                 <div>{{ __('Liste des fournisseurs') }}</div>
             </a>
         </li>
-
+      {{-- en cours--}}
+      <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+        <a href="#" class="menu-link">
+            <div>{{ __('Tags/catégories fournisseurs') }}</div>
+        </a>
+    </li>
         <li class="menu-item {{ $currentRouteName === 'create-contact' ? 'active' : '' }}">
             <a href="{{ route('create-contact') }}" class="menu-link">
                 <div>{{ __('Créer un contact') }}</div>
@@ -69,18 +67,6 @@
                 <div>{{ __('Liste des contacts') }}</div>
             </a>
         </li>
-        <li class="menu-item {{ $currentRouteName === 'tag-customer' ? 'active' : '' }}">
-            <a href="{{ route('tag-customer') }}" class="menu-link">
-                <div>{{ __('Tags/catégories clients/prospects') }}</div>
-            </a>
-        </li>
-        {{--à modifier les routes--}}
-        <li class="menu-item {{ $currentRouteName === 'create-tiers' ? 'active' : '' }}">
-            <a href="{{ route('create-tiers') }}" class="menu-link">
-                <div>{{ __('Tags/catégories fournisseurs') }}</div>
-            </a>
-        </li>
 
-        
     </ul>
 </aside>

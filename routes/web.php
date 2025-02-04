@@ -16,6 +16,7 @@ use App\Livewire\Tiers\ProspectsIndex;
 use App\Livewire\Tiers\CreateProspects;
 use App\Livewire\Tiers\ContactIndex;
 use App\Livewire\Tiers\CreateContact;
+use App\Livewire\Tiers\TierDashboardIndex;
 use App\Livewire\Tiers\FournisseurIndex;
 use App\Livewire\Tiers\CreateSupplier;
 use App\Livewire\Factures\FacturesIndex;
@@ -26,6 +27,16 @@ use App\Livewire\Banques\BanquesIndex;
 use App\Livewire\Banques\CreateBanques;
 use App\Livewire\Tiers\TagCustomerIndex;
 use App\Livewire\Tiers\CreateTagCustomerIndex;
+use App\Livewire\Comptabilite\ComptabiliteIndex;
+use App\Livewire\Comptabilite\CreateAccounting;
+use App\Livewire\GRH\GrhIndex;
+use App\Livewire\GRH\CreateGrh;
+use App\Livewire\Email\EmailIndex;
+use App\Livewire\Email\CreateMail;
+use App\Livewire\Documents\DocumentIndex;
+use App\Livewire\Documents\CreateDocument;
+use App\Livewire\Chat\ChatIndex;
+use App\Livewire\Chat\CreateChat;
 
 // Redirections
 Route::redirect('/', '/login');
@@ -39,6 +50,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     
     Route::get('/tiers', TiersIndex::class)->name('tiers');
     Route::get('/create/tiers', CreateTiers::class)->name('create-tiers');
+
+    Route::get('/tiers-dashboard', TierDashboardIndex::class)->name('tiers-dashboard');
     
     Route::get('/prospects', ProspectsIndex::class)->name('prospects');
     Route::get('/create/prospects', CreateProspects::class)->name('create-prospects');
@@ -73,19 +86,19 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/banque', BanquesIndex::class)->name('banques');
     Route::get('/create/banques', CreateBanques::class)->name('create-banques');
 
-    Route::get('/comptabilite', TiersIndex::class)->name('comptabilite');
-    Route::get('/create/accounting', CreateTiers::class)->name('create-accounting');
+    Route::get('/comptabilite', ComptabiliteIndex::class)->name('comptabilite');
+    Route::get('/create/accounting', CreateAccounting::class)->name('create-accounting');
 
-    Route::get('/grh', TiersIndex::class)->name('grh');
-    Route::get('/create/grh', CreateTiers::class)->name('create-grh');
+    Route::get('/grh', GrhIndex::class)->name('grh');
+    Route::get('/create/grh', CreateGrh::class)->name('create-grh');
 
-    Route::get('/email', TiersIndex::class)->name('email');
-    Route::get('/create/mail', CreateTiers::class)->name('create-mail');
+    Route::get('/email', EmailIndex::class)->name('email');
+    Route::get('/create/mail', CreateMail::class)->name('create-mail');
 
-    Route::get('/document', TiersIndex::class)->name('document');
-    Route::get('/create/document', CreateTiers::class)->name('create-document');
+    Route::get('/document', DocumentIndex::class)->name('document');
+    Route::get('/create/document', CreateDocument::class)->name('create-document');
 
-    Route::get('/chat', TiersIndex::class)->name('chat');
-    Route::get('/create/chat', CreateTiers::class)->name('create-chat');
+    Route::get('/chat', ChatIndex::class)->name('chat');
+    Route::get('/create/chat', CreateChat::class)->name('create-chat');
     
 });

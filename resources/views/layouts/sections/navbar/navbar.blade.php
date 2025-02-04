@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 @php
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,25 +17,28 @@ $navbarDetached = ($navbarDetached ?? '');
               </a>
             @endif
         </div>
-        <ul class="navbar-nav flex-row align-items-center justify-content-center gap-3">
+        <ul class="navbar-nav flex-row align-items-center justify-content-center gap-6">
           <li class="nav-item flex-column align-items-center d-xl-flex">
             <a href="{{ route('home')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Accueil') }}">
               <i class="menu-icon tf-icons ti ti-smart-home"></i>
             </a>
+            <div data-i18n="Accueil">Accueil</div>
           </li>
 
           <!-- Tiers -->
           <li class="nav-item flex-column align-items-center d-xl-flex">
-            <a href="{{ route('tiers') }}" class="menu-link {{ $currentRouteName === 'tiers' ? 'active' : '' }}" onclick="showTiersMenu(event)" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Tiers') }}">
+            <a href="{{ route('tiers-dashboard') }}" class="menu-link {{ $currentRouteName === 'tiers-dashboard' ? 'active' : '' }}" onclick="showTiersMenu(event)" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Tiers') }}">
               <i class="menu-icon tf-icons ti ti-users"></i>
             </a>
+            <div data-i18n="Tiers">Tiers</div>
           </li>
 
           <!-- Produits -->
           <li class="nav-item flex-column align-items-center d-xl-flex">
             <a href="{{ route('produits')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Ventes') }}">
-              <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
+              <i class="menu-icon fas fa-suitcase"></i>
             </a>
+            <div data-i18n="Ventes">Ventes</div>
           </li>
 
           <!-- Projets et Tâches -->
@@ -42,58 +46,65 @@ $navbarDetached = ($navbarDetached ?? '');
             <a href="{{ route('projets')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Projets') }}">
               <i class="menu-icon tf-icons ti ti-folder"></i>
             </a>
+            <div data-i18n="Projet">Projets | Tâches</div>
           </li>
 
           {{-- Factures --}}
-          <li class="menu-item {{ in_array($currentRouteName, ['factures', 'create-factures', 'factures-fournisseur', 'create-factures-fournisseur']) ? 'active open' : '' }}">
+          <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['factures', 'create-factures', 'factures-fournisseur', 'create-factures-fournisseur']) ? 'active open' : '' }}">
             <a href="{{ route('factures') }}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Factures') }}">
                 <i class="menu-icon tf-icons ti ti-file-dollar"></i>
             </a>
+            <div data-i18n="Factures">Factures</div>
           </li>
 
-          {{-- Banque et caisse  À VERIFIER --}}
-          <li class="menu-item {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
+          {{-- Banque et caisse --}}
+          <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
             <a href="{{ route('banques') }}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Banques / Caisses') }}">
                 <i class="menu-icon tf-icons ti ti-building-bank"></i>
             </a>
-           
+            <div data-i18n="banque">Banques | Caisses</div>
           </li>
 
 
-          {{-- Comptabilité  À VERIFIER --}}
+          {{-- Comptabilité  --}}
           <li
             class="menu-item flex-column align-items-center d-xl-flex{{ in_array($currentRouteName, ['comptabilite', 'create-accounting']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Comptabilité') }}">
+            <a href="{{Route('comptabilite')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Comptabilité') }}">
                 <i class="menu-icon tf-icons ti ti-chart-bar"></i>
             </a>
+            <div data-i18n="Compta">Comptabilité</div>
           </li>
 
-          {{-- GRH  À VERIFIER --}}
+          {{-- GRH --}}
           <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['grh', 'create-grh']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('GRH') }}">
+            <a href="{{Route('grh')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('GRH') }}">
                 <i class="menu-icon tf-icons ti ti-user"></i>
             </a>
+            <div data-i18n="Grh">GRH</div>
           </li>
 
-          {{-- Email  À VERIFIER --}}
+          {{-- Email --}}
           <li class="menu-item flex-column align-items-center d-xl-flex{{ in_array($currentRouteName, ['email', 'create-mail']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Email') }}">
+            <a href="{{Route('email')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Email') }}">
                 <i class="menu-icon tf-icons ti ti-mail"></i>
             </a>
+            <div data-i18n="Email">Email</div>
           </li>
 
-          {{-- Document À VERIFIER --}}
+          {{-- Document --}}
           <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['document', 'create-document']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Documents') }}">
+            <a href="{{Route('document')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Documents') }}">
                 <i class="menu-icon tf-icons ti ti-files"></i>
             </a>
+            <div data-i18n="Document">Document</div>
           </li>
 
-          {{-- Chat  À VERIFIER --}}
+          {{-- Chat --}}
           <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['chat', 'create-chat']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Chat') }}">
+            <a href="{{Route('chat')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Chat') }}">
                 <i class="menu-icon tf-icons ti ti-message-chatbot"></i>
             </a>
+            <div data-i18n="Chat">Chat</div>
           </li>
         </ul>
 
