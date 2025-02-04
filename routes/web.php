@@ -24,6 +24,9 @@ use App\Livewire\Factures\CreateFactures;
 use App\Livewire\Factures\CreateFacturesFournisseur;
 use App\Livewire\Banques\BanquesIndex;
 use App\Livewire\Banques\CreateBanques;
+use App\Livewire\Tiers\TagCustomerIndex;
+use App\Livewire\Tiers\CreateTagCustomerIndex;
+
 // Redirections
 Route::redirect('/', '/login');
 Route::redirect('/register', '/login');
@@ -45,6 +48,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     Route::get('/fournisseur', FournisseurIndex::class)->name('fournisseur');
     Route::get('/create/supplier', CreateSupplier::class)->name('create-supplier');
+
+    Route::get('/tags/customer', tagCustomerIndex::class)->name('tag-customer');
+    Route::get('/create/tags/customer', CreateTagCustomerIndex::class)->name('create-tag-customer');
     
     Route::get('/produits', IndexProduit::class)->name('produits');
     Route::get('/create/produits', CreateProduits::class)->name('create-produits');

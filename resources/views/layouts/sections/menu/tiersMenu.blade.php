@@ -69,8 +69,17 @@
                 <div>{{ __('Liste des contacts') }}</div>
             </a>
         </li>
-
-      
+        <li class="menu-item {{ $currentRouteName === 'tag-customer' ? 'active' : '' }}">
+            <a href="{{ route('tag-customer') }}" class="menu-link">
+                <div>{{ __('Tags/catégories clients/prospects') }}</div>
+            </a>
+        </li>
+        {{--à modifier les routes--}}
+        <li class="menu-item {{ $currentRouteName === 'create-tiers' ? 'active' : '' }}">
+            <a href="{{ route('create-tiers') }}" class="menu-link">
+                <div>{{ __('Tags/catégories fournisseurs') }}</div>
+            </a>
+        </li>
 
         
     </ul>
