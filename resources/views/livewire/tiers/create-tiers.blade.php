@@ -46,9 +46,12 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <label class="form-label">Type du tiers <span
-                                                class="text-danger">*</span></label>
-                                                <i class="fas fa-info-circle" style="margin-left: 95px;"></i>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <label class="form-label">
+                                                Type du tiers <span class="text-danger">*</span>
+                                            </label>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>                                        
                                         <select class="select2 form-select" wire:model="typent_id" required>
                                             <option value="">Sélectionner</option>
                                             <option value="5">Administration</option>
@@ -57,7 +60,9 @@
                                             <option value="3">PME/MPI</option>
                                             <option value="8">Particulier</option>
                                             <option value="4">TPE</option>
+                                    
                                         </select>
+                                        
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Fournisseur <span class="text-danger">*</span></label>
@@ -114,8 +119,9 @@
                                         <input type="text" class="form-control" wire:model="numTVA" />
                                     </div>
                                     <div class="col-md-2">
+                                        <div class="d-flex justify-content-between align-items-center">
                                         <label class="form-label">Effectifs</label>
-                                        <i class="fas fa-info-circle" style="margin-left: 140px;"></i>
+                                        <i class="fas fa-info-circle" ></i></div>
                                         <select class="select2 form-select" wire:model="effectifr" required>
                                             <option value=""></option>
                                             <option value="1">1 - 5</option>
@@ -127,9 +133,9 @@
                                         </select>
                                     </div>
                                     <div class="col-md-2">
-                                        
+                                        <div class="d-flex justify-content-between align-items-center">
                                         <label class="form-label">Type d'entité légale</label>
-                                        <i class="fas fa-info-circle" style="margin-left: 70px;"></i>
+                                        <i class="fas fa-info-circle"></i></div>
                                         <select class="select2 form-select" wire:model="typeEntite" required>
                                             <option value=""></option>
                                             <option value=""></option>
@@ -188,9 +194,10 @@
                                         <input type="text" class="form-control" wire:model="town" />
                                     </div>
                                     <div class="col-md-2">
-                                        <i class="fas fa-globe"></i>
+                                        {{-- <i class="fas fa-globe"></i> --}}
+                                        <div class="d-flex justify-content-between align-items-center">
                                         <label class="form-label">Pays</label>
-                                        <i class="fas fa-info-circle" style="margin-left: 135px;"></i>
+                                        <i class="fas fa-info-circle"></i></div>
                                         
                                         <select class="select2 form-select" wire:model="country_id">
                                             <option value="">Sélectionner</option>
@@ -221,9 +228,10 @@
                                         <input type="url" class="form-control" wire:model="url" />
                                     </div>
                                     <div class="col-md-2">
-                                        <i class="fas fa-map-marked-alt"></i>
+                                        {{-- <i class="fas fa-map-marked-alt"></i> --}}
+                                        <div class="d-flex justify-content-between align-items-center">
                                         <label class="form-label">Département / Canton</label>
-                                        <i class="fas fa-info-circle" style="margin-left: 35px;"></i>
+                                        <i class="fas fa-info-circle"></i></div>
                                         <div class="d-flex gap-2">
                                             <select class="select2 form-select" wire:model="departement">
                                                 <option value=""></option>

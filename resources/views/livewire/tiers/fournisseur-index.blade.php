@@ -29,8 +29,8 @@
                         <h5 class="card-title mb-0">Liste des Fournisseurs</h5>
                     </div>
                     <div class="col-sm-6 col-4 text-end">
-                        <a href="{{ route('create-supplier') }}" class="btn btn-primary">
-                            <i class="ti ti-plus"></i> Nouveau Fournisseur
+                        <a href="{{ route('create-tiers') }}" class="btn btn-primary">
+                            <i class="ti ti-plus"></i> Nouveau
                         </a>
                     </div>
                 </div>
@@ -38,9 +38,8 @@
                 <div class="row g-3 mt-3">
                     <div class="col-md-4">
                         <select class="form-select" wire:model="type">
-                            <option value="">Type de Tiers</option>
                             <option value="client">Client</option>
-                            <option value="fournisseur">Fournisseur</option>
+                            <option value="fournisseur" selected>Fournisseur</option>
                             <option value="prospect">Prospect</option>
                         </select>
                     </div>

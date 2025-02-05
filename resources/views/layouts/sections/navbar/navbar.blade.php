@@ -35,10 +35,10 @@ $navbarDetached = ($navbarDetached ?? '');
 
           <!-- Produits -->
           <li class="nav-item flex-column align-items-center d-xl-flex">
-            <a href="{{ route('produits')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Ventes') }}">
-              <i class="menu-icon fas fa-suitcase"></i>
+            <a href="{{Route('create-produits-dashboard')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Produits | Services') }}">
+              <i class="menu-icon tf-icons ti ti-cube"></i>
             </a>
-            <div data-i18n="Ventes">Ventes</div>
+            <div data-i18n="Services">Produits | Services</div>
           </li>
 
           <!-- Projets et Tâches -->

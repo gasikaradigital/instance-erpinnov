@@ -50,88 +50,179 @@
                 <div>{{ __('Configuration') }}</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item {{ $currentRouteName === 'produits' ? 'active' : '' }}">
-                    <a href="{{ route('produits') }}" class="menu-link">
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
                         <div>{{ __('Societé/Organisation') }}</div>
                     </a>
                 </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Modules/Applications') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Affichage') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Menus') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Traduction') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Valeur/filtres/tris par défaut') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Widgets') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Alertes') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Sécurité') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Limites et précision') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('PDF') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Emails') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('SMS') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Dictionnaires') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Divers') }}</div>
+                    </a>
+                </li>
             </ul>
         </li>
 
+       
         {{-- Outils d'administration --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['projets', 'create-project']) ? 'active open' : '' }}">
+        <li
+            class="menu-item {{ in_array($currentRouteName, []) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle fw-bold">
-                <i class="fas fa-server fa-fw"></i>
+                <i class="fas fa-server"></i>
                 <div>{{ __("Outils d'administration") }}</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item {{ $currentRouteName === 'projets' ? 'active' : '' }}">
-                    <a href="{{ route('projets') }}" class="menu-link">
-                        <div>{{ __('Liste des projets') }}</div>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Infos Dolibarr') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === 'create-project' ? 'active' : '' }}">
-                    <a href="{{ route('create-project') }}" class="menu-link">
-                        <div>{{ __('Nouveau projet') }}</div>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Infos navigateur') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Infos OS') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Infos web server') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Infos PHP') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Infos base de données') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Infos performances') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Infos sécurité') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Événements de sécurité') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Sessions utilisateurs') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Sauvegarde') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Restauration') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Mise à jour / extension') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Purger') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Ressources externes') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Changement TVA en masse') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <div>{{ __('Initialisation codes-barre') }}</div>
                     </a>
                 </li>
             </ul>
-        </li>
-
-        {{-- Utilisateurs & Groupes --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['vente', 'create-sale']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
-                <div>{{ __('Ventes') }}</div>
-            </a>
-        </li>
-
-        {{-- Factures --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['factures', 'create-invoices']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-file-dollar"></i>
-                <div>{{ __('Factures') }}</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ $currentRouteName === 'factures' ? 'active' : '' }}">
-                    <a href="{{ route('factures') }}" class="menu-link">
-                        <div>{{ __('Liste des factures') }}</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        {{-- Banque et caisse  À VERIFIER --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['banques', 'create-banques']) ? 'active open' : '' }}">
-            <a href="{{ route('banques') }}" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-building-bank"></i>
-                <div>{{ __('Banques / Caisses') }}</div>
-            </a>
-        </li>
-
-        {{-- Comptabilité  À VERIFIER --}}
-        <li
-            class="menu-item {{ in_array($currentRouteName, ['comptabilite', 'create-accounting']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-chart-bar"></i>
-                <div>{{ __('Comptabilités') }}</div>
-            </a>
-        </li>
-
-        {{-- GRH  À VERIFIER --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['grh', 'create-grh']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-user"></i>
-                <div>{{ __('GRH') }}</div>
-            </a>
-        </li>
-
-        {{-- Email  À VERIFIER --}}
-        <li class="menu-item {{ in_array($currentRouteName, ['email', 'create-mail']) ? 'active open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-mail"></i>
-                <div>{{ __('Email') }}</div>
-            </a>
         </li>
     </ul>
 </aside>
