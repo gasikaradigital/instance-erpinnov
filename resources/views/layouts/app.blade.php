@@ -98,7 +98,17 @@
                     @include('layouts.sections.menu.projetsMenu')
                 </aside>
            
-            @elseif(request()->routeIs(['factures', 'create-factures', 'factures-fournisseur', 'create-factures-fournisseur']))
+            @elseif(request()->routeIs([
+                    'factures', 
+                    'create-factures', 
+                    'factures-fournisseur', 
+                    'create-factures-fournisseur', 
+                    'liste-modeles-clients',
+                    'reglement-clients',
+                    'rapport-clients',
+                    'statistiques-clients',
+                    'liste-factures-clients'
+                ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.facturesMenu')
                 </aside>
@@ -106,23 +116,23 @@
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.banquesMenu')
                 </aside>
-                @elseif(request()->routeIs(['comptabilite', 'create-accounting']))
+            @elseif(request()->routeIs(['comptabilite', 'create-accounting']))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.comptabiliteMenu')
                 </aside>
-                @elseif(request()->routeIs(['grh', 'create-grh']))
+            @elseif(request()->routeIs(['grh', 'create-grh']))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.grhMenu')
                 </aside>
-                @elseif(request()->routeIs(['email', 'create-mail']))
+            @elseif(request()->routeIs(['email', 'create-mail']))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.mailMenu')
                 </aside>
-                @elseif(request()->routeIs(['document', 'create-document']))
+            @elseif(request()->routeIs(['document', 'create-document']))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.documentMenu')
                 </aside>
-                @elseif(request()->routeIs(['chat', 'create-chat']))
+            @elseif(request()->routeIs(['chat', 'create-chat']))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.chatMenu')
                 </aside>

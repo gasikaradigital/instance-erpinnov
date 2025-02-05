@@ -1,23 +1,23 @@
 <div>
     <div class="card-datatable table-responsive">
+        <h6>Règlements reçus du client</h6>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Code</th>
-                    <th>Nom</th>
-                    <th>Type</th>
-                    <th>Nature tiers</th>
-                    <th>Email</th>
-                    <th>Téléphone</th>
-                    <th>Statut</th>
-                    <th>Actions</th>
+                    <th>Ref. paiements</th>
+                    <th>Date</th>
+                    <th>Tiers</th>
+                    <th>Numéro</th>
+                    <th>écriture de la banque</th>
+                    <th>Compte bancaire</th>
+                    <th>Montant</th>
                 </tr>
             </thead>
            
             <tbody>
                 
             </tbody>
-           
+          
             
         </table>
     </div>

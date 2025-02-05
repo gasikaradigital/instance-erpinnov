@@ -3,7 +3,7 @@
     <ul class="menu-inner py-1">
         <!-- Factures clients -->
         <li class="menu-item ">
-            <a href="#" class="menu-link">
+            <a href="#" class="menu-link fw-bold">
                 <i class="menu-icon tf-icons ti ti-building-bank"></i>
                 <div class="text-bold">{{ __('Banques | Caisses') }}</div>
             </a>

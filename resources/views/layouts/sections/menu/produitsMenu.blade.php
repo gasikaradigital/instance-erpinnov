@@ -3,7 +3,7 @@
     <ul class="menu-inner py-1">
         <!-- Produits -->
         <li class="menu-item ">
-            <a href="#" class="menu-link">
+            <a href="#" class="menu-link fw-bold">
                 <i class="menu-icon tf-icons ti ti-users"></i>
                 <div class="text-bold">{{ __('Produits') }}</div>
             </a>
@@ -22,7 +22,7 @@
 
         <!-- Services -->
         <li class="menu-item ">
-            <a href="#" class="menu-link">
+            <a href="#" class="menu-link fw-bold">
                 <i class="menu-icon tf-icons ti ti-users"></i>
                 <div class="text-bold">{{ __('Services') }}</div>
             </a>

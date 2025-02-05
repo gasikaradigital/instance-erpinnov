@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Factures;
+namespace App\Livewire\Factures\Client;
 
 use Livewire\Component;
 
@@ -8,6 +8,6 @@ class CreateFactures extends Component
 {
     public function render()
     {
-        return view('livewire.factures.create-factures');
+        return view('livewire.factures.client.create-factures');
     }
 }
