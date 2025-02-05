@@ -40,7 +40,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo/logo.png') }}" />
 
     @include('layouts/sections/assets/styles')
     @include('layouts/sections/assets/scriptsIncludes')
@@ -84,12 +84,16 @@
                     'create-supplier',
                     'tag-customer',
                     'create-tag-customer',
+                    'tag-fournisseur',
+                    'create-tag-supplier',
+                    'tag-contact',
+                    'create-tag-contact',
                     'tiers-dashboard'
                 ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.tiersMenu') <!-- Menu vertical Tiers -->
                 </aside>
-            @elseif(request()->routeIs(['produits', 'create-produits', 'create-services']))
+            @elseif(request()->routeIs(['produits', 'create-produits', 'create-services', 'create-produits-dashboard']))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.produitsMenu') <!-- Menu vertical Produits -->
                 </aside>

@@ -65,6 +65,12 @@ use App\Livewire\Documents\CreateDocument;
 //Appel pour les class chat
 use App\Livewire\Chat\ChatIndex;
 use App\Livewire\Chat\CreateChat;
+use App\Livewire\Tiers\TagFournisseurIndex;
+use App\Livewire\Tiers\CreateTagSupplierIndex;
+use App\Livewire\Tiers\TagContactIndex;
+use App\Livewire\Tiers\CreateTagContactIndex;
+use App\Livewire\Tiers\ProduitsDashboardIndex;
+
 
 // Redirections
 Route::redirect('/', '/login');
@@ -88,16 +94,24 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/contact', ContactIndex::class)->name('contact');
     Route::get('/create/contact', CreateContact::class)->name('create-contact');
 
+    Route::get('/tags/contacts', TagContactIndex::class)->name('tag-contact');
+    Route::get('/create/tags-contact', CreateTagContactIndex::class)->name('create-tag-contact');
+
     Route::get('/fournisseur', FournisseurIndex::class)->name('fournisseur');
     Route::get('/create/supplier', CreateSupplier::class)->name('create-supplier');
 
-    Route::get('/tags/customer', tagCustomerIndex::class)->name('tag-customer');
+    Route::get('/tags/supplier', TagFournisseurIndex::class)->name('tag-fournisseur');
+    Route::get('/create/tags-supplier', CreateTagSupplierIndex::class)->name('create-tag-supplier');
+
+    Route::get('/tags/customer', TagCustomerIndex::class)->name('tag-customer');
     Route::get('/create/tags/customer', CreateTagCustomerIndex::class)->name('create-tag-customer');
     
     //Produits et services
     Route::get('/produits', IndexProduit::class)->name('produits');
     Route::get('/create/produits', CreateProduits::class)->name('create-produits');
     Route::get('/create/services', CreateServices::class)->name('create-services');
+    
+    Route::get('/produits-dashboard', ProduitsDashboardIndex::class)->name('create-produits-dashboard');
 
     //Projets et taches
     Route::get('/projets', ProjetIndex::class)->name('projets');
