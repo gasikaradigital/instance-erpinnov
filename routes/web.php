@@ -53,6 +53,8 @@ use App\Livewire\Comptabilite\CreateAccounting;
 //Appel pour les class GRH
 use App\Livewire\GRH\GrhIndex;
 use App\Livewire\GRH\CreateGrh;
+use App\Livewire\GRH\CreateSalary;
+
 
 //Appel pour les class email
 use App\Livewire\Email\EmailIndex;
@@ -81,13 +83,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     // locale
     Route::get('/lang/{locale}', Language::class)->name('lang');
     Route::get('/home', HomePage::class)->name('home');
-    
+
     // Tiers
     Route::get('/tiers', TiersIndex::class)->name('tiers');
     Route::get('/create/tiers', CreateTiers::class)->name('create-tiers');
 
     Route::get('/tiers-dashboard', TierDashboardIndex::class)->name('tiers-dashboard');
-    
+
     Route::get('/prospects', ProspectsIndex::class)->name('prospects');
     Route::get('/create/prospects', CreateProspects::class)->name('create-prospects');
 
@@ -105,20 +107,20 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     Route::get('/tags/customer', TagCustomerIndex::class)->name('tag-customer');
     Route::get('/create/tags/customer', CreateTagCustomerIndex::class)->name('create-tag-customer');
-    
+
     //Produits et services
     Route::get('/produits', IndexProduit::class)->name('produits');
     Route::get('/create/produits', CreateProduits::class)->name('create-produits');
     Route::get('/create/services', CreateServices::class)->name('create-services');
-    
+
     Route::get('/produits-dashboard', ProduitsDashboardIndex::class)->name('create-produits-dashboard');
 
     //Projets et taches
     Route::get('/projets', ProjetIndex::class)->name('projets');
     Route::get('/projet/create', CreateProjet::class)->name('create-project');
-    
+
     Route::get('/taches', TachesIndex::class)->name('taches');
-    Route::get('/tache/create', CreateTaches::class)->name('create-tache');  
+    Route::get('/tache/create', CreateTaches::class)->name('create-tache');
 
     Route::get('/vente', TiersIndex::class)->name('vente');
     Route::get('/create/sale', CreateTiers::class)->name('create-sale');
@@ -145,6 +147,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     //GRH
     Route::get('/grh', GrhIndex::class)->name('grh');
     Route::get('/create/grh', CreateGrh::class)->name('create-grh');
+    Route::get('/create/grh-salary', CreateSalary::class)->name('create-salary');
 
 
     //Email
@@ -158,5 +161,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     //Chat
     Route::get('/chat', ChatIndex::class)->name('chat');
     Route::get('/create/chat', CreateChat::class)->name('create-chat');
-    
+
 });

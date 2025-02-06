@@ -101,12 +101,12 @@
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.projetsMenu')
                 </aside>
-           
+
             @elseif(request()->routeIs([
-                    'factures', 
-                    'create-factures', 
-                    'factures-fournisseur', 
-                    'create-factures-fournisseur', 
+                    'factures',
+                    'create-factures',
+                    'factures-fournisseur',
+                    'create-factures-fournisseur',
                     'liste-modeles-clients',
                     'reglement-clients',
                     'rapport-clients',
@@ -124,7 +124,11 @@
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.comptabiliteMenu')
                 </aside>
-            @elseif(request()->routeIs(['grh', 'create-grh']))
+            @elseif(request()->routeIs([
+                'grh',
+                'create-grh',
+                'create-salary'
+                ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.grhMenu')
                 </aside>
@@ -141,7 +145,7 @@
                     @include('layouts.sections.menu.chatMenu')
                 </aside>
             @endif
-            
+
 
 
             <!-- Layout page -->
