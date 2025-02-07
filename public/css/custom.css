@@ -20,6 +20,17 @@
 .table th {
     white-space: nowrap;
 }
+.table th {
+    white-space: nowrap;
+    vertical-align: top;
+}
+.input-group-text {
+    background-color: transparent;
+}
+.fas.fa-sort {
+    cursor: pointer;
+    color: #6c757d;
+}
 .input-group-text {
     background-color: transparent;
 }

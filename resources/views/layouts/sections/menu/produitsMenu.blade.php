@@ -4,7 +4,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <ul class="menu-inner py-1">
         <!-- Produits -->
-        <li class="menu-item {{ in_array($currentRouteName, ['produits','create-produits','liste-produits-clients','liste-stocks-clients','liste-stocks-lots']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['produits','create-produits','liste-produits-clients','liste-stocks-clients','liste-stocks-lots','lots-serie-list','attribut-list','create-attribut','create-lot-serie','tag-produit','create-tag-produit']) ? 'active open' : '' }}">
             <a href="#" class="menu-link menu-toggle fw-bold">
                 <i class="menu-icon fas fa-cube"></i>
                 <div class="text-bold">{{ __('Produits') }}</div>
@@ -30,13 +30,13 @@
                         <div>{{ __('Stocks par lot/série') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
-                    <a href="javascript:void(0)" class="menu-link">
+                <li class="menu-item {{ $currentRouteName === 'lots-serie-list' ? 'active' : '' }}">
+                    <a href="{{Route('lots-serie-list')}}" class="menu-link">
                         <div>{{ __('Lots/séries') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
-                    <a href="javascript:void(0)" class="menu-link">
+                <li class="menu-item {{ $currentRouteName === 'attribut-list' ? 'active' : '' }}">
+                    <a href="{{Route('attribut-list')}}" class="menu-link">
                         <div>{{ __('Attributs de variante') }}</div>
                     </a>
                 </li>
@@ -45,8 +45,8 @@
                         <div>{{ __('Statistiques') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
-                    <a href="javascript:void(0)" class="menu-link">
+                <li class="menu-item {{ $currentRouteName === 'tag-produit' ? 'active' : '' }}">
+                    <a href="{{Route('tag-produit')}}" class="menu-link">
                         <div>{{ __('Tags/catégories produits') }}</div>
                     </a>
                 </li>

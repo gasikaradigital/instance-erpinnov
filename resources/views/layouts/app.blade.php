@@ -99,7 +99,13 @@
                 'create-services', 
                 'liste-produits-clients',
                 'liste-stocks-clients',
-                'liste-stocks-lots'
+                'liste-stocks-lots',
+                'lots-serie-list',
+                'attribut-list',
+                'create-attribut',
+                'create-lot-serie',
+                'tag-produit',
+                'create-tag-produit'
                 ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.produitsMenu') <!-- Menu vertical Produits -->

@@ -1,7 +1,7 @@
 <!-- resources/views/products/index.blade.php -->
 
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-<div class="container-fluid mt-4">
+<div class="container mt-4">
     <div class="row mb-4">
         <div class="col">
             <div class="d-flex align-items-center">
@@ -57,6 +57,7 @@
                                         <li><a class="dropdown-item" href="#">Décroissant</a></li>
                                     </ul>
                                 </div>
+                              
                             </th>
                             <th>Libellé</th>
                             <th>Limite stock pour alerte</th>

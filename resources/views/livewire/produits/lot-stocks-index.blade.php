@@ -1,7 +1,7 @@
 
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
-<div class="container-fluid mt-4">
+<div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4>
             <i class="fas fa-box me-2"></i>
@@ -24,22 +24,20 @@
             <div class="row mb-4">
                 <div class="col-md-3">
                     <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">
-                            Tag/catégorie de produits
-                        </button>
-                        <ul class="dropdown-menu w-100">
-                            <!-- Dynamisez ici avec vos données -->
-                        </ul>
+                        <select class="form-select">
+                            <option value=""disabled selected>Tag/catégorie de produits</option>
+                            <option value=""></option>
+                            <option value="">- Sans catégorie -</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">
-                            Tags/catégories d'entrepôt
-                        </button>
-                        <ul class="dropdown-menu w-100">
-                            <!-- Dynamisez ici avec vos données -->
-                        </ul>
+                        <select class="form-select">
+                            <option value=""disabled selected>Tag/catégorie de produits</option>
+                            <option value=""></option>
+                            <option value="">- Sans catégorie -</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -82,13 +80,3 @@
         </div>
     </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialisation des dropdowns avec Bootstrap
-    const dropdowns = document.querySelectorAll('.dropdown-toggle');
-    dropdowns.forEach(dropdown => {
-        new bootstrap.Dropdown(dropdown);
-    });
-});
-</script>

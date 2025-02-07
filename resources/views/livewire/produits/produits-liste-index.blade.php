@@ -1,7 +1,7 @@
 
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
-<div class="container-fluid mt-3">
+<div class="container mt-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
             <i class="fas fa-box text-success me-2"></i>
@@ -85,16 +85,17 @@
                                 <th>
                                     <input type="checkbox" class="form-check-input" id="selectAll">
                                 </th>
-                                <th>Réf. produit</th>
+                                <th>Réf. prod</th>
                                 <th>Libellé</th>
-                                <th>Code-barres</th>
-                                <th>Prix de vente</th>
-                                <th>Meilleur prix d'achat</th>
-                                <th>Stock désiré optimal</th>
-                                <th>Stock physique</th>
-                                <th>Stock virtuel</th>
+                                <th>Code-barr.</th>
+                                <th>Prix de vent.</th>
+                                <th>Meilleur pr d'ach.</th>
+                                <th>Stock désiré opti.</th>
+                                <th>Stock phy.</th>
+                                <th>Stock vir.</th>
                                 <th>État (Vente)</th>
                                 <th>État (Achat)</th>
+                                </tr>
                             </tr>
                         </thead>
                         <tbody>
@@ -144,16 +145,16 @@
                                     <th>
                                         <input type="checkbox" class="form-check-input" id="selectAll">
                                     </th>
-                                    <th>Réf. produit</th>
-                                    <th>Libellé</th>
-                                    <th>Code-barres</th>
-                                    <th>Prix de vente</th>
-                                    <th>Meilleur prix d'achat</th>
-                                    <th>Stock désiré optimal</th>
-                                    <th>Stock physique</th>
-                                    <th>Stock virtuel</th>
-                                    <th>État (Vente)</th>
-                                    <th>État (Achat)</th>
+                                    <th>Réf. prod</th>
+                                <th>Libellé</th>
+                                <th>Code-barr.</th>
+                                <th>Prix de vent.</th>
+                                <th>Meilleur pr d'ach.</th>
+                                <th>Stock désiré opti.</th>
+                                <th>Stock phy.</th>
+                                <th>Stock vir.</th>
+                                <th>État (Vente)</th>
+                                <th>État (Achat)</th>
                                 </tr>
                             </thead>
                         </table>
