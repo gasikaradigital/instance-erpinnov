@@ -224,5 +224,53 @@
                 </li>
             </ul>
         </li>
+
+             {{-- Utilisateurs & Groupes --}}
+             <li
+             class="menu-item {{ in_array($currentRouteName, []) ? 'active open' : '' }}">
+             <a href="javascript:void(0);" class="menu-link menu-toggle fw-bold">
+                 <i class="fas fa-user fa-fw"></i>
+                 <div>{{ __('Utilisateurs & Groupes') }}</div>
+             </a>
+             <ul class="menu-sub">
+                <li class="menu-header small">
+                    <span class="menu-header-text" data-i18n="Utilisateurs">Utilisateurs</span>
+                  </li>
+                 <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                     <a href="javascript:void(0)" class="menu-link">
+                         <div>{{ __('Nouvel utilisateur') }}</div>
+                     </a>
+                 </li>
+                 <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                     <a href="javascript:void(0)" class="menu-link">
+                         <div>{{ __('Liste des utilisateur') }}</div>
+                     </a>
+                 </li>
+                 <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                     <a href="javascript:void(0)" class="menu-link">
+                         <div>{{ __('Vue hiérarchique') }}</div>
+                     </a>
+                 </li>
+                 <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                     <a href="javascript:void(0)" class="menu-link">
+                         <div>{{ __('Tags/catégories utilisateurs') }}</div>
+                     </a>
+                 </li>
+                 <li class="menu-header small">
+                    <span class="menu-header-text" data-i18n="Groupes">Groupes</span>
+                  </li>
+                 <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                     <a href="javascript:void(0)" class="menu-link">
+                         <div>{{ __('Nouveau groupe') }}</div>
+                     </a>
+                 </li>
+                 <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
+                     <a href="javascript:void(0)" class="menu-link">
+                         <div>{{ __('Liste des groupes') }}</div>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+ 
     </ul>
 </aside>

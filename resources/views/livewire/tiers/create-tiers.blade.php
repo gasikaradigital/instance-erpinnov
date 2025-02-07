@@ -1,4 +1,4 @@
-<div class="container-xxl flex-grow-1 {{ route('create-prospects') }}">
+<div class="container-xxl flex-grow-1">
     <!-- En-tête -->
     <h4 class="fw-bold py-3 mb-2 ">
         Nouveau tiers
@@ -46,7 +46,7 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between">
                                             <label class="form-label">
                                                 Type du tiers <span class="text-danger">*</span>
                                             </label>
@@ -119,7 +119,7 @@
                                         <input type="text" class="form-control" wire:model="numTVA" />
                                     </div>
                                     <div class="col-md-2">
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between ">
                                         <label class="form-label">Effectifs</label>
                                         <i class="fas fa-info-circle" ></i></div>
                                         <select class="select2 form-select" wire:model="effectifr" required>
@@ -133,7 +133,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-2">
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between ">
                                         <label class="form-label">Type d'entité légale</label>
                                         <i class="fas fa-info-circle"></i></div>
                                         <select class="select2 form-select" wire:model="typeEntite" required>
@@ -195,7 +195,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         {{-- <i class="fas fa-globe"></i> --}}
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between">
                                         <label class="form-label">Pays</label>
                                         <i class="fas fa-info-circle"></i></div>
                                         
@@ -229,7 +229,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         {{-- <i class="fas fa-map-marked-alt"></i> --}}
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between">
                                         <label class="form-label">Département / Canton</label>
                                         <i class="fas fa-info-circle"></i></div>
                                         <div class="d-flex gap-2">

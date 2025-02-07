@@ -13,18 +13,19 @@ use App\Livewire\Projets\CreateProjet;
 use App\Livewire\Projets\ProjetIndex;
 
 //Appel pour les class produit
-use App\Livewire\Produits\IndexProduit;
 use App\Livewire\Produits\CreateProduits;
 use App\Livewire\Produits\CreateServices;
+use App\Livewire\Produits\ProduitsDashboardIndex;
+use App\Livewire\Produits\ProduitsListeIndex;
+use App\Livewire\Produits\StocksIndex;
+use App\Livewire\Produits\LotStocksIndex;
 
 //Appel pour les class tiers
 use App\Livewire\Tiers\ProspectsIndex;
-use App\Livewire\Tiers\CreateProspects;
 use App\Livewire\Tiers\ContactIndex;
 use App\Livewire\Tiers\CreateContact;
 use App\Livewire\Tiers\TierDashboardIndex;
 use App\Livewire\Tiers\FournisseurIndex;
-use App\Livewire\Tiers\CreateSupplier;
 use App\Livewire\Tiers\TiersIndex;
 use App\Livewire\Tiers\CreateTiers;
 use App\Livewire\Tiers\TagCustomerIndex;
@@ -69,7 +70,6 @@ use App\Livewire\Tiers\TagFournisseurIndex;
 use App\Livewire\Tiers\CreateTagSupplierIndex;
 use App\Livewire\Tiers\TagContactIndex;
 use App\Livewire\Tiers\CreateTagContactIndex;
-use App\Livewire\Tiers\ProduitsDashboardIndex;
 
 
 // Redirections
@@ -89,7 +89,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/tiers-dashboard', TierDashboardIndex::class)->name('tiers-dashboard');
     
     Route::get('/prospects', ProspectsIndex::class)->name('prospects');
-    Route::get('/create/prospects', CreateProspects::class)->name('create-prospects');
 
     Route::get('/contact', ContactIndex::class)->name('contact');
     Route::get('/create/contact', CreateContact::class)->name('create-contact');
@@ -98,7 +97,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/create/tags-contact', CreateTagContactIndex::class)->name('create-tag-contact');
 
     Route::get('/fournisseur', FournisseurIndex::class)->name('fournisseur');
-    Route::get('/create/supplier', CreateSupplier::class)->name('create-supplier');
 
     Route::get('/tags/supplier', TagFournisseurIndex::class)->name('tag-fournisseur');
     Route::get('/create/tags-supplier', CreateTagSupplierIndex::class)->name('create-tag-supplier');
@@ -107,11 +105,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/create/tags/customer', CreateTagCustomerIndex::class)->name('create-tag-customer');
     
     //Produits et services
-    Route::get('/produits', IndexProduit::class)->name('produits');
+    Route::get('/produits/client/liste', ProduitsListeIndex::class)->name('liste-produits-clients');
     Route::get('/create/produits', CreateProduits::class)->name('create-produits');
-    Route::get('/create/services', CreateServices::class)->name('create-services');
+    Route::get('/stock/client-liste', StocksIndex::class)->name('liste-stocks-clients');
+    Route::get('/stock/by-lots', LotStocksIndex::class)->name('liste-stocks-lots');
     
-    Route::get('/produits-dashboard', ProduitsDashboardIndex::class)->name('create-produits-dashboard');
+    Route::get('/create/services', CreateServices::class)->name('create-services');
+    Route::get('/produits', ProduitsDashboardIndex::class)->name('produits');
 
     //Projets et taches
     Route::get('/projets', ProjetIndex::class)->name('projets');

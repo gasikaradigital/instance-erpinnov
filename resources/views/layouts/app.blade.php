@@ -93,7 +93,14 @@
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.tiersMenu') <!-- Menu vertical Tiers -->
                 </aside>
-            @elseif(request()->routeIs(['produits', 'create-produits', 'create-services', 'create-produits-dashboard']))
+            @elseif(request()->routeIs([
+                'produits', 
+                'create-produits', 
+                'create-services', 
+                'liste-produits-clients',
+                'liste-stocks-clients',
+                'liste-stocks-lots'
+                ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.produitsMenu') <!-- Menu vertical Produits -->
                 </aside>

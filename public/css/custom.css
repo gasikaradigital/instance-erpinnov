@@ -6,4 +6,75 @@
     text-overflow: ellipsis; /* Ajoute "..." pour les textes longs */
     text-align: center; /* Centrer les textes */
   }
-  
+.product-card {
+    background: #f8f9fa;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.action-menu {
+  display: none !important;;
+  align-items: center !important;;
+  gap: 10px !important;;
+}
+.table th {
+    white-space: nowrap;
+}
+.input-group-text {
+    background-color: transparent;
+}
+    .table th {
+        white-space: nowrap;
+    }
+    .btn-link {
+        text-decoration: none;
+    }
+    .form-switch {
+        display: flex;
+        justify-content: center;
+    }
+.action-menu.visible {
+  display: flex !important;;
+}
+.product-icon {
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.product-details {
+    font-size: 0.9rem;
+}
+
+.status-dots {
+    display: flex;
+    gap: 5px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #00b894;
+}
+
+.grid-view {
+    display: none;
+}
+
+.grid-view.active {
+    display: block;
+}
+
+.table-view.active {
+    display: block;
+}
+
+.table-view {
+    display: none;
+}

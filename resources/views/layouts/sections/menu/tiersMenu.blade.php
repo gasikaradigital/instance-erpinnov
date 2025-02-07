@@ -69,7 +69,7 @@
         </li>
     
     <li class="menu-header small">
-        <span class="menu-header-text" data-i18n="Apps & Pages">Contacts</span>
+        <span class="menu-header-text" data-i18n="Contacts">Contacts</span>
       </li>
         <li class="menu-item {{ $currentRouteName === 'create-contact' ? 'active' : '' }}">
             <a href="{{ route('create-contact') }}" class="menu-link">

@@ -3,14 +3,12 @@
 namespace App\Livewire\Produits;
 
 use Livewire\Component;
-use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Exception;
 
-class IndexProduit extends Component
+class ProduitsDashboardIndex extends Component
 {
     // Constantes
     const TYPE_PRODUIT = 0;
@@ -28,20 +26,21 @@ class IndexProduit extends Component
     public function render()
     {
         $user = Auth::user();
+
         try {
             $response = Http::withHeaders([
-                'DOLAPIKEY' => $user->api_key
+                'DOLAPIKEY' => $user->api_key,
             ])->get($user->url_dolibarr . '/api/index.php/products', [
                 'limit' => 100,
                 'sortfield' => 'ref',
-                'sortorder' => 'ASC'
+                'sortorder' => 'ASC',
             ]);
 
             if (!$response->successful()) {
                 throw new Exception('Erreur API: ' . $response->status());
             }
 
-            $data = collect($response->json())->map(function($item) {
+            $data = collect($response->json())->map(function ($item) {
                 return (object) [
                     'id' => $item['id'],
                     'ref' => $item['ref'],
@@ -59,24 +58,24 @@ class IndexProduit extends Component
                     'status_label' => $item['status'] == self::STATUS_EN_VENTE ? 'En vente' : 'Hors vente',
                     'status_class' => $item['status'] == self::STATUS_EN_VENTE ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800',
                     'weight' => $item['weight'] ?? 0,
-                    'weight_formatted' => $this->formatWeight($item['weight'] ?? 0, $item['weight_units'] ?? 0)
+                    'weight_formatted' => $this->formatWeight($item['weight'] ?? 0, $item['weight_units'] ?? 0),
                 ];
             })->all();
-        
-            return view('livewire.produits.index-produit', [
+
+            return view('livewire.produits.produits-dashboard-index', [
                 'data' => $data,
-                'title' => 'Liste des produits'
+                'title' => 'Liste des produits',
             ]);
 
         } catch (Exception $e) {
             Log::error('Erreur récupération produits:', [
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ]);
 
-            return view('livewire.produits.index-produit', [
+            return view('livewire.produits.produits-dashboard-index', [
                 'data' => [],
                 'error' => "Erreur de chargement des produits.",
-                'title' => 'Liste des produits'
+                'title' => 'Liste des produits',
             ]);
         }
     }
@@ -90,7 +89,7 @@ class IndexProduit extends Component
             -6 => 'mg',
             -3 => 'g',
             0 => 'kg',
-            3 => 't'
+            3 => 't',
         ];
 
         return number_format($weight, 2, ',', ' ') . ' ' . ($units[$unit] ?? '');

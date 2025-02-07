@@ -1,10 +1,8 @@
 <div class="container-xxl flex-grow-1 {{ route('create-contact') }}">
     <!-- En-tête -->
-    <h4 class="fw-bold py-3 mb-2 ">
-        Nouveau contact
-    </h4>
+    <h4 class="fw-bold py-3 mb-2 ">Nouveau contact </h4>
     <div class="card mb-4 col-12 ">
-        <form wire:submit.prevent="save" class="modal-content" id="addNewTierForm">
+        <form wire:submit.prevent="save" class="modal-content" id="addNewContactForm">
             <!-- En-tête Modal -->
             <div class="modal-header py-2 mx-2">
                 <h5 class="modal-title">Ajouter un nouveau contact</h5>
@@ -39,9 +37,10 @@
                                     </div>
 
                                     <div class="col-md-2">
+                                        <div class="d-flex justify-content-between ">
                                         <label class="form-label">Titre de civilité <span
                                                 class="text-danger">*</span></label>
-                                                <i class="fas fa-info-circle" style="margin-left: 95px;"></i>
+                                                <i class="fas fa-info-circle" ></i></div>
                                         <select class="select2 form-select" wire:model="typent_id" required>
                                             <option value="">Sélectionner</option>
                                             <option value="5">Madame</option>
@@ -98,10 +97,10 @@
                                         <input type="text" class="form-control" wire:model="town" />
                                     </div>
                                     <div class="col-md-2">
-                                        <i class="fas fa-globe"></i>
+                                        <div class="d-flex justify-content-between">
                                         <label class="form-label">Pays</label>
                                         <i class="fas fa-info-circle" style="margin-left: 135px;"></i>
-                                        
+                                        </div>
                                         <select class="select2 form-select" wire:model="country_id">
                                             <option value="">Sélectionner</option>
                                             <option value="1">France</option>
@@ -141,9 +140,10 @@
                                         <input type="url" class="form-control" wire:model="url" />
                                     </div>
                                     <div class="col-md-2">
-                                        <i class="fas fa-map-marked-alt"></i>
+                                        <div class="d-flex justify-content-between">
                                         <label class="form-label">Département / Canton</label>
                                         <i class="fas fa-info-circle" style="margin-left: 35px;"></i>
+                                        </div>
                                         <div class="d-flex gap-2">
                                             <select class="select2 form-select" wire:model="departement">
                                                 <option value=""></option>
