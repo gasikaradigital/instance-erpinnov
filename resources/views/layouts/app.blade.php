@@ -124,7 +124,14 @@
                     'reglement-clients',
                     'rapport-clients',
                     'statistiques-clients',
-                    'liste-factures-clients'
+                    'liste-factures-clients',
+                    'liste-modeles-fournisseur',
+                    'reglement-fournisseur',
+                    'rapport-fournisseur',
+                    'statistiques-fournisseur',
+                    'commandes-facturables',
+                    'dons',
+                    'create-charge'
                 ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.facturesMenu')

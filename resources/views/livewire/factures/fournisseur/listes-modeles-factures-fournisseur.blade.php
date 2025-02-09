@@ -1,5 +1,5 @@
 <div>
-    <h6>Modèle de facture clients</h6>
+    <h6>Modèle de facture fournisseur</h6>
     <div class="card-datatable table-responsive">
         <table class="table table-hover">
             <thead>

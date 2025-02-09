@@ -40,14 +40,26 @@ use App\Livewire\Tiers\CreateTagCustomerIndex;
 
 //Appel pour les class factures
 use App\Livewire\Factures\FacturesIndex;
-use App\Livewire\Factures\FacturesFournisseurIndex;
+
 use App\Livewire\Factures\Client\StatistiquesClients;
 use App\Livewire\Factures\Client\CreateFactures;
-use App\Livewire\Factures\CreateFacturesFournisseur;
 use App\Livewire\Factures\Client\ListesModelesFacturesClients;
 use App\Livewire\Factures\Client\ReglementsClients;
 use App\Livewire\Factures\Client\RapportsClients;
 use App\Livewire\Factures\Client\ListeFacturesClients;
+
+use App\Livewire\Factures\Fournisseur\CreateFacturesFournisseur;
+use App\Livewire\Factures\Fournisseur\FacturesFournisseurIndex;
+use App\Livewire\Factures\Fournisseur\ListesModelesFacturesFournisseur;
+use App\Livewire\Factures\Fournisseur\ReglementsFournisseur;
+use App\Livewire\Factures\Fournisseur\RapportsFournisseur;
+use App\Livewire\Factures\Fournisseur\StatistiquesFournisseur;
+
+use App\Livewire\Factures\Dons\Dons;
+
+use App\Livewire\Factures\Commandes\CommandesFacturables;
+
+use App\Livewire\Factures\Charges\CreateCharge;
 
 //Appel pour les class banques
 use App\Livewire\Banques\BanquesIndex;
@@ -141,14 +153,26 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     //Factures
     Route::get('/facture', FacturesIndex::class)->name('factures');
-    Route::get('/facture/fournisseur', FacturesFournisseurIndex::class)->name('factures-fournisseur');
     Route::get('/create/factures', CreateFactures::class)->name('create-factures');
-    Route::get('/create/factures-fournisseur', CreateFacturesFournisseur::class)->name('create-factures-fournisseur');
+
     Route::get('/facture/client/liste-modeles', ListesModelesFacturesClients::class)->name('liste-modeles-clients');
     Route::get('/facture/client/reglement', ReglementsClients::class)->name('reglement-clients');
     Route::get('/facture/client/rapport', RapportsClients::class)->name('rapport-clients');
     Route::get('/facture/client/statistique', StatistiquesClients::class)->name('statistiques-clients');
     Route::get('/facture/client/liste', ListeFacturesClients::class)->name('liste-factures-clients');
+
+    Route::get('/create/factures-fournisseur', CreateFacturesFournisseur::class)->name('create-factures-fournisseur');
+    Route::get('/facture/fournisseur', FacturesFournisseurIndex::class)->name('factures-fournisseur');
+    Route::get('/facture/fournisseur/liste-modeles', ListesModelesFacturesFournisseur::class)->name('liste-modeles-fournisseur');
+    Route::get('/facture/fournisseur/reglement', ReglementsFournisseur::class)->name('reglement-fournisseur');
+    Route::get('/facture/fournisseur/rapport', RapportsFournisseur::class)->name('rapport-fournisseur');
+    Route::get('/facture/fournisseur/statistique', StatistiquesFournisseur::class)->name('statistiques-fournisseur');
+
+    Route::get('/facture/commandes', CommandesFacturables::class)->name('commandes-facturables');
+
+    Route::get('/facture/dons', Dons::class)->name('dons');
+
+    Route::get('/facture/create/charge', CreateCharge::class)->name('create-charge');
 
     //Banques
     Route::get('/banque', BanquesIndex::class)->name('banques');
