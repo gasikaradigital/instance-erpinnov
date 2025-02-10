@@ -4,7 +4,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <ul class="menu-inner py-1">
         <!-- Produits -->
-        <li class="menu-item {{ in_array($currentRouteName, ['produits','create-produits','liste-produits-clients','liste-stocks-clients','liste-stocks-lots','lots-serie-list','attribut-list','create-attribut','create-lot-serie','tag-produit','create-tag-produit']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['produits','create-produits','liste-produits-clients','liste-stocks-clients','liste-stocks-lots','lots-serie-list','attribut-list','create-attribut','create-lot-serie','tag-produit','create-tag-produit','produit-statistique']) ? 'active open' : '' }}">
             <a href="#" class="menu-link menu-toggle fw-bold">
                 <i class="menu-icon fas fa-cube"></i>
                 <div class="text-bold">{{ __('Produits') }}</div>
@@ -40,8 +40,8 @@
                         <div>{{ __('Attributs de variante') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
-                    <a href="javascript:void(0)" class="menu-link">
+                <li class="menu-item {{ $currentRouteName === 'produit-statistique' ? 'active' : '' }}">
+                    <a href="{{Route('produit-statistique')}}" class="menu-link">
                         <div>{{ __('Statistiques') }}</div>
                     </a>
                 </li>
@@ -54,8 +54,8 @@
         </li>
 
         <!-- Services -->
-        <li class="menu-item {{ in_array($currentRouteName, ['']) ? 'active open' : '' }}">
-            <a href="#" class="menu-link menu-toggle fw-bold">
+        <li class="menu-item {{ in_array($currentRouteName, ['create-services','liste-services-clients']) ? 'active open' : '' }}">
+            <a href="javascript:void(0)" class="menu-link menu-toggle fw-bold">
                 <i class="menu-icon fas fa-concierge-bell"></i>
                 <div class="text-bold">{{ __('Services') }}</div>
             </a>
@@ -65,8 +65,8 @@
                         <div>{{ __('Créer un service') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
-                    <a href="javascript:void(0)" class="menu-link">
+                <li class="menu-item {{ $currentRouteName === 'liste-services-clients' ? 'active' : '' }}">
+                    <a href="{{Route('liste-services-clients')}}" class="menu-link">
                         <div>{{ __('Liste des services') }}</div>
                     </a>
                 </li>

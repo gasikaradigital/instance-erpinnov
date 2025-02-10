@@ -21,6 +21,9 @@
             <button class="btn btn-primary">
                 <a  href="{{ Route('create-lot-serie') }}"><i class="fas fa-plus"></i></a>
             </button>
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addEventModal">
+                <i class="fas fa-plus"></i>
+            </button>
         </div>
     </div>
 

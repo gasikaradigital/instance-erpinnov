@@ -25,6 +25,8 @@ use App\Livewire\Produits\AttributVariantIndex;
 use App\Livewire\Produits\CreateAttribut;
 use App\Livewire\Produits\TagProduitIndex;
 use App\Livewire\Produits\CreateTagProduitIndex;
+use App\Livewire\Produits\StatistiqueIndex;
+use App\Livewire\Produits\ListeServicesIndex;
 
 //Appel pour les class tiers
 use App\Livewire\Tiers\ProspectsIndex;
@@ -126,6 +128,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/create/tags/customer', CreateTagCustomerIndex::class)->name('create-tag-customer');
 
     //Produits et services
+    Route::get('/produits', ProduitsDashboardIndex::class)->name('produits');
     Route::get('/produits/client/liste', ProduitsListeIndex::class)->name('liste-produits-clients');
     Route::get('/create/produits', CreateProduits::class)->name('create-produits');
     Route::get('/stock/client-liste', StocksIndex::class)->name('liste-stocks-clients');
@@ -136,9 +139,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/new/attribut', CreateAttribut::class)->name('create-attribut');
     Route::get('/tags/produits', TagProduitIndex::class)->name('tag-produit');
     Route::get('/new/tags-produits', CreateTagProduitIndex::class)->name('create-tag-produit');
-    
+    Route::get('/produit-statistique', StatistiqueIndex::class)->name('produit-statistique');
+    //services
     Route::get('/create/services', CreateServices::class)->name('create-services');
-    Route::get('/produits', ProduitsDashboardIndex::class)->name('produits');
+    Route::get('/services/client/liste', ListeServicesIndex::class)->name('liste-services-clients');
+   
 
 
     //Projets et taches
