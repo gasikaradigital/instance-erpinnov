@@ -94,9 +94,9 @@
                     @include('layouts.sections.menu.tiersMenu') <!-- Menu vertical Tiers -->
                 </aside>
             @elseif(request()->routeIs([
-                'produits', 
-                'create-produits', 
-                'create-services', 
+                'produits',
+                'create-produits',
+                'create-services',
                 'liste-produits-clients',
                 'liste-stocks-clients',
                 'liste-stocks-lots',
@@ -198,6 +198,4 @@
     @include('layouts/sections/assets/scripts')
     @stack('scripts')
 </body>
-
-
 </html>

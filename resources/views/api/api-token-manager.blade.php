@@ -42,6 +42,9 @@
             <x-button>
                 {{ __('Create') }}
             </x-button>
+            <x-button>
+                {{ __('Update') }}
+            </x-button>
         </x-slot>
     </x-form-section>
 
