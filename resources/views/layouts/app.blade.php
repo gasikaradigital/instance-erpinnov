@@ -84,7 +84,6 @@
                     'create-supplier',
                     'tag-customer',
                     'create-tag-customer',
-                    'tag-fournisseur',
                     'create-tag-supplier',
                     'tag-contact',
                     'create-tag-contact',

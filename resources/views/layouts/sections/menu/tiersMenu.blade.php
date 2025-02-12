@@ -27,7 +27,7 @@
     <ul class="menu-inner py-1">
        
         
-        <li class="menu-item {{ in_array($currentRouteName, ['tiers-dashboard', 'create-tiers', 'tiers', 'prospects', 'tag-customer', 'fournisseur', 'tag-fournisseur']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['tiers-dashboard', 'create-tiers', 'tiers', 'prospects', 'tag-customer', 'fournisseur']) ? 'active open' : '' }}">
             <a href="{{Route('tiers-dashboard')}}" class="menu-link menu-toggle fw-bold">
                 <i class="menu-icon tf-icons ti ti-users"></i>
                 <div class="text-bold">{{ __('Tiers') }}</div>
@@ -50,21 +50,17 @@
                         <div>{{ __('Liste des prospects') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === 'tag-customer' ? 'active' : '' }}">
-                    <a href="{{ route('tag-customer') }}" class="menu-link">
-                        <div>{{ __('Tags/catégories prospects') }}</div>
-                    </a>
-                </li>
                 <li class="menu-item {{ $currentRouteName === 'fournisseur' ? 'active' : '' }}">
                     <a href="{{ route('fournisseur') }}" class="menu-link">
                         <div>{{ __('Liste des fournisseurs') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === 'tag-fournisseur' ? 'active' : '' }}">
-                    <a href="{{ route('tag-fournisseur') }}" class="menu-link">
-                        <div>{{ __('Tags/catégories fournisseurs') }}</div>
+                <li class="menu-item {{ $currentRouteName === 'tag-customer' ? 'active' : '' }}">
+                    <a href="{{ route('tag-customer') }}" class="menu-link">
+                        <div>{{ __('Tags/catégories prospects/fournisseurs') }}</div>
                     </a>
                 </li>
+                
             </ul>
         </li>
     

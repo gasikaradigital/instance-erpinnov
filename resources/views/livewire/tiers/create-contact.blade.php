@@ -17,25 +17,9 @@
                             <div class="card-header p-3">
                                 <h6 class="card-title mb-0">1. Informations générales</h6>
                             </div>
+
                             <div class="card-body">
                                 <div class="row g-3">
-                                    <div class="col-md-2">
-                                        <label class="form-label">Nom du tiers</label>
-                                        <input type="text" class="form-control" wire:model="name" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Nom court/Alias</label>
-                                        <input type="text" class="form-control" wire:model="name_alias" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Tiers <span
-                                                class="text-danger">*</span></label>
-                                        <select class="select2 form-select" wire:model="contact" required>
-                                            <option value="">Sélectionner un tiers</option>
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
-
                                     <div class="col-md-2">
                                         <div class="d-flex justify-content-between ">
                                         <label class="form-label">Titre de civilité <span
@@ -50,14 +34,28 @@
                                             <option value="8">Docteur</option>
                                         </select>
                                     </div>
-                                    
-                                        <div class="col-md-2">
-                                            <div class="mb-3">
-                                                <label for="birthdate" class="form-label">Date de naissance</label>
-                                                <input type="date" class="form-control" id="birthdate" name="birthdate" required>
-                                            </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Nom </label>
+                                        <input type="text" class="form-control" wire:model="name" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Prénoms</label>
+                                        <input type="text" class="form-control" wire:model="surname" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="mb-3">
+                                            <label for="birthdate" class="form-label">Date de naissance</label>
+                                            <input type="date" class="form-control" id="birthdate" name="birthdate" required>
                                         </div>
-                                                                    
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Tiers <span
+                                                class="text-danger">*</span></label>
+                                        <select class="select2 form-select" wire:model="contact" required>
+                                            <option value="">Sélectionner un tiers</option>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>                         
                                     <div class="col-md-2">
                                         <label class="form-label">Poste/fonction</label>
                                         <input type="text" class="form-control" wire:model="poste" />

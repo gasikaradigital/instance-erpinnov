@@ -77,12 +77,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    
-                                    <div class="col-md-2">
-                                        <label class="form-label">Code-barres</label>
-                                        <i class="fas fa-barcode"></i>
-                                        <input type="text" class="form-control" wire:model="barcode" />
+
+                                    <div class="col-md-2 d-flex flex-column">{{-- à modifier aprèS--}}
+                                        <label class="form-label">Assujetti à la TVA</label>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" wire:model="assujetiTVA"/>
+                                        </div>
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Identité professionnel 1</label>
@@ -95,24 +95,6 @@
                                     <div class="col-md-2">
                                         <label class="form-label">Identité professionnel 3</label>
                                         <input type="text" class="form-control" wire:model="id_pro3" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Identité professionnel 4</label>
-                                        <input type="text" class="form-control" wire:model="id_pro4" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Identité professionnel 5</label>
-                                        <input type="text" class="form-control" wire:model="id_pro5" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Identité professionnel 6</label>
-                                        <input type="text" class="form-control" wire:model="id_pro6" />
-                                    </div>
-                                    <div class="col-md-2 d-flex flex-column">{{-- à modifier aprèS--}}
-                                        <label class="form-label">Assujetti à la TVA</label>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" wire:model="assujetiTVA" checked />
-                                        </div>
                                     </div>
                                     <div class="col-md-2"> 
                                         <label class="form-label">Numéro TVA</label>
@@ -194,17 +176,16 @@
                                         <input type="text" class="form-control" wire:model="town" />
                                     </div>
                                     <div class="col-md-2">
-                                        {{-- <i class="fas fa-globe"></i> --}}
                                         <div class="d-flex justify-content-between">
-                                        <label class="form-label">Pays</label>
-                                        <i class="fas fa-info-circle"></i></div>
-                                        
-                                        <select class="select2 form-select" wire:model="country_id">
+                                            <label class="form-label">Pays</label>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <select class="select2 form-select" id="country" onchange="toggleFields()">
                                             <option value="">Sélectionner</option>
-                                            <option value="1">France</option>
-                                            <option value="2">Belgique</option>
-                                            <option value="3">Suisse</option>
-                                            <option value="143">Madagascar</option>
+                                            <option value="France">France</option>
+                                            <option value="Belgique">Belgique</option>
+                                            <option value="Suisse">Suisse</option>
+                                            <option value="Madagascar">Madagascar</option>
                                         </select>
                                     </div>
                                     <div class="col-md-2">
@@ -291,7 +272,10 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label class="form-label">Incoterms</label>
+
                                         <div class="d-flex gap-2">
+
+                                            <input type="text" class="form-control" wire:model="incoterms" />
                                             <select class="select2 form-select" wire:model="incoterms">
                                                 <option value="">Sélectionner</option>
                                                 <option value="5">CFR</option>
@@ -307,10 +291,28 @@
                                                 <option value="2">FCA</option>
                                                 <option value="4">FOB</option>
                                             </select>
-                                            <input type="text" class="form-control" wire:model="incoterms" />
                                         </div>
                                     </div>
-
+                                    <div class="col-md-2" id="siret-field" style="display: none;">
+                                        <label class="form-label">SIRET</label>
+                                        <input type="text" class="form-control" wire:model="siret" />
+                                    </div>
+                                    <div class="col-md-2" id="siren-field" style="display: none;">
+                                        <label class="form-label">SIREN</label>
+                                        <input type="text" class="form-control" wire:model="siren" />
+                                    </div>
+                                    <div class="col-md-2" id="nif-field" style="display: none;">
+                                        <label class="form-label">NIF</label>
+                                        <input type="text" class="form-control" wire:model="nif" />
+                                    </div>
+                                    <div class="col-md-2" id="stat-field" style="display: none;">
+                                        <label class="form-label">STAT</label>
+                                        <input type="text" class="form-control" wire:model="stat" />
+                                    </div>
+                                    <div class="col-md-2" id="statut-juridique-field" style="display: none;">
+                                        <label class="form-label">Statut Juridique</label>
+                                        <input type="text" class="form-control" wire:model="statutJuridique" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -332,3 +334,32 @@
         </form>
     </div>
 </div>
+<script>
+    function toggleFields() {
+        const country = document.getElementById("country").value;
+        // France-specific fields
+        const siretField = document.getElementById("siret-field");
+        const sirenField = document.getElementById("siren-field");
+        // Madagascar-specific fields
+        const nifField = document.getElementById("nif-field");
+        const statField = document.getElementById("stat-field");
+        const statutJuridiqueField = document.getElementById("statut-juridique-field");
+
+        // Hide all fields by default
+        siretField.style.display = "none";
+        sirenField.style.display = "none";
+        nifField.style.display = "none";
+        statField.style.display = "none";
+        statutJuridiqueField.style.display = "none";
+
+        // Show relevant fields based on the selected country
+        if (country === "France") {
+            siretField.style.display = "block";
+            sirenField.style.display = "block";
+        } else if (country === "Madagascar") {
+            nifField.style.display = "block";
+            statField.style.display = "block";
+            statutJuridiqueField.style.display = "block";
+        }
+    }
+</script>
