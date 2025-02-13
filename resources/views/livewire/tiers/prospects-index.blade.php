@@ -50,7 +50,8 @@
                         </div>
                     </div>
                 </div>
-                <livewire:tiers.prospects-liste/>
+                
+                <livewire:tiers.prospects-liste :data="$data" />
             </div>
            
         </div>

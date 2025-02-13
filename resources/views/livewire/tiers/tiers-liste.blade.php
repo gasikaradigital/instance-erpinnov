@@ -93,7 +93,6 @@
                         </div>
                     </td>
                 </tr>
-                <!-- Ajoutez d'autres lignes similaires pour plus d'exemples -->
             </tbody>
             @endforeach
             @endif

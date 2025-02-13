@@ -20,7 +20,6 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <!-- Liste des Tiers -->
         <div class="card">
-
             <div class="card-header border-bottom">
 
                 <div class="d-flex justify-content-between align-items-center row">
@@ -61,7 +60,7 @@
                 </div>
 
             </div>
-            <livewire:tiers.fournisseur-liste/>
+            <livewire:tiers.fournisseur-liste :data="$data" />
         </div>
     </div>
 

@@ -13,6 +13,83 @@
                     <th>Actions</th>
                 </tr>
             </thead>
+            @if(count($data ?? []) > 0)
+            @foreach($data as $tier)
+            <tbody>
+                @if($tier->client == 2 || $tier->client == 3)
+                <tr>
+                    <td>{{ $tier->code_client }}</td>
+                    <td>{{ $tier->name }}</td>
+                    <td>
+                    @switch($tier->typent_code)
+                        @case('TE_ADMIN')
+                            <span class="badge bg-label-primary">Administration</span>
+                        @break
+
+                        @case('TE_OTHER')
+                            <span class="badge bg-label-primary">Autre</span>
+                        @break
+
+                        @case('TE_GROUP')
+                            <span class="badge bg-label-primary">Grand Compte</span>
+                        @break
+
+                        @case('TE_MEDIUM')
+                            <span class="badge bg-label-primary">PME/PMI</span>
+                        @break
+
+                        @case('TE_PRIVATE')
+                            <span class="badge bg-label-primary">Particulier</span>
+                        @break
+
+                        @case('TE_SMALL')
+                            <span class="badge bg-label-primary">TPE</span>
+                        @break
+
+                        @default
+                            <span class="badge bg-label-primary"></span>
+                    @endswitch
+                    </td>
+                    <td>
+                    @switch($tier->client)
+                        @case('2')
+                            <span class="badge bg-label-primary">Prospect</span>
+                        @break
+
+                        @case('3')
+                            <span class="badge bg-label-primary">Prospect/Client</span>
+                        @break
+                    @endswitch
+                    </td>
+                    <td>{{ $tier->email }}</td>
+                    <td>{{ $tier->phone}}</td>
+                    <td>
+                    @if($tier->status == "1")
+                        <span class="badge bg-label-success">Actif</span>
+                    @else
+                        <span class="Bagde bg-label-success"> Inactif</span>
+                    @endif
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="ti ti-dots-vertical"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="javascript:void(0);">
+                                    <i class="ti ti-pencil me-1"></i> Modifier
+                                </a>
+                                <a class="dropdown-item" href="javascript:void(0);">
+                                    <i class="ti ti-trash me-1"></i> Supprimer
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                @endif
+            </tbody>
+            @endforeach
+            @endif
         </table>
     </div>
     <div class="card-footer">
