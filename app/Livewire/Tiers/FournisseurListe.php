@@ -14,8 +14,7 @@ class FournisseurListe extends Component
     }
 
     public function render()
-    {
-        
+    { 
         return view('livewire.tiers.fournisseur-liste',[
             'data' => $this->data,
         ]);

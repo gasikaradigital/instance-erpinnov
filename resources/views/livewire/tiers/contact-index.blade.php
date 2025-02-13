@@ -62,7 +62,7 @@
                 </div>
 
             </div>
-            <livewire:tiers.contact-liste/>
+            <livewire:tiers.contact-liste :data="$data" />
         </div>
     </div>
 

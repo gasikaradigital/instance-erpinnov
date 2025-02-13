@@ -21,11 +21,11 @@ class TierDashboardIndex extends Component
             $response = Http::withHeaders([
                 'DOLAPIKEY' =>  $user->api_key 
             ])->get($user->url_dolibarr . '/api/index.php/thirdparties');
-
+            
             if (!$response->successful()) {
                 throw new Exception('Erreur API: ' . $response->status());
             }
-
+            
             // Conversion du tableau en objets pour faciliter l'utilisation dans la vue
             $this->data = collect($response->json())->map(function($item) {
                 $item = (object) $item;

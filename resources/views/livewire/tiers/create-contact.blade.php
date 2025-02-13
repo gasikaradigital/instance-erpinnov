@@ -25,36 +25,33 @@
                                         <label class="form-label">Titre de civilité <span
                                                 class="text-danger">*</span></label>
                                                 <i class="fas fa-info-circle" ></i></div>
-                                        <select class="select2 form-select" wire:model="typent_id" required>
+                                        <select class="select2 form-select" wire:model="civility_code" required>
                                             <option value="">Sélectionner</option>
-                                            <option value="5">Madame</option>
-                                            <option value="100">Monsieur</option>
-                                            <option value="2">Mademoiselle</option>
-                                            <option value="3">Maître</option>
-                                            <option value="8">Docteur</option>
+                                            <option value="MME">Madame</option>
+                                            <option value="MR">Monsieur</option>
+                                            <option value="MLE">Mademoiselle</option>
+                                            <option value="MTRE">Maître</option>
+                                            <option value="DR">Docteur</option>
                                         </select>
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Nom </label>
-                                        <input type="text" class="form-control" wire:model="name" />
+                                        <input type="text" class="form-control" wire:model="lastname" />
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Prénoms</label>
-                                        <input type="text" class="form-control" wire:model="surname" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="mb-3">
-                                            <label for="birthdate" class="form-label">Date de naissance</label>
-                                            <input type="date" class="form-control" id="birthdate" name="birthdate" required>
-                                        </div>
+                                        <input type="text" class="form-control" wire:model="firstname" />
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Tiers <span
                                                 class="text-danger">*</span></label>
-                                        <select class="select2 form-select" wire:model="contact" required>
-                                            <option value="">Sélectionner un tiers</option>
-                                            <option value=""></option>
+                                        @if(count($data ?? []) > 0)
+                                        <select class="select2 form-select" wire:model="socid">
+                                            @foreach($data as $tier)
+                                                <option value="{{ $tier->id }}">{{ $tier->name }}</option>
+                                            @endforeach
                                         </select>
+                                        @endif
                                     </div>                         
                                     <div class="col-md-2">
                                         <label class="form-label">Poste/fonction</label>
@@ -103,51 +100,29 @@
                                             <option value="">Sélectionner</option>
                                             <option value="1">France</option>
                                             <option value="2">Belgique</option>
-                                            <option value="3">Suisse</option>
+                                            <option value="6">Suisse</option>
                                             <option value="143">Madagascar</option>
                                         </select>
                                     </div>
                                     <div class="col-md-2">
                                         <i class="fas fa-phone"></i>
                                         <label class="form-label">Tél pro.</label>
-                                        <input type="tel" class="form-control" wire:model="phonePro" />
+                                        <input type="tel" class="form-control" wire:model="phone_pro" />
                                     </div>
                                     <div class="col-md-2">
                                         <i class="fas fa-phone"></i>
                                         <label class="form-label">Tél perso</label>
-                                        <input type="tel" class="form-control" wire:model="phonePers" />
+                                        <input type="tel" class="form-control" wire:model="phone_perso" />
                                     </div>
                                     <div class="col-md-2">
                                         <i class="fas fa-mobile-alt"></i>
                                         <label class="form-label">Tél portable</label>
-                                        <input type="tel" class="form-control" wire:model="phone" />
+                                        <input type="tel" class="form-control" wire:model="phone_mobile" />
                                     </div>
                                     <div class="col-md-2">
                                         <i class="fas fa-at"></i>
                                         <label class="form-label">Email</label>
                                         <input type="email" class="form-control" wire:model="email" />
-                                    </div>
-                                    <div class="col-md-2">
-                                    
-                                        <label class="form-label">Facebook</label>
-                                        <input type="email" class="form-control" wire:model="facebook" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        <label class="form-label">Site web</label>
-                                        <input type="url" class="form-control" wire:model="url" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="d-flex justify-content-between">
-                                        <label class="form-label">Département / Canton</label>
-                                        <i class="fas fa-info-circle" style="margin-left: 35px;"></i>
-                                        </div>
-                                        <div class="d-flex gap-2">
-                                            <select class="select2 form-select" wire:model="departement">
-                                                <option value=""></option>
-                                                <option value=""></option>
-                                            </select>
-                                        </div>
                                     </div>
                                     <div class="col-md-2">
                                         <i class="fas fa-fax"></i>
@@ -168,9 +143,10 @@
                                 <div class="row g-3">
                                     <div class="col-md-2">
                                             <label class="form-label">Visibilité</label>
-                                            <select class="select2 form-select" wire:model="visibility">
-                                                <option value="">Partagé</option>
-                                                <option value="">Privé</option>
+                                            <select class="select2 form-select" wire:model="priv">
+                                                <option value="">Séléctionné</option>
+                                                <option value="0">Partagé</option>
+                                                <option value="1">Privé</option>
                                             </select>
                                     </div>
                                 </div>

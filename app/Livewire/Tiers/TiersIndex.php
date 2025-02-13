@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class TiersIndex extends Component
 {
-    public $typent_id;
+    /*public $typent_id;
     public $typent_code;
     public $name;
     public $name_alias;
@@ -33,10 +33,10 @@ class TiersIndex extends Component
     public $fournisseur;
     private $valeur;
     public $codeClient;
-    public $zip;
+    public $zip;*/
     public $data;
 
-    public function setValue()
+    /*public function setValue()
     {
         if($this->fournisseur !== 0)
         {
@@ -63,7 +63,7 @@ class TiersIndex extends Component
             'code_client' => $this->code_client,
             'code_fournisseur' => $this->code_fournisseur
         ];
-    }
+    }*/
 
     public function render()
     {
@@ -125,7 +125,7 @@ class TiersIndex extends Component
         }
     }
 
-    public function setTypentCode($typentId)
+    /*public function setTypentCode($typentId)
     {
         switch($typentId)
         {
@@ -148,9 +148,9 @@ class TiersIndex extends Component
                 $this->typent_code = "TE_OTHER";
             break;
         }
-    }
+    }*/
 
-    public function setCountryCode($countryId)
+    /*public function setCountryCode($countryId)
     {
         switch($countryId){
             case '1':
@@ -166,9 +166,9 @@ class TiersIndex extends Component
                 $this->country_code = "MG";
                 break;
         }
-    }
+    }*/
 
-    public function save()
+    /*public function save()
     {
         $this->setTypentCode($this->typent_id);
 
@@ -213,9 +213,9 @@ class TiersIndex extends Component
             Log::error('Erreur création tiers: ' . $e->getMessage());
             return back()->withInput()->withErrors(['error' => $e->getMessage()]);
         }
-    }
+    }*/
 
-    public function generateClientCode()
+    /*public function generateClientCode()
     {
         if (empty($this->codeClient)) {
             $this->code_client = "CU2501-00001";
@@ -237,9 +237,9 @@ class TiersIndex extends Component
             }
         }
 
-    }
+    }*/
 
-    public function generateFournisseurCode()
+    /*public function generateFournisseurCode()
     {
         if (empty($this->codeFournisseur)) {
             $this->code_fournisseur = "SU2501-00001";
@@ -260,6 +260,6 @@ class TiersIndex extends Component
                 $this->code_Fournisseur = $prefix. $newNumber;
             }
         }
-    }
+    }*/
 
 }
