@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
             <i class="fas fa-concierge-bell text-success me-2"></i>
-            <h5 class="mb-0">Services</h5>
+            <h4 class="fw-bold py-3 mb-2">Services</h4>
         </div>
 
       
@@ -47,7 +47,7 @@
                 <i class="fas fa-th-large"></i>
             </button>
             <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Nouveau service') }}">
-                <a href="{{ route('create-services') }}" class="btn btn-primary">
+                <a href="{{ route('create-produits') }}" class="btn btn-primary">
                     <i class="ti ti-plus"></i>
                 </a>
             </button>

@@ -3,6 +3,8 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+
+                    <th>Code</th>
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Téléphone</th>
@@ -17,6 +19,7 @@
             @foreach($data as $contact)
             <tbody>
                 <tr>
+                    <td>---</td>
                     <td>{{ $contact->firstname }} {{ $contact->lastname }}</td>
                     <td>{{ $contact->lastname}}</td>
                     <td>{{ $contact->phone_pro}}</td>

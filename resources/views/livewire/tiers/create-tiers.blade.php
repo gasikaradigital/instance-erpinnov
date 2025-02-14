@@ -108,16 +108,10 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="d-flex justify-content-between ">
-<<<<<<< HEAD
-                                            <label class="form-label">Effectifs</label>
-                                            <i class="fas fa-info-circle"></i>
-                                        </div>
-                                        <select class="select2 form-select" wire:model="effectifr" required>
-=======
                                         <label class="form-label">Effectifs</label>
                                         <i class="fas fa-info-circle" ></i></div>
                                         <select class="select2 form-select" wire:model="effectif_id">
->>>>>>> 32201cf512c45f47d5f13ad452a2f39af1dbc521
+
                                             <option value=""></option>
                                             <option value="1">1 - 5</option>
                                             <option value="2">6 - 10</option>
@@ -134,8 +128,6 @@
                                             <i class="fas fa-info-circle"></i>
                                         </div>
                                         <select class="select2 form-select" wire:model="typeEntite" required>
-
-                                       
                                             <option value=""></option>
                                             <option value=""></option>
                                         </select>
