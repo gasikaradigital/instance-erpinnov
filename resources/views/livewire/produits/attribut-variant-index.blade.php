@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
             <i class="fas fa-box text-success me-2"></i>
-            <h5 class="mb-0">Attributs de variantes pour les produits</h5>
+            <h4 class="fw-bold py-3 mb-2">Attributs de variantes pour les produits et les services</h4>
         </div>
 
         <div class="d-flex gap-2 align-items-center action-menu">

@@ -45,7 +45,7 @@
                                 <li>
                                     <a
                                         class="dropdown-item"
-                                        href="{{ route('create-services', ['type' => 'service']) }}"
+                                        href="{{ route('create-produits', ['type' => 'service']) }}"
                                     >
                                         <i class="ti ti-tools me-1"></i>
                                         Service

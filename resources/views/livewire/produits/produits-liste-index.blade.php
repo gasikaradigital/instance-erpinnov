@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
             <i class="fas fa-box text-success me-2"></i>
-            <h5 class="mb-0">Produits</h5>
+            <h4 class="fw-bold py-3 mb-2">Produits </h4>
         </div>
 
       
@@ -87,8 +87,9 @@
                                 </th>
                                 <th>Réf. prod</th>
                                 <th>Libellé</th>
-                                <th>Code-barr.</th>
                                 <th>Prix de vent.</th>
+                                <th>Meilleur pr vent.</th>
+                                <th>Prix d'ach'.</th>
                                 <th>Meilleur pr d'ach.</th>
                                 <th>Stock désiré opti.</th>
                                 <th>Stock phy.</th>
@@ -147,8 +148,9 @@
                                     </th>
                                     <th>Réf. prod</th>
                                 <th>Libellé</th>
-                                <th>Code-barr.</th>
                                 <th>Prix de vent.</th>
+                                <th>Meilleur pr de vent.</th>
+                                <th>Prix d'ach'.</th>
                                 <th>Meilleur pr d'ach.</th>
                                 <th>Stock désiré opti.</th>
                                 <th>Stock phy.</th>

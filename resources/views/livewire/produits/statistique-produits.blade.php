@@ -4,7 +4,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div class="card-info">
-                        <h5 class="mb-0">Produits</h5>
+                        <h4 class="fw-bold py-3 mb-2">Produits</h4>
                         <small>Total des produits</small>
                     </div>
                     <div class="card-icon">

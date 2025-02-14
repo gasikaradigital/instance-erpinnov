@@ -4,10 +4,10 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <ul class="menu-inner py-1">
         <!-- Produits -->
-        <li class="menu-item {{ in_array($currentRouteName, ['produits','create-produits','liste-produits-clients','liste-stocks-clients','liste-stocks-lots','lots-serie-list','attribut-list','create-attribut','create-lot-serie','tag-produit','create-tag-produit','produit-statistique']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['produits','create-produits','liste-produits-clients','liste-services-clients','liste-stocks-clients','attribut-list','create-attribut','tag-produit','create-tag-produit','produit-statistique']) ? 'active open' : '' }}">
             <a href="#" class="menu-link menu-toggle fw-bold">
                 <i class="menu-icon fas fa-cube"></i>
-                <div class="text-bold">{{ __('Produits') }}</div>
+                <div class="text-bold">{{ __('Produits et services') }}</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ $currentRouteName === 'create-produits' ? 'active' : '' }}">
@@ -20,19 +20,15 @@
                         <div>{{ __('Liste des produits') }}</div>
                     </a>
                 </li>
+
+                <li class="menu-item {{ $currentRouteName === 'liste-services-clients' ? 'active' : '' }}">
+                    <a href="{{Route('liste-services-clients')}}" class="menu-link">
+                        <div>{{ __('Liste des services') }}</div>
+                    </a>
+                </li>
                 <li class="menu-item {{ $currentRouteName === 'liste-stocks-clients' ? 'active' : '' }}">
                     <a href="{{Route('liste-stocks-clients')}}" class="menu-link">
                         <div>{{ __('Stocks') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'liste-stocks-lots' ? 'active' : '' }}">
-                    <a href="{{Route('liste-stocks-lots')}}" class="menu-link">
-                        <div>{{ __('Stocks par lot/série') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'lots-serie-list' ? 'active' : '' }}">
-                    <a href="{{Route('lots-serie-list')}}" class="menu-link">
-                        <div>{{ __('Lots/séries') }}</div>
                     </a>
                 </li>
                 <li class="menu-item {{ $currentRouteName === 'attribut-list' ? 'active' : '' }}">
@@ -47,13 +43,13 @@
                 </li>
                 <li class="menu-item {{ $currentRouteName === 'tag-produit' ? 'active' : '' }}">
                     <a href="{{Route('tag-produit')}}" class="menu-link">
-                        <div>{{ __('Tags/catégories produits') }}</div>
+                        <div>{{ __('Tags/catégories') }}</div>
                     </a>
                 </li>
             </ul>
         </li>
 
-        <!-- Services -->
+        {{-- <!-- Services -->
         <li class="menu-item {{ in_array($currentRouteName, ['create-services','liste-services-clients']) ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle fw-bold">
                 <i class="menu-icon fas fa-concierge-bell"></i>
@@ -86,7 +82,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
         <!-- Entrepôts -->
         <li class="menu-item {{ in_array($currentRouteName, ['']) ? 'active open' : '' }}">

@@ -10,7 +10,7 @@
 
     <div class="container-xxl flex-grow-1">
         <!-- En-tête -->
-        <h4 class="fw-bold py-3 mb-2"> <span class="text-muted fw-light">Produits /</span> Nouveau Produit</h4>
+        <h4 class="fw-bold py-3 mb-2">Nouveau produit et service</h4>
         <div class="card mb-4 col-12">
             <form wire:submit.prevent="save" class="modal-content" id="addNewProduitsForm">
                 <!-- Corps Modal -->
@@ -36,7 +36,7 @@
                                             <label class="form-label">État (Vente)</label>
                                             <select class="form-select" name="sale_status">
                                                 <option value="en_vente">En vente</option>
-                                                <option value="non_disponible">Hors vente</option>
+                                                <option value="non_disponible" selected>Hors vente</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
@@ -45,38 +45,11 @@
                                                 <option value="en_achat">En achat</option>
                                                 <option value="non_achete">Hors achat</option>
                                             </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">Utiliser les numéros de lots/série</label>
-                                            <select class="form-select" name="lot_number">
-                                                <option value="non">Non (lot/série non utilisé)</option>
-                                                <option value="oui">Oui (lot/série requis)</option>
-                                                <option value="">Oui (numéro de série unique requis)</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">DLC ou DMD/DLUO est obligatoire</label>
-                                            <select class="form-select" name="expiration_date">
-                                                <option value="aucune">Aucune</option>
-                                                <option value="dlc">DLC</option>
-                                                <option value="">DMD/DLUO</option>
-                                                <option value="">DLC et DMD/DLUO</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">Type de code-barres</label>
-                                            <select class="form-select" name="barcode_type">
-                                                <option value="aucun">Aucun type de code-barres activé</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">Valeur du code-barres</label>
-                                            <input type="text" class="form-control" name="barcode_value" />
-                                        </div>
-                                        <div class="col-md-3">
+                                        </div><div class="col-md-12">
                                             <label class="form-label">Description</label>
-                                            <input type="text" class="form-control" name="description" />
+                                            <textarea class="form-control" name="description" rows="3"></textarea>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -189,6 +162,28 @@
                                                 <option value="">gallon</option>
                                             </select>
                                         </div>
+                                    </div>
+
+                                        <div class="col-md-3">
+                                            <label class="form-label">Unité</label>
+                                            <div class="d-flex gap-2">
+                                            <input type="text" class="form-control" name="volume" />
+                                            <select class="select2 form-select">
+                                                <option value="" selected>1</option>
+                                                <option value="">2</option>
+                                                <option value="">3</option>
+                                                <option value="">4</option>
+                                                <option value="">5</option>
+                                                <option value="">6</option>
+                                                <option value="">7</option>
+                                                <option value="">8</option>
+                                                <option value="">9</option>
+                                            </select>
+                                        </div>
+                                        </div>
+
+                    
+
                                         </div>
                                     </div>
                                 </div>
@@ -243,7 +238,7 @@
                                         <div class="col-md-3">
                                             <label class="form-label">Prix de vente</label>
                                             <div class="d-flex gap-2">
-                                            <input type="text" class="form-control" name="surface" />
+                                            <input type="text" class="form-control" name="sale" />
                                             <select class="select2 form-select">
                                                 <option value="" selected>HT</option>
                                                 <option value="">TTC</option>
@@ -251,30 +246,34 @@
                                         </div>
                                         </div>
                                         <div class="col-md-3">
+                                            <label class="form-label">Prix de vente</label>
+                                            <div class="d-flex gap-2">
+                                                <input type="text" class="form-control" name="sale" />
+                                                <select class="select2 form-select">
+                                                    <option value="" selected>HT</option>
+                                                    <option value="">TTC</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
                                             <label class="form-label">Prix de vente min.</label>
-                                            <input type="text"  class="form-control" name="min_sale_price" />
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">Taux TVA</label>
-                                            {{-- <input type="text" class="form-control" name="vat_rate" /> --}}
-                                            <div>Votre pays n'est pas défini. Accédez à Accueil-Configuration-Société/Institution et renvoyez le formulaire.</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">Code comptable (vente).</label>
-                                            <input type="text" class="form-control" name="code_vente" />
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">Code comptable (vente à l'export)</label>
-                                            <input type="text"  class="form-control" name="min_sale_price" />
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">Code comptable (achat)</label>
                                             <input type="text" class="form-control" name="min_sale_price" />
                                         </div>
                                         <div class="col-md-3">
-                                            <label class="form-label">Code comptable (achat import)</label>
-                                            <input type="text" class="form-control" name="min_sale_price" />
+                                            <label class="form-label">Prix d'achat</label>
+                                            <div class="d-flex gap-2">
+                                                <input type="text" class="form-control" name="buy" />
+                                                <select class="select2 form-select">
+                                                    <option value="" selected>HT</option>
+                                                    <option value="">TTC</option>
+                                                </select>
+                                            </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Prix d'achat min.</label>
+                                            <input type="text" class="form-control" name="min_buy_price" />
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -297,3 +296,60 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Récupération des éléments
+        const saleStatus = document.querySelector('[name="sale_status"]');
+        const purchaseStatus = document.querySelector('[name="purchase_status"]');
+        const salePrice = document.querySelector('[name="sale"]');
+        const minSalePrice = document.querySelector('[name="min_sale_price"]');
+        const buyPrice = document.querySelector('[name="buy"]');
+        const minBuyPrice = document.querySelector('[name="min_buy_price"]');
+
+        // Fonction pour mettre à jour les champs
+        function updateFields() {
+            if (purchaseStatus.value === 'en_achat') {
+                // En mode "achat", désactiver les champs de vente
+                salePrice.disabled = true;
+                minSalePrice.disabled = true;
+
+                // Activer les champs d'achat
+                buyPrice.disabled = false;
+                minBuyPrice.disabled = false;
+            } else {
+                // En dehors de "achat", activer les champs de vente
+                salePrice.disabled = false;
+                minSalePrice.disabled = false;
+
+                // Désactiver les champs d'achat
+                buyPrice.disabled = true;
+                minBuyPrice.disabled = true;
+            }
+
+            if (saleStatus.value === 'en_vente') {
+                // En mode "vente", désactiver les champs d'achat
+                buyPrice.disabled = true;
+                minBuyPrice.disabled = true;
+
+                // Activer les champs de vente
+                salePrice.disabled = false;
+                minSalePrice.disabled = false;
+            } else {
+                // En dehors de "vente", désactiver les champs de vente
+                salePrice.disabled = true;
+                minSalePrice.disabled = true;
+
+                // Activer les champs d'achat
+                buyPrice.disabled = false;
+                minBuyPrice.disabled = false;
+            }
+        }
+
+        // Ajouter des écouteurs d'événements pour chaque champ d'état
+        saleStatus.addEventListener('change', updateFields);
+        purchaseStatus.addEventListener('change', updateFields);
+
+        // Initialiser les champs
+        updateFields();
+    });
+</script>

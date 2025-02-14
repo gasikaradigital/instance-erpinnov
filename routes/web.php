@@ -14,13 +14,9 @@ use App\Livewire\Projets\ProjetIndex;
 
 //Appel pour les class produit
 use App\Livewire\Produits\CreateProduits;
-use App\Livewire\Produits\CreateServices;
 use App\Livewire\Produits\ProduitsDashboardIndex;
 use App\Livewire\Produits\ProduitsListeIndex;
 use App\Livewire\Produits\StocksIndex;
-use App\Livewire\Produits\LotStocksIndex;
-use App\Livewire\Produits\ListeLotSerieIndex;
-use App\Livewire\Produits\CreateLotSerieIndex;
 use App\Livewire\Produits\AttributVariantIndex;
 use App\Livewire\Produits\CreateAttribut;
 use App\Livewire\Produits\TagProduitIndex;
@@ -131,16 +127,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/produits/client/liste', ProduitsListeIndex::class)->name('liste-produits-clients');
     Route::get('/create/produits', CreateProduits::class)->name('create-produits');
     Route::get('/stock/client-liste', StocksIndex::class)->name('liste-stocks-clients');
-    Route::get('/stock/by-lots', LotStocksIndex::class)->name('liste-stocks-lots');
-    Route::get('/lots-series/liste', ListeLotSerieIndex::class)->name('lots-serie-list');
-    Route::get('/new/lots-series', CreateLotSerieIndex::class)->name('create-lot-serie');
     Route::get('/liste-attributs-variants', AttributVariantIndex::class)->name('attribut-list');
     Route::get('/new/attribut', CreateAttribut::class)->name('create-attribut');
     Route::get('/tags/produits', TagProduitIndex::class)->name('tag-produit');
     Route::get('/new/tags-produits', CreateTagProduitIndex::class)->name('create-tag-produit');
     Route::get('/produit-statistique', StatistiqueIndex::class)->name('produit-statistique');
     //services
-    Route::get('/create/services', CreateServices::class)->name('create-services');
     Route::get('/services/client/liste', ListeServicesIndex::class)->name('liste-services-clients');
    
 
