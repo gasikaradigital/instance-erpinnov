@@ -93,6 +93,9 @@ use App\Livewire\Documents\CreateDocument;
 use App\Livewire\Chat\ChatIndex;
 use App\Livewire\Chat\CreateChat;
 
+//Appel de la class CheckPlan pour le middleware
+use App\Http\Middleware\CheckPlan;
+
 
 // Redirections
 Route::redirect('/', '/login');
@@ -202,3 +205,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/create/chat', CreateChat::class)->name('create-chat');
 
 });
+
+Route::middleware(['auth:sanctum', 'verified', 'check.plan:solo'])->group(function(){
+    // Tiers
+    Route::get('/tiers', TiersIndex::class)->name('tiers');
+    Route::get('/create/tiers', CreateTiers::class)->name('create-tiers');
+});
+

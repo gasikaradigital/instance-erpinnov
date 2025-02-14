@@ -31,43 +31,27 @@ class CreateContact extends Component
     public $fax;
     public $priv;
 
+    private $civilityMap = [
+        'MME' => 'Madame',
+        'MR' => 'Monsieur',
+        'MLE' => 'Mademoiselle',
+        'MTRE' => 'Maître',
+        'DR' => 'Docteur',
+    ];
+
+    private $countryCodeMap = [
+        '1' => 'FR',
+        '2' => 'BE',
+        '6' => 'CH',
+        '143' => 'MG',
+    ];
+
     public function setValue()
-    {
-        switch($this->civility_code)
-        {
-            case('MME'):
-                $this->civility = "Madame";
-                break;
-            case('MR'):
-                $this->civility = "Monsieur";
-                break;
-            case('MLE'):
-                $this->civility = "Mademoiselle";
-                break;
-            case('MTRE'):
-                $this->civility = "Maître";
-                break;
-            case('DR'):
-                $this->civility = "Docteur";
-                break;
-        }
+    {   
+        $this->civility = $this->civilityMap[$this->civility_code] ?? 'Unknown';
 
-        switch($this->country_id)
-        {
-            case('1'):
-                $this->country_code = "FR";
-                break;
-            case('2'):
-                $this->country_code = "BE";
-                break;
-            case('6'):
-                $this->country_code = "CH";
-                break;
-            case('143'):
-                $this->country_code = "MG";
-                break;
-        }
-
+        $this->country_code = $this->countryCodeMap[$this->country_id] ?? null;
+        
         $this->value = [
             'civility' => $this->civility,
             'civility_code' => $this->civility_code,
@@ -85,7 +69,6 @@ class CreateContact extends Component
             'phone_mobile' => $this->phone_mobile,
             'phone_perso' => $this->phone_perso,
             'email' => $this->email,
-            'mail' => $this->email,
             'fax' => $this->fax,
             'priv' => $this->priv,
         ];
