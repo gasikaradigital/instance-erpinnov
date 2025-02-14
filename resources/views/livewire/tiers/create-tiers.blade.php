@@ -29,19 +29,15 @@
                                         <label class="form-label">Nom court/Alias</label>
                                         <input type="text" class="form-control" wire:model="name_alias" />
                                     </div>
-                                    <!-- <div class="col-md-6">
-                                            <label class="form-label">Référence externe</label>
-                                            <input type="text" class="form-control" name="ref_ext" />
-                                        </div> -->
                                     <div class="col-md-2">
                                         <label class="form-label">Nature de tiers <span
                                                 class="text-danger">*</span></label>
                                         <select class="select2 form-select" wire:model="client" required>
                                             <option value=""></option>
                                             <option value="1">Client</option>
-                                            <option value="2" selected>Prospect</option>
+                                            <option value="2">Prospect</option>
                                             <option value="3">Prospect/Client</option>
-                                            <option value="0">Fournisseur</option>
+                                            <option value="0">Ni client, ni prospoect</option>
                                         </select>
                                     </div>
 
@@ -68,8 +64,12 @@
                                         <label class="form-label">Fournisseur <span class="text-danger">*</span></label>
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="form-check mb-0">
+<<<<<<< HEAD
                                                 <input type="radio" id="fournisseur-oui" class="form-check-input"
                                                     value="1" wire:model="fournisseur" checked required>
+=======
+                                                <input type="radio" id="fournisseur-oui" class="form-check-input" value="1" wire:model="fournisseur" checked>
+>>>>>>> 32201cf512c45f47d5f13ad452a2f39af1dbc521
                                                 <label class="form-check-label" for="fournisseur-oui">Oui</label>
                                             </div>
                                             <div class="form-check mb-0">
@@ -83,46 +83,59 @@
                                     <div class="col-md-2 d-flex flex-column">{{-- à modifier aprèS --}}
                                         <label class="form-label">Assujetti à la TVA</label>
                                         <div class="form-check">
+<<<<<<< HEAD
                                             <input type="checkbox" class="form-check-input" wire:model="assujetiTVA" />
+=======
+                                            <input type="checkbox" class="form-check-input" wire:model="tva_assuj"/>
+>>>>>>> 32201cf512c45f47d5f13ad452a2f39af1dbc521
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Identité professionnel 1</label>
-                                        <input type="text" class="form-control" wire:model="id_pro" />
+                                        <input type="text" class="form-control" wire:model="idprof1" />
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Identité professionnel 2</label>
-                                        <input type="text" class="form-control" wire:model="id_pro1" />
+                                        <input type="text" class="form-control" wire:model="idprof2" />
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Identité professionnel 3</label>
-                                        <input type="text" class="form-control" wire:model="id_pro3" />
+                                        <input type="text" class="form-control" wire:model="idprof3" />
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Numéro TVA</label>
-                                        <input type="text" class="form-control" wire:model="numTVA" />
+                                        <input type="text" class="form-control" wire:model="tva_intra" />
                                     </div>
                                     <div class="col-md-2">
                                         <div class="d-flex justify-content-between ">
+<<<<<<< HEAD
                                             <label class="form-label">Effectifs</label>
                                             <i class="fas fa-info-circle"></i>
                                         </div>
                                         <select class="select2 form-select" wire:model="effectifr" required>
+=======
+                                        <label class="form-label">Effectifs</label>
+                                        <i class="fas fa-info-circle" ></i></div>
+                                        <select class="select2 form-select" wire:model="effectif_id">
+>>>>>>> 32201cf512c45f47d5f13ad452a2f39af1dbc521
                                             <option value=""></option>
                                             <option value="1">1 - 5</option>
-                                            <option value="0">6 - 10</option>
-                                            <option value="0">11 - 50</option>
-                                            <option value="0">51 - 100</option>
-                                            <option value="0">101 - 500</option>
-                                            <option value="0">> 500</option>
+                                            <option value="2">6 - 10</option>
+                                            <option value="3">11 - 50</option>
+                                            <option value="4">51 - 100</option>
+                                            <option value="5">101 - 500</option>
+                                            <option value="6">> 500</option>
                                         </select>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="d-flex justify-content-between ">
+
                                             <label class="form-label">Type d'entité légale</label>
                                             <i class="fas fa-info-circle"></i>
                                         </div>
                                         <select class="select2 form-select" wire:model="typeEntite" required>
+
+                                       
                                             <option value=""></option>
                                             <option value=""></option>
                                         </select>
@@ -130,7 +143,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Capital (Euros)</label>
-                                        <input type="text" class="form-control" wire:model="numTVA" />
+                                        <input type="text" class="form-control" wire:model="capital" />
                                     </div>
                                     <div class="col-md-2">
                                         <i class="fas fa-tag"></i>
@@ -144,7 +157,13 @@
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Maison Mère</label>
-                                        <input type="text" class="form-control" wire:model="maisonMere" />
+                                        @if(count($data ?? []) > 0)
+                                        <select class="select2 form-select" wire:model="parent">
+                                            @foreach($data as $tier)
+                                                <option value="{{ $tier->id }}">{{ $tier->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @endif
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Assigner des commerciaux</label>
@@ -210,7 +229,7 @@
                                     <div class="col-md-2">
                                         <i class="fas fa-external-link-alt"></i>
                                         <label class="form-label">Site web</label>
-                                        <input type="url" class="form-control" wire:model="url" />
+                                        <input type="text" class="form-control" wire:model="url" />
                                     </div>
                                     <div class="col-md-2">
                                         {{-- <i class="fas fa-map-marked-alt"></i> --}}
@@ -263,8 +282,8 @@
 
                                         <div class="d-flex gap-2">
 
-                                            <input type="text" class="form-control" wire:model="incoterms" />
-                                            <select class="select2 form-select" wire:model="incoterms">
+                                            <input type="text" class="form-control" wire:model="location_incoterms" />
+                                            <select class="select2 form-select" wire:model="fk_incoterms">
                                                 <option value="">Sélectionner</option>
                                                 <option value="5">CFR</option>
                                                 <option value="6">CIF</option>

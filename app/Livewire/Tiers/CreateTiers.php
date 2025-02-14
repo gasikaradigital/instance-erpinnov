@@ -30,16 +30,48 @@ class CreateTiers extends Component
     public $country_id;
     public $country_code;
     public $fournisseur;
-    private $valeur;
     public $codeClient;
     public $zip;
     public $data;
+    public $parent;
+    public $capital;
+    public $effectif;
+    public $effectif_id;
+    public $tva_assuj;
+    public $tva_intra;
+    public $fax;
+    public $location_incoterms;
+    public $fk_incoterms;
+    public $idprof1;
+    public $idprof2;
+    public $idprof3;
 
     public function setValue()
     {
         if($this->fournisseur !== 0)
         {
             $this->generateFournisseurCode();
+        }
+
+        switch($this->effectif_id)
+        {
+            case 1:
+                $this->effectif = "1 - 5";
+                break;
+            case 2:
+                $this->effectif = "6 - 10";
+                break;
+            case 3:
+                $this->effectif = "11 - 50";
+                break;
+            case 4:
+                $this->effectif = "51 - 100";
+                break;
+            case 5:
+                $this->effectif = "101 - 500";
+                break;
+            case 6:
+                $this->effectif = "> 500";
         }
 
         $this->valeur = [
@@ -60,7 +92,19 @@ class CreateTiers extends Component
             'client' => $this->client,
             'fournisseur' => $this->fournisseur,
             'code_client' => $this->code_client,
-            'code_fournisseur' => $this->code_fournisseur
+            'code_fournisseur' => $this->code_fournisseur,
+            'parent' => $this->parent,
+            'capital' => $this->capital,
+            'effectif' => $this->effectif,
+            'effectif_id' => $this->effectif_id,
+            'tva_assuj' => $this->tva_assuj,
+            'tva_intra' => $this->tva_intra,
+            'fax' => $this->fax,
+            'fk_incoterms' => $this->fk_incoterms,
+            'location_incoterms' => $this->location_incoterms,
+            'idprof1' => $this->idprof1,
+            'idprof2' => $this->idprof2,
+            'idprof3' => $this->idprof3,
         ];
     }
 
@@ -249,7 +293,9 @@ class CreateTiers extends Component
                 }
             }
 
-            return view('livewire.tiers.create-tiers');
+            return view('livewire.tiers.create-tiers',[
+                'data' => $this->data,
+            ]);
             
         } catch (Exception $e) {
             Log::error('Erreur lors de la récupération des tiers: ' . $e->getMessage());
