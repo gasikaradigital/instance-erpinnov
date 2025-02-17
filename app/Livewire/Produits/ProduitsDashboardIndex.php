@@ -62,8 +62,70 @@ class ProduitsDashboardIndex extends Component
                 ];
             })->all();
 
+            $counts = [
+                'produits' => [
+                    'en_vente' => 0,
+                    'en_achat' => 0,
+                    'hors_vente' => 0,
+                    'hors_achat' => 0,
+                ],
+                'services' => [
+                    'en_vente' => 0,
+                    'en_achat' => 0,
+                    'hors_vente' => 0,
+                    'hors_achat' => 0,
+                ],
+            ];
+
+            /*foreach($data as $produit)
+            {
+                if($produit->type == 0)
+                {
+                    if( $produit->status == 1 )
+                    {
+                        $produit_en_vente = $produit_en_vente + 1;
+                    } else {
+                        $produit_hors_vente = $produit_hors_vente + 1;
+                    }
+
+                    if( $produit->status_buy == 1)
+                    {
+                        $produit_en_achat = $produit_en_achat + 1;
+                    } else {
+                        $produit_hors_achat = $produit_hors_achat + 1;
+                    }
+                } else {
+                    if( $produit->status == 1 )
+                    {
+                        $services_en_vente = $services_en_vente + 1;
+                    } else {
+                        $services_hors_vente = $services_hors_vente + 1;
+                    }
+
+                    if( $produit->status_buy == 1)
+                    {
+                        $services_en_achat = $services_en_achat + 1;
+                    } else {
+                        $services_hors_achat = $services_hors_achat + 1;
+                    }
+                }
+            }*/
+
+            foreach ($data as $produit) {
+                $type = ($produit->type == 0) ? 'produits' : 'services';
+            
+                // Gestion de la vente
+                $counts[$type][$produit->status == 1 ? 'en_vente' : 'hors_vente']++;
+            
+                // Gestion de l'achat
+                $counts[$type][$produit->status_buy == 1 ? 'en_achat' : 'hors_achat']++;
+            }
+            
+            //dd($counts);
+
             return view('livewire.produits.produits-dashboard-index', [
                 'data' => $data,
+                'counts' => $counts,
                 'title' => 'Liste des produits',
             ]);
 

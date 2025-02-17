@@ -20,7 +20,26 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => 'test123',
             'api_key' => 'lOQVobrEX7JmZDLGscVFNlDpbnFiaFdm',
-            'url_dolibarr' => 'http://faniry-dolibarr.erpinnov.com'
+            'url_dolibarr' => 'http://faniry-dolibarr.erpinnov.com',
+            'plan' => 'solo'
+        ]);
+
+        User::factory()->create([
+            'name' => 'user standard',
+            'email' => 'standard@example.com',
+            'password' => 'standard123',
+            'api_key' => 'lOQVobrEX7JmZDLGscVFNlDpbnFibFdm',
+            'url_dolibarr' => 'http://faniri-dolibarr.erpinnov.com',
+            'plan' => 'standard'
+        ]);
+
+        User::factory()->create([
+            'name' => 'user premium',
+            'email' => 'premium@example.com',
+            'password' => 'premium123',
+            'api_key' => 'lOQVobrEX7JmZDLGscVFNlDpbnFicFdm',
+            'url_dolibarr' => 'http://fanire-dolibarr.erpinnov.com',
+            'plan' => 'premium'
         ]);
     }
 }
