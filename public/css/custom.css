@@ -1,4 +1,12 @@
+.navbar-nav {
+    justify-content: flex-start !important;
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100%;
+}
+
 .navbar-nav div[data-i18n] {
+    
     font-size: 12px; /* Taille uniforme */
     max-width: 60px; /* Largeur maximale */
     white-space: nowrap; /* Empêche le texte de passer à la ligne */
@@ -6,6 +14,7 @@
     text-overflow: ellipsis; /* Ajoute "..." pour les textes longs */
     text-align: center; /* Centrer les textes */
   }
+
 .product-card {
     background: #f8f9fa;
     border-radius: 4px;

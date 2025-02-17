@@ -99,12 +99,14 @@
                                 </tr>
                             </tr>
                         </thead>
+                        @if(count($data ?? []) > 0)
+                        @foreach($data as $produit)
                         <tbody>
                             <tr>
                                 <td>
                                     <input type="checkbox" class="form-check-input row-checkbox">
                                 </td>
-                                <td><i class="fas fa-box text-warning me-1"></i> PRD-001</td>
+                                <td><i class="fas fa-box text-warning me-1"></i> {{ $produit->ref }}</td>
                                 <td>serve</td>
                                 <td>1325</td>
                                 <td>0,00 HT</td>
@@ -131,6 +133,8 @@
                                 <td><span class="badge bg-success">En achat</span></td>
                             </tr>
                         </tbody>
+                        @endforeach
+                        @endif
                     </table>
                 </div>
             </div>
