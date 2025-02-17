@@ -26,6 +26,15 @@ use App\Livewire\Produits\ListeServicesIndex;
 
 //Appel pour les class Ventes
 use App\Livewire\Ventes\VenteDashboardIndex;
+use App\Livewire\Ventes\CreatePropositionIndex;
+use App\Livewire\Ventes\CreateOpportunityIndex;
+use App\Livewire\Ventes\ListePropositionIndex;
+use App\Livewire\Ventes\StatistiqueVenteIndex;
+use App\Livewire\Ventes\CommandeIndex;
+use App\Livewire\Ventes\ListeCommandeIndex;
+use App\Livewire\Ventes\StatistiqueCommandeIndex;
+use App\Livewire\Ventes\CreateVenteFournisseurIndex;
+use App\Livewire\Ventes\CreateCommandeFournisseurIndex;
 
 //Appel pour les class tiers
 use App\Livewire\Tiers\ProspectsIndex;
@@ -140,6 +149,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     //Ventes
     Route::get('/ventes', VenteDashboardIndex::class)->name('ventes');
+    Route::get('/new/proposition', CreatePropositionIndex::class)->name('new-proposition');
+    Route::get('/new-opportunity', CreateOpportunityIndex::class)->name('new-opportunity');
+    Route::get('/liste/proposition', ListePropositionIndex::class)->name('liste-proposition');
+    Route::get('/vente-statistique', StatistiqueVenteIndex::class)->name('stat-vente');
+    Route::get('/commande', CommandeIndex::class)->name('commande');
+    Route::get('/liste-commande', ListeCommandeIndex::class)->name('liste-commande');
+    Route::get('/commande/statistique', StatistiqueCommandeIndex::class)->name('stat-commande');
+    Route::get('/vente/fournisseur', CreateVenteFournisseurIndex::class)->name('vente-fournisseur');
+    Route::get('/commande/fournisseur', CreateCommandeFournisseurIndex::class)->name('commande-fournisseur');
 
     //Projets et taches
     Route::get('/projets', ProjetIndex::class)->name('projets');

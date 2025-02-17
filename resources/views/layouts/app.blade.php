@@ -107,7 +107,18 @@
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.produitsMenu') <!-- Menu vertical Produits -->
                 </aside>
-            @elseif(request()->routeIs(['ventes']))
+            @elseif(request()->routeIs([
+                'ventes', 
+                'new-proposition', 
+                'new-opportunity', 
+                'liste-proposition', 
+                'stat-vente',
+                'commande',
+                'liste-commande',
+                'stat-commande',
+                'vente-fournisseur',
+                'commande-fournisseur'
+                ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.ventesMenu')
                 </aside>
