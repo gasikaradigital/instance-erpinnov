@@ -5,8 +5,8 @@
         <!-- Ventes-->
         <li class="menu-item {{ in_array($currentRouteName, ['ventes']) ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle fw-bold">
-                <i class="menu-icon fas fa-cube"></i>
-                <div class="text-bold">{{ __('Ventes') }}</div>
+                <i class="menu-icon fas fa-file-signature text-success me-2"></i>
+                <div class="text-bold">{{ __('Proposition de ventes') }}</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
