@@ -142,13 +142,18 @@
                             <div class="card-body">
                                 <div class="row g-3">
                                     <div class="col-md-2">
-                                            <label class="form-label">Visibilité</label>
-                                            <select class="select2 form-select" wire:model="priv">
-                                                <option value="">Séléctionné</option>
-                                                <option value="0">Partagé</option>
-                                                <option value="1">Privé</option>
-                                            </select>
+                                    <label class="form-label">Visibilité</label>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="public" value="0" wire:model="priv">
+                                            <label class="form-check-label" for="public">Partagé</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="private" value="1" wire:model="priv">
+                                            <label class="form-check-label" for="private">Privé</label>
+                                        </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>   
             </div>

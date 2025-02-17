@@ -24,6 +24,9 @@ use App\Livewire\Produits\CreateTagProduitIndex;
 use App\Livewire\Produits\StatistiqueIndex;
 use App\Livewire\Produits\ListeServicesIndex;
 
+//Appel pour les class Ventes
+use App\Livewire\Ventes\VenteDashboardIndex;
+
 //Appel pour les class tiers
 use App\Livewire\Tiers\ProspectsIndex;
 use App\Livewire\Tiers\ContactIndex;
@@ -134,8 +137,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/produit-statistique', StatistiqueIndex::class)->name('produit-statistique');
     //services
     Route::get('/services/client/liste', ListeServicesIndex::class)->name('liste-services-clients');
-   
 
+    //Ventes
+    Route::get('/ventes', VenteDashboardIndex::class)->name('ventes');
 
     //Projets et taches
     Route::get('/projets', ProjetIndex::class)->name('projets');

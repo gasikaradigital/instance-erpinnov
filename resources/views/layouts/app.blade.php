@@ -87,31 +87,34 @@
                     'create-tag-supplier',
                     'tag-contact',
                     'create-tag-contact',
-                    'tiers-dashboard'
+                    'tiers-dashboard',
                 ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.tiersMenu') <!-- Menu vertical Tiers -->
                 </aside>
             @elseif(request()->routeIs([
-                'produits',
-                'create-produits',
-                'liste-produits-clients',
-                'liste-stocks-clients',
-                'attribut-list',
-                'create-attribut',
-                'tag-produit',
-                'create-tag-produit',
-                'produit-statistique',
-                'liste-services-clients'
+                    'produits',
+                    'create-produits',
+                    'liste-produits-clients',
+                    'liste-stocks-clients',
+                    'attribut-list',
+                    'create-attribut',
+                    'tag-produit',
+                    'create-tag-produit',
+                    'produit-statistique',
+                    'liste-services-clients',
                 ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.produitsMenu') <!-- Menu vertical Produits -->
+                </aside>
+            @elseif(request()->routeIs(['ventes']))
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                    @include('layouts.sections.menu.ventesMenu')
                 </aside>
             @elseif(request()->routeIs(['projets', 'create-project', 'taches', 'create-tache']))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.projetsMenu')
                 </aside>
-
             @elseif(request()->routeIs([
                     'factures',
                     'create-factures',
@@ -128,7 +131,7 @@
                     'statistiques-fournisseur',
                     'commandes-facturables',
                     'dons',
-                    'create-charge'
+                    'create-charge',
                 ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.facturesMenu')
@@ -141,11 +144,7 @@
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.comptabiliteMenu')
                 </aside>
-            @elseif(request()->routeIs([
-                'grh',
-                'create-grh',
-                'create-salary'
-                ]))
+            @elseif(request()->routeIs(['grh', 'create-grh', 'create-salary']))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     @include('layouts.sections.menu.grhMenu')
                 </aside>
@@ -193,4 +192,5 @@
     @include('layouts/sections/assets/scripts')
     @stack('scripts')
 </body>
+
 </html>

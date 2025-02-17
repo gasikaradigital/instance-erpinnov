@@ -41,6 +41,14 @@ $navbarDetached = ($navbarDetached ?? '');
             <div data-i18n="Services">Produits | Services</div>
           </li>
 
+           <!-- Ventes -->
+           <li class="nav-item flex-column align-items-center d-xl-flex">
+            <a href="{{Route('ventes')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Ventes') }}">
+              <i class="menu-icon fas fa-suitcase"></i>
+            </a>
+            <div data-i18n="Ventes">Ventes</div>
+          </li>
+
           <!-- Projets et Tâches -->
           <li class="menu-item flex-column align-items-center d-xl-flex {{ request()->routeIs('projets', 'create-project') ? 'active' : '' }}">
             <a href="{{ route('projets')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Projets') }}">
