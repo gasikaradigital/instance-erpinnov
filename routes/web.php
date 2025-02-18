@@ -221,8 +221,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 });
 
 Route::middleware(['auth:sanctum', 'verified', 'check.plan:solo'])->group(function(){
-    // Tiers
-    Route::get('/tiers', TiersIndex::class)->name('tiers');
-    Route::get('/create/tiers', CreateTiers::class)->name('create-tiers');
+    
 });
 

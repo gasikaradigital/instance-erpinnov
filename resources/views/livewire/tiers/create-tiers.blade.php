@@ -121,7 +121,7 @@
                                             <label class="form-label">Type d'entité légale</label>
                                             <i class="fas fa-info-circle"></i>
                                         </div>
-                                        <select class="select2 form-select" wire:model="typeEntite" required>
+                                        <select class="select2 form-select" wire:model="typeEntite">
                                             <option value=""></option>
                                             <option value=""></option>
                                         </select>

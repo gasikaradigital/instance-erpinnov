@@ -30,14 +30,15 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label class="form-label">État (Vente)</label>
-                                            <select class="form-select" name="sale_status" wire:model="status">
+                                            <select class="form-select" name="sale_status" wire:model="status" id="sale_status">
+                                                <option value="">Selectionné</option>
                                                 <option value="en_vente">En vente</option>
                                                 <option value="non_disponible" selected>Hors vente</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
                                             <label class="form-label">État (Achat)</label>
-                                            <select class="form-select" name="purchase_status">
+                                            <select class="form-select" name="purchase_status" id="purchase_status">
                                                 <option value="">Selectionné</option>
                                                 <option value="en_achat">En achat</option>
                                                 <option value="non_achete">Hors achat</option>
@@ -232,7 +233,7 @@
                                             <label class="form-label">Tags/catégories</label>
                                             <input type="text" class="form-control" name="tags" />
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" id="prix_vente">
                                             <label class="form-label">Prix de vente</label>
                                             <div class="d-flex gap-2">
                                             <input type="text" class="form-control" name="sale" />
@@ -242,21 +243,11 @@
                                             </select>
                                         </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">Prix de vente</label>
-                                            <div class="d-flex gap-2">
-                                                <input type="text" class="form-control" name="sale" />
-                                                <select class="select2 form-select">
-                                                    <option value="" selected>HT</option>
-                                                    <option value="">TTC</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" id="prix_vente_min">
                                             <label class="form-label">Prix de vente min.</label>
                                             <input type="text" class="form-control" name="min_sale_price" />
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" id="prix_achat">
                                             <label class="form-label">Prix d'achat</label>
                                             <div class="d-flex gap-2">
                                                 <input type="text" class="form-control" name="buy" />
@@ -266,7 +257,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" id="prix_achat_min">
                                             <label class="form-label">Prix d'achat min.</label>
                                             <input type="text" class="form-control" name="min_buy_price" />
                                         </div>
@@ -296,63 +287,33 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Récupération des éléments
-        const saleStatus = document.querySelector('[name="sale_status"]');
-        const purchaseStatus = document.querySelector('[name="purchase_status"]');
-        const salePrice = document.querySelector('[name="sale"]');
-        const minSalePrice = document.querySelector('[name="min_sale_price"]');
-        const buyPrice = document.querySelector('[name="buy"]');
-        const minBuyPrice = document.querySelector('[name="min_buy_price"]');
+        const saleStatus = document.getElementById("sale_status");
+        const purchaseStatus = document.getElementById("purchase_status");
+        const prix_achat = document.getElementById("prix_achat");
+        const prix_achat_min = document.getElementById("prix_achat_min");
+        const prix_vente = document.getElementById("prix_vente");
+        const prix_vente_min = document.getElementById("prix_vente_min");
+        
+        saleStatus.addEventListener("change", function(){
+            const selectValueSale = saleStatus.value;
 
-        // Vérifier si les éléments existent avant d'exécuter le script
-        if (!saleStatus || !purchaseStatus || !salePrice || !minSalePrice || !buyPrice || !minBuyPrice) {
-                console.error('Un ou plusieurs éléments du formulaire sont introuvables.');
-                return;
+            if(selectValueSale === "en_vente") {
+                prix_vente.style.display = "block";
+                prix_vente_min.style.display = "block";
+                prix_achat.style.display = "none";
+                prix_achat_min.style.display = "none";
             }
+        });
 
-        // Fonction pour mettre à jour les champs
-        function updateFields() {
-            if (purchaseStatus.value === 'en_achat') {
-                // En mode "achat", désactiver les champs de vente
-                salePrice.disabled = true;
-                minSalePrice.disabled = true;
+        purchaseStatus.addEventListener("change", function(){
+            const selectValuePurchase = purchaseStatus.value;
 
-                // Activer les champs d'achat
-                buyPrice.disabled = false;
-                minBuyPrice.disabled = false;
-            } else {
-                // En dehors de "achat", activer les champs de vente
-                salePrice.disabled = false;
-                minSalePrice.disabled = false;
-
-                // Désactiver les champs d'achat
-                buyPrice.disabled = true;
-                minBuyPrice.disabled = true;
+            if(selectValuePurchase === "en_achat") {
+                prix_achat.style.display = "block";
+                prix_achat_min.style.display = "block";
+                prix_vente.style.display = "none";
+                prix_vente_min.style.display = "none";
             }
-
-            if (saleStatus.value === 'en_vente') {
-                // En mode "vente", désactiver les champs d'achat
-                buyPrice.disabled = true;
-                minBuyPrice.disabled = true;
-
-                // Activer les champs de vente
-                salePrice.disabled = false;
-                minSalePrice.disabled = false;
-            } else {
-                // En dehors de "vente", désactiver les champs de vente
-                salePrice.disabled = true;
-                minSalePrice.disabled = true;
-
-                // Activer les champs d'achat
-                buyPrice.disabled = false;
-                minBuyPrice.disabled = false;
-            }
-        }
-
-        // Ajouter des écouteurs d'événements pour chaque champ d'état
-        saleStatus.addEventListener('change', updateFields);
-        purchaseStatus.addEventListener('change', updateFields);
-
-        // Initialiser les champs
-        updateFields();
+        });
     });
 </script>
