@@ -20,14 +20,29 @@
                         <div class="col-12">
                             <div class="card mb-4">
                                 <div class="card-header p-3">
-                                    <h6 class="card-title mb-0">1. Informations générales</h6>
+                                    <h6 class="card-title mb-0">Informations générales</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="row g-3">
                                         <div class="col-md-3">
+                                            <label class="form-label">Nature</label>
+                                            <select class="form-select" name="nature" id="nature" wire:model="">
+                                                <option value="" selected>Selectionner</option>
+                                                <option value="produits">Produits</option>
+                                                <option value="services">Services</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Réf produit</label>
+                                            <input type="text" class="form-control" wire:model="ref-produit" />
+                                        </div>
+
+                                        <div class="col-md-3">
                                             <label class="form-label">Libellé</label>
                                             <input type="text" class="form-control" wire:model="label" />
                                         </div>
+
+                                        
                                         <div class="col-md-3">
                                             <label class="form-label">État (Vente)</label>
                                             <select class="form-select" name="sale_status" wire:model="status" id="sale_status">
@@ -55,11 +70,11 @@
                     </div>
 
                     <!-- Section : Stock et dimensions -->
-                    <div class="row g-3 mt-4">
+                    <div class="row g-3 mt-4" id="stockSection">
                         <div class="col-12">
                             <div class="card mb-4">
                                 <div class="card-header p-3">
-                                    <h6 class="card-title mb-0">2. Stock et dimensions</h6>
+                                    <h6 class="card-title mb-0">Stock et dimensions</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="row g-3">
@@ -181,7 +196,7 @@
                         <div class="col-12">
                             <div class="card mb-4">
                                 <div class="card-header p-3">
-                                    <h6 class="card-title mb-0">3. Informations douanières et prix</h6>
+                                    <h6 class="card-title mb-0">Informations douanières et prix</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="row g-3">
@@ -273,7 +288,7 @@
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Récupération des éléments
+        // Existing code for sale/purchase status
         const saleStatus = document.getElementById("sale_status");
         const purchaseStatus = document.getElementById("purchase_status");
         const prix_achat = document.getElementById("prix_achat");
@@ -281,9 +296,23 @@
         const prix_vente = document.getElementById("prix_vente");
         const prix_vente_min = document.getElementById("prix_vente_min");
         
+        // New code for nature selection
+        const natureSelect = document.getElementById("nature");
+        const stockSection = document.getElementById("stockSection");
+    
+        // Function to handle nature selection change
+        natureSelect.addEventListener("change", function() {
+            if (this.value === "services") {
+                stockSection.style.display = "none";
+            } else {
+                stockSection.style.display = "block";
+            }
+        });
+    
+        // Existing code for sale/purchase status
         saleStatus.addEventListener("change", function(){
             const selectValueSale = saleStatus.value;
-
+    
             if(selectValueSale === "en_vente") {
                 prix_vente.style.display = "block";
                 prix_vente_min.style.display = "block";
@@ -291,10 +320,10 @@
                 prix_achat_min.style.display = "none";
             }
         });
-
+    
         purchaseStatus.addEventListener("change", function(){
             const selectValuePurchase = purchaseStatus.value;
-
+    
             if(selectValuePurchase === "en_achat") {
                 prix_achat.style.display = "block";
                 prix_achat_min.style.display = "block";
@@ -303,4 +332,4 @@
             }
         });
     });
-</script>
+    </script>
