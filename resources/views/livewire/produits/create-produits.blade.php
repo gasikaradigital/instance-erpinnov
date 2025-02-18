@@ -12,7 +12,7 @@
         <!-- En-tête -->
         <h4 class="fw-bold py-3 mb-2">Nouveau produit et service</h4>
         <div class="card mb-4 col-12">
-            <form wire:submit.prevent="save" class="modal-content" id="addNewProduitsForm">
+            <form wire:submit.prevent="submit" class="modal-content" id="addNewProduitsForm">
                 <!-- Corps Modal -->
                 <div class="modal-body">
                     <div class="row">
@@ -25,16 +25,12 @@
                                 <div class="card-body">
                                     <div class="row g-3">
                                         <div class="col-md-3">
-                                            <label class="form-label">Réf. produit</label>
-                                            <input type="text" class="form-control" name="product_ref" />
-                                        </div>
-                                        <div class="col-md-3">
                                             <label class="form-label">Libellé</label>
-                                            <input type="text" class="form-control" name="label" />
+                                            <input type="text" class="form-control" wire:model="label" />
                                         </div>
                                         <div class="col-md-3">
                                             <label class="form-label">État (Vente)</label>
-                                            <select class="form-select" name="sale_status">
+                                            <select class="form-select" name="sale_status" wire:model="status">
                                                 <option value="en_vente">En vente</option>
                                                 <option value="non_disponible" selected>Hors vente</option>
                                             </select>
@@ -42,6 +38,7 @@
                                         <div class="col-md-3">
                                             <label class="form-label">État (Achat)</label>
                                             <select class="form-select" name="purchase_status">
+                                                <option value="">Selectionné</option>
                                                 <option value="en_achat">En achat</option>
                                                 <option value="non_achete">Hors achat</option>
                                             </select>
@@ -91,7 +88,7 @@
                                             <div class="d-flex justify-content-between ">
                                             <label class="form-label">Stock désiré optimal</label>
                                             <i class="fas fa-info-circle"></i></div>
-                                            <input type="number" class="form-control" name="optimal_stock" />
+                                            <input type="number" class="form-control" name="optimal_stock" wire:model="desiredstock"/>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="d-flex justify-content-between ">
@@ -305,6 +302,12 @@
         const minSalePrice = document.querySelector('[name="min_sale_price"]');
         const buyPrice = document.querySelector('[name="buy"]');
         const minBuyPrice = document.querySelector('[name="min_buy_price"]');
+
+        // Vérifier si les éléments existent avant d'exécuter le script
+        if (!saleStatus || !purchaseStatus || !salePrice || !minSalePrice || !buyPrice || !minBuyPrice) {
+                console.error('Un ou plusieurs éléments du formulaire sont introuvables.');
+                return;
+            }
 
         // Fonction pour mettre à jour les champs
         function updateFields() {

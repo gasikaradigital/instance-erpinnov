@@ -10,8 +10,21 @@ use Exception;
 
 class ProduitsListeIndex extends Component
 {
+    // Constantes
+    const TYPE_PRODUIT = 0;
+    const TYPE_SERVICE = 1;
+
+    const STATUS_HORS_VENTE = 0;
+    const STATUS_EN_VENTE = 1;
+
+    const STATUS_HORS_ACHAT = 0;
+    const STATUS_EN_ACHAT = 1;
+
+    public $data;
+
     public function render()
     {
+        $user = Auth::user();
         try {
             $response = Http::withHeaders([
                 'DOLAPIKEY' => $user->api_key,
@@ -25,6 +38,7 @@ class ProduitsListeIndex extends Component
                 throw new Exception('Erreur API: ' . $response->status());
             }
 
+            //dd($response->json());
             $data = collect($response->json())->map(function ($item) {
                 return (object) [
                     'id' => $item['id'],
@@ -33,13 +47,17 @@ class ProduitsListeIndex extends Component
                     'description' => $item['description'] ?? '',
                     'type' => $item['type'],
                     'type_label' => $item['type'] == self::TYPE_PRODUIT ? 'Produit' : 'Service',
-                    'price_ht_formatted' => number_format($item['price'], 2, ',', ' ') . ' €',
+                    'price' => number_format($item['price'], 2, ',', ' ') . ' €',
+                    'price_min' => number_format($item['price_min'], 2, ',', ' ') . ' €',
                     'price_ttc_formatted' => number_format($item['price_ttc'], 2, ',', ' ') . ' €',
                     'tva_tx' => $item['tva_tx'],
                     'status' => $item['status'],
+                    'desiredstock' => $item['desiredstock'] ?? 0,
                     'status_buy' => $item['status_buy'],
                     'stock_reel' => $item['stock_reel'] ?? 0,
+                    'stock_theorique' => $item['stock_theorique'] ?? 0,
                     'barcode' => $item['barcode'] ?? '',
+                    'buyprice' => number_format($item['buyprice'], 2, ',', ' ') . ' €',
                     'status_label' => $item['status'] == self::STATUS_EN_VENTE ? 'En vente' : 'Hors vente',
                     'status_class' => $item['status'] == self::STATUS_EN_VENTE ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800',
                     'weight' => $item['weight'] ?? 0,
@@ -47,12 +65,22 @@ class ProduitsListeIndex extends Component
                 ];
             })->all();
 
+            //Récupère seulement les produits
+            foreach($data as $produit)
+            {
+                if($produit->type == 0){
+                    $this->data[] = $produit;
+                }
+            }
+
+            //dd($this->data);
             return view('livewire.produits.produits-liste-index', [
-                'data' => $data,
+                'data' => $this->data,
                 'title' => 'Liste des produits',
             ]);
 
         } catch (Exception $e) {
+            dd($e->getMessage());
             Log::error('Erreur récupération produits:', [
                 'message' => $e->getMessage(),
             ]);
@@ -64,5 +92,20 @@ class ProduitsListeIndex extends Component
             ]);
         }
        
+    }
+
+    /**
+     * Formate un poids selon son unité
+     */
+    private function formatWeight($weight, $unit)
+    {
+        $units = [
+            -6 => 'mg',
+            -3 => 'g',
+            0 => 'kg',
+            3 => 't',
+        ];
+
+        return number_format($weight, 2, ',', ' ') . ' ' . ($units[$unit] ?? '');
     }
 }

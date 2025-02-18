@@ -77,40 +77,6 @@ class ProduitsDashboardIndex extends Component
                 ],
             ];
 
-            /*foreach($data as $produit)
-            {
-                if($produit->type == 0)
-                {
-                    if( $produit->status == 1 )
-                    {
-                        $produit_en_vente = $produit_en_vente + 1;
-                    } else {
-                        $produit_hors_vente = $produit_hors_vente + 1;
-                    }
-
-                    if( $produit->status_buy == 1)
-                    {
-                        $produit_en_achat = $produit_en_achat + 1;
-                    } else {
-                        $produit_hors_achat = $produit_hors_achat + 1;
-                    }
-                } else {
-                    if( $produit->status == 1 )
-                    {
-                        $services_en_vente = $services_en_vente + 1;
-                    } else {
-                        $services_hors_vente = $services_hors_vente + 1;
-                    }
-
-                    if( $produit->status_buy == 1)
-                    {
-                        $services_en_achat = $services_en_achat + 1;
-                    } else {
-                        $services_hors_achat = $services_hors_achat + 1;
-                    }
-                }
-            }*/
-
             foreach ($data as $produit) {
                 $type = ($produit->type == 0) ? 'produits' : 'services';
             

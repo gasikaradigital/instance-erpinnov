@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'user standard',
             'email' => 'standard@example.com',
             'password' => 'standard123',
-            'api_key' => 'lOQVobrEX7JmZDLGscVFNlDpbnFibFdm',
-            'url_dolibarr' => 'http://faniri-dolibarr.erpinnov.com',
+            'api_key' => 'lOQVobrEX7JmZDLGscVFNlDpbnFiaFdm',
+            'url_dolibarr' => 'http://faniry-dolibarr.erpinnov.com',
             'plan' => 'standard'
         ]);
 
@@ -37,8 +37,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'user premium',
             'email' => 'premium@example.com',
             'password' => 'premium123',
-            'api_key' => 'lOQVobrEX7JmZDLGscVFNlDpbnFicFdm',
-            'url_dolibarr' => 'http://fanire-dolibarr.erpinnov.com',
+            'api_key' => 'lOQVobrEX7JmZDLGscVFNlDpbnFiaFdm',
+            'url_dolibarr' => 'http://faniry-dolibarr.erpinnov.com',
             'plan' => 'premium'
         ]);
     }

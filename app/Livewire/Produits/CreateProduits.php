@@ -58,7 +58,7 @@ class CreateProduits extends Component
     public $accountancy_code_sell_export;
     public $accountancy_code_buy;
     public $accountancy_code_buy_export;
-
+    
     public function nextStep()
     {
         if ($this->currentStep < $this->totalSteps) {

@@ -96,34 +96,41 @@
                                 </tr>
                             </tr>
                         </thead>
+                        @if(count($data ?? []) > 0 )
+                        @foreach($data as $service)
                         <tbody>
                             <tr>
                                 <td>
                                     <input type="checkbox" class="form-check-input row-checkbox">
                                 </td>
-                                <td><i class="fas fa-box text-warning me-1"></i> SER-001</td>
-                                <td>serve</td>
-                                <td>1325</td>
-                                <td>0,00 HT</td>
-                                <td></td>
-                                <td>0</td>
-                                <td><span class="badge bg-success">En vente</span></td>
-                                <td><span class="badge bg-success">En achat</span></td>
-                            </tr>
-                            <tr>
+                                <td><i class="fas fa-box text-warning me-1"></i> {{ $service->ref }}</td>
+                                <td>{{ $service->label }}</td>
                                 <td>
-                                    <input type="checkbox" class="form-check-input row-checkbox">
+                                    @if($service->barcode !== null)
+                                        {{ $service->barcode}}
+                                    @endif
                                 </td>
-                                <td><i class="fas fa-box text-warning me-1"></i> SER-003</td>
-                                <td>test</td>
-                                <td>321</td>
-                                <td>0,00 HT</td>
-                                <td></td>
+                                <td>{{ $service->duration_value }}</td>
+                                <td>{{ $service->price }}</td>
                                 <td>0</td>
-                                <td><span class="badge bg-success">En vente</span></td>
-                                <td><span class="badge bg-success">En achat</span></td>
+                                <td>
+                                    @if($service->status == 1)
+                                        <span class="badge bg-success">En vente</span>
+                                    @else
+                                        <span class="badge bg-secondary">Hors vente</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($service->status_buy == 1)
+                                        <span class="badge bg-success">En achat</span>
+                                    @else
+                                        <span class="badge bg-secondary">Hors achat</span>
+                                    @endif
+                                </td>
                             </tr>
                         </tbody>
+                        @endforeach
+                        @endif
                     </table>
                 </div>
             </div>
