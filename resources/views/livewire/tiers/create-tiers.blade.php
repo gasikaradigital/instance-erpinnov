@@ -64,12 +64,9 @@
                                         <label class="form-label">Fournisseur <span class="text-danger">*</span></label>
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="form-check mb-0">
-<<<<<<< HEAD
-                                                <input type="radio" id="fournisseur-oui" class="form-check-input"
-                                                    value="1" wire:model="fournisseur" checked required>
-=======
+
                                                 <input type="radio" id="fournisseur-oui" class="form-check-input" value="1" wire:model="fournisseur" checked>
->>>>>>> 32201cf512c45f47d5f13ad452a2f39af1dbc521
+
                                                 <label class="form-check-label" for="fournisseur-oui">Oui</label>
                                             </div>
                                             <div class="form-check mb-0">
@@ -83,11 +80,8 @@
                                     <div class="col-md-2 d-flex flex-column">{{-- à modifier aprèS --}}
                                         <label class="form-label">Assujetti à la TVA</label>
                                         <div class="form-check">
-<<<<<<< HEAD
-                                            <input type="checkbox" class="form-check-input" wire:model="assujetiTVA" />
-=======
+
                                             <input type="checkbox" class="form-check-input" wire:model="tva_assuj"/>
->>>>>>> 32201cf512c45f47d5f13ad452a2f39af1dbc521
                                         </div>
                                     </div>
                                     <div class="col-md-2">

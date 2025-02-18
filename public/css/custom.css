@@ -40,6 +40,32 @@
     cursor: pointer;
     color: #6c757d;
 }
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+.badge {
+    font-weight: normal;
+}
+.list-group-item {
+    border-left: none;
+    border-right: none;
+}
+.list-group-item:first-child {
+    border-top: none;
+}
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+.circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.circle-container svg {
+    max-width: 100%;
+    height: auto;
+}
 .input-group-text {
     background-color: transparent;
 }
