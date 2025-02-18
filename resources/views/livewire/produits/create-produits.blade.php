@@ -163,25 +163,12 @@
                                     </div>
 
                                         <div class="col-md-3">
-                                            <label class="form-label">Unité</label>
+                                            <label class="form-label">Quantité</label>
                                             <div class="d-flex gap-2">
                                             <input type="text" class="form-control" name="volume" />
-                                            <select class="select2 form-select">
-                                                <option value="" selected>1</option>
-                                                <option value="">2</option>
-                                                <option value="">3</option>
-                                                <option value="">4</option>
-                                                <option value="">5</option>
-                                                <option value="">6</option>
-                                                <option value="">7</option>
-                                                <option value="">8</option>
-                                                <option value="">9</option>
-                                            </select>
+                                            <input type="text" class="form-control" value="Unité" readonly name="" />
                                         </div>
                                         </div>
-
-                    
-
                                         </div>
                                     </div>
                                 </div>
