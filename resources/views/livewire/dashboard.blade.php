@@ -314,7 +314,7 @@
         </div>
     </div>
 
-    <style>
+<style>
         /* Variables */
         :root {
             --primary-color: #7C5CFF;
