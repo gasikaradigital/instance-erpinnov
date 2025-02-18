@@ -1,7 +1,10 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <div class="flex flex-col items-center justify-center">
+                <img width="60" height="60" src="{{ asset('assets/img/logo/logo.png')}}" alt="logo" class="mb-2">
+                <h2 class="text-2xl font-bold text-gray-900">Espace de travail</h2>
+            </div>
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -12,7 +15,7 @@
             </div>
         @endsession
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" class="mt-6">
             @csrf
 
             <div>

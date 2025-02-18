@@ -24,7 +24,7 @@ $user = Auth::user();
             </a>
             <div data-i18n="Accueil">Accueil</div>
           </li>
-  
+
           <!-- Tiers -->
           <li class="nav-item flex-column align-items-center d-xl-flex">
             <a href="{{ route('tiers-dashboard') }}" class="menu-link {{ $currentRouteName === 'tiers-dashboard' ? 'active' : '' }}" onclick="showTiersMenu(event)" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Tiers') }}">
@@ -110,7 +110,7 @@ $user = Auth::user();
                 </a>
                 <div data-i18n="Compta">Comptabilité</div>
               </li>
-              
+
               {{-- GRH --}}
               <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['grh', 'create-grh']) ? 'active open' : '' }}">
                 <a href="{{Route('grh')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('GRH') }}">
@@ -146,9 +146,9 @@ $user = Auth::user();
         </ul>
         @endswitch
         <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+        {{-- <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
             <i class="ti ti-menu-2 ti-md"></i>
-        </a>
+        </a> --}}
         </div>
 
         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
@@ -449,6 +449,7 @@ $user = Auth::user();
           <!--/ User -->
         </ul>
         </div>
+
     </div>
 </nav>
 <!-- / Navbar -->
