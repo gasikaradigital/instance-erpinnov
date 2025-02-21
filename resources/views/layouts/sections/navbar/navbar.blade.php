@@ -57,8 +57,15 @@ $user = Auth::user();
             <div data-i18n="Projet">Projets | Tâches</div>
           </li>
 
-          @switch($user->plan)
-            @case('standard')
+           {{-- Comptabilité  --}}
+           <li
+           class="menu-item flex-column align-items-center d-xl-flex{{ in_array($currentRouteName, ['comptabilite', 'create-accounting']) ? 'active open' : '' }}">
+           <a href="{{Route('comptabilite')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Comptabilité') }}">
+               <i class="menu-icon tf-icons ti ti-chart-bar"></i>
+           </a>
+           <div data-i18n="Compta">Comptabilité</div>
+         </li>
+
               {{-- Factures --}}
               <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['factures', 'create-factures', 'factures-fournisseur', 'create-factures-fournisseur']) ? 'active open' : '' }}">
                 <a href="{{ route('factures') }}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Factures') }}">
@@ -66,6 +73,9 @@ $user = Auth::user();
                 </a>
                 <div data-i18n="Factures">Factures</div>
               </li>
+
+          @switch($user->plan)
+            @case('standard')
 
               {{-- Banque et caisse --}}
               <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
@@ -75,24 +85,18 @@ $user = Auth::user();
                 <div data-i18n="banque">Banques | Caisses</div>
               </li>
 
-              {{-- Comptabilité  --}}
-              <li
-                class="menu-item flex-column align-items-center d-xl-flex{{ in_array($currentRouteName, ['comptabilite', 'create-accounting']) ? 'active open' : '' }}">
-                <a href="{{Route('comptabilite')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Comptabilité') }}">
-                    <i class="menu-icon tf-icons ti ti-chart-bar"></i>
+
+              {{-- Email --}}
+              <li class="menu-item flex-column align-items-center d-xl-flex{{ in_array($currentRouteName, ['email', 'create-mail']) ? 'active open' : '' }}">
+                <a href="{{Route('email')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Email') }}">
+                    <i class="menu-icon tf-icons ti ti-mail"></i>
                 </a>
-                <div data-i18n="Compta">Comptabilité</div>
+                <div data-i18n="Email">Email</div>
               </li>
+             
             @break
 
             @case('premium')
-              {{-- Factures --}}
-              <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['factures', 'create-factures', 'factures-fournisseur', 'create-factures-fournisseur']) ? 'active open' : '' }}">
-                <a href="{{ route('factures') }}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Factures') }}">
-                    <i class="menu-icon tf-icons ti ti-file-dollar"></i>
-                </a>
-                <div data-i18n="Factures">Factures</div>
-              </li>
 
               {{-- Banque et caisse --}}
               <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['banque', 'create-bank']) ? 'active open' : '' }}">
@@ -101,16 +105,6 @@ $user = Auth::user();
                 </a>
                 <div data-i18n="banque">Banques | Caisses</div>
               </li>
-
-              {{-- Comptabilité  --}}
-              <li
-                class="menu-item flex-column align-items-center d-xl-flex{{ in_array($currentRouteName, ['comptabilite', 'create-accounting']) ? 'active open' : '' }}">
-                <a href="{{Route('comptabilite')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Comptabilité') }}">
-                    <i class="menu-icon tf-icons ti ti-chart-bar"></i>
-                </a>
-                <div data-i18n="Compta">Comptabilité</div>
-              </li>
-
               {{-- GRH --}}
               <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['grh', 'create-grh']) ? 'active open' : '' }}">
                 <a href="{{Route('grh')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('GRH') }}">

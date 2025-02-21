@@ -27,7 +27,7 @@
     <ul class="menu-inner py-1">
        
         
-        <li class="menu-item {{ in_array($currentRouteName, ['tiers-dashboard', 'create-tiers', 'tiers', 'prospects', 'tag-customer', 'fournisseur']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['tiers-dashboard', 'create-tiers', 'tiers', 'tag-customer', ]) ? 'active open' : '' }}">
             <a href="{{Route('tiers-dashboard')}}" class="menu-link menu-toggle fw-bold">
                 <i class="menu-icon tf-icons ti ti-users"></i>
                 <div class="text-bold">{{ __('Tiers') }}</div>
@@ -45,16 +45,7 @@
                         <div>{{ __('Liste des tiers') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === 'prospects' ? 'active' : '' }}">
-                    <a href="{{ route('prospects') }}" class="menu-link">
-                        <div>{{ __('Liste des prospects') }}</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ $currentRouteName === 'fournisseur' ? 'active' : '' }}">
-                    <a href="{{ route('fournisseur') }}" class="menu-link">
-                        <div>{{ __('Liste des fournisseurs') }}</div>
-                    </a>
-                </li>
+               
                 <li class="menu-item {{ $currentRouteName === 'tag-customer' ? 'active' : '' }}">
                     <a href="{{ route('tag-customer') }}" class="menu-link">
                         <div>{{ __('Tags/catégories prospects/fournisseurs') }}</div>
@@ -64,9 +55,13 @@
             </ul>
         </li>
     
-    <li class="menu-header small">
-        <span class="menu-header-text" data-i18n="Contacts">Contacts</span>
-      </li>
+        <li class="menu-item {{ in_array($currentRouteName, ['create-contact', 'contact', 'tag-contact' ]) ? 'active open' : '' }}">
+            <a href="javascript:void(0)" class="menu-link menu-toggle fw-bold">
+                <i class="menu-icon tf-icons ti ti-address-book"></i>
+                <div class="text-bold">{{ __('Contacts') }}</div>
+            </a>
+            
+            <ul class="menu-sub">
         <li class="menu-item {{ $currentRouteName === 'create-contact' ? 'active' : '' }}">
             <a href="{{ route('create-contact') }}" class="menu-link">
                 <div>{{ __('Créer un contact') }}</div>
@@ -84,6 +79,6 @@
                 <div>{{ __('Tags/catégories contacts') }}</div>
             </a>
         </li>
-
+    </ul>
     </ul>
 </aside>

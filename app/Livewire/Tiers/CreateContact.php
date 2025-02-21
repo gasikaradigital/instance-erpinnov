@@ -18,6 +18,7 @@ class CreateContact extends Component
     public $lastname;
     public $firstname;
     public $socid;
+    // public $code_contact;
     public $poste;
     public $address;
     public $zip;
@@ -62,6 +63,7 @@ class CreateContact extends Component
             'poste' => $this->poste,
             'address' => $this->address,
             'zip' => $this->zip,
+            // 'code_contact' => $this->code_contact,
             'town' => $this->town,
             'country_id' => $this->country_id,
             'country_code' => $this->country_code,
@@ -76,6 +78,7 @@ class CreateContact extends Component
 
     public function save()
     {
+        
         $this->setValue();
         
         try {
@@ -83,7 +86,8 @@ class CreateContact extends Component
             $apiData = [
                 ...$this->value,
                 'statut' => 1,
-                'entity' => 1
+                'entity' => 1,
+                
             ];
 
 
@@ -111,52 +115,69 @@ class CreateContact extends Component
         }
     }
 
-    public function render()
-    {
-        $user  = Auth::user();
-        
-        try {
-            // Récupération des tiers depuis l'API Dolibarr
-            $response = Http::withHeaders([
-                'DOLAPIKEY' =>  $user->api_key 
-            ])->get($user->url_dolibarr . '/api/index.php/thirdparties');
+//     public function generateContactCode()
+// {
+//     if (empty($this->codeContact)) {
+//         $this->code_contact = "CO2501-00001";
+//     } else {
+//         // Récupérer le dernier code contact
+//         $lastCode = end($this->codeContact);
 
-            if (!$response->successful()) {
-                throw new Exception('Erreur API: ' . $response->status());
-            }
+//         // Extraire la partie numérique après le tiret
+//         if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
+//             $prefix = $matches[1]; // Partie avant le numéro (ex: "CO2501-")
+//             $number = (int) $matches[2]; // Partie numérique
 
-            // Conversion du tableau en objets pour faciliter l'utilisation dans la vue
-            $this->data = collect($response->json())->map(function($item) {
-                $item = (object) $item;
+//             // Incrémenter le numéro
+//             $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
 
-                // Récupérer le nom du pays si country_id existe
-                if (!empty($item->country_id)) {
-                    try {
-                        $countryResponse = Http::withHeaders([
-                            'DOLAPIKEY' => $user->api_key
-                        ])->get($user->url_dolibarr . '/api/index.php/setup/dictionary/countries/' . $item->country_id);
+//             // Retourner le nouveau code contact
+//             $this->code_contact = $prefix . $newNumber;
+//         }
+//     }
+// }
 
-                        if ($countryResponse->successful()) {
-                            $country = $countryResponse->json();
-                            $item->country = $country['label'] ?? 'N/A';
-                        }
-                    } catch (\Exception $e) {
-                        $item->country = 'N/A';
-                    }
-                } else {
-                    $item->country = 'N/A';
-                }
+public function render()
+{
+    $user = Auth::user();
+    
+    try {
+        // Change the endpoint to fetch contacts instead of thirdparties
+        $response = Http::withHeaders([
+            'DOLAPIKEY' => $user->api_key 
+        ])->get($user->url_dolibarr . '/api/index.php/thirdparties');
 
-                return $item;
-            })->all();
-
-            return view('livewire.tiers.create-contact',[
-                'data' => $this->data,
-            ]);
-            
-        } catch (Exception $e) {
-            Log::error('Erreur lors de la récupération des contacts: ' . $e->getMessage());
+        if (!$response->successful()) {
+            throw new Exception('Erreur API: ' . $response->status());
         }
-               
+
+        // Transform the data
+        $this->data = collect($response->json())->map(function($item) {
+            $item = (object) $item;
+            
+            // Add default values for potentially missing fields
+            $item->code_contact = $item->code_contact ?? 'N/A';
+            $item->firstname = $item->firstname ?? '';
+            $item->lastname = $item->lastname ?? '';
+            $item->phone_pro = $item->phone_pro ?? '';
+            $item->phone_mobile = $item->phone_mobile ?? '';
+            $item->email = $item->email ?? '';
+            $item->socname = $item->socname ?? '';
+            $item->priv = $item->priv ?? '0';
+
+            return $item;
+        })->all();
+
+        return view('livewire.tiers.create-contact', [
+            'data' => $this->data,
+        ]);
+        
+    } catch (Exception $e) {
+        Log::error('Erreur lors de la récupération des contacts: ' . $e->getMessage());
+        $this->data = [];
+        return view('livewire.tiers.create-contact', [
+            'data' => $this->data,
+        ]);
     }
+}
 }

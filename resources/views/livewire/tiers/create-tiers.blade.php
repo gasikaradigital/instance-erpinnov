@@ -36,8 +36,7 @@
                                             <option value=""></option>
                                             <option value="1">Client</option>
                                             <option value="2">Prospect</option>
-                                            <option value="3">Prospect/Client</option>
-                                            <option value="0">Ni client, ni prospoect</option>
+                                            <option value="0">Ni client, ni prospect</option>
                                         </select>
                                     </div>
 

@@ -18,6 +18,21 @@
     @endsection
     <div class="container-xxl flex-grow-1 container-p-y">
         <livewire:tiers.statistique :data = "$data"/>
+         <!-- Menu d'action -->
+         <div class="d-flex gap-2 align-items-center mb-5 justify-content-center action-menu">
+            <select class="form-select" style="width: 250px;">
+                <option>-- Sélectionner l'action --</option>
+                <option>Re-générer le PDF</option>
+                <option>Modifier la valeur d'un extrafield</option>
+                <option>Augmenter/diminuer le prix client</option>
+                <option>Basculer le statut En vente</option>
+                <option>Basculer le statut En achat</option>
+                <option>Affecter un tag/catégorie</option>
+                <option  data-icon="fas fa-trash-alt">Supprimer</option>
+            </select>
+        
+            <button class="btn btn-secondary">CONFIRMER</button>
+        </div>
         <!-- Liste des Tiers -->
         <div class="card">
 
@@ -36,7 +51,7 @@
                 </div>
                 <!-- Filtres -->
                 <div class="row g-3 mt-3">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <select class="form-select" wire:model="type">
                             <option value="">Type de Tiers</option>
                             <option value="client">Client</option>
@@ -44,15 +59,30 @@
                             <option value="prospect">Prospect</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <select class="form-select">
                             <option value="">Statut</option>
                             <option value="actif">Actif</option>
                             <option value="inactif">Inactif</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
-                        <div class="input-group">
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option value="">Commerciaux</option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">                            
+
+                        <select class="form-select">
+                            <option value="" class="fs-6">Rechercher par</option>
+                            <option value="">Nom</option>
+                            <option value="">Type</option>
+                            <option value="">Email</option>
+                            <option value="">Télephone</option>
+                        </select>
                             <input type="text" class="form-control" placeholder="Rechercher..." wire:model="searchName">
                             <button class="btn btn-outline-secondary" type="button" wire:click="performSearch"> <!-- Bouton pour effectuer la recherche -->
                                 <i class="ti ti-search"></i>
