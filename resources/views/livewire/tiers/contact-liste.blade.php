@@ -1,4 +1,14 @@
+
 <div>
+    @php
+    if (!empty($data)) {
+        $firstContact = reset($data);
+        dump([
+            'array_options_complete' => print_r($firstContact->array_options, true),
+            'array_options_direct' => $firstContact->array_options
+        ]);
+    }
+@endphp
     <div class="card-datatable table-responsive">
         <table class="table table-hover">
             <thead>
@@ -25,7 +35,7 @@
                     <td>
                         <input type="checkbox" class="form-check-input row-checkbox">
                     </td>
-                    <td>N/A</td>
+                    <td>{{ $contact->code_contact ?? 'N/A' }}</td>
 
                     {{-- <td>{{ $contact->code_contact }}</td> --}}
                     <td>{{ $contact->firstname }} {{ $contact->lastname }}</td>
