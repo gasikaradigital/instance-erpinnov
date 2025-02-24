@@ -10,7 +10,7 @@
         <div class="col-md-8">
             <div class="card mb-4">
                 <div class="card-header">
-                    <h5>Statistiques - Propositions de ventes</h5>
+                    <h5>Statistiques - Devis</h5>
                 </div>
                 <div class="card-body">
                     <div class="row text-center">
@@ -212,12 +212,12 @@
             <!-- derniers propositions de ventes modifiéS -->
             <div class="card mb-4">
                 <div class="card-header">
-                    <h5>Les 3 dernières propositions de ventes modifiées <span class="badge bg-secondary">
+                    <h5>Les 3 dernières devis modifiées <span class="badge bg-secondary">
                             <!-- Valeurs -->
                         </span></h5>
                 </div>
                 <div class="card-body">
-                    <p class="text-muted">Pas de proposition</p>
+                    <p class="text-muted">Pas de devis</p>
                 </div>
             </div>
 
@@ -248,11 +248,11 @@
             <!-- proposition de ventes en brouillons -->
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5>Propositions de ventes brouillons <span class="badge bg-secondary"> <!-- Valeurs -->
+                    <h5>Devis brouillons <span class="badge bg-secondary"> <!-- Valeurs -->
                         </span></h5>
                 </div>
                 <div class="card-body">
-                    <p class="text-muted">Pas de proposition</p>
+                    <p class="text-muted">Pas de Devis</p>
                 </div>
             </div>
 

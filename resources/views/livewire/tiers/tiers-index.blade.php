@@ -93,7 +93,14 @@
                         </div>
                     </div>
                     
-                    
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-tag"></i>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Tag/catégorie">
+                        </div>
+                    </div>
                     <div class="col-md-2">
                         <select class="form-select">
                             <option value="">Statut</option>
@@ -108,7 +115,7 @@
                             <option value=""></option>
                         </select>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <div class="input-group">                            
 
                         <select class="form-select">

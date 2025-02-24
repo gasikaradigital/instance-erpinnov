@@ -71,13 +71,37 @@
 
                 <!-- Filtres -->
                 <div class="row g-3 mt-3">
+                    <div class="col-md-3">
+                        <div class="d-flex gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="client" value="client" wire:model="type">
+                                <label class="form-check-label" for="client">
+                                    Client
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="prospect" value="prospect" wire:model="type">
+                                <label class="form-check-label" for="prospect">
+                                    Prospect
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="fournisseur" value="fournisseur" wire:model="type">
+                                <label class="form-check-label" for="fournisseur">
+                                    Fournisseur
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                     <div class="col-md-2">
-                        <select class="form-select" wire:model="type">
-                            <option value="">Type de Tiers</option>
-                            <option value="client">Client</option>
-                            <option value="fournisseur">Fournisseur</option>
-                            <option value="prospect">Prospect</option>
-                        </select>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-tag"></i>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Tag/catégorie">
+                        </div>
                     </div>
                     <div class="col-md-2">
                         <select class="form-select">
@@ -87,14 +111,14 @@
                         </select>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <select class="form-select">
                             <option value="">Roles</option>
                             <option value=""></option>
                             <option value=""></option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="input-group">                            
 
                         <select class="form-select">

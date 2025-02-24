@@ -60,14 +60,14 @@
                     <td>
                     @switch($tier->client)
                         @case('2')
-                            <span class="badge bg-label-primary">Prospect</span>
+                            <span class="badge bg-info">P</span>
                         @break
                         @case('1')
-                            <span class="badge bg-label-primary">Client</span>
+                            <span class="badge bg-success">C</span>
                         @break
 
                         @case('0')
-                            <span class="badge bg-label-primary">Ni client, ni prospect</span>
+                            <span class="badge bg-danger">NCP</span>
                         @break
                     @endswitch
                     </td>

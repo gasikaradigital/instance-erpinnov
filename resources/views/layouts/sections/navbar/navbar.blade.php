@@ -147,24 +147,7 @@ $user = Auth::user();
 
         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-            <!-- Language -->
-            <li class="nav-item dropdown-language dropdown">
-                <a class="nav-link btn btn-text-secondary btn-icon rounded-pill dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                  <i class='ti ti-language rounded-circle ti-md'></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <a class="dropdown-item {{ app()->getLocale() === 'fr' ? 'active' : '' }}" href="{{url('lang/fr')}}" data-language="fr" data-text-direction="ltr">
-                      <span>FR</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item {{ app()->getLocale() === 'en' ? 'active' : '' }}" href="{{url('lang/en')}}" data-language="en" data-text-direction="ltr">
-                      <span>ANG</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+           
 
             <!-- Quick links  -->
             <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown">
@@ -174,8 +157,8 @@ $user = Auth::user();
                 <div class="dropdown-menu dropdown-menu-end p-0">
                 <div class="dropdown-menu-header border-bottom">
                     <div class="dropdown-header d-flex align-items-center py-3">
-                    <h6 class="mb-0 me-auto">Shortcuts</h6>
-                    <a href="javascript:void(0)" class="btn btn-text-secondary rounded-pill btn-icon dropdown-shortcuts-add" data-bs-toggle="tooltip" data-bs-placement="top" title="Add shortcuts"><i class="ti ti-plus text-heading"></i></a>
+                    <h6 class="mb-0 me-auto">Raccourcis</h6>
+                    <a href="javascript:void(0)" class="btn btn-text-secondary rounded-pill btn-icon dropdown-shortcuts-add" data-bs-toggle="tooltip" data-bs-placement="top" title="ajouter un raccourci"><i class="ti ti-plus text-heading"></i></a>
                     </div>
                 </div>
                 <div class="dropdown-shortcuts-list scrollable-container">
@@ -184,15 +167,15 @@ $user = Auth::user();
                         <span class="dropdown-shortcuts-icon rounded-circle mb-3">
                         <i class="ti ti-calendar ti-26px text-heading"></i>
                         </span>
-                        <a href="{{url('app/calendar')}}" class="stretched-link">Calendar</a>
-                        <small>Appointments</small>
+                        <a href="{{url('app/calendar')}}" class="stretched-link">Calendrier</a>
+                        <small>Rendez-vous</small>
                     </div>
                     <div class="dropdown-shortcuts-item col">
                         <span class="dropdown-shortcuts-icon rounded-circle mb-3">
                         <i class="ti ti-file-dollar ti-26px text-heading"></i>
                         </span>
-                        <a href="{{url('app/invoice/list')}}" class="stretched-link">Invoice App</a>
-                        <small>Manage Accounts</small>
+                        <a href="{{url('app/invoice/list')}}" class="stretched-link">Facturation</a>
+                        <small>Gérer les comptes</small>
                     </div>
                     </div>
                     <div class="row row-bordered overflow-visible g-0">
@@ -200,15 +183,16 @@ $user = Auth::user();
                         <span class="dropdown-shortcuts-icon rounded-circle mb-3">
                         <i class="ti ti-user ti-26px text-heading"></i>
                         </span>
-                        <a href="{{url('app/user/list')}}" class="stretched-link">User App</a>
-                        <small>Manage Users</small>
+                        <a href="{{url('app/user/list')}}" class="stretched-link">Utilisateurs</a>
+                        <small>Gérer les utilisateurs</small>
                     </div>
                     <div class="dropdown-shortcuts-item col">
                         <span class="dropdown-shortcuts-icon rounded-circle mb-3">
                         <i class="ti ti-users ti-26px text-heading"></i>
                         </span>
-                        <a href="{{url('app/access-roles')}}" class="stretched-link">Role Management</a>
-                        <small>Permission</small>
+                        <a href="{{url('app/access-roles')}}" class="stretched-link">Gestion des rôles</a>
+                        <small>
+                          Autorisation</small>
                     </div>
                     </div>
                     <div class="row row-bordered overflow-visible g-0">
@@ -216,15 +200,15 @@ $user = Auth::user();
                         <span class="dropdown-shortcuts-icon rounded-circle mb-3">
                         <i class="ti ti-device-desktop-analytics ti-26px text-heading"></i>
                         </span>
-                        <a href="{{url('/')}}" class="stretched-link">Dashboard</a>
-                        <small>User Dashboard</small>
+                        <a href="{{url('/')}}" class="stretched-link">Tableau de bord</a>
+                        <small>Tableau de bord utilisateur</small>
                     </div>
                     <div class="dropdown-shortcuts-item col">
                         <span class="dropdown-shortcuts-icon rounded-circle mb-3">
                         <i class="ti ti-settings ti-26px text-heading"></i>
                         </span>
-                        <a href="{{url('pages/account-settings-account')}}" class="stretched-link">Setting</a>
-                        <small>Account Settings</small>
+                        <a href="{{url('pages/account-settings-account')}}" class="stretched-link">Paramètres</a>
+                        <small>Paramètres du compte</small>
                     </div>
                     </div>
                     <div class="row row-bordered overflow-visible g-0">
@@ -232,15 +216,17 @@ $user = Auth::user();
                         <span class="dropdown-shortcuts-icon rounded-circle mb-3">
                         <i class="ti ti-help ti-26px text-heading"></i>
                         </span>
-                        <a href="{{url('pages/faq')}}" class="stretched-link">FAQs</a>
-                        <small>FAQs & Articles</small>
+                        <a href="{{url('pages/faq')}}" class="stretched-link">FAQ</a>
+                        <small>FAQ et articles</small>
                     </div>
                     <div class="dropdown-shortcuts-item col">
                         <span class="dropdown-shortcuts-icon rounded-circle mb-3">
                         <i class="ti ti-square ti-26px text-heading"></i>
                         </span>
-                        <a href="{{url('modal-examples')}}" class="stretched-link">Modals</a>
-                        <small>Useful Popups</small>
+                        <a href="{{url('modal-examples')}}" class="stretched-link">
+                          Modaux</a>
+                        <small>
+                          Popups utiles</small>
                     </div>
                     </div>
                 </div>
@@ -308,7 +294,7 @@ $user = Auth::user();
                     <li class="border-top">
                     <div class="d-grid p-4">
                         <a class="btn btn-primary btn-sm d-flex" href="javascript:void(0);">
-                        <small class="align-middle">View all notifications</small>
+                        <small class="align-middle">Voir toutes les notifications</small>
                         </a>
                     </div>
                     </li>
@@ -350,7 +336,7 @@ $user = Auth::user();
               </li>
               <li>
                 <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
-                  <i class="ti ti-user me-3 ti-md"></i><span class="align-middle">My Profile</span>
+                  <i class="ti ti-user me-3 ti-md"></i><span class="align-middle">Mon Profile</span>
                 </a>
               </li>
 
@@ -364,7 +350,7 @@ $user = Auth::user();
               <li>
                 <a class="dropdown-item" href="{{url('pages/account-settings-billing')}}">
                   <span class="d-flex align-items-center align-middle">
-                    <i class="flex-shrink-0 ti ti-file-dollar me-3 ti-md"></i><span class="flex-grow-1 align-middle">Billing</span>
+                    <i class="fas fa-ticket me-3"></i><span class="flex-grow-1 align-middle">Ticket</span>
                     <span class="flex-shrink-0 badge bg-danger d-flex align-items-center justify-content-center">4</span>
                   </span>
                 </a>
@@ -420,7 +406,7 @@ $user = Auth::user();
                 <li>
                   <div class="d-grid px-2 pt-2 pb-1">
                     <a class="btn btn-sm btn-danger d-flex" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                      <small class="align-middle">Logout</small>
+                      <small class="align-middle">Se déconnecter</small>
                       <i class="ti ti-logout ms-2 ti-14px"></i>
                     </a>
                   </div>
@@ -432,7 +418,7 @@ $user = Auth::user();
                 <li>
                   <div class="d-grid px-2 pt-2 pb-1">
                     <a class="btn btn-sm btn-danger d-flex" href="{{ Route::has('login') ? route('login') : url('auth/login-basic') }}">
-                      <small class="align-middle">Login</small>
+                      <small class="align-middle">Se connecter</small>
                       <i class="ti ti-login ms-2 ti-14px"></i>
                     </a>
                   </div>

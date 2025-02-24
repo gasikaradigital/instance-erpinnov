@@ -1,6 +1,6 @@
 
 <div>
-    @php
+    {{-- @php
     if (!empty($data)) {
         $firstContact = reset($data);
         dump([
@@ -8,7 +8,7 @@
             'array_options_direct' => $firstContact->array_options
         ]);
     }
-@endphp
+@endphp --}}
     <div class="card-datatable table-responsive">
         <table class="table table-hover">
             <thead>
