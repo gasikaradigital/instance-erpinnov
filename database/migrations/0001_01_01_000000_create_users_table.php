@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('api_key');
             $table->string('url_dolibarr');
-            $table->string('plan')->default('solo');
-            $table->string('email')->unique();
+            $table->string('plan_id');
+            $table->string('sub_plan_id');
+            $table->string('status');
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
