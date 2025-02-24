@@ -76,12 +76,8 @@
             @elseif(request()->routeIs([
                     'tiers',
                     'create-tiers',
-                    'prospects',
-                    'create-prospects',
                     'contact',
                     'create-contact',
-                    'fournisseur',
-                    'create-supplier',
                     'tag-customer',
                     'create-tag-customer',
                     'create-tag-supplier',

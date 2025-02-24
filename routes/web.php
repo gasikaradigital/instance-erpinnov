@@ -37,11 +37,9 @@ use App\Livewire\Ventes\CreateVenteFournisseurIndex;
 use App\Livewire\Ventes\CreateCommandeFournisseurIndex;
 
 //Appel pour les class tiers
-use App\Livewire\Tiers\ProspectsIndex;
 use App\Livewire\Tiers\ContactIndex;
 use App\Livewire\Tiers\CreateContact;
 use App\Livewire\Tiers\TierDashboardIndex;
-use App\Livewire\Tiers\FournisseurIndex;
 use App\Livewire\Tiers\TiersIndex;
 use App\Livewire\Tiers\CreateTiers;
 use App\Livewire\Tiers\TagCustomerIndex;
@@ -121,15 +119,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     Route::get('/tiers-dashboard', TierDashboardIndex::class)->name('tiers-dashboard');
 
-    Route::get('/prospects', ProspectsIndex::class)->name('prospects');
-
     Route::get('/contact', ContactIndex::class)->name('contact');
     Route::get('/create/contact', CreateContact::class)->name('create-contact');
 
     Route::get('/tags/contacts', TagContactIndex::class)->name('tag-contact');
     Route::get('/create/tags-contact', CreateTagContactIndex::class)->name('create-tag-contact');
-
-    Route::get('/fournisseur', FournisseurIndex::class)->name('fournisseur');
 
     Route::get('/tags/customer', TagCustomerIndex::class)->name('tag-customer');
     Route::get('/create/tags/customer', CreateTagCustomerIndex::class)->name('create-tag-customer');

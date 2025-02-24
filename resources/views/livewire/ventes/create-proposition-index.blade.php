@@ -1,213 +1,143 @@
-<div class="container-xxl flex-grow-1">
-    <!-- En-tête -->
-    <h4 class="fw-bold py-3 mb-2">Nouvelle proposition de ventes</h4>
-    <div class="card mb-4 col-12">
-        <form wire:submit.prevent="save" class="modal-content" id="newCommercialProposalForm">
-            <!-- En-tête Modal -->
-            
-
-            <!-- Corps Modal -->
-            <div class="modal-body">
-                <div class="row">
-                    <!-- Section 1: Informations générales -->
-                    <div class="col-12">
-                        <div class="card mb-4">
-                            <div class="card-header p-3">
-                                <h6 class="card-title mb-0">1. Informations générales</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-md-2">
-                                        <label class="form-label">Réf.</label>
-                                        <input disabled type="text" class="form-control" placeholder="Brouillon" wire:model="reference" />
+{{-- Nouveau vente --}}
+<div class="container-flux p-6">
+    <div class="accordion" id="mainAccordionGroup">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingVente">
+                <button class="accordion-button bg-primary text-white" type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#collapseVente" 
+                        aria-expanded="true" 
+                        aria-controls="collapseVente">
+                    Nouveau vente
+                </button>
+            </h2>
+            <div id="collapseVente" 
+                 class="accordion-collapse collapse show" 
+                 aria-labelledby="headingVente" 
+                 data-bs-parent="#mainAccordionGroup">
+                <div class="accordion-body p-0">
+                    <form method="POST" action="javascript:void(0)">
+                        @csrf
+                        <div class="card shadow-sm">
+                            <div class="card-body mt-2">
+                                <!-- Section 1: Informations générales -->
+                                <div class="row mb-4">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="ref" class="form-label">Réf.</label>
+                                        <input type="text" class="form-control" id="ref" name="ref" value="Brouillon">
                                     </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Réf. client</label>
-                                        <input type="text" class="form-control" wire:model="client_reference" />
+                                    <div class="col-md-3 mb-3">
+                                        <label for="ref_client" class="form-label">Réf. client</label>
+                                        <input type="text" class="form-control" id="ref_client" name="ref_client">
                                     </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Client <span class="text-danger">*</span></label>
-                                        <select class="select2 form-select" wire:model="client_id" required>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="client" class="form-label">Client *</label>
+                                        <select class="form-select" id="client" name="client" required>
                                             <option value="">Sélectionner un tiers</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Date de proposition</label>
-                                        <input type="date" class="form-control" wire:model="proposal_date" />
+                                    <div class="col-md-2 mb-3">
+                                        <label for="date_proposition" class="form-label">Date de proposition</label>
+                                        <input type="date" class="form-control" id="date_proposition" name="date_proposition">
                                     </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Durée de validité</label>
+                                    <div class="col-md-1 mb-3">
+                                        <label for="validite" class="form-label">Validité</label>
                                         <div class="input-group">
-                                            <input type="number" class="form-control" wire:model="validity_duration" />
+                                            <input type="number" class="form-control" id="validite" name="validite">
                                             <span class="input-group-text">jours</span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Section 2: Conditions de ventes -->
-                    <div class="col-12">
-                        <div class="card mb-4">
-                            <div class="card-header p-3">
-                                <h6 class="card-title mb-0">2. Conditions de ventes</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label">Conditions de règlement</label>
-                                        <select class="form-select" wire:model="payment_terms">
+                                <!-- Section 2: Conditions de ventes -->
+                                <div class="row mb-4">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="conditions_reglement" class="form-label">Conditions de règlement</label>
+                                        <select class="form-select" id="conditions_reglement" name="conditions_reglement">
                                             <option value="">Sélectionner</option>
-                                            <option value="">A réception</option>
-                                            <option value="">30 jours</option>
-                                            <option value="">30 jours fin de mois</option>
-                                            <option value="">60 jours</option>
-                                            <option value="">60 jours fin de mois</option>
-                                            <option value="">A commande</option>
-                                            <option value="">A livraison</option>
-                                            <option value="">50/50</option>
-                                            <option value="">10 jours</option>
-                                            <option value="">10 jours fin de mois</option>
-                                            <option value="">14 jours</option>
-                                            <option value="">14 jours fin de mois</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label class="form-label">Mode de règlement</label>
-                                        <select class="form-select" wire:model="payment_method">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="mode_reglement" class="form-label">Mode de règlement</label>
+                                        <select class="form-select" id="mode_reglement" name="mode_reglement">
                                             <option value="">Sélectionner</option>
-                                            <option value="">Carte bancaire</option>
-                                            <option value="">Chèque</option>
-                                            <option value="">Espèce</option>
-                                            <option value="">Ordre de prélèvement</option>
-                                            <option value="">Virement bancaire</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label class="form-label">Origine</label>
-                                        <select class="form-select" wire:model="origin">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="origine" class="form-label">Origine</label>
+                                        <select class="form-select" id="origine" name="origine">
                                             <option value="">Sélectionner</option>
-                                            <option value="">Bouche à oreille</option>
-                                            <option value="">Campagne Publipostage</option>
-                                            <option value="">Campagne Téléphonique</option>
-                                            <option value="">Campagne d'emailing</option>
-                                            <option value="">Contact de vente</option>
-                                            <option value="">Contact en boutique</option>
-                                            <option value="">Employé</option>
-                                            <option value="">Incoming contact of a customer</option>
-                                            <option value="">Internet</option>
-                                            <option value="">Parrainage/Sponsoring</option>
-                                            <option value="">Partenaire</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label class="form-label">Devise</label>
-                                        <select class="form-select" wire:model="currency">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="devise" class="form-label">Devise</label>
+                                        <select class="form-select" id="devise" name="devise">
                                             <option value="">Sélectionner</option>
-                                            <option value="MGA">Ariary (MGA)</option>
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Section 3: Livraison -->
-                    <div class="col-12">
-                        <div class="card mb-4">
-                            <div class="card-header p-3">
-                                <h6 class="card-title mb-0">3. Livraison</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-md-4">
-                                        <label class="form-label">Méthode d'expédition</label>
-                                        <select class="form-select" wire:model="shipping_method">
+                                <!-- Section 3: Livraison -->
+                                <div class="row mb-4">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="methode_expedition" class="form-label">Méthode d'expédition</label>
+                                        <select class="form-select" id="methode_expedition" name="methode_expedition">
                                             <option value="">Sélectionner</option>
-                                            <option value="">Generic de transport service</option>
-                                            <option value="">in-Store Collection</option>
-                                            <option value="">UPS</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label">Délai de livraison (après commande)</label>
-                                        <select class="form-select" wire:model="delivery_time">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="delai_livraison" class="form-label">Délai de livraison</label>
+                                        <select class="form-select" id="delai_livraison" name="delai_livraison">
                                             <option value="">Sélectionner</option>
-                                            <option value="">Immédiate</option>
-                                            <option value="">1 jour</option>
-                                            <option value="">2 jours</option>
-                                            <option value="">3 jours</option>
-                                            <option value="">4 jours</option>
-                                            <option value="">5 jours</option>
-                                            <option value="">1 semaine</option>
-                                            <option value="">2 semaines</option>
-                                            <option value="">3 semaines</option>
-                                            <option value="">4 weeks</option>
-                                            <option value="">5 weeks</option>
-                                            <option value="">6 weeks</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label">Date de livraison</label>
-                                        <input type="date" class="form-control" wire:model="delivery_date" />
+                                    <div class="col-md-3 mb-3">
+                                        <label for="date_livraison" class="form-label">Date de livraison</label>
+                                        <input type="date" class="form-control" id="date_livraison" name="date_livraison">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Section 4: Informations complémentaires -->
-                    <div class="col-12">
-                        <div class="card mb-4">
-                            <div class="card-header p-3">
-                                <h6 class="card-title mb-0">4. Informations complémentaires</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-md-2">
-                                        <div class="d-flex justify-content-between ">
-                                            <label class="form-label">Projet</label>
-                                                <button type="button" class="btn btn-link p-0" data-bs-toggle="tooltip" title="Nouveau projet">
-                                                    <a href="{{ route('new-opportunity') }}"><i class="fas fa-plus-circle"></i></a>
-                                                </button>
-                                            </div>
-                                        <select class="form-select" wire:model="project_id">
+                                <!-- Section 4: Informations complémentaires -->
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="projet" class="form-label">Projet</label>
+                                        <select class="form-select" id="projet" name="projet">
                                             <option value="">Sélectionner</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Modèle de document</label>
-                                        <select class="form-select" wire:model="document_template">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="modele_document" class="form-label">Modèle de document</label>
+                                        <select class="form-select" id="modele_document" name="modele_document">
                                             <option value="cyan">cyan</option>
                                         </select>
                                     </div>
-                                    <div class="col-12">
-                                        <label class="form-label">Note (publique)</label>
-                                        <textarea class="form-control" wire:model="public_note" rows="3"></textarea>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="note_publique" class="form-label">Note (publique)</label>
+                                        <textarea class="form-control" id="note_publique" name="note_publique" rows="1"></textarea>
                                     </div>
-                                    <div class="col-12">
-                                        <label class="form-label">Note (privée)</label>
-                                        <textarea class="form-control" wire:model="private_note" rows="3"></textarea>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="note_privee" class="form-label">Note (privée)</label>
+                                        <textarea class="form-control" id="note_privee" name="note_privee" rows="1"></textarea>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="card-footer text-end">
+                                <button type="button" class="btn btn-secondary" onclick="window.history.back()">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Créer brouillon</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
+        </div>
+   
 
-            <!-- Pied Modal -->
-            <div class="modal-footer py-4">
-                <button type="button" class="btn btn-label-secondary">
-                    <i class="ti ti-x ti-xs me-1"></i>
-                    Annuler
-                </button>
-                <button type="submit" class="btn btn-primary ms-2">
-                    <i class="ti ti-device-floppy ti-xs me-1"></i>
-                    Créer brouillon
-                </button>
-            </div>
-        </form>
-    </div>
+
+{{-- Nouveau commande --}}
+
+@include('livewire.ventes.commande-index')
+@include('livewire.ventes.create-facture-index')
+
+</div>
 </div>

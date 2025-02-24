@@ -1,9 +1,21 @@
+
 <div>
+    {{-- @php
+    if (!empty($data)) {
+        $firstContact = reset($data);
+        dump([
+            'array_options_complete' => print_r($firstContact->array_options, true),
+            'array_options_direct' => $firstContact->array_options
+        ]);
+    }
+@endphp --}}
     <div class="card-datatable table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
-
+                    <th>
+                        <input type="checkbox" class="form-check-input" id="selectAll">
+                    </th>
                     <th>Code</th>
                     <th>Nom</th>
                     <th>Prénom</th>
@@ -19,7 +31,13 @@
             @foreach($data as $contact)
             <tbody>
                 <tr>
-                    <td>---</td>
+
+                    <td>
+                        <input type="checkbox" class="form-check-input row-checkbox">
+                    </td>
+                    <td>{{ $contact->code_contact ?? 'N/A' }}</td>
+
+                    {{-- <td>{{ $contact->code_contact }}</td> --}}
                     <td>{{ $contact->firstname }} {{ $contact->lastname }}</td>
                     <td>{{ $contact->lastname}}</td>
                     <td>{{ $contact->phone_pro}}</td>
@@ -52,3 +70,4 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/CheckboxControl.js') }}"></script>

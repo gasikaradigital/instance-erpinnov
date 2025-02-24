@@ -1,22 +1,30 @@
+<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+
 <div>
     <div class="card-datatable table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th>
+                        <input type="checkbox" class="form-check-input" id="selectAll">
+                    </th>
                     <th>Code</th>
                     <th>Nom</th>
                     <th>Type</th>
                     <th>Nature tiers</th>
                     <th>Email</th>
+                    <th>Commerciaux</th>
                     <th>Téléphone</th>
                     <th>Statut</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             @if(count($data ?? []) > 0)
             @foreach($data as $tier)
             <tbody>
                 <tr>
+                    <td>
+                        <input type="checkbox" class="form-check-input row-checkbox">
+                    </td>
                     <td>{{ $tier->code_client }}</td>
                     <td>{{ $tier->name }}</td>
                     <td>
@@ -52,23 +60,19 @@
                     <td>
                     @switch($tier->client)
                         @case('2')
-                            <span class="badge bg-label-primary">Prospect</span>
+                            <span class="badge bg-info">P</span>
                         @break
-
-                        @case('3')
-                            <span class="badge bg-label-primary">Prospect/Client</span>
-                        @break
-
                         @case('1')
-                            <span class="badge bg-label-primary">Client</span>
+                            <span class="badge bg-success">C</span>
                         @break
 
                         @case('0')
-                            <span class="badge bg-label-primary">Ni client, ni prospect</span>
+                            <span class="badge bg-danger">NCP</span>
                         @break
                     @endswitch
                     </td>
                     <td>{{ $tier->email }}</td>
+                    <td>---</td>
                     <td>{{ $tier->phone}}</td>
                     <td>
                     @if($tier->status == "1")
@@ -76,21 +80,6 @@
                     @else
                         <span class="Bagde bg-label-success"> Inactif</span>
                     @endif
-                    </td>
-                    <td>
-                        <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="ti ti-dots-vertical"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="javascript:void(0);">
-                                    <i class="ti ti-pencil me-1"></i> Modifier
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0);">
-                                    <i class="ti ti-trash me-1"></i> Supprimer
-                                </a>
-                            </div>
-                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -105,3 +94,7 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/CheckboxControl.js') }}"></script>
+
+
+

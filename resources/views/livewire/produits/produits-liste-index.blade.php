@@ -1,7 +1,7 @@
 
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
-<div class="container mt-3">
+<div class="container-flux p-6 mt-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
             <i class="fas fa-box text-success me-2"></i>
