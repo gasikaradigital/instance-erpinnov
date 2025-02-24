@@ -1,27 +1,40 @@
 <div class="container-fluid dashboard-container p-4">
-    <!-- Top Stats Cards -->
+<!-- Top Stats Cards -->
     <div class="row g-4 mb-4">
         <!-- Main Analytics Card -->
         <div class="col-xl-3 col-md-6">
-            <div class="card analytics-card border-0 rounded-4 h-100 bg-gradient-primary text-white">
+            <div class="card border-0 shadow-sm h-100 bg-primary bg-gradient text-white">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between">
-                        <h5 class="fw-semibold mb-3">Analytics</h5>
-                        <div class="chart-controls">•••</div>
+                        <h5 class="fw-semibold mb-3"><i class="bi bi-bar-chart-fill me-2"></i>Analytics</h5>
+                        <div class="dropdown">
+                            <button class="btn btn-sm text-white p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Exporter</a></li>
+                                <li><a class="dropdown-item" href="#">Paramètres</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="stats-value mb-3">
-                        <h3 class="mb-1">28.5%</h3>
+                        <div class="d-flex align-items-baseline">
+                            <h3 class="mb-1">28.5%</h3>
+                            <span class="ms-2 badge bg-success rounded-pill">
+                                <i class="bi bi-arrow-up-short"></i>3.2%
+                            </span>
+                        </div>
                         <p class="text-white-50 mb-0">Taux de conversion</p>
                     </div>
                     <div class="row stats-details g-3">
                         <div class="col-6">
-                            <div class="stat-item">
+                            <div class="stat-item p-2 rounded bg-white bg-opacity-10">
                                 <h5 class="mb-0">199</h5>
                                 <small>En retard</small>
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="stat-item">
+                            <div class="stat-item p-2 rounded bg-white bg-opacity-10">
                                 <h5 class="mb-0">59.58%</h5>
                                 <small>Progression</small>
                             </div>
@@ -33,15 +46,19 @@
 
         <!-- Sales Overview -->
         <div class="col-xl-3 col-md-6">
-            <div class="card border-0 rounded-4 h-100">
+            <div class="card border-0 shadow-sm h-100">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="fw-semibold mb-0">Ventes</h5>
-                        <span class="badge bg-success-subtle text-success px-3 py-2">+18.2%</span>
+                        <h5 class="fw-semibold mb-0"><i class="bi bi-currency-euro me-2 text-primary"></i>Ventes</h5>
+                        <span class="badge bg-success text-white px-3 py-2 rounded-pill">+18.2%</span>
                     </div>
                     <div class="sales-value mb-4">
-                        <h3 class="mb-1">€42.5k</h3>
+                        <h3 class="mb-1 fw-bold">€42.5k</h3>
                         <p class="text-muted mb-0">Revenu mensuel</p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2 small">
+                        <span class="text-muted">Objectif: €56.8k</span>
+                        <span class="fw-semibold">75%</span>
                     </div>
                     <div class="progress rounded-pill" style="height: 8px;">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 75%"></div>
@@ -53,29 +70,42 @@
 
         <!-- Projects Overview -->
         <div class="col-xl-3 col-md-6">
-            <div class="card border-0 rounded-4 h-100">
+            <div class="card border-0 shadow-sm h-100">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between mb-3">
-                        <h5 class="fw-semibold mb-0">Projets</h5>
+                        <h5 class="fw-semibold mb-0"><i class="bi bi-kanban me-2 text-warning"></i>Projets</h5>
                         <div class="dropdown">
-                            <button class="btn btn-icon"><i class="ti ti-dots-vertical"></i></button>
+                            <button class="btn btn-sm btn-light rounded-circle p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Voir tous</a></li>
+                                <li><a class="dropdown-item" href="#">Filtrer</a></li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="project-stats">
-                        <div class="circular-progress mb-3">
-                            <div class="progress-value">85%</div>
+                    <div class="project-stats text-center mb-3">
+                        <!-- Utilisation du composant de progression circulaire de Bootstrap -->
+                        <div class="position-relative d-inline-block mx-auto mb-3">
+                            <div class="position-relative" style="width: 120px; height: 120px;">
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <span class="fs-2 fw-bold">85%</span>
+                                </div>
+                                <!-- Cet élément sera stylé avec des classes Bootstrap -->
+                                <div class="rounded-circle border border-3 border-primary" style="width: 120px; height: 120px;"></div>
+                            </div>
                         </div>
                         <div class="row g-3">
                             <div class="col-6">
-                                <div class="stat-item">
-                                    <small class="text-muted d-block">Ouverts</small>
+                                <div class="bg-light rounded p-3 text-center">
                                     <span class="fw-semibold">30</span>
+                                    <small class="text-muted d-block">Ouverts</small>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="stat-item">
-                                    <small class="text-muted d-block">Tâches</small>
+                                <div class="bg-light rounded p-3 text-center">
                                     <span class="fw-semibold">236</span>
+                                    <small class="text-muted d-block">Tâches</small>
                                 </div>
                             </div>
                         </div>
@@ -86,26 +116,38 @@
 
         <!-- Support Stats -->
         <div class="col-xl-3 col-md-6">
-            <div class="card border-0 rounded-4 h-100">
+            <div class="card border-0 shadow-sm h-100">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between mb-3">
-                        <h5 class="fw-semibold mb-0">Support</h5>
-                        <span class="badge bg-info-subtle text-info px-3 py-2">7 jours</span>
+                        <h5 class="fw-semibold mb-0"><i class="bi bi-headset me-2 text-info"></i>Support</h5>
+                        <span class="badge bg-info text-white px-3 py-2 rounded-pill">7 jours</span>
                     </div>
                     <div class="support-stats">
                         <div class="row g-3">
                             <div class="col-6">
-                                <div class="stat-item">
-                                    <h3 class="mb-1">164</h3>
+                                <div class="p-3 rounded bg-light text-center">
+                                    <h3 class="mb-1 fw-bold">164</h3>
                                     <small class="text-muted">Total Tickets</small>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="stat-item">
-                                    <h3 class="mb-1">28</h3>
+                                <div class="p-3 rounded bg-light text-center">
+                                    <h3 class="mb-1 fw-bold">28</h3>
                                     <small class="text-muted">En attente</small>
                                 </div>
                             </div>
+                        </div>
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-between mb-2 small">
+                                <span class="text-muted">Taux de résolution</span>
+                                <span class="fw-semibold">85%</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="text-end mt-3">
+                            <a href="#" class="btn btn-sm btn-outline-info rounded-pill">Voir détails</a>
                         </div>
                     </div>
                 </div>
@@ -117,602 +159,514 @@
     <div class="row g-4 mb-4">
         <!-- Calendar Card -->
         <div class="col-xl-8">
-            <div class="card border-0 rounded-4">
-                <div class="card-body p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h5 class="fw-semibold mb-0">Calendrier</h5>
-                        <div class="calendar-controls">
-                            <button class="btn btn-icon btn-light me-2"><i class="ti ti-chevron-left"></i></button>
-                            <button class="btn btn-icon btn-light"><i class="ti ti-chevron-right"></i></button>
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white p-3 border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="fw-semibold mb-0">
+                            <i class="bi bi-calendar3 me-2 text-primary"></i>
+                            Calendrier - Février 2025
+                        </h5>
+                        <div class="d-flex">
+                            <button class="btn btn-sm btn-outline-secondary me-2" type="button">
+                                <i class="bi bi-calendar-week me-1"></i> Mois
+                            </button>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-light" type="button">
+                                    <i class="bi bi-chevron-left"></i>
+                                </button>
+                                <button class="btn btn-sm btn-primary" type="button">
+                                    Aujourd'hui
+                                </button>
+                                <button class="btn btn-sm btn-light" type="button">
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="calendar-widget">
-                        <table class="table table-calendar">
-                            <thead>
-                                <tr>
-                                    <th>Lun</th>
-                                    <th>Mar</th>
-                                    <th>Mer</th>
-                                    <th>Jeu</th>
-                                    <th>Ven</th>
-                                    <th>Sam</th>
-                                    <th>Dim</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-muted">29</td>
-                                    <td class="text-muted">30</td>
-                                    <td class="text-muted">31</td>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>6</td>
-                                    <td class="has-event">7</td>
-                                    <td>8</td>
-                                    <td class="has-event">9</td>
-                                    <td>10</td>
-                                    <td>11</td>
-                                </tr>
-                                <!-- Ajoutez les autres semaines ici -->
-                            </tbody>
-                        </table>
-                    </div>
+                </div>
+                <div class="card-body p-3">
+                    <table class="table table-bordered text-center mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="text-muted small py-2">Lun</th>
+                                <th class="text-muted small py-2">Mar</th>
+                                <th class="text-muted small py-2">Mer</th>
+                                <th class="text-muted small py-2">Jeu</th>
+                                <th class="text-muted small py-2">Ven</th>
+                                <th class="text-muted small py-2">Sam</th>
+                                <th class="text-muted small py-2">Dim</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-muted small py-2">29</td>
+                                <td class="text-muted small py-2">30</td>
+                                <td class="text-muted small py-2">31</td>
+                                <td class="small py-2 text-nowrap">1</td>
+                                <td class="small py-2 text-nowrap">2</td>
+                                <td class="small py-2 text-nowrap bg-light">3</td>
+                                <td class="small py-2 text-nowrap bg-light">4</td>
+                            </tr>
+                            <tr>
+                                <td class="small py-2 text-nowrap">5</td>
+                                <td class="small py-2 text-nowrap">6</td>
+                                <td class="small py-2 text-nowrap position-relative">
+                                    7
+                                    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-1">
+                                        <span class="badge bg-primary rounded-circle p-1" style="width: 8px; height: 8px;"></span>
+                                    </div>
+                                </td>
+                                <td class="small py-2 text-nowrap">8</td>
+                                <td class="small py-2 text-nowrap position-relative fw-bold bg-primary bg-opacity-10">
+                                    9
+                                    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-1">
+                                        <span class="badge bg-primary rounded-circle p-1" style="width: 8px; height: 8px;"></span>
+                                    </div>
+                                </td>
+                                <td class="small py-2 text-nowrap bg-light">10</td>
+                                <td class="small py-2 text-nowrap bg-light">11</td>
+                            </tr>
+                            <tr>
+                                <td class="small py-2 text-nowrap">12</td>
+                                <td class="small py-2 text-nowrap">13</td>
+                                <td class="small py-2 text-nowrap">14</td>
+                                <td class="small py-2 text-nowrap">15</td>
+                                <td class="small py-2 text-nowrap position-relative">
+                                    16
+                                    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-1">
+                                        <span class="badge bg-success rounded-circle p-1" style="width: 8px; height: 8px;"></span>
+                                    </div>
+                                </td>
+                                <td class="small py-2 text-nowrap bg-light">17</td>
+                                <td class="small py-2 text-nowrap bg-light">18</td>
+                            </tr>
+                            <tr>
+                                <td class="small py-2 text-nowrap">19</td>
+                                <td class="small py-2 text-nowrap position-relative">
+                                    20
+                                    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-1">
+                                        <span class="badge bg-danger rounded-circle p-1" style="width: 8px; height: 8px;"></span>
+                                    </div>
+                                </td>
+                                <td class="small py-2 text-nowrap">21</td>
+                                <td class="small py-2 text-nowrap">22</td>
+                                <td class="small py-2 text-nowrap">23</td>
+                                <td class="small py-2 text-nowrap bg-light">24</td>
+                                <td class="small py-2 text-nowrap bg-light">25</td>
+                            </tr>
+                            <tr>
+                                <td class="small py-2 text-nowrap">26</td>
+                                <td class="small py-2 text-nowrap">27</td>
+                                <td class="small py-2 text-nowrap">28</td>
+                                <td class="small py-2 text-nowrap">29</td>
+                                <td class="text-muted small py-2">1</td>
+                                <td class="text-muted small py-2 bg-light">2</td>
+                                <td class="text-muted small py-2 bg-light">3</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
         <!-- Events List -->
         <div class="col-xl-4">
-            <div class="card border-0 rounded-4">
-                <div class="card-body p-4">
-                    <h5 class="fw-semibold mb-4">Événements à venir</h5>
-                    <div class="events-list">
-                        <div class="event-item mb-3">
-                            <div class="d-flex align-items-center">
-                                <div class="event-dot bg-primary me-3"></div>
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white p-3 border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="fw-semibold mb-0">
+                            <i class="bi bi-calendar-event me-2 text-primary"></i>
+                            Événements à venir
+                        </h5>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-plus-circle me-2"></i>Ajouter événement</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-calendar-check me-2"></i>Tous les événements</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item border-0 px-3 py-3">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <span class="badge bg-primary rounded-pill px-2">9 Fév</span>
+                                        <div class="vr my-2" style="height: 30px;"></div>
+                                    </div>
+                                </div>
                                 <div>
-                                    <h6 class="mb-1">Réunion client</h6>
-                                    <small class="text-muted">09:00 - 10:30</small>
+                                    <div class="d-flex align-items-center mb-1">
+                                        <h6 class="mb-0">Réunion client</h6>
+                                        <span class="badge bg-light text-primary ms-2">Visio</span>
+                                    </div>
+                                    <p class="text-muted small mb-1">
+                                        <i class="bi bi-clock me-1"></i> 09:00 - 10:30
+                                    </p>
+                                    <p class="text-muted small mb-0">
+                                        <i class="bi bi-people me-1"></i> Équipe commerciale, Acme Corp.
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="event-item mb-3">
-                            <div class="d-flex align-items-center">
-                                <div class="event-dot bg-success me-3"></div>
+
+                        <div class="list-group-item border-0 px-3 py-3">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <span class="badge bg-success rounded-pill px-2">16 Fév</span>
+                                        <div class="vr my-2" style="height: 30px;"></div>
+                                    </div>
+                                </div>
                                 <div>
-                                    <h6 class="mb-1">Point d'équipe</h6>
-                                    <small class="text-muted">14:00 - 15:00</small>
+                                    <div class="d-flex align-items-center mb-1">
+                                        <h6 class="mb-0">Point d'équipe</h6>
+                                        <span class="badge bg-light text-success ms-2">Interne</span>
+                                    </div>
+                                    <p class="text-muted small mb-1">
+                                        <i class="bi bi-clock me-1"></i> 14:00 - 15:00
+                                    </p>
+                                    <p class="text-muted small mb-0">
+                                        <i class="bi bi-geo-alt me-1"></i> Salle de réunion 2
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-group-item border-0 px-3 py-3">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <span class="badge bg-danger rounded-pill px-2">20 Fév</span>
+                                        <div class="vr my-2" style="height: 30px;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex align-items-center mb-1">
+                                        <h6 class="mb-0">Livraison projet X</h6>
+                                        <span class="badge bg-light text-danger ms-2">Deadline</span>
+                                    </div>
+                                    <p class="text-muted small mb-1">
+                                        <i class="bi bi-clock me-1"></i> Toute la journée
+                                    </p>
+                                    <p class="text-muted small mb-0">
+                                        <i class="bi bi-file-earmark-text me-1"></i> Documents à fournir
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="card-footer bg-white text-center py-3 border-0">
+                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                        <i class="bi bi-plus-circle me-1"></i> Nouvel événement
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Bottom Stats Section -->
-    <div class="row g-4">
+    <!-- Bottom Stats Section avec widgets déplaçables -->
+    <div class="row g-4" id="draggable-widgets">
         <!-- Factures -->
-        <div class="col-xl-4 col-md-6">
-            <div class="card border-0 rounded-4">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="col-xl-4 col-md-6 draggable-item">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white py-3 px-3 border-0">
+                    <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
-                            <div class="stats-icon bg-info me-3">
-                                <i class="ti ti-file-invoice"></i>
+                            <div class="bg-info text-white rounded p-2 me-3">
+                                <i class="bi bi-file-earmark-text fs-4"></i>
                             </div>
                             <div>
                                 <h5 class="fw-semibold mb-0">Factures</h5>
                                 <small class="text-muted">Aperçu mensuel</small>
                             </div>
                         </div>
-                        <div class="dropdown">
-                            <button class="btn btn-icon"><i class="ti ti-dots-vertical"></i></button>
+                        <div class="d-flex align-items-center">
+                            <span class="drag-handle me-2 text-muted cursor-move">
+                                <i class="bi bi-grip-vertical"></i>
+                            </span>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-light rounded-circle p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-eye me-2"></i>Voir toutes</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-plus-circle me-2"></i>Nouvelle facture</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Paramètres</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="card-body p-3">
                     <div class="invoice-stats">
                         <div class="row g-3">
                             <div class="col-6">
-                                <div class="stat-item">
-                                    <h3 class="mb-1">5</h3>
+                                <div class="p-3 bg-light rounded text-center">
+                                    <h3 class="mb-1 fw-bold">5</h3>
                                     <small class="text-muted">En attente</small>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="stat-item">
-                                    <h3 class="mb-1">€28,450</h3>
+                                <div class="p-3 bg-light rounded text-center">
+                                    <h3 class="mb-1 fw-bold text-nowrap">€28,450</h3>
                                     <small class="text-muted">Total</small>
                                 </div>
                             </div>
                         </div>
-                        <div class="progress rounded-pill mt-4" style="height: 8px;">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 20%"></div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="d-flex justify-content-between mb-2 small">
+                            <span class="text-muted">Taux de paiement</span>
+                            <span class="text-dark fw-semibold">20%</span>
+                        </div>
+                        <div class="progress rounded-pill" style="height: 8px;">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
+                </div>
+                <div class="card-footer bg-white border-0 p-3">
+                    <a href="#" class="btn btn-sm btn-outline-info w-100 rounded-pill">
+                        <i class="bi bi-list-ul me-1"></i> Voir toutes les factures
+                    </a>
                 </div>
             </div>
         </div>
 
         <!-- Comptes Bancaires -->
-        <div class="col-xl-4 col-md-6">
-            <div class="card border-0 rounded-4">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="col-xl-4 col-md-6 draggable-item">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white py-3 px-3 border-0">
+                    <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
-                            <div class="stats-icon bg-secondary me-3">
-                                <i class="ti ti-bank"></i>
+                            <div class="bg-secondary text-white rounded p-2 me-3">
+                                <i class="bi bi-bank fs-4"></i>
                             </div>
                             <div>
                                 <h5 class="fw-semibold mb-0">Comptes</h5>
                                 <small class="text-muted">État bancaire</small>
                             </div>
                         </div>
+                        <div class="d-flex align-items-center">
+                            <span class="drag-handle me-2 text-muted cursor-move">
+                                <i class="bi bi-grip-vertical"></i>
+                            </span>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-light rounded-circle p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-repeat me-2"></i>Rapprochement</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-upload me-2"></i>Importer relevé</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bank-stats">
-                        <div class="row g-3 mb-3">
+                </div>
+                <div class="card-body p-3">
+                    <div class="bank-stats mb-3">
+                        <div class="row g-3">
                             <div class="col-6">
-                                <div class="stat-item">
-                                    <small class="text-muted d-block">À rapprocher</small>
-                                    <span class="fw-semibold">55</span>
+                                <div class="p-3 bg-light rounded text-center">
+                                    <h4 class="mb-1 fw-bold">55</h4>
+                                    <small class="text-muted">À rapprocher</small>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="stat-item">
-                                    <small class="text-muted d-block">Chèques</small>
-                                    <span class="fw-semibold">0</span>
+                                <div class="p-3 bg-light rounded text-center">
+                                    <h4 class="mb-1 fw-bold">0</h4>
+                                    <small class="text-muted">Chèques</small>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div class="d-flex justify-content-between mb-2 small">
+                            <span class="text-muted">Solde actuel</span>
+                            <span class="text-dark fw-semibold">€42,650.75</span>
                         </div>
                         <div class="progress rounded-pill" style="height: 8px;">
-                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 75%"></div>
+                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
+                </div>
+                <div class="card-footer bg-white border-0 p-3">
+                    <a href="#" class="btn btn-sm btn-outline-secondary w-100 rounded-pill">
+                        <i class="bi bi-cash-coin me-1"></i> Rapprochement bancaire
+                    </a>
                 </div>
             </div>
         </div>
 
         <!-- Contrats -->
-        <div class="col-xl-4 col-md-12">
-            <div class="card border-0 rounded-4">
-                <div class="card-body p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="col-xl-4 col-md-6 draggable-item">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white py-3 px-3 border-0">
+                    <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
-                            <div class="stats-icon bg-dark me-3">
-                                <i class="ti ti-briefcase"></i>
+                            <div class="bg-dark text-white rounded p-2 me-3">
+                                <i class="bi bi-briefcase fs-4"></i>
                             </div>
                             <div>
                                 <h5 class="fw-semibold mb-0">Contrats</h5>
                                 <small class="text-muted">Services actifs</small>
                             </div>
                         </div>
-                        <button class="btn btn-dark btn-sm rounded-3">Voir détails</button>
+                        <div class="d-flex align-items-center">
+                            <span class="drag-handle me-2 text-muted cursor-move">
+                                <i class="bi bi-grip-vertical"></i>
+                            </span>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-light rounded-circle p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-plus-circle me-2"></i>Nouveau contrat</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-search me-2"></i>Rechercher</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="card-body p-3">
                     <div class="contract-stats">
                         <div class="row g-3">
                             <div class="col-6">
-                                <div class="stat-item">
-                                    <small class="text-muted d-block">Actifs</small>
-                                    <span class="fw-semibold">3</span>
+                                <div class="p-3 bg-light rounded text-center">
+                                    <h4 class="mb-1 fw-bold">3</h4>
+                                    <small class="text-muted">Actifs</small>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="stat-item">
-                                    <small class="text-muted d-block">À activer</small>
-                                    <span class="fw-semibold">1</span>
+                                <div class="p-3 bg-light rounded text-center">
+                                    <h4 class="mb-1 fw-bold">1</h4>
+                                    <small class="text-muted">À activer</small>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="d-flex align-items-center p-3 bg-light rounded mb-2">
+                            <div class="bg-success bg-opacity-25 text-success rounded p-1 me-3 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1 fw-semibold">Maintenance mensuelle</h6>
+                                <small class="text-muted">Renouvellement: 15/03/2025</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-0 p-3">
+                    <a href="#" class="btn btn-sm btn-dark w-100 rounded-pill">
+                        <i class="bi bi-eye me-1"></i> Voir tous les contrats
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau des derniers produits/services -->
+        <div class="col-12 draggable-item">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white py-3 px-3 border-0">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-primary text-white rounded p-2 me-3">
+                                <i class="bi bi-box-seam fs-4"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-semibold mb-0">Les 3 derniers produits/services modifiés</h5>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="drag-handle me-2 text-muted cursor-move">
+                                <i class="bi bi-grip-vertical"></i>
+                            </span>
+                            <button class="btn btn-sm btn-light me-1" title="Actualiser">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                            <button class="btn btn-sm btn-light" title="Fermer">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="py-2 px-3 border-0">Référence</th>
+                                    <th class="py-2 px-3 border-0">Libellé</th>
+                                    <th class="py-2 px-3 border-0 text-end">Prix</th>
+                                    <th class="py-2 px-3 border-0">Type</th>
+                                    <th class="py-2 px-3 border-0">Date</th>
+                                    <th class="py-2 px-3 border-0 text-center" colspan="2">Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-2 px-3">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-box text-warning me-2"></i>
+                                            <span>CHR_DV</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-3">CHARGE DIVERS</td>
+                                    <td class="py-2 px-3 text-end">0,00</td>
+                                    <td class="py-2 px-3">HT</td>
+                                    <td class="py-2 px-3">20/02/2025</td>
+                                    <td class="py-2 px-3 text-center"><i class="bi bi-circle"></i></td>
+                                    <td class="py-2 px-3 text-center"><i class="bi bi-circle-fill text-success"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-3">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-box text-warning me-2"></i>
+                                            <span>MAT-CUISINE</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-3">matériel et outil de ...</td>
+                                    <td class="py-2 px-3 text-end">0,00</td>
+                                    <td class="py-2 px-3">HT</td>
+                                    <td class="py-2 px-3">10/02/2025</td>
+                                    <td class="py-2 px-3 text-center"><i class="bi bi-circle-fill text-success"></i></td>
+                                    <td class="py-2 px-3 text-center"><i class="bi bi-circle-fill text-success"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-3">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-box text-warning me-2"></i>
+                                            <span>ARD</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-3">ARDOISE NOIRE</td>
+                                    <td class="py-2 px-3 text-end">0,00</td>
+                                    <td class="py-2 px-3">HT</td>
+                                    <td class="py-2 px-3">06/02/2025</td>
+                                    <td class="py-2 px-3 text-center"><i class="bi bi-circle"></i></td>
+                                    <td class="py-2 px-3 text-center"><i class="bi bi-circle-fill text-success"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-<style>
-        /* Variables */
-        :root {
-            --primary-color: #7C5CFF;
-            --success-color: #2ECC71;
-            --info-color: #00CEC9;
-            --warning-color: #FFA502;
-            --danger-color: #FF4757;
-        }
-
-        /* General Styles */
-        .dashboard-container {
-            background-color: #F8F9FA;
-        }
-
-        .card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            background: white;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
-        }
-
-        /* Gradient Backgrounds */
-        .bg-gradient-primary {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #4731B6 100%);
-        }
-
-        /* Stats Icons */
-        .stats-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.25rem;
-        }
-
-        /* Progress Circular */
-        .circular-progress {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: conic-gradient(var(--primary-color) 85%, #E9ECEF 0);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .circular-progress::before {
-            content: '';
-            position: absolute;
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: white;
-        }
-
-        .progress-value {
-            position: relative;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        /* Calendar Styles */
-        .table-calendar {
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        .table-calendar th {
-            text-align: center;
-            padding: 1rem;
-            font-weight: 600;
-            color: #666;
-        }
-
-        .table-calendar td {
-            text-align: center;
-            padding: 1rem;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .table-calendar td:hover {
-            background-color: #f8f9fa;
-            border-radius: 50%;
-        }
-
-        .table-calendar td.has-event {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .table-calendar td.has-event::after {
-            content: '';
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-        }
-
-        /* Event List Styles */
-        .event-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .event-item {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            transition: background-color 0.2s ease;
-        }
-
-        .event-item:hover {
-            background-color: #f8f9fa;
-        }
-
-        /* Button Styles */
-        .btn-icon {
-            width: 36px;
-            height: 36px;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: none;
-            background-color: #f8f9fa;
-            color: #666;
-            transition: all 0.2s ease;
-        }
-
-        .btn-icon:hover {
-            background-color: #e9ecef;
-            color: #333;
-        }
-
-        /* Badges */
-        .badge {
-            font-weight: 500;
-            border-radius: 2rem;
-        }
-
-        .bg-success-subtle {
-            background-color: rgba(46, 204, 113, 0.1);
-        }
-
-        .bg-info-subtle {
-            background-color: rgba(0, 206, 201, 0.1);
-        }
-
-        /* Tooltip Styles */
-        .event-tooltip {
-            position: absolute;
-            background-color: #333;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            z-index: 1000;
-            pointer-events: none;
-            opacity: 0;
-            animation: fadeIn 0.2s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(5px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Progress Bar Animations */
-        .progress-bar {
-            transition: width 0.6s ease;
-        }
-
-        /* Card Loading State */
-        .card.loading {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card.loading::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(90deg,
-                rgba(255,255,255,0) 0%,
-                rgba(255,255,255,0.2) 50%,
-                rgba(255,255,255,0) 100%);
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            from {
-                transform: translateX(-100%);
-            }
-            to {
-                transform: translateX(100%);
-            }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .calendar-widget {
-                overflow-x: auto;
-            }
-
-            .table-calendar {
-                min-width: 600px;
-            }
-        }
-</style>
-
 </div>
 
 
 @push('scripts')
-<script>
-    // Initialisation du calendrier
-document.addEventListener('DOMContentLoaded', function() {
-    initializeCalendar();
-    initializeCharts();
-    initializeEventListeners();
-});
-
-function initializeCalendar() {
-    const today = new Date();
-    const currentMonth = today.getMonth();
-    const currentYear = today.getFullYear();
-
-    // Mise à jour du titre du calendrier
-    updateCalendarHeader(currentMonth, currentYear);
-
-    // Génération des dates
-    generateCalendarDates(currentMonth, currentYear);
-
-    // Ajout des événements
-    markEvents();
-}
-
-function updateCalendarHeader(month, year) {
-    const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-                   'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-    document.querySelector('.calendar-title').textContent = `${months[month]} ${year}`;
-}
-
-function generateCalendarDates(month, year) {
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const calendarBody = document.querySelector('.table-calendar tbody');
-
-    let date = 1;
-    let html = '';
-
-    for (let i = 0; i < 6; i++) {
-        let row = '<tr>';
-
-        for (let j = 0; j < 7; j++) {
-            if (i === 0 && j < firstDay.getDay()) {
-                // Cases vides avant le premier jour
-                row += '<td class="text-muted"></td>';
-            } else if (date > lastDay.getDate()) {
-                // Cases vides après le dernier jour
-                row += '<td class="text-muted"></td>';
-            } else {
-                // Jours du mois
-                row += `<td data-date="${date}">${date}</td>`;
-                date++;
-            }
-        }
-
-        row += '</tr>';
-        html += row;
-
-        if (date > lastDay.getDate()) {
-            break;
-        }
-    }
-
-    calendarBody.innerHTML = html;
-}
-
-function markEvents() {
-    // Exemple d'événements (à remplacer par vos données réelles)
-    const events = [
-        { date: 7, title: 'Réunion client', time: '09:00 - 10:30' },
-        { date: 9, title: 'Point d\'équipe', time: '14:00 - 15:00' }
-    ];
-
-    events.forEach(event => {
-        const cell = document.querySelector(`td[data-date="${event.date}"]`);
-        if (cell) {
-            cell.classList.add('has-event');
-            cell.setAttribute('data-event', event.title);
-        }
-    });
-}
-
-function initializeCharts() {
-    // Mise à jour des progress bars animées
-    const progressBars = document.querySelectorAll('.progress-bar');
-    progressBars.forEach(bar => {
-        const width = bar.style.width;
-        bar.style.width = '0';
-        setTimeout(() => {
-            bar.style.width = width;
-        }, 100);
-    });
-}
-
-function initializeEventListeners() {
-    // Navigation du calendrier
-    document.querySelectorAll('.calendar-controls button').forEach(button => {
-        button.addEventListener('click', function() {
-            const direction = this.querySelector('.ti-chevron-left') ? -1 : 1;
-            navigateMonth(direction);
-        });
-    });
-
-    // Events hover effect
-    document.querySelectorAll('.table-calendar td').forEach(cell => {
-        cell.addEventListener('mouseenter', function() {
-            const event = this.getAttribute('data-event');
-            if (event) {
-                showEventTooltip(event, this);
-            }
-        });
-
-        cell.addEventListener('mouseleave', function() {
-            hideEventTooltip();
-        });
-    });
-}
-
-function navigateMonth(direction) {
-    const title = document.querySelector('.calendar-title');
-    const [month, year] = title.textContent.split(' ');
-    const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-                   'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-
-    let currentMonthIndex = months.indexOf(month);
-    let currentYear = parseInt(year);
-
-    currentMonthIndex += direction;
-
-    if (currentMonthIndex > 11) {
-        currentMonthIndex = 0;
-        currentYear++;
-    } else if (currentMonthIndex < 0) {
-        currentMonthIndex = 11;
-        currentYear--;
-    }
-
-    updateCalendarHeader(currentMonthIndex, currentYear);
-    generateCalendarDates(currentMonthIndex, currentYear);
-    markEvents();
-}
-
-// Fonctions utilitaires pour les tooltips d'événements
-function showEventTooltip(event, element) {
-    const tooltip = document.createElement('div');
-    tooltip.classList.add('event-tooltip');
-    tooltip.textContent = event;
-
-    const rect = element.getBoundingClientRect();
-    tooltip.style.top = `${rect.bottom + window.scrollY + 5}px`;
-    tooltip.style.left = `${rect.left + window.scrollX}px`;
-
-    document.body.appendChild(tooltip);
-}
-
-function hideEventTooltip() {
-    const tooltip = document.querySelector('.event-tooltip');
-    if (tooltip) {
-        tooltip.remove();
-    }
-}
-</script>
+<!-- jsDelivr -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<!-- CDNJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 @endpush

@@ -3,7 +3,8 @@
         <x-slot name="logo">
             <div class="flex flex-col items-center justify-center">
                 <img width="60" height="60" src="{{ asset('assets/img/logo/logo.png')}}" alt="logo" class="mb-2">
-                <h2 class="text-2xl font-bold text-gray-900">Espace de travail</h2>
+                <h2 class="text-2xl font-bold text-gray-900">ERP INNOV</h2>
+                <p class="text-sm">Instance client</p>
             </div>
         </x-slot>
 
