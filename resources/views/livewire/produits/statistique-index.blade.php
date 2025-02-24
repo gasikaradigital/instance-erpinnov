@@ -1,4 +1,4 @@
-<div class="container py-4">
+<div class="container-flux p-6 py-4">
     <!-- Header -->
     <div>
         <div class="d-flex align-items-center mb-4">
@@ -24,14 +24,14 @@
             <div class="tab-pane fade show active" id="graphique">
                 <!-- Filtre -->
                 <div class="card mb-4">
-                    <div class="card-header bg-light">
+                    <div class="card-header py-2 bg-light">
                         <h5 class="mb-0">Filtre</h5>
                     </div>
                     <div class="card-body mt-3">
                         <form>
                             <div class="row g-3">
                                 <!-- Exemple de filtre -->
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label for="type" class="form-label">Type</label>
                                     <select id="type" class="form-select" aria-label="Sélectionnez un type">
                                         <option>Sélectionner</option>
@@ -39,20 +39,20 @@
                                         <option>Service</option>
                                     </select>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label class="form-label">Produit ou Service</label>
                                     <select class="form-select">
                                         <option selected>Sélectionner...</option>
                                     </select>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label class="form-label">Tags/catégories</label>
                                     <select class="form-select">
                                         <option selected>Sélectionner...</option>
                                         <option>-- Sans tag/catégorie</option>
                                     </select>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label class="form-label">Tiers</label>
                                     <select class="form-select">
                                         <option selected>Sélectionner...</option>
@@ -248,7 +248,7 @@
             <!-- Produits Popularité -->
             <div class="tab-pane fade" id="produits-popularite">
                 <div class="card">
-                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <div class="card-header py-2 bg-light d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Liste des produits par popularité</h5>
                         <div class="d-flex gap-2">
                             <select class="form-select form-select-sm" style="width: 200px;">

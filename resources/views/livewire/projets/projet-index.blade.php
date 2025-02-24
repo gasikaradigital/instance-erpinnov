@@ -1,5 +1,5 @@
 <div>
-    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-flux p-6 flex-grow-1 container-p-y">
         <!-- Header -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h4 class="fw-bold py-3 mb-0">Projets</h4>

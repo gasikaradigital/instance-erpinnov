@@ -17,13 +17,7 @@
                 </li>
                 <li class="menu-item {{ $currentRouteName === 'liste-produits-clients' ? 'active' : '' }}">
                     <a href="{{ route('liste-produits-clients') }}" class="menu-link">
-                        <div>{{ __('Liste des produits') }}</div>
-                    </a>
-                </li>
-
-                <li class="menu-item {{ $currentRouteName === 'liste-services-clients' ? 'active' : '' }}">
-                    <a href="{{Route('liste-services-clients')}}" class="menu-link">
-                        <div>{{ __('Liste des services') }}</div>
+                        <div>{{ __('Liste des produits/services') }}</div>
                     </a>
                 </li>
                 <li class="menu-item {{ $currentRouteName === 'liste-stocks-clients' ? 'active' : '' }}">
@@ -85,7 +79,7 @@
         </li> --}}
 
         <!-- Entrepôts -->
-        <li class="menu-item {{ in_array($currentRouteName, ['']) ? 'active open' : '' }}">
+        {{-- <li class="menu-item {{ in_array($currentRouteName, ['']) ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle fw-bold">
                 <i class="menu-icon fas fa-box-open"></i>
                 <div class="text-bold">{{ __('Entrepôts') }}</div>
@@ -197,6 +191,6 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
     </ul>
 </aside>

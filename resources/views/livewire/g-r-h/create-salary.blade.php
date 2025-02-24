@@ -1,4 +1,4 @@
-<div class="container-xxl p-5 flex-grow-1" >
+<div class="container-flux  p-6 flex-grow-1" >
     <!-- En-tête -->
     <div class="card mb-10 col-12 p-10">
         <div class="d-flex align-items-center">

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
-<div class="container-xxl">
+<div class="container-flux p-6">
     <h4 class="fw-bold py-3 mb-4">Statistiques des gestions de ventes</h4>
 
     <!-- Navigation par onglets -->

@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
             <i class="fas fa-box text-success me-2"></i>
-            <h4 class="fw-bold py-3 mb-2">Produits </h4>
+            <h4 class="fw-bold py-3 mb-2">Liste des produits et services </h4>
         </div>
 
       

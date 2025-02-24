@@ -1,4 +1,4 @@
-<div class="container-xxl flex-grow-1">
+<div class="container-flux p-6 flex-grow-1">
     <!-- En-tête -->
     <h4 class="fw-bold py-3 mb-2 ">
         Nouveau tiers

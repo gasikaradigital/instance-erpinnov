@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-flux p-6">
     <div class="card">
-        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+        <div class="card-header py-2 bg-light d-flex justify-content-between align-items-center">
             <h5 class="mb-0"><i class="bi bi-tags"></i> Espace tags/catégories des contacts</h5>
             <a href="{{Route('create-tag-contact')}}" class="btn btn-primary mt-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Nouveau tags/catégories') }}"><i class="fas fa-add"></i></a>
         </div>

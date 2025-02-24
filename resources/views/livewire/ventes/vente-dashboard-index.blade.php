@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
-<div class="container">
+<div class="container-flux p-6">
     <div class="d-flex align-items-center">
     <i class="menu-icon fas fa-suitcase"></i>
     <h4 class="fw-bold py-3 mb-2">Espace commercial</h4>

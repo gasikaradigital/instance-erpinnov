@@ -1,7 +1,7 @@
 <!-- resources/views/products/index.blade.php -->
 
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-<div class="container mt-4">
+<div class="container-flux p-6 mt-4">
     <div class="row mb-4">
         <div class="col">
             <div class="d-flex align-items-center">

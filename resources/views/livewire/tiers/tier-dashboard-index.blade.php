@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-flux p-6">
     <div class="row">
         <!-- Statistiques -->
         <div class="col-md-8">

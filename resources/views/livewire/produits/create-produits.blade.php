@@ -8,21 +8,16 @@
         @vite(['resources/assets/vendor/libs/bs-stepper/bs-stepper.js'])
     @endsection
 
-    <div class="container-xxl flex-grow-1">
+    <div class="container-flux p-6 flex-grow-1 px-4">
         <!-- En-tête -->
         <h4 class="fw-bold py-3 mb-2">Nouveau produit et service</h4>
         <div class="card mb-4 col-12">
             <form wire:submit.prevent="submit" class="modal-content" id="addNewProduitsForm">
                 <!-- Corps Modal -->
-                <div class="modal-body">
+                <div class="modal-body px-4 mt-4">
                     <div class="row">
                         <!-- Section : Informations générales -->
                         <div class="col-12">
-                            <div class="card mb-4">
-                                <div class="card-header p-3">
-                                    <h6 class="card-title mb-0">Informations générales</h6>
-                                </div>
-                                <div class="card-body">
                                     <div class="row g-3">
                                         <div class="col-md-3">
                                             <label class="form-label">Nature</label>
@@ -58,25 +53,18 @@
                                                 <option value="en_achat">En achat</option>
                                                 <option value="non_achete">Hors achat</option>
                                             </select>
-                                        </div><div class="col-md-12">
+                                        </div><div class="col-md-9">
                                             <label class="form-label">Description</label>
-                                            <textarea class="form-control" name="description" rows="3"></textarea>
+                                            <textarea class="form-control" name="description" rows="1"></textarea>
                                         </div>
                                         
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Section : Stock et dimensions -->
-                    <div class="row g-3 mt-4" id="stockSection">
-                        <div class="col-12">
-                            <div class="card mb-4">
-                                <div class="card-header p-3">
-                                    <h6 class="card-title mb-0">Stock et dimensions</h6>
-                                </div>
-                                <div class="card-body">
+                    <div class="row g-3 mt-3" id="stockSection">
+                        <div class="col-12 ">
                                     <div class="row g-3">
                                         <div class="col-md-3">
                                             <label class="form-label">URL publique</label>
@@ -186,19 +174,12 @@
                                         </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Section : Informations douanières et prix -->
-                    <div class="row g-3 mt-4">
+                    <div class="row g-3 mt-3 px-4">
                         <div class="col-12">
-                            <div class="card mb-4">
-                                <div class="card-header p-3">
-                                    <h6 class="card-title mb-0">Informations douanières et prix</h6>
-                                </div>
-                                <div class="card-body">
                                     <div class="row g-3">
                                         <div class="col-md-3">
                                             <label class="form-label">Nomenclature douanière ou Code SH</label>
@@ -264,8 +245,6 @@
                                             <input type="text" class="form-control" name="min_buy_price" />
                                         </div>
                                         
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

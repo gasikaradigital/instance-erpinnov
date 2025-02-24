@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container-flux p-6">
     <a href="#" class="text-primary">
         <i class="bi bi-file-earmark"></i> Créer tag/catégorie
     </a>
