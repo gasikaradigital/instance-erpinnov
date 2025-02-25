@@ -10,7 +10,8 @@ $user = Auth::user();
  <!-- Navbar -->
 <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
     <div class="container-xxl">
-        <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
+        <div class="navbar-brand app-brand demo d-none  d-xl-flex py-0 me-4">
+
             @if(isset($menuHorizontal))
               <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">
                 <i class="ti ti-x ti-md align-middle"></i>
@@ -67,12 +68,12 @@ $user = Auth::user();
          </li>
 
               {{-- Factures --}}
-              <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['factures', 'create-factures', 'factures-fournisseur', 'create-factures-fournisseur']) ? 'active open' : '' }}">
+              {{-- <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['factures', 'create-factures', 'factures-fournisseur', 'create-factures-fournisseur']) ? 'active open' : '' }}">
                 <a href="{{ route('factures') }}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Factures') }}">
                     <i class="menu-icon tf-icons ti ti-file-dollar"></i>
                 </a>
                 <div data-i18n="Factures">Factures</div>
-              </li>
+              </li> --}}
 
           @switch($user->plan)
             @case('standard')
@@ -130,7 +131,7 @@ $user = Auth::user();
               </li>
 
               {{-- Chat --}}
-              <li class="menu-item flex-column align-items-center d-xl-flex {{ in_array($currentRouteName, ['chat', 'create-chat']) ? 'active open' : '' }}">
+              <li class="menu-item flex-column align-items-center  d-xl-flex {{ in_array($currentRouteName, ['chat', 'create-chat']) ? 'active open' : '' }}">
                 <a href="{{Route('chat')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Chat') }}">
                     <i class="menu-icon tf-icons ti ti-message-chatbot"></i>
                 </a>
@@ -145,7 +146,9 @@ $user = Auth::user();
         </a> --}}
         </div>
 
-        <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+        {{-- MENU SETTINGS --}}
+        <div class="d-flex align-items-center " id="navbar-collapse">
         <ul class="navbar-nav flex-row align-items-center ms-auto">
            
 
@@ -334,11 +337,12 @@ $user = Auth::user();
               <li>
                 <div class="dropdown-divider my-1 mx-n2"></div>
               </li>
-              <li>
+              {{-- Pas nécessaire pour le moment --}}
+              {{-- <li>
                 <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
                   <i class="ti ti-user me-3 ti-md"></i><span class="align-middle">Mon Profile</span>
                 </a>
-              </li>
+              </li> --}}
 
               @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures())
                 <li>

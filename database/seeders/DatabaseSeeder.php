@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,33 +13,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        /*User::factory()->create([
+        User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => 'test123',
+            'password' => Hash::make('test123'), // Hash du mot de passe
             'api_key' => 'lOQVobrEX7JmZDLGscVFNlDpbnFiaFdm',
             'url_dolibarr' => 'http://faniry-dolibarr.erpinnov.com',
-            'plan' => 'solo'
+            'plan_id' => 'solo',
+            'sub_plan_id' => 'basic',
+            'status' => 'active'
         ]);
 
         User::factory()->create([
             'name' => 'user standard',
             'email' => 'standard@example.com',
-            'password' => 'standard123',
+            'password' => Hash::make('standard123'),
             'api_key' => 'lOQVobrEX7JmZDLGscVFNlDpbnFiaFdm',
             'url_dolibarr' => 'http://faniry-dolibarr.erpinnov.com',
-            'plan' => 'standard'
+            'plan_id' => 'standard',
+            'sub_plan_id' => 'pro',
+            'status' => 'active'
         ]);
 
         User::factory()->create([
             'name' => 'user premium',
             'email' => 'premium@example.com',
-            'password' => 'premium123',
+            'password' => Hash::make('premium123'),
             'api_key' => 'lOQVobrEX7JmZDLGscVFNlDpbnFiaFdm',
             'url_dolibarr' => 'http://faniry-dolibarr.erpinnov.com',
-            'plan' => 'premium'
-        ]);*/
+            'plan_id' => 'premium',
+            'sub_plan_id' => 'vip',
+            'status' => 'active'
+        ]);
     }
 }
