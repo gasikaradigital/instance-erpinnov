@@ -45,5 +45,10 @@ class DatabaseSeeder extends Seeder
             'sub_plan_id' => 'vip',
             'status' => 'active'
         ]);
+
+        /*Compte pour ajout de tier pour faire des tests d'affichage
+        lien: test-fin-dolibarr.erpinnov
+        login: admin
+        mdp: tCFniaCTR1PWtabw*/
     }
 }
