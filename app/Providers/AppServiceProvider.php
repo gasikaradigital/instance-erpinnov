@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
       return [];
     });
 
-    /*try{
+    try{
         $host = request()->getHost();
         $subdomain = "http://" . explode('.', $host)[0] . ".erpinnov.com";
         
@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
             'host' => 'localhost',
             'database' => 'sc2sylg_erpdata',
             'username' => 'sc2sylg_erpdata',
-            'password' => ';NDhUKEh-n?&',
+            'password' => 'Pg7TAeF$mfnu',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
@@ -73,6 +73,6 @@ class AppServiceProvider extends ServiceProvider
         }
     } catch(\Exception $e){
             dd($e->getMessage());
-    }*/
+    }
   }
 }
