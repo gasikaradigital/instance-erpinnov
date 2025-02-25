@@ -176,8 +176,8 @@ class PlansTableSeeder extends Seeder
                         'price_monthly' => 25.00,
                         'price_yearly' => 300.00,
                         'features' => json_encode(['Paiement, suivi, relance des cotisations']),
-                        'created_at' => now(),••••••••••
-                        'updated_at' => now(),
+                        'created_at' => now(),
+                        'updated_at' => now()
                     ]
                 ]);
             }
