@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         ];
       }
       return [];
+      
     });
 
     try{
@@ -38,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
         
         config(['database.connections.dynamic' => [
             'driver' => 'mariadb',
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'database' => 'sc2sylg_erpdata',
             'username' => 'sc2sylg_erpdata',
             'password' => 'Pg7TAeF$mfnu',
