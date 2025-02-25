@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('api_key');
             $table->string('url_dolibarr');
-            $table->string('plan_id');
-            $table->string('sub_plan_id');
-            $table->string('status');
+            $table->foreignId('plan_id')->constrained()->onDelete('cascade');
+            $table->foreignId('sub_plan_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('status')->nullable();
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
