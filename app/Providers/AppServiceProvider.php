@@ -72,7 +72,7 @@ class AppServiceProvider extends ServiceProvider
             DB::reconnect('mysql');
         }
     } catch(\Exception $e){
-            dd('kez');
+            dd($e->getMessage());
     }
   }
 }
