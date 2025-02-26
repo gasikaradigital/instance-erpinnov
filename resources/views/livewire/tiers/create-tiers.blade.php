@@ -1,4 +1,4 @@
-<div class="container-flux p-6 flex-grow-1">
+<div class="container-flux p-6 flex-grow-1 " >
     <!-- En-tête -->
     <h4 class="fw-bold py-3 mb-2 ">
         Nouveau tiers
@@ -142,13 +142,16 @@
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Maison Mère</label>
-                                        @if(count($data ?? []) > 0)
+                                        {{-- @if(count($data ?? []) > 0) --}}
                                         <select class="select2 form-select" wire:model="parent">
-                                            @foreach($data as $tier)
-                                                <option value="{{ $tier->id }}">{{ $tier->name }}</option>
-                                            @endforeach
+                                            {{-- @foreach($data as $tier) --}}
+                                                <option value="{{ $tier->id }}">
+                                                    {{-- {{ $tier->name }} --}}
+
+                                                </option>
+                                            {{-- @endforeach --}}
                                         </select>
-                                        @endif
+                                        {{-- @endif --}}
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-label">Assigner des commerciaux</label>

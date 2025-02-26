@@ -8,7 +8,7 @@
                     <div style="width: 300px; margin: auto;">
                         <canvas id="tierChart"></canvas>
                     </div>
-                    <p class="mt-3 fw-bold">Nombre total des tiers : <span class="badge bg-primary">{{ $tier }}</span></p>
+                    <p class="mt-3 fw-bold">Nombre total des tiers : <span class="badge bg-primary"></span></p>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
         <!-- Derniers tiers modifiés -->
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header bg-light fw-bold">🕒 Les {{ $tier }} derniers tiers modifiés</div>
+                <div class="card-header bg-light fw-bold">🕒 Les derniers tiers modifiés</div>
                 <div class="card-body">
                     <ul class="list-group">
                         @if(count($data ?? []) > 0)
@@ -73,7 +73,7 @@
             data: {
                 labels: ['Prospects', 'Clients', 'Fournisseurs', 'Autres'],
                 datasets: [{
-                    data: [{{ $prospect }}, {{ $client }}, {{ $fournisseur }}, 0],
+                    data: ['1', '1', '1', 0],
                     backgroundColor: ['#6f42c1', '#0d6efd', '#f39c12', '#28a745']
                 }]
             },
