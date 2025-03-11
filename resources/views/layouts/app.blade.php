@@ -62,6 +62,13 @@
         #menuTiers.active {
             left: 0;
         }
+        .fixed-sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto; /* Permet le défilement à l'intérieur de la sidebar si le contenu est trop long */
+            z-index: 1000; /* Assure que la sidebar est au-dessus du contenu */
+        }
     </style>
 
 </head>
@@ -70,7 +77,7 @@
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             @if (request()->routeIs('home'))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.verticalMenu')
                 </aside>
             @elseif(request()->routeIs([
@@ -85,7 +92,7 @@
                     'create-tag-contact',
                     'tiers-dashboard',
                 ]))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.tiersMenu') <!-- Menu vertical Tiers -->
                 </aside>
             @elseif(request()->routeIs([
@@ -100,7 +107,7 @@
                     'produit-statistique',
                     'liste-services-clients',
                 ]))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.produitsMenu') <!-- Menu vertical Produits -->
                 </aside>
             @elseif(request()->routeIs([
@@ -115,11 +122,11 @@
                 'vente-fournisseur',
                 'commande-fournisseur'
                 ]))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.ventesMenu')
                 </aside>
             @elseif(request()->routeIs(['projets', 'create-project', 'taches', 'create-tache']))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.projetsMenu')
                 </aside>
             @elseif(request()->routeIs([
@@ -140,31 +147,31 @@
                     'dons',
                     'create-charge',
                 ]))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.facturesMenu')
                 </aside>
             @elseif(request()->routeIs(['banques', 'create-banques']))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.banquesMenu')
                 </aside>
             @elseif(request()->routeIs(['comptabilite', 'create-accounting']))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.comptabiliteMenu')
                 </aside>
             @elseif(request()->routeIs(['grh', 'create-grh', 'create-salary']))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.grhMenu')
                 </aside>
             @elseif(request()->routeIs(['email', 'create-mail']))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.mailMenu')
                 </aside>
             @elseif(request()->routeIs(['document', 'create-document']))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.documentMenu')
                 </aside>
             @elseif(request()->routeIs(['chat', 'create-chat']))
-                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.chatMenu')
                 </aside>
             @endif
