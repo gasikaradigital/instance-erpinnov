@@ -20,9 +20,13 @@ class ProduitsDashboardIndex extends Component
     const STATUS_HORS_ACHAT = 0;
     const STATUS_EN_ACHAT = 1;
 
+    public $counts;
+    public $data;
+
     /**
      * Affiche la liste des produits
      */
+    
     public function render()
     {
         $user = Auth::user();
@@ -77,6 +81,7 @@ class ProduitsDashboardIndex extends Component
                 ],
             ];
 
+            dd($counts);
             foreach ($data as $produit) {
                 $type = ($produit->type == 0) ? 'produits' : 'services';
             
