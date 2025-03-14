@@ -91,6 +91,7 @@ class TierDashboardIndex extends Component
             ]);
 
         } catch (Exception $e) {
+            throw new \Exception("Erreur API Dolibarr : " . $e->getMessage());
             Log::error('Erreur lors de la récupération des tiers: ' . $e->getMessage());
             return view('livewire.tiers.tier-dashboard-index', [
                 'data' => [],

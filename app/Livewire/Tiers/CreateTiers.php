@@ -86,6 +86,7 @@ class CreateTiers extends Component
             'typent_id' => $this->typent_id,
             'typent_code' => $this->typent_code,
             'multicurrency_code' => 'required|string|in:MGA,EUR,USD',
+            'comercial_id'=> 1,
             'nif' => $this->nif,
             'stat' => $this->stat,
             'zip' => $this->zip,
@@ -105,6 +106,7 @@ class CreateTiers extends Component
             'idprof1' => $this->idprof1,
             'idprof2' => $this->idprof2,
             'idprof3' => $this->idprof3,
+            'commerciax'=>"1"
         ];
     }
 

@@ -270,3 +270,7 @@
         .d-none {
             display: none;
         }
+        .layout-page {
+            margin-left: 16rem; /* 64px = 16rem en Tailwind */
+        }
+        

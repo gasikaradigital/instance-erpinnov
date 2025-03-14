@@ -131,12 +131,10 @@
                                         <input type="text" class="form-control" wire:model="capital" />
                                     </div>
                                     <div class="col-md-2">
-                                        <i class="fas fa-tag"></i>
                                         <label class="form-label">Tags/catégories clients/prosp.</label>
                                         <input type="text" class="form-control" wire:model="tags" />
                                     </div>
                                     <div class="col-md-2">
-                                        <i class="fas fa-tag"></i>
                                         <label class="form-label">Tags/catégories fournisseurs</label>
                                         <input type="text" class="form-control" wire:model="tagsFournisseur" />
                                     </div>
@@ -209,7 +207,7 @@
                                     <div class="col-md-2">
 
                                         <label class="form-label">Facebook</label>
-                                        <input type="email" class="form-control" wire:model="facebook" />
+                                        <input class="form-control" wire:model="facebook" />
                                     </div>
                                     <div class="col-md-2">
                                         <i class="fas fa-external-link-alt"></i>
