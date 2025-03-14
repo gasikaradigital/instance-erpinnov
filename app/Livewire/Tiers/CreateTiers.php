@@ -12,299 +12,295 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateTiers extends Component
 {
-    // public $typent_id;
-    // public $typent_code;
-    // public $name;
-    // public $name_alias;
-    // public $client;
-    // public $code_client;
-    // public $code_fournisseur;
-    // public $address;
-    // public $town;
-    // public $phone;
-    // public $email;
-    // public $url;
-    // public $status;
-    // public $nif;
-    // public $stat;
-    // public $country_id;
-    // public $country_code;
-    // public $fournisseur;
-    // public $codeClient;
-    // public $zip;
-    // public $data;
-    // public $parent;
-    // public $capital;
-    // public $effectif;
-    // public $effectif_id;
-    // public $tva_assuj;
-    // public $tva_intra;
-    // public $fax;
-    // public $location_incoterms;
-    // public $fk_incoterms;
-    // public $idprof1;
-    // public $idprof2;
-    // public $idprof3;
+    public $typent_id;
+    public $typent_code;
+    public $name;
+    public $name_alias;
+    public $client;
+    public $code_client;
+    public $code_fournisseur;
+    public $address;
+    public $town;
+    public $phone;
+    public $email;
+    public $url;
+    public $status;
+    public $nif;
+    public $stat;
+    public $country_id;
+    public $country_code;
+    public $fournisseur;
+    public $codeClient;
+    public $zip;
+    public $data;
+    public $parent;
+    public $capital;
+    public $effectif;
+    public $effectif_id;
+    public $tva_assuj;
+    public $tva_intra;
+    public $fax;
+    public $location_incoterms;
+    public $fk_incoterms;
+    public $idprof1;
+    public $idprof2;
+    public $idprof3;
 
-    // public function setValue()
-    // {
-    //     if($this->fournisseur !== 0)
-    //     {
-    //         $this->generateFournisseurCode();
-    //     }
+    public function setValue()
+    {
+        if($this->fournisseur !== 0)
+        {
+            $this->generateFournisseurCode();
+        }
 
-    //     switch($this->effectif_id)
-    //     {
-    //         case 1:
-    //             $this->effectif = "1 - 5";
-    //             break;
-    //         case 2:
-    //             $this->effectif = "6 - 10";
-    //             break;
-    //         case 3:
-    //             $this->effectif = "11 - 50";
-    //             break;
-    //         case 4:
-    //             $this->effectif = "51 - 100";
-    //             break;
-    //         case 5:
-    //             $this->effectif = "101 - 500";
-    //             break;
-    //         case 6:
-    //             $this->effectif = "> 500";
-    //     }
+        switch($this->effectif_id)
+        {
+            case 1:
+                $this->effectif = "1 - 5";
+                break;
+            case 2:
+                $this->effectif = "6 - 10";
+                break;
+            case 3:
+                $this->effectif = "11 - 50";
+                break;
+            case 4:
+                $this->effectif = "51 - 100";
+                break;
+            case 5:
+                $this->effectif = "101 - 500";
+                break;
+            case 6:
+                $this->effectif = "> 500";
+        }
 
-    //     $this->valeur = [
-    //         'name' => $this->name,
-    //         'name_alias' =>$this->name_alias,
-    //         'address' => $this->address,
-    //         'town' => $this->town,
-    //         'phone' => $this->phone,
-    //         'email' => $this->email,
-    //         'country_id' => $this->country_id,
-    //         'country_code' => $this->country_code,
-    //         'typent_id' => $this->typent_id,
-    //         'typent_code' => $this->typent_code,
-    //         'multicurrency_code' => 'required|string|in:MGA,EUR,USD',
-    //         'nif' => $this->nif,
-    //         'stat' => $this->stat,
-    //         'zip' => $this->zip,
-    //         'client' => $this->client,
-    //         'fournisseur' => $this->fournisseur,
-    //         'code_client' => $this->code_client,
-    //         'code_fournisseur' => $this->code_fournisseur,
-    //         'parent' => $this->parent,
-    //         'capital' => $this->capital,
-    //         'effectif' => $this->effectif,
-    //         'effectif_id' => $this->effectif_id,
-    //         'tva_assuj' => $this->tva_assuj,
-    //         'tva_intra' => $this->tva_intra,
-    //         'fax' => $this->fax,
-    //         'fk_incoterms' => $this->fk_incoterms,
-    //         'location_incoterms' => $this->location_incoterms,
-    //         'idprof1' => $this->idprof1,
-    //         'idprof2' => $this->idprof2,
-    //         'idprof3' => $this->idprof3,
-    //     ];
-    // }
+        $this->valeur = [
+            'name' => $this->name,
+            'name_alias' =>$this->name_alias,
+            'address' => $this->address,
+            'town' => $this->town,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'country_id' => $this->country_id,
+            'country_code' => $this->country_code,
+            'typent_id' => $this->typent_id,
+            'typent_code' => $this->typent_code,
+            'multicurrency_code' => 'required|string|in:MGA,EUR,USD',
+            'comercial_id'=> 1,
+            'nif' => $this->nif,
+            'stat' => $this->stat,
+            'zip' => $this->zip,
+            'client' => $this->client,
+            'fournisseur' => $this->fournisseur,
+            'code_client' => $this->code_client,
+            'code_fournisseur' => $this->code_fournisseur,
+            'parent' => $this->parent,
+            'capital' => $this->capital,
+            'effectif' => $this->effectif,
+            'effectif_id' => $this->effectif_id,
+            'tva_assuj' => $this->tva_assuj,
+            'tva_intra' => $this->tva_intra,
+            'fax' => $this->fax,
+            'fk_incoterms' => $this->fk_incoterms,
+            'location_incoterms' => $this->location_incoterms,
+            'idprof1' => $this->idprof1,
+            'idprof2' => $this->idprof2,
+            'idprof3' => $this->idprof3,
+            'commerciax'=>"1"
+        ];
+    }
 
-    // public function setTypentCode($typentId)
-    // {
-    //     switch($typentId)
-    //     {
-    //         case '2':
-    //             $this->typent_code="TE_GROUP";
-    //         break;
-    //         case '3':
-    //             $this->typent_code="TE_MEDIUM";
-    //         break;
-    //         case '4':
-    //             $this->typent_code="TE_SMALL";
-    //         break;
-    //         case '5':
-    //             $this->typent_code="TE_ADMIN";
-    //         break;
-    //         case '8':
-    //             $this->typent_code = "TE_PRIVATE";
-    //         break;
-    //         case '100':
-    //             $this->typent_code = "TE_OTHER";
-    //         break;
-    //     }
-    // }
+    public function setTypentCode($typentId)
+    {
+        switch($typentId)
+        {
+            case '2':
+                $this->typent_code="TE_GROUP";
+            break;
+            case '3':
+                $this->typent_code="TE_MEDIUM";
+            break;
+            case '4':
+                $this->typent_code="TE_SMALL";
+            break;
+            case '5':
+                $this->typent_code="TE_ADMIN";
+            break;
+            case '8':
+                $this->typent_code = "TE_PRIVATE";
+            break;
+            case '100':
+                $this->typent_code = "TE_OTHER";
+            break;
+        }
+    }
 
-    // public function setCountryCode($countryId)
-    // {
-    //     switch($countryId){
-    //         case '1':
-    //             $this->country_code = "FR";
-    //             break;
-    //         case '2':
-    //             $this->country_code = "BE";
-    //             break;
-    //         case '6':
-    //             $this->country_code = "CH";
-    //             break;
-    //         case '143':
-    //             $this->country_code = "MG";
-    //             break;
-    //     }
-    // }
+    public function setCountryCode($countryId)
+    {
+        switch($countryId){
+            case '1':
+                $this->country_code = "FR";
+                break;
+            case '2':
+                $this->country_code = "BE";
+                break;
+            case '6':
+                $this->country_code = "CH";
+                break;
+            case '143':
+                $this->country_code = "MG";
+                break;
+        }
+    }
 
-    // public function save()
-    // {
+    public function save()
+    {
 
-    //     $this->setTypentCode($this->typent_id);
+        $this->setTypentCode($this->typent_id);
 
-    //     $this->setCountryCode($this->country_id);
+        $this->setCountryCode($this->country_id);
 
-    //     $this->generateClientCode();
+        $this->generateClientCode();
 
-    //     $this->generateFournisseurCode();
+        $this->generateFournisseurCode();
 
-    //     $this->setValue();
+        $this->setValue();
         
-    //     try {
-    //         // Préparation des données pour l'API
-    //         $apiData = [
-    //             ...$this->valeur,
-    //             'status' => 1,
-    //             'tva_assuj' => 1,
-    //             'country_code' => 'MG',
-    //             'entity' => 1
-    //         ];
+        try {
+            // Préparation des données pour l'API
+            $apiData = [
+                ...$this->valeur,
+                'status' => 1,
+                'tva_assuj' => 1,
+                'country_code' => 'MG',
+                'entity' => 1
+            ];
 
 
-    //         // Log pour debug
-    //         Log::info('Données envoyées à l\'API:', $apiData);
+            // Log pour debug
+            Log::info('Données envoyées à l\'API:', $apiData);
 
 
-    //         $user = Auth::user();
+            $user = Auth::user();
             
-    //         // Envoi à l'API
-    //         $response = Http::withHeaders([
-    //             'DOLAPIKEY' => $user->api_key,
-    //             'Accept' => 'application/json'
-    //         ])->post($user->url_dolibarr . '/api/index.php/thirdparties', $apiData);
+            // Envoi à l'API
+            $response = Http::withHeaders([
+                'DOLAPIKEY' => $user->api_key,
+                'Accept' => 'application/json'
+            ])->post($user->url_dolibarr . '/api/index.php/thirdparties', $apiData);
 
-    //         if (!$response->successful()) {
-    //             Log::error('Réponse API Dolibarr: ' . $response->body());
-    //             throw new Exception('Erreur API: ' . $response->body());
-    //         }
+            if (!$response->successful()) {
+                Log::error('Réponse API Dolibarr: ' . $response->body());
+                throw new Exception('Erreur API: ' . $response->body());
+            }
 
-    //         return redirect('/tiers')->with('success', 'Tiers créé avec succès');
-    //     } catch (Exception $e) {
-    //         dd($e->getMessage());
-    //         Log::error('Erreur création tiers: ' . $e->getMessage());
-    //         return back()->withInput()->withErrors(['error' => $e->getMessage()]);
-    //     }
-    // }
+            return redirect('/tiers')->with('success', 'Tiers créé avec succès');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+            Log::error('Erreur création tiers: ' . $e->getMessage());
+            return back()->withInput()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
 
-    // public function generateClientCode()
-    // {
-    //     if (empty($this->codeClient)) {
-    //         $this->code_client = "CU2501-00001";
-    //     } else {
-    //         // Récupérer le dernier code client
-    //         $lastCode = end($this->codeClient);
+    public function generateClientCode()
+    {
+        if (empty($this->codeClient)) {
+            $this->code_client = "CU2501-00001";
+        } else {
+            // Récupérer le dernier code client
+            $lastCode = end($this->codeClient);
 
-    //         // Extraire la partie numérique après le tiret
-    //         if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
-    //             $prefix = $matches[1]; // Partie avant le numéro (ex: "CU2501-")
-    //             $number = (int) $matches[2]; // Partie numérique
+            // Extraire la partie numérique après le tiret
+            if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
+                $prefix = $matches[1]; // Partie avant le numéro (ex: "CU2501-")
+                $number = (int) $matches[2]; // Partie numérique
 
-    //             // Incrémenter le numéro
-    //             $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
+                // Incrémenter le numéro
+                $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
 
-    //             // Retourner le nouveau code client
+                // Retourner le nouveau code client
 
-    //             $this->code_client = $prefix. $newNumber;
-    //         }
-    //     }
+                $this->code_client = $prefix. $newNumber;
+            }
+        }
 
-    // }
+    }
 
-    // public function generateFournisseurCode()
-    // {
-    //     if (empty($this->codeFournisseur)) {
-    //         $this->code_fournisseur = "SU2501-00001";
-    //     } else {
-    //         // Récupérer le dernier code client
-    //         $lastCode = end($this->codeFournisseur);
+    public function generateFournisseurCode()
+    {
+        if (empty($this->codeFournisseur)) {
+            $this->code_fournisseur = "SU2501-00001";
+        } else {
+            // Récupérer le dernier code client
+            $lastCode = end($this->codeFournisseur);
 
-    //         // Extraire la partie numérique après le tiret
-    //         if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
-    //             $prefix = $matches[1]; // Partie avant le numéro (ex: "CU2501-")
-    //             $number = (int) $matches[2]; // Partie numérique
+            // Extraire la partie numérique après le tiret
+            if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
+                $prefix = $matches[1]; // Partie avant le numéro (ex: "CU2501-")
+                $number = (int) $matches[2]; // Partie numérique
 
-    //             // Incrémenter le numéro
-    //             $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
+                // Incrémenter le numéro
+                $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
 
-    //             // Retourner le nouveau code client
+                // Retourner le nouveau code client
 
-    //             $this->code_Fournisseur = $prefix. $newNumber;
-    //         }
-    //     }
-    // }
+                $this->code_Fournisseur = $prefix. $newNumber;
+            }
+        }
+    }
 
     public function render()
     {
-        // $user  = Auth::user();
-          
-        // if (!$user || !$user->api_key || !$user->url_dolibarr) {
-        //     return view('livewire.tiers.create-tiers', [
-        //         'data' => [],
-        //         'error' => 'Configuration API manquante'
-        //     ]);
-        // }
-        // try {
-        //     // Récupération des tiers depuis l'API Dolibarr
-        //     $response = Http::withHeaders([
-        //         'DOLAPIKEY' =>  $user->api_key 
-        //     ])->get($user->url_dolibarr . '/api/index.php/thirdparties');
+        $user  = Auth::user();
+        
+        try {
+            // Récupération des tiers depuis l'API Dolibarr
+            $response = Http::withHeaders([
+                'DOLAPIKEY' =>  $user->api_key 
+            ])->get($user->url_dolibarr . '/api/index.php/thirdparties');
 
-        //     if (!$response->successful()) {
-        //         throw new Exception('Erreur API: ' . $response->status());
-        //     }
+            if (!$response->successful()) {
+                throw new Exception('Erreur API: ' . $response->status());
+            }
 
-        //     // Conversion du tableau en objets pour faciliter l'utilisation dans la vue
-        //     $this->data = collect($response->json())->map(function($item) {
-        //         $item = (object) $item;
+            // Conversion du tableau en objets pour faciliter l'utilisation dans la vue
+            $this->data = collect($response->json())->map(function($item) {
+                $item = (object) $item;
 
-        //         // Récupérer le nom du pays si country_id existe
-        //         if (!empty($item->country_id)) {
-        //             try {
-        //                 $countryResponse = Http::withHeaders([
-        //                     'DOLAPIKEY' => $user->api_key
-        //                 ])->get($user->url_dolibarr . '/api/index.php/setup/dictionary/countries/' . $item->country_id);
+                // Récupérer le nom du pays si country_id existe
+                if (!empty($item->country_id)) {
+                    try {
+                        $countryResponse = Http::withHeaders([
+                            'DOLAPIKEY' => $user->api_key
+                        ])->get($user->url_dolibarr . '/api/index.php/setup/dictionary/countries/' . $item->country_id);
 
-        //                 if ($countryResponse->successful()) {
-        //                     $country = $countryResponse->json();
-        //                     $item->country = $country['label'] ?? 'N/A';
-        //                 }
-        //             } catch (\Exception $e) {
-        //                 $item->country = 'N/A';
-        //             }
-        //         } else {
-        //             $item->country = 'N/A';
-        //         }
+                        if ($countryResponse->successful()) {
+                            $country = $countryResponse->json();
+                            $item->country = $country['label'] ?? 'N/A';
+                        }
+                    } catch (\Exception $e) {
+                        $item->country = 'N/A';
+                    }
+                } else {
+                    $item->country = 'N/A';
+                }
 
-        //         return $item;
-        //     })->all();
+                return $item;
+            })->all();
             
-        //     //Récupération des codes clients qui sont déjà utilisé par d'autre tiers
-        //     foreach($this->data as $codeClient){
-        //         if($codeClient->code_client){
-        //             $this->codeClient[] = $codeClient->code_client;
-        //         }
-        //     }
+            //Récupération des codes clients qui sont déjà utilisé par d'autre tiers
+            foreach($this->data as $codeClient){
+                if($codeClient->code_client){
+                    $this->codeClient[] = $codeClient->code_client;
+                }
+            }
 
             return view('livewire.tiers.create-tiers',[
-                // 'data' => $this->data,
+                'data' => $this->data,
             ]);
             
-        // } catch (Exception $e) {
-        //     Log::error('Erreur lors de la récupération des tiers: ' . $e->getMessage());
-        // }
+        } catch (Exception $e) {
+            Log::error('Erreur lors de la récupération des tiers: ' . $e->getMessage());
+        }
     }
 }

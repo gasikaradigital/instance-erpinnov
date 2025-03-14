@@ -31,7 +31,7 @@ $user = Auth::user();
             <a href="{{ route('tiers-dashboard') }}" class="menu-link {{ $currentRouteName === 'tiers-dashboard' ? 'active' : '' }}" onclick="showTiersMenu(event)" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Tiers') }}">
               <i class="menu-icon tf-icons ti ti-users"></i>
             </a>
-            <div data-i18n="Tiers">Tiers</div>
+            <div data-i18n="Tiers">CRM</div>
           </li>
 
           <!-- Produits -->
