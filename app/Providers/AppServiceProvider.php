@@ -22,15 +22,16 @@ class AppServiceProvider extends ServiceProvider
    */
   public function boot(): void
   {
-    // Vite::useStyleTagAttributes(function (?string $src, string $url, ?array $chunk, ?array $manifest) {
-    //   if ($src !== null) {
-    //     return [
-    //       'class' => preg_match("/(resources\/assets\/vendor\/scss\/(rtl\/)?core)-?.*/i", $src) ? 'template-customizer-core-css' :
-    //                 (preg_match("/(resources\/assets\/vendor\/scss\/(rtl\/)?theme)-?.*/i", $src) ? 'template-customizer-theme-css' : '')
-    //     ];
-    //   }
-    //   return [];
-    // });
+
+    Vite::useStyleTagAttributes(function (?string $src, string $url, ?array $chunk, ?array $manifest) {
+      if ($src !== null) {
+        return [
+          'class' => preg_match("/(resources\/assets\/vendor\/scss\/(rtl\/)?core)-?.*/i", $src) ? 'template-customizer-core-css' :
+                    (preg_match("/(resources\/assets\/vendor\/scss\/(rtl\/)?theme)-?.*/i", $src) ? 'template-customizer-theme-css' : '')
+        ];
+      }
+      return [];
+    });
 
     // try{
     //     $host = request()->getHost();

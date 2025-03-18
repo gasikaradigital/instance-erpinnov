@@ -13,11 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            PlansTableSeeder::class,  // Enfin les plans
-            UserSeeder::class,        // Enfin les utilisateurs
-        ]);
-
+       $this->call(class: [
+        PlansTableSeeder::class,
+        UserSeeder::class,
+       ]);
 
         /*Compte pour ajout de tier pour faire des tests d'affichage
         lien: test-fin-dolibarr.erpinnov
