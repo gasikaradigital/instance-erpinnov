@@ -44,7 +44,7 @@ use App\Livewire\Tiers\TiersIndex;
 use App\Livewire\Tiers\CreateTiers;
 use App\Livewire\Tiers\TagCustomerIndex;
 use App\Livewire\Tiers\CreateTagCustomerIndex;
-
+use App\Livewire\Tiers\InfoTiers;
 use App\Livewire\Tiers\TagContactIndex;
 use App\Livewire\Tiers\CreateTagContactIndex;
 
@@ -102,7 +102,6 @@ use App\Livewire\Chat\CreateChat;
 //Appel de la class CheckPlan pour le middleware
 use App\Http\Middleware\CheckPlan;
 
-
 // Redirections
 Route::redirect('/', '/login');
 Route::redirect('/register', '/login');
@@ -115,6 +114,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     // Tiers
     Route::get('/tiers', TiersIndex::class)->name('tiers');
+    Route::get('/tiers/{id}',InfoTiers::class)->name('info-tiers');
     Route::get('/create/tiers', CreateTiers::class)->name('create-tiers');
 
     Route::get('/tiers-dashboard', TierDashboardIndex::class)->name('tiers-dashboard');

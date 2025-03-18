@@ -1,68 +1,59 @@
 <div class="container-flux p-6">
     <div class="row">
         <!-- Statistiques -->
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-light fw-bold">📊 Statistiques</div>
-                <div class="card-body text-center">
-                    <div style="width: 300px; margin: auto;">
-                        <canvas id="tierChart"></canvas>
-                    </div>
-                    <p class="mt-3 fw-bold">Nombre total des tiers : <span class="badge bg-primary"></span></p>
-                </div>
-            </div>
-        </div>
-
+        <livewire:tiers.statistique-tiers :tiers='$tier' :total_prospect='$prospect' :total_client='$client' :total_fournisseur='$fournisseur' :total_autres="0"/>
         <!-- Derniers tiers modifiés -->
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header bg-light fw-bold">🕒 Les derniers tiers modifiés</div>
+                <div class="card-header bg-light fw-bold">🕒 Les 3 derniers tiers modifiés</div>
                 <div class="card-body">
                     <ul class="list-group">
-                        @if(count($data ?? []) > 0)
-                        @foreach($data as $tier)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                           
+                        @if (count($data ?? []) > 0)
+                            @foreach (collect($data)->sortByDesc('date_modification')->take(3) as $index => $tier)
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <!-- Nom du tiers -->
                                     <div>
                                         <i class="bi bi-buildings me-2"></i>
-                                        <a href="#" class="fw-bold">{{ $tier->name }}</a>
+                                        <a href="{{ route('info-tiers', ['id' => $tier->id]) }}"
+                                            class="fw-bold">{{ $tier->name }}</a>
                                     </div>
-                                
-                            <div>
-                            @switch($tier->client)
-                                @case('2')
-                                    <span class="badge bg-success">P</span>
-                                @break
 
-                                @case('3')
-                                    <span class="badge bg-success">P</span>
-                                    <span class="badge bg-success">C</span>
-                                @break
+                                    <!-- Badges pour le statut du tiers -->
+                                    <div>
+                                        @switch($tier->client)
+                                            @case('2')
+                                                <span class="badge bg-success">P</span> <!-- Prospect -->
+                                            @break
 
-                                @case('1')
-                                    <span class="badge bg-success">C</span>
-                                @break
+                                            @case('3')
+                                                <span class="badge bg-success">P</span> <!-- Prospect -->
+                                                <span class="badge bg-success">C</span> <!-- Client -->
+                                            @break
 
-                                @case('0')
-                                    @if($tier->fournisseur == 1)
-                                        <span class="badge bg-info">F</span>
-                                    <!-- <span class="badge bg-label-primary">Ni client, ni prospect</span> -->
-                                    @endif
-                                @break
-                            @endswitch
-                                
-                            </div>
-                            <span class="text-muted">12/02/2025</span>
-                        </li>
-                        @endforeach
+                                            @case('1')
+                                                <span class="badge bg-success">C</span> <!-- Client -->
+                                            @break
+
+                                            @case('0')
+                                                @if ($tier->fournisseur == 1)
+                                                    <span class="badge bg-info">F</span> <!-- Fournisseur -->
+                                                @endif
+                                            @break
+                                        @endswitch
+                                    </div>
+
+                                    <!-- Date (à remplacer par une valeur dynamique si nécessaire) -->
+                                    <span class="text-muted">
+                                        {{ date('d/m/Y', $tier->date_modification) }}
+                                    </span>
+                                </li>
+                            @endforeach
                         @endif
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
 <!-- Script pour le graphique -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -84,3 +75,5 @@
         });
     });
 </script>
+
+</div>
