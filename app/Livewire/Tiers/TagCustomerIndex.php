@@ -19,7 +19,7 @@ class TagCustomerIndex extends Component
         try {
             $getCustomerTagsResponse = Http::withHeaders([
                 'DOLAPIKEY' => $user->api_key
-            ])->get($user->url_dolibarr . '/api/index.php/categories?sortfield=t.rowid&sortorder=ASC&limit=100&type=2');
+            ])->get($user->url_dolibarr . '/api/index.php/categories?sortfield=t.rowid&sortorder=ASC&limit=100&type=customer');
 
             if(!$getCustomerTagsResponse->successful()){
                 
