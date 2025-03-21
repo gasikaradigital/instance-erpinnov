@@ -16,7 +16,7 @@
                                     <!-- Nom du tiers -->
                                     <div>
                                         <i class="bi bi-buildings me-2"></i>
-                                        <a href="{{ route('info-tiers', ['id' => $tier->id]) }}"
+                                        <a href="{{ route('tiers-info', ['id' => $tier->id]) }}"
                                             class="fw-bold">{{ $tier->name }}</a>
                                     </div>
 
