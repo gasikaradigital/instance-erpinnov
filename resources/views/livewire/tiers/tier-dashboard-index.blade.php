@@ -1,9 +1,11 @@
+<div>
 <div class="container-flux p-6">
     <div class="row">
         <!-- Statistiques -->
+        <livewire:tiers.statistique :data="$data" />
         <livewire:tiers.statistique-tiers :tiers='$tier' :total_prospect='$prospect' :total_client='$client' :total_fournisseur='$fournisseur' :total_autres="0"/>
         <!-- Derniers tiers modifiés -->
-        <div class="col-md-4">
+        <div class="col-md-6" >
             <div class="card">
                 <div class="card-header bg-light fw-bold">🕒 Les 3 derniers tiers modifiés</div>
                 <div class="card-body">
@@ -54,6 +56,7 @@
             </div>
         </div>
     </div>
+    </div>
 <!-- Script pour le graphique -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -75,5 +78,4 @@
         });
     });
 </script>
-
 </div>
