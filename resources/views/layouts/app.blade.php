@@ -64,6 +64,13 @@
             left: 0;
         }
        
+        .fixed-sidebar{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+            
+        }
     </style>
 
 </head>
