@@ -1,13 +1,90 @@
 <div>
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <div class="card-datatable table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>
+    <div class="dropdown">
+        <span  id="columnToggle" data-bs-toggle="dropdown" aria-expanded="false">
+                         <i class="fas fa-list"></i>
+                         </span>
+
                         <!-- Case à cocher "Tout sélectionner" -->
                         <input type="checkbox" class="form-check-input" id="selectAll" wire:click="toggleSelectAll"
                             {{ count($selectedIds) === count($data) ? 'checked' : '' }}>
+
+                                 <ul class="dropdown-menu shadow-sm py-1" aria-labelledby="columnToggle">
+                                         <li class="px-3 py-1">
+                                                 <div class="form-check mb-0">
+                                                    <input class="form-check-input" type="checkbox" id="nomCheck" data-column="4">
+                                                        <label class="form-check-label small" for="nomCheck">
+                                                                Code
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="px-3 py-1">
+                                                        <div class="form-check mb-0">
+                                                            <input class="form-check-input" type="checkbox" id="prenomCheck" data-column="5" checked>
+                                                            <label class="form-check-label small" for="prenomCheck">
+                                                                Nom
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="px-3 py-1">
+                                                        <div class="form-check mb-0">
+                                                            <input class="form-check-input" type="checkbox" id="genreCheck" data-column="6" checked>
+                                                            <label class="form-check-label small" for="genreCheck">
+                                                                Type
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="px-3 py-1">
+                                                        <div class="form-check mb-0">
+                                                            <input class="form-check-input" type="checkbox" id="salarieCheck" data-column="7" checked>
+                                                            <label class="form-check-label small" for="salarieCheck">
+                                                                Nature tiers
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="px-3 py-1">
+                                                        <div class="form-check mb-0">
+                                                            <input class="form-check-input" type="checkbox" id="responsableCheck" data-column="8" checked>
+                                                            <label class="form-check-label small" for="responsableCheck">
+                                                                Email
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="px-3 py-1">
+                                                        <div class="form-check mb-0">
+                                                            <input class="form-check-input" type="checkbox" id="compteCheck" data-column="9">
+                                                            <label class="form-check-label small" for="compteCheck">
+                                                                Commerciaux
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="px-3 py-1">
+                                                        <div class="form-check mb-0">
+                                                            <input class="form-check-input" type="checkbox" id="telCheck" data-column="10" checked>
+                                                            <label class="form-check-label small" for="telCheck">
+                                                                Téléphone
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="px-3 py-1">
+                                                        <div class="form-check mb-0">
+                                                            <input class="form-check-input" type="checkbox" id="telCheck" data-column="10" checked>
+                                                            <label class="form-check-label small" for="telCheck">
+                                                               Statut
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                    </th>
+
                     </th>
                     <th>Code</th>
                     <th>Nom</th>
