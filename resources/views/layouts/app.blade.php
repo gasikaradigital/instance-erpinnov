@@ -63,13 +63,7 @@
         #menuTiers.active {
             left: 0;
         }
-        .fixed-sidebar {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            overflow-y: auto; /* Permet le défilement à l'intérieur de la sidebar si le contenu est trop long */
-            z-index: 1000; /* Assure que la sidebar est au-dessus du contenu */
-        }
+       
     </style>
 
 </head>
