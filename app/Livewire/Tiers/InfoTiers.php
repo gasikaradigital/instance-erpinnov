@@ -8,6 +8,6 @@ class InfoTiers extends Component
 {
     public function render()
     {
-        return view('livewire.tiers.info-tiers');
+        return view('livewire.tiers.tiers-info');
     }
 }
