@@ -35,7 +35,8 @@
                     <td>
                         <input type="checkbox" class="form-check-input row-checkbox">
                     </td>
-                    <td>{{ $contact->code_contact ?? 'N/A' }}</td>
+                    <td>{{ $contact->array_options['options_code_contact'] ?? 'N/A' }}</td>
+
                     {{-- <td>{{ $contact->code_contact }}</td> --}}
                     <td>{{ $contact->firstname }} {{ $contact->lastname }}</td>
                     <td>{{ $contact->lastname}}</td>
