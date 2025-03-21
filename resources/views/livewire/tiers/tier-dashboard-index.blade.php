@@ -54,5 +54,26 @@
             </div>
         </div>
     </div>
+<!-- Script pour le graphique -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var ctx = document.getElementById('tierChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Prospects', 'Clients', 'Fournisseurs', 'Autres'],
+                datasets: [{
+                    data: ['1', '1', '1', 0],
+                    backgroundColor: ['#6f42c1', '#0d6efd', '#f39c12', '#28a745']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    });
+</script>
 
 </div>
