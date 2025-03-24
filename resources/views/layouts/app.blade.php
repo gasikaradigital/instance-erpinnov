@@ -63,13 +63,12 @@
         #menuTiers.active {
             left: 0;
         }
-       
         .fixed-sidebar{
             position: fixed;
             top: 0;
             bottom: 0;
-            overflow-y: auto;
-            
+            overflow-y: hidden;
+            z-index: 1000;
         }
     </style>
 
@@ -113,10 +112,10 @@
                     @include('layouts.sections.menu.produitsMenu') <!-- Menu vertical Produits -->
                 </aside>
             @elseif(request()->routeIs([
-                'ventes', 
-                'new-proposition', 
-                'new-opportunity', 
-                'liste-proposition', 
+                'ventes',
+                'new-proposition',
+                'new-opportunity',
+                'liste-proposition',
                 'stat-vente',
                 'commande',
                 'liste-commande',
