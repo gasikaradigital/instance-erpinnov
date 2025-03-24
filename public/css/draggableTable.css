@@ -18,11 +18,11 @@
 }
 
 .drop-indicator.left {
-    left: 0;
+    left: -2px;
 }
 
 .drop-indicator.right {
-    right: 0;
+    right: -2px;
 }
 
 th.draggable-column {
