@@ -16,7 +16,32 @@ class TiersIndex extends Component
     public $filteredData = [];
     public $selectedIds = [];
     public $selectedAction = '';
-    private $commerciaux=[];
+    private $commerciaux = [];
+    public $visibleColumns = [
+        "code" => true,
+        "nom" => true,
+        "type" => true,
+        "nature" => true,
+        "email" => true,
+        "commerciaux" => true,
+        "telephone" => true,
+        "statut" => true
+    ];
+
+    public function toggleColumn($column)
+    {
+        // Debug immédiat
+        dump("vody eeeeeee");
+        if (!array_key_exists($column, $this->visibleColumns)) {
+            abort(400, "Colonne invalide");
+        }
+
+        $this->visibleColumns[$column] = !$this->visibleColumns[$column];
+
+        // Force le re-rendu
+        $this->dispatch('columns-updated', columns: $this->visibleColumns);
+    }
+
     // Propriétés pour les filtres
     public $filterType = ''; // prospect, client, fournisseur
     public $filterCategorie = '';
@@ -138,7 +163,6 @@ class TiersIndex extends Component
                     $this->data = array_filter($this->data, fn($item) => $item->id != $tier);
                     $this->filteredData = array_filter($this->filteredData, fn($item) => $item->id != $tier);
                     $this->selectedIds = array_filter($this->selectedIds, fn($id) => $id != $tier);
-
                 } else {
                     dump('Erreur API pour le tiers ' . $tier . ': ' . $response->status());
                 }
@@ -253,14 +277,13 @@ class TiersIndex extends Component
                     } catch (\Exception $e) {
                         $item->country = 'N/A';
                     }
-                    
                 } else {
                     $item->country = 'N/A';
                 }
                 try {
                     $representativesResponse = Http::withHeaders([
                         'DOLAPIKEY' => $user->api_key
-                    ])->get($user->url_dolibarr . '/api/index.php/thirdparties/'.$item->id.'/representatives?mode=0' );
+                    ])->get($user->url_dolibarr . '/api/index.php/thirdparties/' . $item->id . '/representatives?mode=0');
 
                     if ($representativesResponse->successful()) {
                         $commerciaux = $representativesResponse->json();
@@ -287,7 +310,7 @@ class TiersIndex extends Component
     {
         return view('livewire.tiers.tiers-index', [
             'filteredData' => $this->filteredData,
-            'commerciaux'=>$this->commerciaux,
+            'commerciaux' => $this->commerciaux,
         ]);
     }
 }
