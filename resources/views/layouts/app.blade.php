@@ -62,7 +62,13 @@
         #menuTiers.active {
             left: 0;
         }
-       
+       .fixed-sidebar{
+        position: fixed;
+        top:0;
+        overflow-y:auto;
+        bottom: 0;
+        z-index:1000;
+       }
     </style>
 
 </head>
@@ -105,10 +111,10 @@
                     @include('layouts.sections.menu.produitsMenu') <!-- Menu vertical Produits -->
                 </aside>
             @elseif(request()->routeIs([
-                'ventes', 
-                'new-proposition', 
-                'new-opportunity', 
-                'liste-proposition', 
+                'ventes',
+                'new-proposition',
+                'new-opportunity',
+                'liste-proposition',
                 'stat-vente',
                 'commande',
                 'liste-commande',
@@ -148,7 +154,7 @@
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.banquesMenu')
                 </aside>
-            @elseif(request()->routeIs(['comptabilite', 'create-accounting']))
+            @elseif(request()->routeIs(['comptabiliteDashbord','comptabiliteExport','comptabiliteBilan','CompatiliteResultat','ComptabiliteFluxCTresorerie','ComptabiliteOperation','ComptabiliteInvestisement']))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.comptabiliteMenu')
                 </aside>

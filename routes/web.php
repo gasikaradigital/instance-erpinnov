@@ -77,9 +77,6 @@ use App\Livewire\Banques\BanquesIndex;
 use App\Livewire\Banques\CreateBanques;
 
 
-//Appel pour les class comptabilité
-use App\Livewire\Comptabilite\ComptabiliteIndex;
-use App\Livewire\Comptabilite\CreateAccounting;
 
 //Appel pour les class GRH
 use App\Livewire\GRH\GrhIndex;
@@ -94,6 +91,20 @@ use App\Livewire\Email\CreateMail;
 //Appel pour les class documents
 use App\Livewire\Documents\DocumentIndex;
 use App\Livewire\Documents\CreateDocument;
+
+//Appel pour class comptabilite
+use App\Livewire\Comptabilite\ComptabiliteIndex;
+use App\Livewire\Comptabilite\ComptabiliteExport;
+use App\Livewire\Comptabilite\CompatiliteBilan;
+use App\Livewire\Comptabilite\CompatiliteResultat;
+use App\Livewire\Comptabilite\CompatiliteFluxTresorerie;
+use App\Livewire\Comptabilite\CompatiliteOperation;
+use App\Livewire\Comptabilite\CompatiliteInvestisement;
+
+
+
+
+
 
 //Appel pour les class chat
 use App\Livewire\Chat\ChatIndex;
@@ -190,9 +201,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/banque', BanquesIndex::class)->name('banques');
     Route::get('/create/banques', CreateBanques::class)->name('create-banques');
 
-    //Comptabilité
-    Route::get('/comptabilite', ComptabiliteIndex::class)->name('comptabilite');
-    Route::get('/create/accounting', CreateAccounting::class)->name('create-accounting');
 
     //GRH
     Route::get('/grh', GrhIndex::class)->name('grh');
@@ -212,9 +220,19 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/chat', ChatIndex::class)->name('chat');
     Route::get('/create/chat', CreateChat::class)->name('create-chat');
 
+    //Comptabiliter
+    Route::get('/Comptabilite', ComptabiliteIndex::class)->name('comptabiliteDashbord');
+    Route::get('/Comptabilite/Export', ComptabiliteExport::class)->name('comptabiliteExport');
+    Route::get('/Comptabilite/Bilan',CompatiliteBilan::class)->name('comptabiliteBilan');
+    Route::get('/Comptabilite/Resultat', CompatiliteResultat::class)->name('CompatiliteResultat');
+    Route::get('/Comptabilite/Tresorerie', CompatiliteFluxTresorerie::class)->name('ComptabiliteFluxCTresorerie');
+    Route::get('/Compatilite/Operation',CompatiliteOperation::class)->name('ComptabiliteOperation');
+    Route::get('/Comptabilite/investisement',CompatiliteInvestisement::class)->name('ComptabiliteInvestisement');
+
+
 });
 
 Route::middleware(['auth:sanctum', 'verified', 'check.plan:solo'])->group(function(){
-    
+
 });
 

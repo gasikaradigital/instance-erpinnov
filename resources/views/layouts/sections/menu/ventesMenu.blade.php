@@ -19,7 +19,7 @@
                     <a href="{{Route('liste-proposition')}}" class="menu-link">
                         <div>{{ __('Liste') }}</div>
                     </a>
-                   
+
                 </li>
                 <li class="menu-item {{ $currentRouteName === 'stat-vente' ? 'active' : '' }}">
                     <a href="{{Route('stat-vente')}}" class="menu-link">
@@ -29,5 +29,5 @@
             </ul>
         </li>
 
-      
+
     </aside>
