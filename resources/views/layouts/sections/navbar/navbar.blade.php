@@ -45,7 +45,8 @@ $user = Auth::user();
            <!-- Ventes -->
            <li class="nav-item flex-column align-items-center d-xl-flex">
             <a href="{{Route('ventes')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Ventes') }}">
-              <i class="menu-icon fas fa-suitcase"></i>
+              <i class="menu-icon tf-icons ti ti ti-shopping-bag"> </i>
+
             </a>
             <div data-i18n="Ventes">Ventes</div>
           </li>
@@ -94,7 +95,7 @@ $user = Auth::user();
                 </a>
                 <div data-i18n="Email">Email</div>
               </li>
-             
+
             @break
 
             @case('premium')
@@ -150,7 +151,7 @@ $user = Auth::user();
         {{-- MENU SETTINGS --}}
         <div class="d-flex align-items-center " id="navbar-collapse">
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-           
+
 
             <!-- Quick links  -->
             <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown">
