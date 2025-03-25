@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Tiers;
 
+use App\Services\CodeGeneratorService;
 use Livewire\Component;
 use Exception;
 use Illuminate\Http\Request;
@@ -48,9 +49,12 @@ class CreateTiers extends Component
 
     public function setValue()
     {
+        $codeGeneratorService = app(CodeGeneratorService::class);
+        $codeFournisseur = null;
+        $this->code_client = $codeGeneratorService->generateClientCode();
         if($this->fournisseur !== 0)
         {
-            $this->generateFournisseurCode();
+            $this->code_fournisseur=$codeGeneratorService->generateFournisseurCode();
         }
 
         switch($this->effectif_id)
@@ -160,13 +164,11 @@ class CreateTiers extends Component
 
         $this->setCountryCode($this->country_id);
 
-        $this->generateClientCode();
-
-        $this->generateFournisseurCode();
-
-        $this->setValue();
         
         try {
+            
+            $this->setValue();
+
             // Préparation des données pour l'API
             $apiData = [
                 ...$this->valeur,
@@ -202,52 +204,52 @@ class CreateTiers extends Component
         }
     }
 
-    public function generateClientCode()
-    {
-        if (empty($this->codeClient)) {
-            $this->code_client = "CU2501-00001";
-        } else {
-            // Récupérer le dernier code client
-            $lastCode = end($this->codeClient);
+    // public function generateClientCode()
+    // {
+    //     if (empty($this->codeClient)) {
+    //         $this->code_client = "CU2501-00001";
+    //     } else {
+    //         // Récupérer le dernier code client
+    //         $lastCode = end($this->codeClient);
 
-            // Extraire la partie numérique après le tiret
-            if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
-                $prefix = $matches[1]; // Partie avant le numéro (ex: "CU2501-")
-                $number = (int) $matches[2]; // Partie numérique
+    //         // Extraire la partie numérique après le tiret
+    //         if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
+    //             $prefix = $matches[1]; // Partie avant le numéro (ex: "CU2501-")
+    //             $number = (int) $matches[2]; // Partie numérique
 
-                // Incrémenter le numéro
-                $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
+    //             // Incrémenter le numéro
+    //             $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
 
-                // Retourner le nouveau code client
+    //             // Retourner le nouveau code client
 
-                $this->code_client = $prefix. $newNumber;
-            }
-        }
+    //             $this->code_client = $prefix. $newNumber;
+    //         }
+    //     }
 
-    }
+    // }
 
-    public function generateFournisseurCode()
-    {
-        if (empty($this->codeFournisseur)) {
-            $this->code_fournisseur = "SU2501-00001";
-        } else {
-            // Récupérer le dernier code client
-            $lastCode = end($this->codeFournisseur);
+    // public function generateFournisseurCode()
+    // {
+    //     if (empty($this->codeFournisseur)) {
+    //         $this->code_fournisseur = "SU2501-00001";
+    //     } else {
+    //         // Récupérer le dernier code client
+    //         $lastCode = end($this->codeFournisseur);
 
-            // Extraire la partie numérique après le tiret
-            if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
-                $prefix = $matches[1]; // Partie avant le numéro (ex: "CU2501-")
-                $number = (int) $matches[2]; // Partie numérique
+    //         // Extraire la partie numérique après le tiret
+    //         if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
+    //             $prefix = $matches[1]; // Partie avant le numéro (ex: "CU2501-")
+    //             $number = (int) $matches[2]; // Partie numérique
 
-                // Incrémenter le numéro
-                $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
+    //             // Incrémenter le numéro
+    //             $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
 
-                // Retourner le nouveau code client
+    //             // Retourner le nouveau code client
 
-                $this->code_Fournisseur = $prefix. $newNumber;
-            }
-        }
-    }
+    //             $this->code_Fournisseur = $prefix. $newNumber;
+    //         }
+    //     }
+    // }
 
     public function render()
     {

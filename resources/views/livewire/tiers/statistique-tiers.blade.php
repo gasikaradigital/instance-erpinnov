@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="card">
         <div class="card-header bg-light fw-bold">📊 Statistiques</div>
         <div class="card-body text-center">
@@ -18,8 +18,8 @@
       type: 'doughnut',
       data: {
         labels: [
-          'Prospect', 
-          'Fournisseurs', 
+          'Prospect',
+          'Fournisseurs',
           'Client',
           'Autres',
         ],

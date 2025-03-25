@@ -9,6 +9,16 @@ class TiersListe extends Component
     public $data;
     public $selectedIds = []; 
     public $commerciaux = [];
+    public $visibleColumns;
+
+
+    protected $listeners = ['updateVisibleColumns' => 'setVisibleColumns'];
+
+    public function setVisibleColumns($columns)
+    {
+        $this->visibleColumns = $columns;
+    }
+
     public function toggleSelect($id)
     {
         if (in_array($id, $this->selectedIds)) {

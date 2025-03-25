@@ -12,11 +12,11 @@
                         @csrf
                         <div class="mb-3">
                             <label for="reference" class="form-label">Réf.</label>
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                                id="reference" 
-                                name="reference" 
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="reference"
+                                name="reference"
                                 value="{{ old('reference') }}"
                                 placeholder="Saisissez une référence"
                             >
@@ -24,11 +24,11 @@
 
                         <div class="mb-3">
                             <label for="libelle" class="form-label">Libellé</label>
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                                id="libelle" 
-                                name="libelle" 
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="libelle"
+                                name="libelle"
                                 value="{{ old('libelle') }}"
                                 placeholder="Saisissez un libellé"
                             >

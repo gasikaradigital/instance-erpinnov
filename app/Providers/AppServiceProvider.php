@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\Facades\Config;
+use App\Services\CodeGeneratorService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,9 @@ class AppServiceProvider extends ServiceProvider
   public function register(): void
   {
     //
+    $this->app->bind(CodeGeneratorService::class, function ($app) {
+      return new CodeGeneratorService();
+    });
   }
 
   /**

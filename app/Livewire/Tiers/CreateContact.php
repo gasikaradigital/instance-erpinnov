@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Tiers;
 
+use App\Models\CodeGenerator;
 use Livewire\Component;
 use Exception;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
+use App\Services\CodeGeneratorService;
 
 class CreateContact extends Component
 {
@@ -33,7 +35,11 @@ class CreateContact extends Component
     public $fax;
     public $priv;
     public $value;
-
+    protected $codeGeneratorService;
+    
+    public function mount(){
+    }
+    
     private $civilityMap = [
         'MME' => 'Madame',
         'MR' => 'Monsieur',
@@ -53,7 +59,8 @@ class CreateContact extends Component
     {   
         $this->civility = $this->civilityMap[$this->civility_code] ?? 'Unknown';
         $this->country_code = $this->countryCodeMap[$this->country_id] ?? null;
-        
+        $codeGeneratorService = app(CodeGeneratorService::class);
+        $this->code_contact = $codeGeneratorService->generateContactCode();
         $this->value = [
             'civility' => $this->civility,
             'civility_code' => $this->civility_code,
@@ -79,34 +86,13 @@ class CreateContact extends Component
         ];
     }
 
-    public function generateContactCode()
-    {
-        if (empty($this->codeContact)) {
-            $this->code_contact = "CO2501-00001";
-        } else {
-            // Récupérer le dernier code contact
-            $lastCode = end($this->codeContact);
-
-            // Extraire la partie numérique après le tiret
-            if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
-                $prefix = $matches[1];
-                $number = (int) $matches[2];
-
-                // Incrémenter le numéro
-                $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
-
-                // Retourner le nouveau code contact
-                $this->code_contact = $prefix . $newNumber;
-            }
-        }
-    }
-
     public function save()
     {
-        $this->generateContactCode();
-        $this->setValue();
+
         
         try {
+            $this->setValue();
+
             $apiData = [
                 ...$this->value,
                 'statut' => 1,

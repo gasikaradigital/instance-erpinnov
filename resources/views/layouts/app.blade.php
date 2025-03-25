@@ -41,7 +41,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo/logo.png') }}" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
     @include('layouts/sections/assets/styles')
     @include('layouts/sections/assets/scriptsIncludes')
     <!-- Styles -->
@@ -62,13 +63,13 @@
         #menuTiers.active {
             left: 0;
         }
-       .fixed-sidebar{
-        position: fixed;
-        top:0;
-        overflow-y:auto;
-        bottom: 0;
-        z-index:1000;
-       }
+        .fixed-sidebar{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            overflow-y: hidden;
+            z-index: 1000;
+        }
     </style>
 
 </head>

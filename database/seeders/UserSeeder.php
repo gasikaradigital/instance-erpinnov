@@ -61,8 +61,8 @@ class UserSeeder extends Seeder
             'name' => 'user premium',
             'email' => 'premium@example.com',
             'password' => Hash::make('premium123'),
-            'api_key' => 'kDUM0VTPlEcTU8EsGKXx52x8K6PQystm',
-            'url_dolibarr' => 'http://test-fin-dolibarr.erpinnov.com',
+            'api_key' => 'aF4F2mGEY4S99IpUyE1z0yng3B1wgWj0',
+            'url_dolibarr' => 'https://dolistag.gasikara.mg',
             'plan_id' => $premiumId,
             'sub_plan_id' => $vipId,
             'status' => 'active'
