@@ -155,7 +155,7 @@
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.banquesMenu')
                 </aside>
-            @elseif(request()->routeIs(['comptabilite', 'create-accounting']))
+            @elseif(request()->routeIs(['comptabiliteDashbord','comptabiliteExport','comptabiliteBilan','CompatiliteResultat','ComptabiliteFluxCTresorerie','ComptabiliteOperation','ComptabiliteInvestisement']))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.comptabiliteMenu')
                 </aside>

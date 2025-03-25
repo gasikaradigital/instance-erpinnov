@@ -60,8 +60,8 @@ $user = Auth::user();
 
            {{-- Comptabilité  --}}
            <li
-           class="menu-item flex-column align-items-center d-xl-flex{{ in_array($currentRouteName, ['comptabilite', 'create-accounting']) ? 'active open' : '' }}">
-           <a href="{{Route('comptabilite')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Comptabilité') }}">
+           class="menu-item flex-column align-items-center d-xl-flex{{ in_array($currentRouteName, ['comptabiliteDashbord']) ? 'active open' : '' }}">
+           <a href="{{Route('comptabiliteDashbord')}}" class="menu-link menu-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Comptabilité') }}">
                <i class="menu-icon tf-icons ti ti-chart-bar"></i>
            </a>
            <div data-i18n="Compta">Comptabilité</div>

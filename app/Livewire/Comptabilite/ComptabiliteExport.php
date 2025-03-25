@@ -4,10 +4,10 @@ namespace App\Livewire\Comptabilite;
 
 use Livewire\Component;
 
-class CreateAccounting extends Component
+class ComptabiliteExport extends Component
 {
     public function render()
     {
-        return view('livewire.comptabilite.create-accounting');
+        return view('livewire.comptabilite.comptabilite-export');
     }
 }
