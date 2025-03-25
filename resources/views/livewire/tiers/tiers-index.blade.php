@@ -19,7 +19,7 @@
                     <button class="btn btn-light btn-sm view-toggle ms-2" data-view="list"><i
                             class="fas fa-list"></i></button>
                 </span>
-                <ul class="dropdown-menu shadow-sm py-1" aria-labelledby="columnToggle">
+                <ul class="dropdown-menu shadow-sm py-1  px-6" aria-labelledby="columnToggle">
                     @foreach ($visibleColumns as $column => $isVisible)
                         <li>
                             <div class="form-check px-3">
@@ -32,6 +32,9 @@
                             </div>
                         </li>
                     @endforeach
+                    <li>
+                        <button class="btn btn-primary">Valider</button>
+                    </li>
                 </ul>
             </div>
             <select class="form-select form-select-sm ms-2" style="max-width: 100px;">
@@ -81,12 +84,12 @@
                 <!-- Filtres -->
                 <div class="row g-2 mt-2">
                     <!-- Filtre par type -->
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <div class="dropdown">
                             <button class="form-select form-select-sm d-flex justify-content-between align-items-center"
                                 type="button" id="typeDropdown" data-bs-toggle="dropdown" aria-expanded="false"
                                 style="padding-right: 28px;">
-                                <span>Types de tiers</span>
+                                <span>Types</span>
                             </button>
                             <ul class="dropdown-menu py-1 shadow-sm" aria-labelledby="typeDropdown"
                                 style="min-width: 100%;">
@@ -125,12 +128,22 @@
                     </div>
 
                     <!-- Filtre par statut -->
-                    <div class="col-md-2">
-                        <select class="form-select form-select-sm" wire:model.lazy="filterStatut">
-                            <option value="default">Statut</option>
-                            <option value="1">Actif</option>
-                            <option value="0">Inactif</option>
-                        </select>
+                    <div class="col-md-3  d-inline-flex justify-content-between align-items-center pt-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" id="statutDefault"
+                                wire:model.lazy="filterStatut" value="default">
+                            <label class="form-check-label" for="statutDefault">Statut</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" id="statutActif"
+                                wire:model.lazy="filterStatut" value="1">
+                            <label class="form-check-label" for="statutActif">Actif</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"  name="status" id="statutInactif"
+                                wire:model.lazy="filterStatut" value="0">
+                            <label class="form-check-label" for="statutInactif">Inactif</label>
+                        </div>
                     </div>
 
                     <!-- Filtre par commerciaux -->
