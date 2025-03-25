@@ -18,7 +18,10 @@
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Réf. client</label>
                             <select class="form-select custom-form-control" id="clientSelect">
-                                <option>Sélectionner un tiers</option>
+                                <option>Sélectionner un tier</option>
+                                @foreach ($listeTiers as $tier)
+                                <option value="{{$tier['id']}}">{{$tier['name']}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
