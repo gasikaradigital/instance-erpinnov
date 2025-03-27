@@ -6,7 +6,7 @@
     <!-- En-tête -->
     <div class="d-flex align-items-center">
         <i class="menu-icon fas fa-user fa-2x me-2"></i> <!-- Agrandit l'icône -->
-        <h2 class="fs-3 mb-0 ">Nouveau tiers</h2>
+        <h2 class=" fw-bold fs-3 mb-0 ">Nouveau tiers</h2>
     </div>
 
     <form wire:submit.prevent="save" id="addNewTierForm">
