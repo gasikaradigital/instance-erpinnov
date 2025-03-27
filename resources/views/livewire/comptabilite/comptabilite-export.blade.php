@@ -2,16 +2,11 @@
     <div class="row">
         <div class="col-12">
             <div class="card shadow-sm">
-                <div class="card-header bg-secondary text-white py-0">
+                <div class="card-header  text-white py-0">
                     <h5 class="mb-0">Exporter les documents sources</h5>
                 </div>
                 <div class="card-body">
-                    <p class="text-muted mb-4">
-                        Avec cet outil, vous pouvez rechercher et exporter les événements sources qui servent à générer
-                        votre comptabilité.
-                        Le fichier ZIP exporté contiendra les listes des éléments demandés au format CSV, ainsi que
-                        leurs fichiers joints dans leur format d'origine (PDF, ODT, DOCX...).
-                    </p>
+                   
 
                     <div class="row mb-4">
                         <div class="col-md-12">

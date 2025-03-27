@@ -102,6 +102,7 @@ use App\Livewire\Comptabilite\CompatiliteResultat;
 use App\Livewire\Comptabilite\CompatiliteFluxTresorerie;
 use App\Livewire\Comptabilite\CompatiliteOperation;
 use App\Livewire\Comptabilite\CompatiliteInvestisement;
+Use App\Livewire\Comptabilite\CompatiliteFinancements;
 
 
 
@@ -233,6 +234,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/Comptabilite/Tresorerie', CompatiliteFluxTresorerie::class)->name('ComptabiliteFluxCTresorerie');
     Route::get('/Compatilite/Operation',CompatiliteOperation::class)->name('ComptabiliteOperation');
     Route::get('/Comptabilite/investisement',CompatiliteInvestisement::class)->name('ComptabiliteInvestisement');
+    Route::get('/Comptabilite/Financement',CompatiliteFinancements::class)->name('ComptabiliteFinancemetns');
 
 
 });
