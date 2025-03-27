@@ -93,6 +93,7 @@
                     'create-tag-contact',
                     'tiers-dashboard',
                     'nouveau-devis',
+                    'liste-devis',
                 ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.tiersMenu') <!-- Menu vertical Tiers -->
