@@ -27,7 +27,7 @@
     <ul class="menu-inner py-1">
 
 
-        <li class="menu-item {{ in_array($currentRouteName, ['tiers-dashboard', 'create-tiers', 'tiers', 'tag-customer','nouveau-devis', ]) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['tiers-dashboard', 'create-tiers', 'tiers', 'tag-customer' ]) ? 'active open' : '' }}">
             <a href="{{Route('tiers-dashboard')}}" class="menu-link menu-toggle fw-bold">
                 <i class="menu-icon tf-icons ti ti-users"></i>
                 <div class="text-bold">{{ __('Tiers') }}</div>
@@ -51,13 +51,28 @@
                         <div>{{ __('Tags/catégories prospects/fournisseurs') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === 'nouveau-devis' ? 'active' : '' }}">
+
+
+            </ul>
+        </li>
+        <li class="menu-item {{ in_array($currentRouteName, ['create-devis','liste-devis' ]) ? 'active open' : '' }}">
+            <a href="javascript:void(0)" class="menu-link menu-toggle fw-bold">
+                <i class="menu-icon ti ti-file"></i>
+                <div class="text-bold">{{ __('Devis') }}</div>
+            </a>
+
+            <ul class="menu-sub">
+       <li class="menu-item {{ $currentRouteName === 'nouveau-devis' ? 'active' : '' }}">
                     <a href="{{ route('nouveau-devis') }}" class="menu-link">
                         <div>{{ __('Nouveau devis') }}</div>
                     </a>
                 </li>
-
-            </ul>
+                <li class="menu-item {{ $currentRouteName === 'liste-devis' ? 'active' : '' }}">
+                    <a href="{{ route('liste-devis') }}" class="menu-link">
+                        <div>{{ __('Liste devis') }}</div>
+                    </a>
+                </li>
+    </ul>
         </li>
 
         <li class="menu-item {{ in_array($currentRouteName, ['create-contact', 'contact', 'tag-contact' ]) ? 'active open' : '' }}">
@@ -85,5 +100,7 @@
             </a>
         </li>
     </ul>
+        </li>
+
     </ul>
 </aside>
