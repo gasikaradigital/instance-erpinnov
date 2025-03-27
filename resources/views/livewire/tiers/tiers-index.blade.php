@@ -12,8 +12,8 @@
 
     <div class="container-flux flex-grow-1 container-p-y p-6">
         <div class="d-flex align-items-center">
-            <i class="fas fa-box text-success me-2"></i>
-            <h4 class="fw-bold py-3 mb-2">Liste des tiers</h4>
+            <i class="fas fa-box fa-xl me-2"></i>
+            <h2 class="fw-bold fs-3 mb-2">Liste des tiers</h2>
             <div class="dropdown">
                 <span id="columnToggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <button class="btn btn-light btn-sm view-toggle ms-2" data-view="list"><i

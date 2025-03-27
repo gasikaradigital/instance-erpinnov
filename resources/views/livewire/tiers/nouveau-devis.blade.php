@@ -5,7 +5,10 @@
     <link rel="stylesheet" href="{{ asset('css/produitService.css') }}">
     <div class="container mt-5">
 
-                <h2 class="mb-0">Créer un devis</h2>
+                <div class="d-flex align-items-center">
+                  <i class="menu-icon fas fa-file-signature fa-2x me-2"></i> <!-- Agrandit l'icône -->
+                  <h2 class="fs-3 mb-0 ">Créer un devis</h2>
+               </div>
 
               <div class="card">
             <div class="card-body">
@@ -23,32 +26,34 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Client</label>
-                            <select class="form-select custom-form-control" id="clientSelect">
+                            <div class="input-group border rounded">
+                            <select class="form-select custom-form-control border-0" id="clientSelect">
                                 <option>Sélectionner un tier</option>
                                 @foreach ($listeTiers as $tier)
                                 <option value="{{$tier['id']}}">{{$tier['name']}}</option>
                                 @endforeach
                             </select>
+                            <span class=" input-group-text border-0"><i class="fas fa-plus "></i></span>
                         </div>
+                        </div>
+
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Date de proposition</label>
-                            <div class="input-group border">
-                                <span class="input-group-text border-0"><i class="fas fa-calendar"></i></span>
+                            <div class="input-group border rounded">
                                 <input type="date" class="form-control custom-form-control border-0" value="2025-03-25">
                             </div>
                         </div>
                          <div class="col-md-3 mb-3">
                             <label class="form-label">Date de livraison</label>
-                            <div class="input-group border">
-                                <span class="input-group-text border-0"><i class="fas fa-calendar"></i></span>
+                            <div class="input-group border rounded">
                                 <input type="date" class="form-control custom-form-control border-0" value="2025-03-25">
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Durée de validité</label>
-                            <div class="input-group border">
-                                <span class="input-group-text border-0"><i class="fas  fa-clock"></i></span>
+                            <div class="input-group border rounded">
                                 <input type="text" class="form-control custom-form-control border-0">
+                                <span class="input-group-text border-0"><i class="fas  fa-clock"></i></span>
                             </div>
                         </div>
 
