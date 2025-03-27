@@ -12,7 +12,7 @@
         </li>
 
         <!-- Rapports -->
-        <li class="menu-item {{ in_array($currentRouteName, ['comptabiliteBilan','CompatiliteResultat','ComptabiliteFluxCTresorerie','ComptabiliteOperation','ComptabiliteInvestisement']) ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($currentRouteName, ['comptabiliteBilan','CompatiliteResultat','ComptabiliteFluxCTresorerie','ComptabiliteOperation','ComptabiliteInvestisement','ComptabiliteFinancemetns']) ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="fas fa-chart-line"></i>
                 <strong>{{ __('Rapports') }}</strong>
@@ -43,8 +43,8 @@
                                 <div>{{ __('Investissements') }}</div>
                             </a>
                         </li>
-                        <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
-                            <a href="javascript:void(0)" class="menu-link">
+                        <li class="menu-item {{ $currentRouteName === 'ComptabiliteFinancemetns' ? 'active' : '' }}">
+                            <a href="{{ route('ComptabiliteFinancemetns') }}" class="menu-link">
                                 <div>{{ __('Financements') }}</div>
                             </a>
                         </li>
