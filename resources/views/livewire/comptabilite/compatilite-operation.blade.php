@@ -1,6 +1,9 @@
 
 <div class="container mt-4">
-    <h2 class="text-primary">Opérations - Journaux</h2>
+<h2 class="text-left fs-3 mb-4">
+  <i class="fas fa-book mr-2"></i> Opérations - Journaux
+</h2>
+
 
     <!-- Filtres -->
     <div class="row mb-3">

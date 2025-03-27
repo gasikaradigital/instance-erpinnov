@@ -3,10 +3,13 @@
         <div class="col-12">
             <div class="card shadow-sm">
                 <div class="card-header  text-white py-0">
-                    <h5 class="mb-0">Exporter les documents sources</h5>
+                <h2 class="mb-0 text-left fs-3">
+  <i class="fas fa-download mr-2"></i> Exporter les documents sources
+</h2>
+
                 </div>
                 <div class="card-body">
-                   
+
 
                     <div class="row mb-4">
                         <div class="col-md-12">

@@ -1,6 +1,9 @@
 
 <div class="container mt-5">
-    <h1 class="text-primary mb-4 ">Suivi des Flux de Trésorerie</h1>
+<h2 class="text-left mb-4 fs-3">
+  <i class="fas fa-wallet mr-2"></i> Suivi des Flux de Trésorerie
+</h2>
+
 
     <div class="row">
         <div class="col-md-4">

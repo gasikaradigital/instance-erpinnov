@@ -103,7 +103,9 @@ use App\Livewire\Comptabilite\CompatiliteFluxTresorerie;
 use App\Livewire\Comptabilite\CompatiliteOperation;
 use App\Livewire\Comptabilite\CompatiliteInvestisement;
 Use App\Livewire\Comptabilite\CompatiliteFinancements;
-
+Use App\Livewire\Comptabilite\CompatiliteBudget;
+use App\Livewire\Comptabilite\CompatiliteVenteMarges;
+use App\Livewire\Comptabilite\CompatiliteDepansesCoute;
 
 
 
@@ -235,6 +237,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/Compatilite/Operation',CompatiliteOperation::class)->name('ComptabiliteOperation');
     Route::get('/Comptabilite/investisement',CompatiliteInvestisement::class)->name('ComptabiliteInvestisement');
     Route::get('/Comptabilite/Financement',CompatiliteFinancements::class)->name('ComptabiliteFinancemetns');
+    Route::get('/Comptabilite/Budget', CompatiliteBudget::class)->name('ComptabiliteBudget');
+    Route::get('/Comptabilite/VenteMarges', CompatiliteVenteMarges::class)->name('CompatibilteVenteMarges');
+    Route::get('/Comptabilite/DepansesCoute',CompatiliteDepansesCoute::class)->name('CompatiliteDepansesCoute');
+
 
 
 });
