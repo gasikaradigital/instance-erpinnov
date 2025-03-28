@@ -87,7 +87,7 @@
                     <strong>Répartition des Dépenses</strong>
                 </div>
                 <div class="card-body">
-                <canvas id="expenseChart" style="width:0px; height:4px;"></canvas>
+                <canvas id="expenseChart" style="width:0; height:4cm;"></canvas>
 
                 </div>
             </div>
@@ -100,35 +100,50 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    // Graphique des dépenses par catégorie
-    const ctxExpense = document.getElementById('expenseChart').getContext('2d');
-    const expenseChart = new Chart(ctxExpense, {
-        type: 'pie',
-        data: {
-            labels: ['Charges fixes', 'Charges variables', 'Charges imprévues'],
-            datasets: [{
-                label: 'Répartition des Dépenses',
-                data: [12000, 8000, 3000], // Remplacer par les données réelles
-                backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56'],
-                borderColor: ['#FFFFFF', '#FFFFFF', '#FFFFFF'],
-                borderWidth: 1
-            }]
+   // Graphique des marges nettes
+var ctxMargin = document.getElementById('marginChart').getContext('2d');
+var marginChart = new Chart(ctxMargin, {
+    type: 'bar',
+    data: {
+        labels: ['Marge brute', 'Marge nette'],
+        datasets: [{
+            label: 'Marge',
+            data: [20000, 15000], // Remplacer par les marges réelles
+            backgroundColor: ['#4CAF50', '#FF9800'],
+            borderColor: ['#FFFFFF', '#FFFFFF'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 25000 // Ajuster la taille pour réduire la hauteur du graphique
+            }
         }
-    });
+    }
+});
 
-    // Graphique des marges nettes
-    const ctxMargin = document.getElementById('marginChart').getContext('2d');
-    const marginChart = new Chart(ctxMargin, {
-        type: 'bar',
-        data: {
-            labels: ['Marge brute', 'Marge nette'],
-            datasets: [{
-                label: 'Marge',
-                data: [20000, 15000], // Remplacer par les marges réelles
-                backgroundColor: ['#4CAF50', '#FF9800'],
-                borderColor: ['#FFFFFF', '#FFFFFF'],
-                borderWidth: 1
-            }]
-        }
-    });
+// Graphique des dépenses par catégorie
+var ctxExpense = document.getElementById('expenseChart').getContext('2d');
+var expenseChart = new Chart(ctxExpense, {
+    type: 'pie',
+    data: {
+        labels: ['Charges fixes', 'Charges variables', 'Charges imprévues'],
+        datasets: [{
+            label: 'Répartition des Dépenses',
+            data: [12000, 8000, 3000], // Remplacer par les données réelles
+            backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56'],
+            borderColor: ['#FFFFFF', '#FFFFFF', '#FFFFFF'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
 </script>

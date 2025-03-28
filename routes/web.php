@@ -106,6 +106,8 @@ Use App\Livewire\Comptabilite\CompatiliteFinancements;
 Use App\Livewire\Comptabilite\CompatiliteBudget;
 use App\Livewire\Comptabilite\CompatiliteVenteMarges;
 use App\Livewire\Comptabilite\CompatiliteDepansesCoute;
+Use App\Livewire\Comptabilite\CompatiliteJournaleVentes;
+use App\Livewire\Comptabilite\CompatiliteJournaleAchats;
 
 
 
@@ -240,7 +242,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/Comptabilite/Budget', CompatiliteBudget::class)->name('ComptabiliteBudget');
     Route::get('/Comptabilite/VenteMarges', CompatiliteVenteMarges::class)->name('CompatibilteVenteMarges');
     Route::get('/Comptabilite/DepansesCoute',CompatiliteDepansesCoute::class)->name('CompatiliteDepansesCoute');
-
+    Route::get('Comptabilite/JournalVente',CompatiliteJournaleVentes::class)->name('ComptabiliteJournalVentes');
+    Route::get('Comptabilite/JournalAchat',CompatiliteJournaleAchats::class)->name('ComptabiliteJournalAchats');
 
 
 });
