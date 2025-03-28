@@ -9,7 +9,7 @@
             <div class="d-flex align-items-center">
                 <i class="fas fa-file-invoice fa-xl mb-2 me-2"></i>
                 <h2 class="fw-bold fs-3 mb-2">Propositions commerciales </h2>
-                <span class="badge text-dark mb-2 fs-3">(2)</span>
+                <span class="badge text-dark mb-2 fs-3">({{count($filteredProposals)}})</span>
             </div>
             <div class="d-flex align-items-center">
                 <div class="dropdown">
