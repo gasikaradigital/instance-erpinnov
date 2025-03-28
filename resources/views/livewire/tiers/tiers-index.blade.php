@@ -52,7 +52,7 @@
             </select>
 
             <button class="btn btn-primary btn-sm ms-2" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="{{ __('Nouveau produit') }}">
+                title="{{ __('Nouveau tiers') }}">
                 <a href="{{ route('create-tiers') }}" class="btn btn-primary btn-sm p-0 px-1">
                     <i class="ti ti-plus"></i>
                 </a>
