@@ -72,7 +72,6 @@ class ListeDevis extends Component
                     return $proposal;
                 })->all();
                 $this->filteredProposals = $this->proposals;
-                dump($this->filteredProposals);
             }
         } catch (Exception $e) {
         }
