@@ -160,7 +160,7 @@ class NouveauDevis extends Component
                 'Accept' => 'application/json'
             ])->post($user->url_dolibarr . '/api/index.php/proposals', $this->apiData);
             if ($createProposalResponse->successful()) {
-                return redirect('/tiers');
+                return redirect()->to(route("liste-devis"));
             }else{
                 dump(json_encode($this->apiData));
                 dump($createProposalResponse);
