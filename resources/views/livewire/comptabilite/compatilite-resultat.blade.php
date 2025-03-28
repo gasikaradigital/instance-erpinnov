@@ -1,7 +1,10 @@
 
 
     <div class="container mt-5">
-        <h1 class="text-left  mb-4">Compte de Résultat</h1>
+    <h2 class="text-left fs-3 mb-4">
+  <i class="fas fa-calculator mr-2"></i> Compte de Résultat
+</h2>
+
 
         <!-- Filtres (Année et Mois) -->
         <div class="row mb-3">

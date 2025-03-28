@@ -12,7 +12,8 @@
         </li>
 
         <!-- Rapports -->
-        <li class="menu-item {{ in_array($currentRouteName, ['comptabiliteBilan','CompatiliteResultat','ComptabiliteFluxCTresorerie','ComptabiliteOperation','ComptabiliteInvestisement','ComptabiliteFinancemetns']) ? 'active open' : '' }}">
+        <li
+            class="menu-item {{ in_array($currentRouteName, ['comptabiliteBilan', 'CompatiliteResultat', 'ComptabiliteFluxCTresorerie', 'ComptabiliteOperation', 'ComptabiliteInvestisement', 'ComptabiliteFinancemetns', 'ComptabiliteBudget', 'CompatibilteVenteMarges', 'CompatiliteDepansesCoute','ComptabiliteJournalVentes','ComptabiliteJournalAchats']) ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="fas fa-chart-line"></i>
                 <strong>{{ __('Rapports') }}</strong>
@@ -50,19 +51,29 @@
                         </li>
                     </ul>
                 </li>
-                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
-                    <a href="javascript:void(0)" class="menu-link">
+                <li class="menu-item {{ $currentRouteName === 'ComptabiliteBudget' ? 'active' : '' }}">
+                    <a href="{{ route('ComptabiliteBudget') }}" class="menu-link">
                         <div>{{ __('Budget') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
-                    <a href="javascript:void(0)" class="menu-link">
+                <li class="menu-item {{ $currentRouteName === 'CompatibilteVenteMarges' ? 'active' : '' }}">
+                    <a href="{{ route('CompatibilteVenteMarges') }}" class="menu-link">
                         <div>{{ __('Ventes & Marges') }}</div>
                     </a>
                 </li>
-                <li class="menu-item {{ $currentRouteName === '' ? 'active' : '' }}">
-                    <a href="javascript:void(0)" class="menu-link">
+                <li class="menu-item {{ $currentRouteName === 'CompatiliteDepansesCoute' ? 'active' : '' }}">
+                    <a href="{{ route('CompatiliteDepansesCoute') }}" class="menu-link">
                         <div>{{ __('Dépenses & Coûts') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === 'ComptabiliteJournalVentes' ? 'active' : '' }}">
+                    <a href="{{ route('ComptabiliteJournalVentes') }}" class="menu-link">
+                        <div>{{ __('Journales des ventes') }}</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ $currentRouteName === 'ComptabiliteJournalAchats' ? 'active' : '' }}">
+                    <a href="{{ route('ComptabiliteJournalAchats') }}" class="menu-link">
+                        <div>{{ __('Journales des achats') }}</div>
                     </a>
                 </li>
             </ul>

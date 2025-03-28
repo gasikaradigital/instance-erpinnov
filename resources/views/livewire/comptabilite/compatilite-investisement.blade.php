@@ -1,6 +1,9 @@
 
 <div class="container mt-4">
-    <h2 class="text-primary">Flux d'Investissement</h2>
+<h2 class="text-left fs-3 mb-4">
+  <i class="fas fa-arrow-up mr-2"></i> Flux d'Investissement
+</h2>
+
 
     <!-- Section d'affichage des flux d'investissement -->
     <div class="row">
