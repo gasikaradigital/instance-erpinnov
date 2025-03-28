@@ -165,6 +165,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($filteredProposals as $proposal)
                         <tr>
                             <td class="align-middle">
                                 <div class="form-check">
@@ -173,54 +174,28 @@
                             </td>
                             <td class="align-middle">
                                 <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-file-alt text-success"></i> (PROV14)
+                                    <i class="fas fa-file-alt text-success"></i> {{$proposal['ref']}}
                                 </a>
                             </td>
                             <td class="align-middle">
                                 <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-building text-primary"></i> tiera (tiers)
+                                    <i class="fas fa-building text-primary"></i> {{$proposal['client']['display_name']}} (tiers)
                                 </a>
                             </td>
-                            <td class="align-middle">13/03/2025</td>
-                            <td class="align-middle">13/03/2025</td>
-                            <td class="align-middle">0,00</td>
+                            <td class="align-middle">{{ $proposal['datep_string']}}</td>
+                            <td class="align-middle">{{ $proposal['date_fin_validite_string']}}</td>
+                            <td class="align-middle">{{$proposal['total_ht']}}</td>
                             <td class="align-middle">
                                 <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-user text-secondary"></i> SuperAdmin
+                                    
+                                    <i class="fas fa-user text-secondary"></i> <span class="text-secondary"> {{ $proposal['user_author_display_name'] }}</span>
                                 </a>
                             </td>
                             <td class="align-middle">
                                 <span class="badge bg-light text-dark">Brouillon</span>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="align-middle">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox">
-                                </div>
-                            </td>
-                            <td class="align-middle">
-                                <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-file-alt text-success"></i> (PROV13)
-                                </a>
-                            </td>
-                            <td class="align-middle">
-                                <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-building text-primary"></i> tiera (tiers)
-                                </a>
-                            </td>
-                            <td class="align-middle">13/03/2025</td>
-                            <td class="align-middle">13/03/2025</td>
-                            <td class="align-middle">0,00</td>
-                            <td class="align-middle">
-                                <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-user text-secondary"></i> SuperAdmin
-                                </a>
-                            </td>
-                            <td class="align-middle">
-                                <span class="badge bg-light text-dark">Brouillon</span>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
