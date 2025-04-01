@@ -125,7 +125,7 @@
                     <div class="col-md-3 mb-3">
                         <label class="form-label">Tags/catégories clients/prosp.</label>
                         <select class="select2 form-select" wire:model="selectedClientCategorie">
-                            <option value="0" disabled>Selectionner un tag</option>
+                            <option value="0" disabled selected>Selectionner un tag</option>
                             @foreach ($categories as $categorie)
                                 @if ($categorie['type'] == 2)
                                     <option value="{{ $categorie['id'] }}">{{ $categorie['name'] }}</option>
@@ -136,7 +136,7 @@
                     <div class="col-md-3 mb-3">
                         <label class="form-label">Tags/catégories fournisseurs</label>
                         <select class="select2 form-select" wire:model="selectedFournisseurCategorie">
-                            <option value="0" disabled>Selectionner un tag</option>
+                            <option value="0" disabled selected>Selectionner un tag</option>
                             @foreach ($categories as $categorie)
                                 @if ($categorie['type'] == 1)
                                     <option value="{{ $categorie['id'] }}">{{ $categorie['name'] }}</option>
