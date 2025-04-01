@@ -54,28 +54,30 @@
                         <label class="form-label">Fournisseur <span class="text-danger">*</span></label>
                         <div class="d-flex align-items-center gap-2">
                             <div class="form-check mb-0">
-                                <input type="checkbox" id="fournisseur-oui" class="form-check-input" value="1" wire:model="fournisseur" checked>
+                                <input type="checkbox" id="fournisseur-oui" class="form-check-input" value="1"
+                                    wire:model="fournisseur" checked>
                                 <label class="form-check-label" for="fournisseur-oui">Oui</label>
                             </div>
                             <div class="form-check mb-0">
-                                <input type="checkbox" id="fournisseur-non" class="form-check-input" value="0" wire:model="fournisseur">
+                                <input type="checkbox" id="fournisseur-non" class="form-check-input" value="0"
+                                    wire:model="fournisseur">
                                 <label class="form-check-label" for="fournisseur-non">Non</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-3 mb-3"><!-- à modifier aprèS -->
-                         <label class="form-label">Assujetti à la TVA</label>
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="form-check mb-0">
-                                <input type="checkbox" class="form-check-input" wire:model="tva_assuj"/>
+                        <label class="form-label">Assujetti à la TVA</label>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="form-check mb-0">
+                                <input type="checkbox" class="form-check-input" wire:model="tva_assuj" />
                                 <label class="form-check-label" for="TVA-oui">Oui</label>
                             </div>
-                         <div class="form-check mb-0">
-                                <input type="checkbox" class="form-check-input" wire:model="tva_assuj"/>
+                            <div class="form-check mb-0">
+                                <input type="checkbox" class="form-check-input" wire:model="tva_assuj" />
                                 <label class="form-check-label" for="TVA-non">Non</label>
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label class="form-label">Identité professionnel 1</label>
@@ -122,11 +124,25 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label class="form-label">Tags/catégories clients/prosp.</label>
-                        <input type="text" class="form-control" wire:model="tags" />
+                        <select class="select2 form-select" wire:model="selectedClientCategorie">
+                            <option value="0" disabled>Selectionner un tag</option>
+                            @foreach ($categories as $categorie)
+                                @if ($categorie['type'] == 2)
+                                    <option value="{{ $categorie['id'] }}">{{ $categorie['name'] }}</option>
+                                @endif
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label class="form-label">Tags/catégories fournisseurs</label>
-                        <input type="text" class="form-control" wire:model="tagsFournisseur" />
+                        <select class="select2 form-select" wire:model="selectedFournisseurCategorie">
+                            <option value="0" disabled>Selectionner un tag</option>
+                            @foreach ($categories as $categorie)
+                                @if ($categorie['type'] == 1)
+                                    <option value="{{ $categorie['id'] }}">{{ $categorie['name'] }}</option>
+                                @endif
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label class="form-label">Maison Mère</label>
@@ -139,17 +155,19 @@
                         <input type="text" class="form-control" wire:model="maisonMere" />
                     </div>
                     <div class="col-md-3 mb-3">
-              <label class="form-label">Logo</label>
-             <div class="input-group">
-             <input type="file" class="form-control custom-file-input" style="border-radius: 4px !important;" wire:model="logo" id="logoInput" hidden />
-             <div class="form-control d-flex justify-content-between align-items-center" style="border-radius: 4px !important;"
-             onclick="document.getElementById('logoInput').click()"
-             style="cursor: pointer; background-color: white;">
-            <span class="file-name text-muted border-0">Logo</span>
-            <i class="fas fa-folder"></i>
-        </div>
-    </div>
-</div>
+                        <label class="form-label">Logo</label>
+                        <div class="input-group">
+                            <input type="file" class="form-control custom-file-input"
+                                style="border-radius: 4px !important;" wire:model="logo" id="logoInput" hidden />
+                            <div class="form-control d-flex justify-content-between align-items-center"
+                                style="border-radius: 4px !important;"
+                                onclick="document.getElementById('logoInput').click()"
+                                style="cursor: pointer; background-color: white;">
+                                <span class="file-name text-muted border-0">Logo</span>
+                                <i class="fas fa-folder"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -348,10 +366,18 @@
     // Animation pour les titres des sections quand on interagit avec les champs
     document.addEventListener('DOMContentLoaded', function() {
         // Configuration des sections
-        const sections = [
-            { card: 'section1Card', title: 'section1Title' },
-            { card: 'section2Card', title: 'section2Title' },
-            { card: 'section3Card', title: 'section3Title' }
+        const sections = [{
+                card: 'section1Card',
+                title: 'section1Title'
+            },
+            {
+                card: 'section2Card',
+                title: 'section2Title'
+            },
+            {
+                card: 'section3Card',
+                title: 'section3Title'
+            }
         ];
 
         // Couleur originale des titres
@@ -399,7 +425,8 @@
                 // Seulement réinitialiser si le curseur quitte complètement la carte
                 if (!card.contains(e.relatedTarget)) {
                     // Vérifier si aucun champ n'a le focus à l'intérieur de la carte
-                    const hasFocus = Array.from(inputs).some(input => document.activeElement === input);
+                    const hasFocus = Array.from(inputs).some(input => document.activeElement ===
+                        input);
                     if (!hasFocus) {
                         title.style.color = originalColor;
                     }
