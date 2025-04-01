@@ -272,7 +272,6 @@ class CreateTiers extends Component
                     ->filter()
                     ->values()
                     ->all();
-                dump($this->categories);
             } else {
                 dump($getCategoriesResponse->status());
             }
