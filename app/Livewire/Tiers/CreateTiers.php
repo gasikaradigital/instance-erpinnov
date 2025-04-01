@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 class CreateTiers extends Component
 {
     public $typent_id;
+    public $selectedClientCategorie = 0;
+    public $selectedFournisseurCategorie = 0;
     public $typent_code;
     public $name;
     public $name_alias;
@@ -46,19 +48,18 @@ class CreateTiers extends Component
     public $idprof1;
     public $idprof2;
     public $idprof3;
+    public $categories = [];
 
     public function setValue()
     {
         $codeGeneratorService = app(CodeGeneratorService::class);
         $codeFournisseur = null;
         $this->code_client = $codeGeneratorService->generateClientCode();
-        if($this->fournisseur !== 0)
-        {
-            $this->code_fournisseur=$codeGeneratorService->generateFournisseurCode();
+        if ($this->fournisseur !== 0) {
+            $this->code_fournisseur = $codeGeneratorService->generateFournisseurCode();
         }
 
-        switch($this->effectif_id)
-        {
+        switch ($this->effectif_id) {
             case 1:
                 $this->effectif = "1 - 5";
                 break;
@@ -80,7 +81,7 @@ class CreateTiers extends Component
 
         $this->valeur = [
             'name' => $this->name,
-            'name_alias' =>$this->name_alias,
+            'name_alias' => $this->name_alias,
             'address' => $this->address,
             'town' => $this->town,
             'phone' => $this->phone,
@@ -90,7 +91,7 @@ class CreateTiers extends Component
             'typent_id' => $this->typent_id,
             'typent_code' => $this->typent_code,
             'multicurrency_code' => 'required|string|in:MGA,EUR,USD',
-            'comercial_id'=> 1,
+            'comercial_id' => 1,
             'nif' => $this->nif,
             'stat' => $this->stat,
             'zip' => $this->zip,
@@ -110,38 +111,37 @@ class CreateTiers extends Component
             'idprof1' => $this->idprof1,
             'idprof2' => $this->idprof2,
             'idprof3' => $this->idprof3,
-            'commerciax'=>"1"
+            'commerciax' => "1"
         ];
     }
 
     public function setTypentCode($typentId)
     {
-        switch($typentId)
-        {
+        switch ($typentId) {
             case '2':
-                $this->typent_code="TE_GROUP";
-            break;
+                $this->typent_code = "TE_GROUP";
+                break;
             case '3':
-                $this->typent_code="TE_MEDIUM";
-            break;
+                $this->typent_code = "TE_MEDIUM";
+                break;
             case '4':
-                $this->typent_code="TE_SMALL";
-            break;
+                $this->typent_code = "TE_SMALL";
+                break;
             case '5':
-                $this->typent_code="TE_ADMIN";
-            break;
+                $this->typent_code = "TE_ADMIN";
+                break;
             case '8':
                 $this->typent_code = "TE_PRIVATE";
-            break;
+                break;
             case '100':
                 $this->typent_code = "TE_OTHER";
-            break;
+                break;
         }
     }
 
     public function setCountryCode($countryId)
     {
-        switch($countryId){
+        switch ($countryId) {
             case '1':
                 $this->country_code = "FR";
                 break;
@@ -164,9 +164,9 @@ class CreateTiers extends Component
 
         $this->setCountryCode($this->country_id);
 
-        
+
         try {
-            
+
             $this->setValue();
 
             // Préparation des données pour l'API
@@ -184,7 +184,7 @@ class CreateTiers extends Component
 
 
             $user = Auth::user();
-            
+
             // Envoi à l'API
             $response = Http::withHeaders([
                 'DOLAPIKEY' => $user->api_key,
@@ -204,61 +204,14 @@ class CreateTiers extends Component
         }
     }
 
-    // public function generateClientCode()
-    // {
-    //     if (empty($this->codeClient)) {
-    //         $this->code_client = "CU2501-00001";
-    //     } else {
-    //         // Récupérer le dernier code client
-    //         $lastCode = end($this->codeClient);
-
-    //         // Extraire la partie numérique après le tiret
-    //         if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
-    //             $prefix = $matches[1]; // Partie avant le numéro (ex: "CU2501-")
-    //             $number = (int) $matches[2]; // Partie numérique
-
-    //             // Incrémenter le numéro
-    //             $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
-
-    //             // Retourner le nouveau code client
-
-    //             $this->code_client = $prefix. $newNumber;
-    //         }
-    //     }
-
-    // }
-
-    // public function generateFournisseurCode()
-    // {
-    //     if (empty($this->codeFournisseur)) {
-    //         $this->code_fournisseur = "SU2501-00001";
-    //     } else {
-    //         // Récupérer le dernier code client
-    //         $lastCode = end($this->codeFournisseur);
-
-    //         // Extraire la partie numérique après le tiret
-    //         if (preg_match('/^(.*-)(\d+)$/', $lastCode, $matches)) {
-    //             $prefix = $matches[1]; // Partie avant le numéro (ex: "CU2501-")
-    //             $number = (int) $matches[2]; // Partie numérique
-
-    //             // Incrémenter le numéro
-    //             $newNumber = str_pad($number + 1, strlen($matches[2]), '0', STR_PAD_LEFT);
-
-    //             // Retourner le nouveau code client
-
-    //             $this->code_Fournisseur = $prefix. $newNumber;
-    //         }
-    //     }
-    // }
-
-    public function render()
+    public function mount()
     {
         $user  = Auth::user();
-        
+
         try {
             // Récupération des tiers depuis l'API Dolibarr
             $response = Http::withHeaders([
-                'DOLAPIKEY' =>  $user->api_key 
+                'DOLAPIKEY' =>  $user->api_key
             ])->get($user->url_dolibarr . '/api/index.php/thirdparties');
 
             if (!$response->successful()) {
@@ -266,7 +219,7 @@ class CreateTiers extends Component
             }
 
             // Conversion du tableau en objets pour faciliter l'utilisation dans la vue
-            $this->data = collect($response->json())->map(function($item) {
+            $this->data = collect($response->json())->map(function ($item) {
                 $item = (object) $item;
 
                 // Récupérer le nom du pays si country_id existe
@@ -289,20 +242,48 @@ class CreateTiers extends Component
 
                 return $item;
             })->all();
-            
+
             //Récupération des codes clients qui sont déjà utilisé par d'autre tiers
-            foreach($this->data as $codeClient){
-                if($codeClient->code_client){
+            foreach ($this->data as $codeClient) {
+                if ($codeClient->code_client) {
                     $this->codeClient[] = $codeClient->code_client;
                 }
             }
-
-            return view('livewire.tiers.create-tiers',[
-                'data' => $this->data,
-            ]);
-            
         } catch (Exception $e) {
             Log::error('Erreur lors de la récupération des tiers: ' . $e->getMessage());
         }
+
+        try {
+            $getCategoriesResponse = Http::withHeaders([
+                'DOLAPIKEY' =>  $user->api_key
+            ])->get($user->url_dolibarr . '/api/index.php/categories');
+            if ($getCategoriesResponse->successful()) {
+                $this->categories = collect($getCategoriesResponse->json())
+                    ->map(function ($item) {
+                        if ($item['type'] == 1 || $item['type'] == 2) {
+                            return [
+                                'name' => $item['label'],
+                                'id' => $item['id'],
+                                'parent' => $item['fk_parent'],
+                                'type' => $item['type']
+                            ];
+                        }
+                    })
+                    ->filter()
+                    ->values()
+                    ->all();
+                dump($this->categories);
+            } else {
+                dump($getCategoriesResponse->status());
+            }
+        } catch (Exception $e) {
+            dump("erreur" . $e->getMessage());
+        }
+    }
+    public function render()
+    {
+        return view('livewire.tiers.create-tiers', [
+            'data' => $this->data,
+        ]);
     }
 }
