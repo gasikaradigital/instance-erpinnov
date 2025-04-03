@@ -641,6 +641,9 @@
   /* Animation pour les icônes d'édition */
   .input-group-text i {
     transition: var(--transition-normal);
+    size: 10px;
+
+
   }
 
   .input-group-text:hover i {

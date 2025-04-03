@@ -1,0 +1,78 @@
+.tree {
+    margin-left: 10px;
+}
+
+.tree-item {
+    margin: 5px 0;
+    position: relative;
+}
+
+.tree-content {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    min-width: 120px;
+    max-width: 200px;
+}
+
+.chevron {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.3);
+    transition: transform 0.3s;
+}
+
+.tree-children {
+    margin-left: 20px;
+    display: none;
+    border-left: 1px solid #ccc;
+    padding-left: 10px;
+}
+
+.expanded > .tree-content .chevron {
+    transform: rotate(90deg);
+}
+
+.expanded > .tree-children {
+    display: block;
+}
+
+.green {
+    background-color: #00c853;
+}
+
+.orange {
+    background-color: #ff6d00;
+}
+
+.grey {
+    background-color: #9e9e9e;
+}
+
+.black {
+    background-color: #212121;
+}
+
+.blue {
+    background-color: #2979ff;
+}
+
+.connector {
+    position: absolute;
+    left: -11px;
+    top: 15px;
+    width: 10px;
+    height: 1px;
+    background-color: #ccc;
+}

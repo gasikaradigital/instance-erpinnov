@@ -49,6 +49,7 @@ class TagContactIndex extends Component
         }
     }
 
+// Fonction pour obtenir les enfants d'un élément
     public function render()
     {
         return view('livewire.tiers.tag-contact-index');
