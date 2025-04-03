@@ -1,6 +1,7 @@
 
     <!-- Bootstrap CSS -->
     <!-- Font Awesome pour les icônes -->
+    <div>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <div class="container-fluid mt-3">
@@ -43,7 +44,7 @@
                     <option>5000</option>
                     <option>10000</option>
                 </select>
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" wire:click="dumping">
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
@@ -56,32 +57,45 @@
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-user"></i></span>
-                            <select class="form-select border-0">
-                                <option selected>Tiers ayant pour commercial</option>
+                            <select class="form-select border-0" wire:model='selectedCommercialId'>
+                                <option value="0" selected>Tiers ayant pour commercial</option>
+                                @foreach ($commericals as $commercial)
+                                @dump($commercial)
+                                <option value="{{$commercial->id}}">{{$commercial->display_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-user"></i></span>
-                            <select class="form-select border-0">
-                                <option selected>Lié à un contact utilisateur...</option>
+                            <select class="form-select border-0" wire:model="selectedContact">
+                                <option value="0" selected>Lié à un contact utilisateur...</option>
+                                @foreach ($contacts as $contact)
+                                <option value="{{$contact->id}}">{{$contact->display_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-box"></i></span>
-                            <select class="form-select border-0">
-                                <option selected>Comprenant des produits/services avec...</option>
+                            <select class="form-select border-0" wire:model="selectedProduct">
+                                <option value="0" selected>Comprenant des produits/services avec...</option>
+                                @foreach ($products as $product)
+                                <option value="{{$product->id}}">{{$product->label}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-tag"></i></span>
-                            <select class="form-select border-0">
-                                <option selected>Tags/catégories clients/prosp...</option>
+                            <select class="form-select border-0" wire:model="selectClientTag">
+                                <option value='0' selected>Tags/catégories clients/prosp...</option>
+                                @foreach ($tags as $tag)
+                                <option value='{{$tag->id}}'>{{$tag->label}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -174,21 +188,21 @@
                             </td>
                             <td class="align-middle">
                                 <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-file-alt text-success"></i> {{$proposal['ref']}}
+                                    <i class="fas fa-file-alt text-success"></i> {{$proposal->ref}}
                                 </a>
                             </td>
                             <td class="align-middle">
                                 <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-building text-primary"></i> {{$proposal['client']['display_name']}} (tiers)
+                                    <i class="fas fa-building text-primary"></i> {{$proposal->client->display_name}} (tiers)
                                 </a>
                             </td>
-                            <td class="align-middle">{{ $proposal['datep_string']}}</td>
-                            <td class="align-middle">{{ $proposal['date_fin_validite_string']}}</td>
-                            <td class="align-middle">{{$proposal['total_ht']}}</td>
+                            <td class="align-middle">{{ $proposal->datep_string}}</td>
+                            <td class="align-middle">{{ $proposal->date_fin_validite_string}}</td>
+                            <td class="align-middle">{{$proposal->total_ht}}</td>
                             <td class="align-middle">
                                 <a href="#" class="text-decoration-none">
                                     
-                                    <i class="fas fa-user text-secondary"></i> <span class="text-secondary"> {{ $proposal['user_author_display_name'] }}</span>
+                                    <i class="fas fa-user text-secondary"></i> <span class="text-secondary"> {{ $proposal->user_author_display_name }}</span>
                                 </a>
                             </td>
                             <td class="align-middle">
@@ -239,3 +253,4 @@
             });
         });
     </script>
+<div>
