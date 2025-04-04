@@ -1,7 +1,6 @@
-
-    <!-- Bootstrap CSS -->
-    <!-- Font Awesome pour les icônes -->
-    <div>
+<!-- Bootstrap CSS -->
+<!-- Font Awesome pour les icônes -->
+<div>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <div class="container-fluid mt-3">
@@ -10,11 +9,12 @@
             <div class="d-flex align-items-center">
                 <i class="fas fa-file-invoice fa-xl mb-2 me-2"></i>
                 <h2 class="fw-bold fs-3 mb-2">Propositions commerciales </h2>
-                <span class="badge text-dark mb-2 fs-3">({{count($filteredProposals)}})</span>
+                <span class="badge text-dark mb-2 fs-3">({{ count($filteredProposals) }})</span>
             </div>
             <div class="d-flex align-items-center">
                 <div class="dropdown">
-                    <button class="btn btn-outline-secondary view-toggle me-2 " id="collumToggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-outline-secondary view-toggle me-2 " id="collumToggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-list"></i>
                     </button>
                     <ul class="dropdown-menu shadow-sm py-2 px-3" aria-labelledby="collumToggle">
@@ -57,11 +57,11 @@
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-user"></i></span>
-                            <select class="form-select border-0" wire:model='selectedCommercialId'>
+                            <select class="form-select border-0" wire:model.lazy='selectedCommercialId'>
                                 <option value="0" selected>Tiers ayant pour commercial</option>
                                 @foreach ($commericals as $commercial)
-                                @dump($commercial)
-                                <option value="{{$commercial->id}}">{{$commercial->display_name}}</option>
+                                    @dump($commercial)
+                                    <option value="{{ $commercial->id }}">{{ $commercial->display_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -69,10 +69,10 @@
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-user"></i></span>
-                            <select class="form-select border-0" wire:model="selectedContact">
+                            <select class="form-select border-0" wire:model.lazy="selectedContact">
                                 <option value="0" selected>Lié à un contact utilisateur...</option>
                                 @foreach ($contacts as $contact)
-                                <option value="{{$contact->id}}">{{$contact->display_name}}</option>
+                                    <option value="{{ $contact->id }}">{{ $contact->display_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -80,10 +80,13 @@
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-box"></i></span>
-                            <select class="form-select border-0" wire:model="selectedProduct">
-                                <option value="0" selected>Comprenant des produits/services avec...</option>
+                            <select class="form-select border-0" wire:model.lazy="selectedProduct">
+                                <option value="0" selected>Comprenant des produits/services</option>
                                 @foreach ($products as $product)
-                                <option value="{{$product->id}}">{{$product->label}}</option>
+                                    @if ($product->product_id != null)
+                                        <option value="{{ $product->product_id }}">{{ $product->poduct_display_name }}
+                                        </option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -91,46 +94,51 @@
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-tag"></i></span>
-                            <select class="form-select border-0" wire:model="selectClientTag">
+                            <select class="form-select border-0" wire:model.lazy="selectedClientTag">
                                 <option value='0' selected>Tags/catégories clients/prosp...</option>
                                 @foreach ($tags as $tag)
-                                <option value='{{$tag->id}}'>{{$tag->label}}</option>
+                                    <option value='{{ $tag->id }}'>{{ $tag->label }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="row g-3 mt-2">
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <div class="input-group border">
-                            <input type="text" class="form-control border-0" placeholder="Rechercher...">
-                            <button class="btn btn-outline-secondary border-0" type="button">
-                                <i class="fas fa-search border-0"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="input-group border">
-                            <input type="text" class="form-control border-0" placeholder="">
+                            <input type="text" class="form-control border-0" placeholder="Réf..."
+                                wire:model.lazy="refSearchQuery">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="input-group border">
                             <span class="input-group-text border-0">Du</span>
-                            <input type="date" class="form-control border-0">
+                            <input type="date" class="form-control border-0" wire:model.lazy="datepStart">
                             <span class="input-group-text border-0">au</span>
-                            <input type="date" class="form-control border-0">
+                            <input type="date" class="form-control border-0" wire:model.lazy="datepEnd">
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="input-group border">
                             <span class="input-group-text border-0">Du</span>
-                            <input type="date" class="form-control border-0">
+                            <input type="date" class="form-control border-0" wire:model.lazy="dateFinStart">
                             <span class="input-group-text border-0">au</span>
-                            <input type="date" class="form-control border-0">
+                            <input type="date" class="form-control border-0" wire:model.lazy="dateFinEnd">
                         </div>
                     </div>
+                    <div class="col-md-3 d-flex gap-2">
+                        <button class="w-50 btn btn-primary border d-flex gap-3 align-items-center"
+                            wire:click='applyProposalFilter'>
+                            <i class="fas fa-filter"></i>
+                            <span class="text-lowercase font-weight-light">Filtrer</span>
+                        </button>
+                        <button class="w-50 btn btn-secondary border" wire:click='resetProposalFilter'>
+                            <span class="text-lowercase font-weight-light">Réinitialiser</span>
+                        </button>
+                    </div>
+
+
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <!-- Menu d'action -->
                         <div class="d-flex gap-2 align-items-center action-menu">
@@ -180,35 +188,37 @@
                     </thead>
                     <tbody>
                         @foreach ($filteredProposals as $proposal)
-                        <tr>
-                            <td class="align-middle">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox">
-                                </div>
-                            </td>
-                            <td class="align-middle">
-                                <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-file-alt text-success"></i> {{$proposal->ref}}
-                                </a>
-                            </td>
-                            <td class="align-middle">
-                                <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-building text-primary"></i> {{$proposal->client->display_name}} (tiers)
-                                </a>
-                            </td>
-                            <td class="align-middle">{{ $proposal->datep_string}}</td>
-                            <td class="align-middle">{{ $proposal->date_fin_validite_string}}</td>
-                            <td class="align-middle">{{$proposal->total_ht}}</td>
-                            <td class="align-middle">
-                                <a href="#" class="text-decoration-none">
-                                    
-                                    <i class="fas fa-user text-secondary"></i> <span class="text-secondary"> {{ $proposal->user_author_display_name }}</span>
-                                </a>
-                            </td>
-                            <td class="align-middle">
-                                <span class="badge bg-light text-dark">Brouillon</span>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox">
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="#" class="text-decoration-none">
+                                        <i class="fas fa-file-alt text-success"></i> {{ $proposal->ref }}
+                                    </a>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="#" class="text-decoration-none">
+                                        <i class="fas fa-building text-primary"></i>
+                                        {{ $proposal->client->display_name }} (tiers)
+                                    </a>
+                                </td>
+                                <td class="align-middle">{{ $proposal->datep_string }}</td>
+                                <td class="align-middle">{{ $proposal->date_fin_validite_string }}</td>
+                                <td class="align-middle">{{ $proposal->total_ht }}</td>
+                                <td class="align-middle">
+                                    <a href="#" class="text-decoration-none">
+
+                                        <i class="fas fa-user text-secondary"></i> <span class="text-secondary">
+                                            {{ $proposal->user_author_display_name }}</span>
+                                    </a>
+                                </td>
+                                <td class="align-middle">
+                                    <span class="badge bg-light text-dark">Brouillon</span>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
@@ -225,7 +235,7 @@
 
     <!-- Bootstrap JS avec Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    </body>
 
     <!-- Script pour le fonctionnement du tableau -->
     <script>
@@ -253,4 +263,4 @@
             });
         });
     </script>
-<div>
+    <div>
