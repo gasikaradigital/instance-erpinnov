@@ -1,14 +1,15 @@
 
 <div class="container-flux p-6">
-    <a href="#" class="text-primary">
-        <i class="bi bi-file-earmark"></i> Créer tag/catégorie
-    </a>
+    <div class="d-flex align-items-center me-2">
+        <i class="fas fa-folder fa-xl me-2"></i>
+        <h4 class="fw-bold py-3 mb-2">Créer tag/catégorie</h4>
+    </div>
 
     <div class="card mt-3">
         <div class="card-body">
             <form action="javascript:void(0)" method="POST">
                 @csrf
-                
+
                 <div class="row">
                     <!-- Référence -->
                     <div class="col-md-6 mb-3">
@@ -27,7 +28,7 @@
                     <!-- Description -->
                     <div class="col-md-12 mb-3">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description"></textarea>
+                        <textarea class="form-control" id="description" name="description" rows="5" placeholder="Écrivez votre description ici..."></textarea>
                     </div>
                 </div>
 
@@ -57,4 +58,3 @@
             </form>
         </div>
     </div>
-</div>

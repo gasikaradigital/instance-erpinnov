@@ -36,10 +36,10 @@ $user = Auth::user();
 
           <!-- Produits -->
           <li class="nav-item flex-column align-items-center d-xl-flex">
-            <a href="{{Route('produits')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Produits | Services') }}">
+            <a href="{{Route('produits')}}" class="menu-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ __('Logistique') }}">
               <i class="menu-icon tf-icons ti ti-cube"></i>
             </a>
-            <div data-i18n="Services">Produits | Services</div>
+            <div data-i18n="Services" class="text-primary">Logistique</div>
           </li>
 
            <!-- Ventes -->
