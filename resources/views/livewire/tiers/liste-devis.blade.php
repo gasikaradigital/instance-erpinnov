@@ -58,7 +58,7 @@
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-user"></i></span>
                             <select class="form-select border-0" wire:model.lazy='selectedCommercialId'>
-                                <option value="0" selected>Tiers ayant pour commercial</option>
+                                <option value="0">Tiers ayant pour commercial</option>
                                 @foreach ($commericals as $commercial)
                                     @dump($commercial)
                                     <option value="{{ $commercial->id }}">{{ $commercial->display_name }}</option>
@@ -70,7 +70,7 @@
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-user"></i></span>
                             <select class="form-select border-0" wire:model.lazy="selectedContact">
-                                <option value="0" selected>Lié à un contact utilisateur...</option>
+                                <option value="0">Lié à un contact utilisateur...</option>
                                 @foreach ($contacts as $contact)
                                     <option value="{{ $contact->id }}">{{ $contact->display_name }}</option>
                                 @endforeach
@@ -81,7 +81,7 @@
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-box"></i></span>
                             <select class="form-select border-0" wire:model.lazy="selectedProduct">
-                                <option value="0" selected>Comprenant des produits/services</option>
+                                <option value="0">Comprenant des produits/services</option>
                                 @foreach ($products as $product)
                                     @if ($product->product_id != null)
                                         <option value="{{ $product->product_id }}">{{ $product->poduct_display_name }}
@@ -95,7 +95,7 @@
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-tag"></i></span>
                             <select class="form-select border-0" wire:model.lazy="selectedClientTag">
-                                <option value='0' selected>Tags/catégories clients/prosp...</option>
+                                <option value='0'>Tags/catégories clients/prosp...</option>
                                 @foreach ($tags as $tag)
                                     <option value='{{ $tag->id }}'>{{ $tag->label }}</option>
                                 @endforeach
@@ -142,7 +142,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <!-- Menu d'action -->
                         <div class="d-flex gap-2 align-items-center action-menu">
-                            <select class="form-select" wire:model="selectedAction" style="width: 250px;">
+                            <select class="form-select" wire:model.lazy="selectedAction" style="width: 250px;">
                                 <option value="">-- Sélectionner l'action --</option>
                                 <option value="">Définir sur le statut Ouvert</option>
                                 <option value="">Définir sur le statut Clos</option>
