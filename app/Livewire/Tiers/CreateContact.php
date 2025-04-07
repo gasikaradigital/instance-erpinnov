@@ -106,7 +106,6 @@ class CreateContact extends Component
                         "parent"=>$item->fk_parent
                     ];
                 })->all();
-                dump($this->contactTags);
             }else{
                 dump($getContactTagsResponse);
             }
@@ -133,7 +132,6 @@ class CreateContact extends Component
                         "lastname"=>$item->lastname
                     ];
                 })->all();
-                dump($this->thirdparties);
             }else{
                 dump($getThirdpartiesResponse);
             }
