@@ -19,7 +19,7 @@ class CreateContact extends Component
     public $civility;
     public $lastname;
     public $firstname;
-    public $socid;
+    public $socid = 0;
     public $code_contact;
     public $codeContact; // Pour stocker les codes existants
     public $poste;
@@ -33,13 +33,13 @@ class CreateContact extends Component
     public $phone_mobile;
     public $email;
     public $fax;
-    public $priv;
+    public $tags =0;
+    public $priv = 0;
     public $value;
     protected $codeGeneratorService;
-    
-    public function mount(){
-    }
-    
+    public $thirdparties = [];
+    public $contactTags = [];
+
     private $civilityMap = [
         'MME' => 'Madame',
         'MR' => 'Monsieur',
@@ -56,7 +56,7 @@ class CreateContact extends Component
     ];
 
     public function setValue()
-    {   
+    {
         $this->civility = $this->civilityMap[$this->civility_code] ?? 'Unknown';
         $this->country_code = $this->countryCodeMap[$this->country_id] ?? null;
         $codeGeneratorService = app(CodeGeneratorService::class);
@@ -86,10 +86,63 @@ class CreateContact extends Component
         ];
     }
 
+    /**===============================================
+     * Initialisations
+     ===============================================*/
+    private function getContactTags(){
+        $user = Auth::user();
+        try{
+            $getContactTagsResponse = Http::withHeaders([
+                'DOLAPIKEY' => $user->api_key
+            ])->get($user->url_dolibarr . '/api/index.php/categories?sortfield=t.rowid&sortorder=ASC&type=contact');
+
+            if($getContactTagsResponse->successful()){
+                $this->contactTags = collect($getContactTagsResponse->json())->map(function ($item){
+                    $item = (object) $item;
+                    return (object) [
+                        "id"=>$item->id,
+                        "label" => $item->label,
+                        "color"=>$item->color,
+                        "parent"=>$item->fk_parent
+                    ];
+                })->all();
+            }else{
+                dump($getContactTagsResponse);
+            }
+        }catch(Exception $e){
+            dump($e->getMessage());
+        }
+    } 
+
+    // get contacts categories
+    private function getAllThirdparties(){
+        $user = Auth::user();
+        try{
+            $getThirdpartiesResponse = Http::withHeaders([
+                'DOLAPIKEY' => $user->api_key
+            ])->get($user->url_dolibarr . '/api/index.php/thirdparties');
+
+            if($getThirdpartiesResponse->successful()){
+                $this->thirdparties = collect($getThirdpartiesResponse->json())->map(function ($item){
+                    $item = (object) $item;
+                    return (object) [
+                        "id"=>$item->id,
+                        "display_name" => $item->name,
+                        "firstname"=>$item->firstname,
+                        "lastname"=>$item->lastname
+                    ];
+                })->all();
+            }else{
+                dump($getThirdpartiesResponse);
+            }
+        }catch(Exception $e){
+            dump($e->getMessage());
+        }
+    }
     public function save()
     {
 
-        
+
         try {
             $this->setValue();
 
@@ -102,7 +155,7 @@ class CreateContact extends Component
             Log::info('Données envoyées à l\'API:', $apiData);
 
             $user = Auth::user();
-            
+
             $response = Http::withHeaders([
                 'DOLAPIKEY' => $user->api_key,
                 'Accept' => 'application/json'
@@ -113,6 +166,17 @@ class CreateContact extends Component
                 throw new Exception('Erreur API: ' . $response->body());
             }
 
+            if($this->tags != null && $this->tags!=0){
+                $addCategorieResponse = Http::withHeaders([
+                    'DOLAPIKEY' => $user->api_key,
+                    'Accept' => 'application/json'
+                ])->put($user->url_dolibarr . '/api/index.php/contacts/'.$response->json().'/categories/'.$this->tags);
+
+                if($addCategorieResponse->successful()){
+                    return redirect('/contact')->with('success', 'Contact créé avec succès');
+                }
+            }
+
             return redirect('/contact')->with('success', 'Contact créé avec succès');
         } catch (Exception $e) {
             Log::error('Erreur création de contact: ' . $e->getMessage());
@@ -120,25 +184,25 @@ class CreateContact extends Component
         }
     }
 
-    public function render()
+    public function mount()
     {
         $user = Auth::user();
-        
+
         try {
             $response = Http::withHeaders([
-                'DOLAPIKEY' => $user->api_key 
+                'DOLAPIKEY' => $user->api_key
             ])->get($user->url_dolibarr . '/api/index.php/contacts');
-    
+
             if (!$response->successful()) {
                 throw new Exception('Erreur API: ' . $response->status());
             }
-    
-            $this->data = collect($response->json())->map(function($item) {
+
+            $this->data = collect($response->json())->map(function ($item) {
                 $item = (object) $item;
-                
+
                 // Accès direct au code_contact depuis array_options
                 $item->code_contact = $item->array_options['options_code_contact'] ?? 'N/A';
-                
+
                 // Valeurs par défaut pour les autres champs
                 $item->firstname = $item->firstname ?? '';
                 $item->lastname = $item->lastname ?? '';
@@ -148,14 +212,9 @@ class CreateContact extends Component
                 $item->socname = $item->socname ?? '';
                 $item->priv = $item->priv ?? '0';
                 $item->statut = $item->statut ?? '0';
-    
+
                 return $item;
             })->all();
-    
-            return view('livewire.tiers.create-contact', [
-                'data' => $this->data,
-            ]);
-            
         } catch (Exception $e) {
             Log::error('Erreur lors de la récupération des contacts: ' . $e->getMessage());
             $this->data = [];
@@ -163,5 +222,25 @@ class CreateContact extends Component
                 'data' => $this->data,
             ]);
         }
+
+        try{
+
+
+        }catch (Exception $e) {
+            Log::error('Erreur lors de la récupération des contacts: ' . $e->getMessage());
+            $this->data = [];
+            return view('livewire.tiers.create-contact', [
+                'data' => $this->data,
+            ]);
+        }
+        $this->getAllThirdparties();
+        $this->getContactTags();
+    }
+
+    public function render()
+    {
+        return view('livewire.tiers.create-contact', [
+            'data' => $this->data,
+        ]);
     }
 }
