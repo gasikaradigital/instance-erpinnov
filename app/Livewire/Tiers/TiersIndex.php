@@ -17,6 +17,9 @@ class TiersIndex extends Component
     public $selectedIds = [];
     public $selectedAction = '';
     private $commerciaux = [];
+    private $page = 1;
+    public $tags = [];
+    private $paginationItemNumber;
     public $visibleColumns = [
         "code" => true,
         "nom" => true,
@@ -31,7 +34,6 @@ class TiersIndex extends Component
     public function toggleColumn($column)
     {
         // Debug immédiat
-        dump("vody eeeeeee");
         if (!array_key_exists($column, $this->visibleColumns)) {
             abort(400, "Colonne invalide");
         }
@@ -43,104 +45,118 @@ class TiersIndex extends Component
     }
 
     // Propriétés pour les filtres
-    public $filterType = ''; // prospect, client, fournisseur
-    public $filterCategorie = '';
-    public $filterStatut = 'default';
-    public $filterComerciaux = 'default';
-    public $filterSearchType = 'nom'; // nom, email, telephone
-    public $filterSearchValue = '';
+    public $selectedTypes = ["fournisseur", "client", "prospect"];
+    public $selectedTag = 0;
+    public $selectedStatus = [1, 0];
+    public $selectedCommercial = 0;
+    public $searchType = 'nom';
+    public $searchQuery = '';
 
-    /**=================================
-     * Listeners
-    =================================**/
-    // Mettre à jour la liste des ID sélectionnés
     protected $listeners = ['selectedIdsUpdated'];
     public function selectedIdsUpdated($selectedIds)
     {
         $this->selectedIds = $selectedIds;
     }
-
-    /**=================================
-     * Filtres
-    =================================**/
-    // Appliquer les filtres lorsque les propriétés sont mises à jour
-    public function updated($propertyName)
+    // Appliquer les filtres
+    public function applyFilter()
     {
-        if (str_starts_with($propertyName, 'filter')) {
-            $this->applyFilters();
-        }
-    }
 
-    // Appliquer tous les filtres
-    public function applyFilters()
-    {
-        $this->filteredData = array_filter($this->data, function ($item) {
-            // Filtre par type
-            if (!empty($this->filterType)) {
-                if ($this->filterType === 'client' && ($item->client != 1 && $item->client != 3)) {
-                    return false;
-                }
-                if ($this->filterType === 'prospect' && ($item->client != 2 && $item->client != 3)) {
-                    return false;
-                }
-                if ($this->filterType === 'fournisseur' && $item->fournisseur == 0) {
+        $filters = (object)[
+            'selectedTypes' => $this->selectedTypes,
+            'selectedTag' => $this->selectedTag,
+            'selectedStatus' => $this->selectedStatus,
+            'selectedCommercial' => $this->selectedCommercial,
+            'searchType' => $this->searchType,
+            'searchQuery' => $this->searchQuery,
+        ];
+
+
+        $this->filteredData = array_filter($this->data, function ($tier) {
+            // Par categories
+            if ($this->selectedTag != 0) {
+                $filteredTags = array_filter($tier->tags, function ($tag) {
+                    return $tag->id == $this->selectedTag;
+                });
+                if (count($filteredTags) == 0) {
                     return false;
                 }
             }
 
-            // Filtre par catégorie
-            if (!empty($this->filterCategorie) && $item->categorie !== $this->filterCategorie) {
+            // Par commerciaux
+            if ($this->selectedCommercial != 0) {
+                $filteredCommercial = array_filter($tier->commerciaux, function ($commercial) {
+                    return $commercial->id == $this->selectedCommercial;
+                });
+                if (count($filteredCommercial) == 0) {
+                    return false;
+                }
+            }
+
+            // Par type
+            if (count($this->selectedTypes) != 0) {
+                $match = false;
+
+                if (in_array('fournisseur', $this->selectedTypes) && $tier->fournisseur == 1) {
+                    $match = true;
+                }
+
+                if (in_array('client', $this->selectedTypes) && in_array($tier->client, [1, 3])) {
+                    $match = true;
+                }
+
+                if (in_array('prospect', $this->selectedTypes) && in_array($tier->client, [2, 3])) {
+                    $match = true;
+                }
+
+                if (!$match) return false;
+            } else {
                 return false;
             }
 
-            // Filtre par statut
-            if ($this->filterStatut !== 'default' && $item->status != $this->filterStatut) {
+            // par status
+            if (count($this->selectedStatus) != 0) {
+
+                $match = false;
+                if (in_array(0, $this->selectedStatus) && $tier->status == 0) {
+                    $match = true;
+                }
+                if (in_array(1, $this->selectedStatus) && $tier->status == 1) {
+                    $match = true;
+                }
+
+                if (!$match) return false;
+            } else {
                 return false;
             }
 
-            // Filtre par commerciaux
-            if ($this->filterComerciaux !== 'default' && $item->comerciaux !== $this->filterComerciaux) {
-                return false;
-            }
+            if (!empty(trim($this->searchQuery))) {
+                $query = strtolower($this->searchQuery);
 
-            // Filtre de recherche
-            if (!empty($this->filterSearchValue)) {
-                $searchValue = strtolower($this->filterSearchValue);
-
-                switch ($this->filterSearchType) {
-                    case 'nom':
-                        if (strpos(strtolower($item->nom), $searchValue) === false) {
-                            return false;
-                        }
-                        break;
+                switch ($this->searchType) {
                     case 'email':
-                        if (strpos(strtolower($item->email), $searchValue) === false) {
-                            return false;
-                        }
-                        break;
+                        return strpos(strtolower($tier->email), $query) !== false;
                     case 'telephone':
-                        if (strpos($item->telephone, $searchValue) === false) {
-                            return false;
-                        }
-                        break;
+                        return (strpos(strtolower($tier->phone_mobile), $query) || strpos(strtolower($tier->phone), $query)) !== false;
+                    case 'nom':
+                    default:
+                        return strpos(strtolower($tier->name), $query) !== false;
                 }
             }
 
-            // Si tous les filtres sont satisfaits, inclure l'élément
-            return true;
+            return $tier;
         });
     }
-
     // Réinitialiser les filtres
-    public function resetFilters()
+    public function resetFilter()
     {
-        $this->filterType = '';
-        $this->filterCategorie = '';
-        $this->filterStatut = 'default';
-        $this->filterComerciaux = 'default';
-        $this->filterSearchType = 'nom';
-        $this->filterSearchValue = '';
-        $this->applyFilters();
+        $this->selectedTypes = ["fournisseur", "client", "prospect"];
+        $this->selectedTag = 0;
+        $this->selectedStatus = [1, 0];
+        $this->selectedCommercial = 0;
+        $this->searchType = 'nom';
+        $this->searchQuery = '';
+
+        $this->filteredData = $this->data;
     }
 
     /**=================================
@@ -244,6 +260,53 @@ class TiersIndex extends Component
     /**=================================
      * Montage
     =================================**/
+    //Recuperation des tags
+    private function getThirdpartieTags($thirdpartieId)
+    {
+
+        $user = Auth::user();
+        $getThirdpartieTagsResponse = Http::withHeaders([
+            'DOLAPIKEY' => $user->api_key,
+            'Accept' => 'application/json'
+        ])->get($user->url_dolibarr . '/api/index.php/thirdparties/' . $thirdpartieId . '/categories');
+
+        if ($getThirdpartieTagsResponse->successful()) {
+            return collect($getThirdpartieTagsResponse->json())->map(function ($tag) {
+                $tag = (object) $tag;
+                return (object) [
+                    'fk_parent' => $tag->fk_parent,
+                    'label' => $tag->label,
+                    'id' => $tag->id,
+                    'color' => $tag->color
+                ];
+            })->all();
+        }
+    }
+
+
+    private function getThirdpartieRepresentatives($thirdpartieId)
+    {
+        $user = Auth::user();
+
+        $representativesResponse = Http::withHeaders([
+            'DOLAPIKEY' => $user->api_key,
+            'Accept' => 'application/json'
+        ])->get($user->url_dolibarr . '/api/index.php/thirdparties/' . $thirdpartieId . '/representatives?mode=0');
+
+        if ($representativesResponse->successful()) {
+            return collect($representativesResponse->json())->map(function ($rep) {
+                $rep = (object) $rep;
+                return (object) [
+                    'id' => $rep->id,
+                    'firstname' => $rep->firstname ?? null,
+                    'lastname' => $rep->lastname ?? null,
+                    'display_name' => trim($rep->firstname . ' ' . $rep->lastname)
+                ];
+            })->all();
+        }
+
+        return []; // ou null selon ta logique
+    }
     // Charger les données initiales
     public function mount()
     {
@@ -253,7 +316,7 @@ class TiersIndex extends Component
             // Récupération des tiers depuis l'API Dolibarr
             $response = Http::withHeaders([
                 'DOLAPIKEY' => $user->api_key
-            ])->get($user->url_dolibarr . '/api/index.php/thirdparties');
+            ])->get($user->url_dolibarr . '/api/index.php/thirdparties?limit=' . $this->paginationItemNumber);
 
             if (!$response->successful()) {
                 throw new Exception('Erreur API: ' . $response->status());
@@ -280,25 +343,18 @@ class TiersIndex extends Component
                 } else {
                     $item->country = 'N/A';
                 }
-                try {
-                    $representativesResponse = Http::withHeaders([
-                        'DOLAPIKEY' => $user->api_key
-                    ])->get($user->url_dolibarr . '/api/index.php/thirdparties/' . $item->id . '/representatives?mode=0');
 
-                    if ($representativesResponse->successful()) {
-                        $commerciaux = $representativesResponse->json();
-                        $item->commerciaux = $commerciaux ?? [];
-                        $this->commerciaux = json_decode(json_encode(array_unique(array_merge($commerciaux, $this->commerciaux))));
-                    }
-                } catch (\Exception $e) {
-                    $item->commerciaux = [];
-                }
+                $item->commerciaux = $this->getThirdpartieRepresentatives($item->id);
+                $this->commerciaux = array_unique(array_merge($this->commerciaux, $item->commerciaux), SORT_REGULAR);
+
+                $item->tags = $this->getThirdpartieTags($item->id);
+                $this->tags = array_unique(array_merge($this->tags, $item->tags), SORT_REGULAR);
                 return $item;
             })->all();
-
             // Initialisation des données filtrées
             $this->filteredData = $this->data;
         } catch (Exception $e) {
+            dump($e->getMessage());
             Log::error('Erreur lors de la récupération des tiers: ' . $e->getMessage());
         }
     }
