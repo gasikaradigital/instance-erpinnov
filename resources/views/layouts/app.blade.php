@@ -94,6 +94,8 @@
                     'tiers-dashboard',
                     'nouveau-devis',
                     'liste-devis',
+                    'devis-dashboard',
+                    'contacts-dashboard',
                 ]))
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme fixed-sidebar">
                     @include('layouts.sections.menu.tiersMenu') <!-- Menu vertical Tiers -->

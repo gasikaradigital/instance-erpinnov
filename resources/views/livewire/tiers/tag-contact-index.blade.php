@@ -23,13 +23,23 @@
 
     <div class="card mt-md-5">
         <div class="card-body">
-            <h6>Tags/catégories</h6>
+            <div class="d-flex justify-content-between mb-3">
+                <h6>Tags/catégories</h6>
+                <div class="me-3">
+                <button class="btn btn-sm btn-outline-primary" id="collapse-all">
+                    <i class="fas fa-compress-alt"></i> Annuler déroulement
+                </button>
+                <button class="btn btn-sm btn-outline-primary" id="expand-all">
+                    <i class="fas fa-expand-alt"></i> Tout dérouler
+                </button>
+            </div>
+
+            </div>
             <div class="tree">
                 <?php
-                // Fonction récursive pour générer la hiérarchie
-                // Exemple de données au format que vous avez fourni
-$items = $filteredCategoriesList;
-                function getChildren($items, $parentId) {
+                 $items = $filteredCategoriesList;
+// Fonction récursive pour générer la hiérarchie
+function getChildren($items, $parentId) {
     $children = [];
     foreach ($items as $item) {
         if ($item['fk_parent'] == $parentId) {
@@ -52,9 +62,19 @@ function buildHierarchy($items, $parentId = 0) {
         $onclick = $hasChildren ? ' onclick="toggleExpand(this.parentNode)"' : '';
 
         $html .= '<div class="tree-item">';
+        $html .= '<div class="tree-row">'; // Nouveau conteneur pour aligner le contenu et les boutons
         $html .= '<div class="tree-content ' . $child['color'] . '"' . $onclick . '>';
         $html .= '<span class="chevron">▶</span>' . htmlspecialchars($child['label']);
         $html .= '</div>';
+
+        // Ajout des boutons d'action alignés à droite
+        $html .= '<div class="action-buttons">';
+        $html .= '<a href="" title="Voir"><i class="fas fa-eye"></i></a>';
+        $html .= '<a href="" title="Modifier"><i class="fas fa-edit"></i></a>';
+        $html .= '<a href="" title="Supprimer"><i class="fas fa-trash"></i></a>';
+        $html .= '</div>';
+        $html .= '</div>'; // Fin du conteneur tree-row
+
         $html .= '<div class="connector"></div>';
 
         // Récursivement construire les enfants
@@ -70,21 +90,31 @@ function buildHierarchy($items, $parentId = 0) {
     return $html;
 }
 
-                // Trouver les éléments racines (parent_id = 0)
-                $rootItems = getChildren($items, 0);
-                foreach ($rootItems as $rootItem) {
-                    echo '<div class="tree-item">';
-                    echo '<div class="tree-content ' . $rootItem['color'] . '" onclick="toggleExpand(this.parentNode)">';
-                    echo '<span class="chevron">▶</span>' . htmlspecialchars($rootItem['label']);
-                    echo '</div>';
-                    echo '<div class="connector"></div>';
+// Trouver les éléments racines (parent_id = 0)
+$rootItems = getChildren($items, 0);
+foreach ($rootItems as $rootItem) {
+    echo '<div class="tree-item">';
+    echo '<div class="tree-row">'; // Nouveau conteneur pour aligner le contenu et les boutons
+    echo '<div class="tree-content ' . $rootItem['color'] . '" onclick="toggleExpand(this.parentNode.parentNode)">';
+    echo '<span class="chevron">▶</span>' . htmlspecialchars($rootItem['label']);
+    echo '</div>';
 
-                    // Construire la hiérarchie pour cet élément racine
-                    echo buildHierarchy($items, $rootItem['id']);
+    // Ajout des boutons d'action alignés à droite pour les éléments racine
+    echo '<div class="action-buttons">';
+    echo '<a href="" title="Voir"><i class="fas fa-eye"></i></a>';
+    echo '<a href="" title="Modifier"><i class="fas fa-edit"></i></a>';
+    echo '<a href="" title="Supprimer"><i class="fas fa-trash"></i></a>';
+    echo '</div>';
+    echo '</div>'; // Fin du conteneur tree-row
 
-                    echo '</div>';
-                }
-                ?>
+    echo '<div class="connector"></div>';
+
+    // Construire la hiérarchie pour cet élément racine
+    echo buildHierarchy($items, $rootItem['id']);
+
+    echo '</div>';
+}
+?>
             </div>
 
         </div>
