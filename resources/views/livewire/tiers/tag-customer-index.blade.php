@@ -1,17 +1,18 @@
+<link rel="stylesheet" href="{{ asset('css/hierarchie.css') }}">
 <div class="container-flux p-6">
-    <div class="card mb-3">
-        <div class="card-header py-2 bg-light d-flex align-items-center">
-        <h5 class="mb-0 pe-3"><i class="bi bi-tags"></i> Espace tags/catégories des clients</h5>
-            <a href="{{ Route('create-tag-customer') }}" class="btn btn-primary" data-bs-toggle="tooltip"
-                data-bs-placement="bottom" title="{{ __('Nouveau tags/catégories') }}"><i class="fas fa-add"></i></a>
-        </div>
+    <div class="card-header py-2 d-flex mb-3 align-items-center">
+        <h5 class="mb-0 ms-4 pe-3"><i class="bi bi-tags"></i> Espace tags/catégories des clients</h5>
+        <a href="{{ Route('create-tag-customer') }}" class="btn btn-primary" data-bs-toggle="tooltip"
+            data-bs-placement="bottom" title="{{ __('Nouveau tags/catégories') }}"><i class="fas fa-add"></i></a>
+    </div>
+    <div class="card">
         <div class="card-body">
-            <div class="mb-3 mt-md-4">
+            <div class="mb-3 mt-md-3">
                 <label for="search" class="form-label">Rechercher</label>
                 <div class="row">
                     <div class="col-md-5">
-                        <div class="input-group">
-                            <input type="text" class="form-control form-control-sm" id="search" wire:model='searchQuery'
+                        <div class="input-group border rounded ">
+                            <input type="text" class="form-control form-control-sm border-0" id="search" wire:model='searchQuery'
                                 placeholder="Nom...">
                             <button class="btn btn-primary btn-sm" wire:click='applyLabelFilter'>RECHERCHER</button>
                         </div>
@@ -19,199 +20,126 @@
                 </div>
             </div>
         </div>
-<div class="card mt-md-5">
-    <div class="card-body">
-        <h6>Tags/catégories</h6>
+    </div>
+    <div class="card mt-md-5">
+        <div class="card-body">
+            <h6>Tags/catégories</h6>
 
-        <div class="d-flex justify-content-end mb-2">
-            <button class="btn btn-sm btn-outline-primary mr-2" id="collapse-all">
-                <i class="fas fa-compress-alt"></i> Annuler déroulement
-            </button>
-            <button class="btn btn-sm btn-outline-primary" id="expand-all">
-                <i class="fas fa-expand-alt"></i> Tout dérouler
-            </button>
-        </div>
-
-        @if (empty($filteredCategoriesList) || count($filteredCategoriesList) === 0)
-            <div class="alert alert-secondary" role="alert">
-                Aucun tag/catégorie de ce type n'a été créé
+            <div class="d-flex justify-content-end mb-2">
+                <button class="btn btn-sm btn-outline-primary" id="collapse-all">
+                    <i class="fas fa-compress-alt"></i> Annuler déroulement
+                </button>
+                <button class="btn btn-sm btn-outline-primary" id="expand-all">
+                    <i class="fas fa-expand-alt"></i> Tout dérouler
+                </button>
             </div>
-        @else
-            <div class="category-tree">
-                <ul class="list-unstyled">
-                    @php
-                        // Affichage du contenu des données pour le débogage
-                        // echo '<pre>';
-                        // print_r($filteredCategoriesList);
-                        // echo '</pre>';
 
-                        // Fonction pour afficher les catégories récursivement
-                        function displayCategoryTree($categories, $level = 0) {
-                            foreach ($categories as $category) {
-                                $hasChildren = !empty($category['children']);
-                                $categoryColor = !empty($category['color']) ? $category['color'] : '#CCCCCC';
-                                $textColor = !empty($category['text_color']) ? $category['text_color'] : '#FFFFFF';
-                                $categoryName = !empty($category['name']) ? $category['name'] : 'Sans nom';
+            @if (empty($filteredCategoriesList) || count($filteredCategoriesList) === 0)
+                <div class="alert alert-secondary" role="alert">
+                    Aucun tag/catégorie de ce type n'a été créé
+                </div>
+            @else
+                <div class="tree">
+                    <ul class="list-unstyled">
+                        <?php
+                 $items = $filteredCategoriesList;
+// Fonction récursive pour générer la hiérarchie
+function getChildren($items, $parentId) {
+    $children = [];
+    foreach ($items as $item) {
+        if ($item['fk_parent'] == $parentId) {
+            $children[] = $item;
+        }
+    }
+    return $children;
+}
 
-                                echo '<li class="category-item" data-level="' . $level . '">';
+function buildHierarchy($items, $parentId = 0) {
+    $children = getChildren($items, $parentId);
 
-                                // Indentation selon le niveau
-                                echo str_repeat('<span class="indentation"></span>', $level);
+    if (empty($children)) {
+        return '';
+    }
 
-                                // Icône d'expansion si a des enfants
-                                if ($hasChildren) {
-                                    echo '<span class="toggle-icon collapsed"><i class="fas fa-caret-right"></i></span>';
-                                } else {
-                                    echo '<span class="toggle-icon invisible"><i class="fas fa-caret-right"></i></span>';
-                                }
+    $html = '<div class="tree-children">';
+    foreach ($children as $child) {
+        $hasChildren = !empty(getChildren($items, $child['id']));
+        $onclick = $hasChildren ? ' onclick="toggleExpand(this.parentNode)"' : '';
 
-                                // Tag avec couleur
-                                echo '<span class="category-tag" style="background-color: ' . $categoryColor . '; color: ' . $textColor . ';">' . $categoryName . '</span>';
+        $html .= '<div class="tree-item">';
+        $html .= '<div class="tree-row">'; // Nouveau conteneur pour aligner le contenu et les boutons
+        $html .= '<div class="tree-content ' . $child['color'] . '"' . $onclick . '>';
+        $html .= '<span class="chevron">▶</span>' . htmlspecialchars($child['label']);
+        $html .= '</div>';
 
-                                // Boutons d'action
-                                echo '<div class="action-buttons">';
-                                echo '<a href="#" class="view-btn" title="Voir"><i class="fas fa-eye"></i></a>';
-                                echo '<a href="#" class="edit-btn" title="Modifier"><i class="fas fa-pencil-alt"></i></a>';
-                                echo '<a href="#" class="delete-btn" title="Supprimer"><i class="fas fa-trash"></i></a>';
-                                echo '</div>';
+        // Ajout des boutons d'action alignés à droite
+        $html .= '<div class="action-buttons">';
+        $html .= '<a href="" title="Voir"><i class="fas fa-eye"></i></a>';
+        $html .= '<a href="" title="Modifier"><i class="fas fa-edit"></i></a>';
+        $html .= '<a href="" title="Supprimer"><i class="fas fa-trash"></i></a>';
+        $html .= '</div>';
+        $html .= '</div>'; // Fin du conteneur tree-row
 
-                                // Afficher récursivement les enfants
-                                if ($hasChildren) {
-                                    echo '<ul class="list-unstyled category-children" style="display: none;">';
-                                    displayCategoryTree($category['children'], $level + 1);
-                                    echo '</ul>';
-                                }
+        $html .= '<div class="connector"></div>';
 
-                                echo '</li>';
-                            }
-                        }
+        // Récursivement construire les enfants
+        $childrenHtml = buildHierarchy($items, $child['id']);
+        if (!empty($childrenHtml)) {
+            $html .= $childrenHtml;
+        }
 
-                        // Organisation des données pour la hiérarchie
-                        $categoryTree = [];
-                        $categoryMap = [];
+        $html .= '</div>';
+    }
+    $html .= '</div>';
 
-                        // Première passe: créer un mappage de toutes les catégories
-                        foreach ($filteredCategoriesList as $category) {
-                            // Vérifier la structure des données
-                            if (is_object($category)) {
-                                // Si c'est un objet, on essaie d'accéder aux propriétés
-                                $id = $category->id ?? null;
-                                $name = $category->name ?? 'Sans nom';
-                                $color = $category->color ?? '#CCCCCC';
-                                $textColor = $category->text_color ?? '#FFFFFF';
-                                $parentId = $category->parent_id ?? null;
-                            } elseif (is_array($category)) {
-                                // Si c'est un tableau, on accède aux clés
-                                $id = $category['id'] ?? null;
-                                $name = $category['name'] ?? 'Sans nom';
-                                $color = $category['color'] ?? '#CCCCCC';
-                                $textColor = $category['text_color'] ?? '#FFFFFF';
-                                $parentId = $category['parent_id'] ?? null;
-                            } else {
-                                // Si ce n'est ni un objet ni un tableau, on passe
-                                continue;
-                            }
+    return $html;
+}
 
-                            // Vérifier que l'ID est défini
-                            if (is_null($id)) {
-                                continue;
-                            }
+// Trouver les éléments racines (parent_id = 0)
+$rootItems = getChildren($items, 0);
+foreach ($rootItems as $rootItem) {
+    echo '<div class="tree-item">';
+    echo '<div class="tree-row">'; // Nouveau conteneur pour aligner le contenu et les boutons
+    echo '<div class="tree-content ' . $rootItem['color'] . '" onclick="toggleExpand(this.parentNode.parentNode)">';
+    echo '<span class="chevron">▶</span>' . htmlspecialchars($rootItem['label']);
+    echo '</div>';
 
-                            $categoryMap[$id] = [
-                                'id' => $id,
-                                'name' => $name,
-                                'color' => $color,
-                                'text_color' => $textColor,
-                                'parent_id' => $parentId,
-                                'children' => []
-                            ];
-                        }
+    // Ajout des boutons d'action alignés à droite pour les éléments racine
+    echo '<div class="action-buttons">';
+    echo '<a href="" title="Voir"><i class="fas fa-eye"></i></a>';
+    echo '<a href="" title="Modifier"><i class="fas fa-edit"></i></a>';
+    echo '<a href="" title="Supprimer"><i class="fas fa-trash"></i></a>';
+    echo '</div>';
+    echo '</div>'; // Fin du conteneur tree-row
 
-                        // Deuxième passe: construire l'arbre
-                        foreach ($categoryMap as $id => $category) {
-                            if (empty($category['parent_id'])) {
-                                // C'est une catégorie racine
-                                $categoryTree[$id] = &$categoryMap[$id];
-                            } else {
-                                // C'est un enfant, l'ajouter à son parent
-                                if (isset($categoryMap[$category['parent_id']])) {
-                                    $categoryMap[$category['parent_id']]['children'][$id] = &$categoryMap[$id];
-                                } else {
-                                    // Si le parent n'existe pas, l'ajouter comme racine
-                                    $categoryTree[$id] = &$categoryMap[$id];
-                                }
-                            }
-                        }
+    echo '<div class="connector"></div>';
 
-                        // Afficher l'arbre si non vide
-                        if (!empty($categoryTree)) {
-                            displayCategoryTree($categoryTree);
-                        } else {
-                            echo '<div class="alert alert-info">Impossible de construire l\'arborescence des catégories.</div>';
-                        }
-                    @endphp
+    // Construire la hiérarchie pour cet élément racine
+    echo buildHierarchy($items, $rootItem['id']);
+
+    echo '</div>';
+}
+?>
                 </ul>
             </div>
         @endif
     </div>
 </div>
 </div>
-
-<!-- CSS pour le style des catégories -->
-<style>
-    .category-tree {
-        width: 100%;
+<script>
+    function toggleExpand(item) {
+        item.classList.toggle('expanded');
     }
 
-    .category-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 4px;
-        position: relative;
-    }
+    // Auto-expand the first level for demonstration
+    document.addEventListener('DOMContentLoaded', function() {
+        const rootItems = document.querySelectorAll('.tree > .tree-item');
+        if (rootItems.length > 0) {
+            rootItems[0].classList.add('expanded');
+        }
+    });
+</script>
 
-    .indentation {
-        display: inline-block;
-        width: 20px;
-    }
-
-    .toggle-icon {
-        cursor: pointer;
-        width: 20px;
-        text-align: center;
-        margin-right: 5px;
-    }
-
-    .toggle-icon.expanded i {
-        transform: rotate(90deg);
-    }
-
-    .category-tag {
-        padding: 2px 8px;
-        border-radius: 4px;
-        display: inline-block;
-        font-size: 14px;
-    }
-
-    .category-children {
-        margin-left: 20px;
-    }
-
-    .action-buttons {
-        margin-left: auto;
-        display: flex;
-        gap: 10px;
-    }
-
-    .action-buttons a {
-        color: #6c757d;
-    }
-
-    .action-buttons a:hover {
-        color: #343a40;
-    }
-</style>
-</div>
 
 <!-- JavaScript pour l'expansion/réduction -->
 <script>

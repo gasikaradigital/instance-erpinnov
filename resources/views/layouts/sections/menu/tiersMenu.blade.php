@@ -55,12 +55,12 @@
 
             </ul>
         </li>
-        <li class="menu-item {{ in_array($currentRouteName, ['create-devis','liste-devis' ]) ? 'active open' : '' }}">
-            <a href="javascript:void(0)" class="menu-link menu-toggle fw-bold">
-                <i class="menu-icon ti ti-file"></i>
-                <div class="text-bold">{{ __('Devis') }}</div>
-            </a>
-
+        <!-- Pour la section Devis (à modifier) -->
+<li class="menu-item {{ in_array($currentRouteName, ['devis-dashboard', 'create-devis','liste-devis' ]) ? 'active open' : '' }}">
+    <a href="{{Route('devis-dashboard')}}" class="menu-link menu-toggle fw-bold">
+        <i class="menu-icon ti ti-file"></i>
+        <div class="text-bold">{{ __('Devis') }}</div>
+    </a>
             <ul class="menu-sub">
        <li class="menu-item {{ $currentRouteName === 'nouveau-devis' ? 'active' : '' }}">
                     <a href="{{ route('nouveau-devis') }}" class="menu-link">
@@ -74,12 +74,12 @@
                 </li>
     </ul>
         </li>
-
-        <li class="menu-item {{ in_array($currentRouteName, ['create-contact', 'contact', 'tag-contact' ]) ? 'active open' : '' }}">
-            <a href="javascript:void(0)" class="menu-link menu-toggle fw-bold">
-                <i class="menu-icon tf-icons ti ti-address-book"></i>
-                <div class="text-bold">{{ __('Contacts') }}</div>
-            </a>
+<!-- Pour la section Contacts (à modifier) -->
+<li class="menu-item {{ in_array($currentRouteName, ['contacts-dashboard', 'create-contact', 'contact', 'tag-contact' ]) ? 'active open' : '' }}">
+    <a href="{{Route('contacts-dashboard')}}" class="menu-link menu-toggle fw-bold">
+        <i class="menu-icon tf-icons ti ti-address-book"></i>
+        <div class="text-bold">{{ __('Contacts') }}</div>
+    </a>
 
             <ul class="menu-sub">
         <li class="menu-item {{ $currentRouteName === 'create-contact' ? 'active' : '' }}">
@@ -104,3 +104,41 @@
 
     </ul>
 </aside>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+  // Sélectionner tous les liens de tableau de bord
+  const dashboardLinks = document.querySelectorAll('.menu-link.menu-toggle.fw-bold');
+
+  dashboardLinks.forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      // Vérifier si c'est un clic direct sur le lien (et pas sur un enfant comme l'icône)
+      if (event.target === this || event.target.parentElement === this || event.target.parentElement.parentElement === this) {
+        // Empêcher l'ouverture/fermeture du sous-menu
+        event.preventDefault();
+
+        // Rediriger vers l'URL spécifiée dans le href du lien
+        const href = this.getAttribute('href');
+        window.location.href = href;
+      }
+    });
+  });
+
+  // Solution alternative: Ajouter un second gestionnaire pour le clic sur l'icône et le texte
+  const dashboardIcons = document.querySelectorAll('.menu-icon');
+  const dashboardTexts = document.querySelectorAll('.text-bold');
+
+  [...dashboardIcons, ...dashboardTexts].forEach(function(element) {
+    element.addEventListener('click', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      // Trouver le lien parent
+      const parentLink = this.closest('a.menu-link');
+      if (parentLink) {
+        const href = parentLink.getAttribute('href');
+        window.location.href = href;
+      }
+    });
+  });
+});
+</script>

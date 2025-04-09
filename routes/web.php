@@ -49,6 +49,9 @@ use App\Livewire\Tiers\TagContactIndex;
 use App\Livewire\Tiers\CreateTagContactIndex;
 use App\Livewire\Tiers\NouveauDevis;
 use App\Livewire\Tiers\ListeDevis;
+use App\Livewire\Tiers\DevisDashboard;
+use App\Livewire\Tiers\ContactsDashboard;
+
 
 
 
@@ -138,6 +141,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/create/tiers', CreateTiers::class)->name('create-tiers');
     Route::get('/create/devis', NouveauDevis::class)->name('nouveau-devis');
     Route::get('/liste/devis', ListeDevis::class)->name('liste-devis');
+    Route::get('/devis-dashboard', DevisDashboard::class)->name('devis-dashboard');
+    Route::get('/contacts-dashboard', ContactsDashboard::class)->name('contacts-dashboard');
 
 
 
