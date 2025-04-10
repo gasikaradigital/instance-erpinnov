@@ -51,6 +51,8 @@
                         'tiers-dashboard',
                         'nouveau-devis',
                         'liste-devis',
+                        'contacts-dashboard',
+                        'devis-dashboard'
                     ])
                         ? 'text-primary'
                         : '' }}">
