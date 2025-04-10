@@ -57,7 +57,7 @@
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-user"></i></span>
-                            <select class="form-select border-0" wire:model.lazy='selectedCommercialId'>
+                            <select class="form-select border-0" name="selectedCommercialId" wire:model.lazy='selectedCommercialId'>
                                 <option value="0">Tiers ayant pour commercial</option>
                                 @foreach ($commericals as $commercial)
                                     @dump($commercial)
@@ -69,7 +69,7 @@
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-user"></i></span>
-                            <select class="form-select border-0" wire:model.lazy="selectedContact">
+                            <select class="form-select border-0" name="selectedContact" wire:model.lazy="selectedContact">
                                 <option value="0">Lié à un contact utilisateur...</option>
                                 @foreach ($contacts as $contact)
                                     <option value="{{ $contact->id }}">{{ $contact->display_name }}</option>
@@ -80,7 +80,7 @@
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-box"></i></span>
-                            <select class="form-select border-0" wire:model.lazy="selectedProduct">
+                            <select class="form-select border-0" name="selectedProduct" wire:model.lazy="selectedProduct">
                                 <option value="0">Comprenant des produits/services</option>
                                 @foreach ($products as $product)
                                     @if ($product->product_id != null)
@@ -94,7 +94,7 @@
                     <div class="col-md-3">
                         <div class="input-group border">
                             <span class="input-group-text border-0"><i class="fas fa-tag"></i></span>
-                            <select class="form-select border-0" wire:model.lazy="selectedClientTag">
+                            <select class="form-select border-0" name="selectedClientTag" wire:model.lazy="selectedClientTag">
                                 <option value='0'>Tags/catégories clients/prosp...</option>
                                 @foreach ($tags as $tag)
                                     <option value='{{ $tag->id }}'>{{ $tag->label }}</option>
@@ -106,25 +106,25 @@
                 <div class="row g-3 mt-2">
                     <div class="col-md-1">
                         <div class="input-group border">
-                            <input type="text" class="form-control border-0" placeholder="Réf..."
+                            <input type="text" class="form-control border-0" placeholder="Réf..." name="refSearchQuery"
                                 wire:model.lazy="refSearchQuery">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="input-group border">
                             <span class="input-group-text border-0">Du</span>
-                            <input type="date" class="form-control border-0" wire:model.lazy="datepStart">
+                            <input type="date" class="form-control border-0" wire:model.lazy="datepStart" name="datepStart">
                             <span class="input-group-text border-0">au</span>
-                            <input type="date" class="form-control border-0" wire:model.lazy="datepEnd">
+                            <input type="date" class="form-control border-0" wire:model.lazy="datepEnd" name="datepEnd">
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="input-group border">
                             <span class="input-group-text border-0">Du</span>
-                            <input type="date" class="form-control border-0" wire:model.lazy="dateFinStart">
+                            <input type="date" class="form-control border-0" wire:model.lazy="dateFinStart" name="dateFinStart">
                             <span class="input-group-text border-0">au</span>
-                            <input type="date" class="form-control border-0" wire:model.lazy="dateFinEnd">
+                            <input type="date" class="form-control border-0" wire:model.lazy="dateFinEnd" name="dateFinEnd">
                         </div>
                     </div>
                     <div class="col-md-3 d-flex gap-2">
