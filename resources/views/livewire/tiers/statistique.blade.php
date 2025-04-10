@@ -17,8 +17,8 @@
                             <div class="content-center">
                                 <span class="fw-medium d-block mb-1">Tiers Actifs</span>
                                 <div class="d-flex align-items-baseline justify-content-center">
-                                    <h4 class="mb-0 me-2">2,456</h4>
-                                    <small class="text-success">(+12%)</small>
+                                    <h4 class="mb-0 me-2">{{ count(array_filter($data, function($item) { return $item->status == 1; })) }}                                    </h4>
+                                    <small class="text-success"></small>
                                 </div>
                             </div>
                         </div>
@@ -35,8 +35,8 @@
                             <div class="content-center">
                                 <span class="fw-medium d-block mb-1">Clients</span>
                                 <div class="d-flex align-items-baseline justify-content-center">
-                                    <h4 class="mb-0 me-2">1,325</h4>
-                                    <small class="text-success">(+8%)</small>
+                                    <h4 class="mb-0 me-2">{{ count(array_filter($data, function($item) { return $item->client == 1 || $item->client==3; })) }}</h4>
+                                    <small class="text-success"></small>
                                 </div>
                             </div>
                         </div>
@@ -53,8 +53,8 @@
                             <div class="content-center">
                                 <span class="fw-medium d-block mb-1">Fournisseurs</span>
                                 <div class="d-flex align-items-baseline justify-content-center">
-                                    <h4 class="mb-0 me-2">856</h4>
-                                    <small class="text-danger">(-5%)</small>
+                                    <h4 class="mb-0 me-2">{{ count(array_filter($data, function($item) { return $item->fournisseur == 1; })) }}</h4>
+                                    <small class="text-danger"></small>
                                 </div>
                             </div>
                         </div>
@@ -71,8 +71,8 @@
                             <div class="content-center">
                                 <span class="fw-medium d-block mb-1">Prospects</span>
                                 <div class="d-flex align-items-baseline justify-content-center">
-                                    <h4 class="mb-0 me-2">234</h4>
-                                    <small class="text-success">(+22%)</small>
+                                    <h4 class="mb-0 me-2">{{ count(array_filter($data, function($item) { return $item->client == 2 || $item->client==3; })) }}</h4>
+                                    <small class="text-success"></small>
                                 </div>
                             </div>
                         </div>
