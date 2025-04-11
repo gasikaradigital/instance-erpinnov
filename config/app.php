@@ -123,6 +123,10 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'providers' => [
+        // Autres providers...
+        App\Providers\DolibarrServiceProvider::class,
+    ],
 
     'aliases' => [
         // Other aliases...
