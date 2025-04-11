@@ -48,9 +48,9 @@ class ThirdPartyDTO
         public readonly float $capital,
 
         // Codes
-        public readonly string $customerCode,
-        public readonly string $supplierCode,
-        public readonly string $prospectLevel,
+        public readonly ?string $customerCode,
+        public readonly ?string $supplierCode,
+        public readonly ?string $prospectLevel,
 
         // Dates
         public readonly \DateTimeInterface $createdAt,

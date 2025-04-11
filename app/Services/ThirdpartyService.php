@@ -2,28 +2,35 @@
 
 namespace App\Services;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-
-use App\Contracts\ThirdpartyServiceInterface;
 use Exception;
 use Illuminate\Support\Facades\Http;
 use App\DTOs\ThirdPartyDTO;
-use App\DTOs\CommercialUser;
-use App\DTOs\Proxies\CommercialResolver;
+
 use App\DTOs\Proxies\LazyLoadedCategoryProxy;
 use App\DTOs\Proxies\LazyLoadedCommercialProxy;
 use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 
-class ThirdpartyService implements ThirdpartyServiceInterface
+class ThirdpartyService
 {
     public function __construct(
-        private string $apiKey,
         private string $baseUrl,
+        private string $apiKey,
         private CommercialResolver $commercialResolver,
         private CategoryResolver $categoryResolver
     ) {}
 
+    private function decryptApiKey(string $encrypted): string
+    {
+        $key = sodium_crypto_generichash(
+            config('app.key'),
+            '',
+            SODIUM_CRYPTO_SECRETBOX_KEYBYTES
+        );
+        $nonce = substr($encrypted, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
+        $ciphertext = substr($encrypted, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
+        return sodium_crypto_secretbox_open($ciphertext, $nonce, $key);
+    }
     /**
      * Récupère tous les tiers avec différents niveaux de chargement
      * 
@@ -47,7 +54,7 @@ class ThirdpartyService implements ThirdpartyServiceInterface
             }
 
             // Requête API
-            $response = Http::withHeaders(['DOLAPIKEY' => $this->apiKey])->get($url);
+            $response = Http::withHeaders(['DOLAPIKEY' => $this->decryptApiKey($this->apiKey)])->get($url);
 
             if (!$response->successful()) {
                 throw new Exception('Erreur API: ' . $response->status());
@@ -62,6 +69,7 @@ class ThirdpartyService implements ThirdpartyServiceInterface
                 );
             })->all();
         } catch (Exception $e) {
+            dump($e->getMessage());
             Log::error('Erreur récupération tiers: ' . $e->getMessage());
             return null;
         }
@@ -89,7 +97,7 @@ class ThirdpartyService implements ThirdpartyServiceInterface
 
             // Requête API
             $response = Http::withHeaders([
-                'DOLAPIKEY' => $this->apiKey
+                'DOLAPIKEY' => $this->decryptApiKey($this->apiKey)
             ])->get($this->baseUrl . '/api/index.php/thirdparties/' . $id);
 
             if (!$response->successful()) {
@@ -108,33 +116,6 @@ class ThirdpartyService implements ThirdpartyServiceInterface
         }
     }
 
-    /**
-     * Récupère les représentants commerciaux d'un tiers
-     * 
-     * @return CommercialUser[]
-     * @throws \Exception
-     */
-    public function getCommercialRepresentatives(int $thirdpartyId): ?array
-    {
-        try {
-            $response = Http::withHeaders([
-                'DOLAPIKEY' => $this->apiKey
-            ])->get("{$this->baseUrl}/api/index.php/thirdparties/{$thirdpartyId}/representatives");
-
-            if (!$response->successful()) {
-                throw new \Exception("API error: " . $response->status());
-            }
-
-            return array_map(
-                fn(array $repData) => $this->mapToCommercialUserDTO($repData),
-                $response->json()
-            );
-        } catch (\Exception $e) {
-            Log::error("Failed to fetch commercial representatives: " . $e->getMessage());
-            throw $e;
-        }
-    }
-
     // Mappers
     private function mapThirdparty(
         $apiData,
@@ -149,8 +130,8 @@ class ThirdpartyService implements ThirdpartyServiceInterface
             lastName: $apiData['lastname'],
             nameAlias: $apiData['name_alias'],
             commercialProxy: new LazyLoadedCommercialProxy(
-                commercialId: $apiData['commercial_id'] ?? null,
-                parentEntityType: 'THIRDPARTY',
+                resolveId: $apiData['id'] ?? null,
+                entityType: 'THIRDPARTY',
                 resolver: $this->commercialResolver
             ),
             categoryProxy: new LazyLoadedCategoryProxy(
@@ -193,24 +174,14 @@ class ThirdpartyService implements ThirdpartyServiceInterface
 
             status: $apiData['status']
         );
+
         if ($withCommercial) {
             $thirdpartie->getCommercials();
         }
         if ($withCategories) {
             $thirdpartie->getCategories();
         }
-        return $thirdpartie;
-    }
 
-    private function mapToCommercialUserDTO(array $apiData): CommercialUser
-    {
-        return new CommercialUser(
-            id: $apiData['id'],
-            name: $apiData['name'] ?? '',
-            status: $apiData['status'] ?? null,
-            lastname: $apiData['lastname'] ?? null,
-            firstname: $apiData['firstname'] ?? null,
-            email: $apiData['email'] ?? null
-        );
+        return $thirdpartie;
     }
 }
