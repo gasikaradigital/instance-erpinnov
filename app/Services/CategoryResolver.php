@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\DTOs\CategoryDTO;
+use App\DTOs\Mappers\CategoryMapper;
 use Illuminate\Support\Facades\Http;
 use InvalidArgumentException;
 
@@ -10,7 +11,8 @@ class CategoryResolver
 {
     public function __construct(
         private string $dolibarrUrl,
-        private string $apiKey
+        private string $apiKey,
+        private CategoryMapper $categoryMapper
     ) {}
 
     public function resolveFor(string $entityType, int $entityId): array
@@ -41,20 +43,8 @@ class CategoryResolver
         ])->get("{$this->dolibarrUrl}/api/index.php/thirdparties/{$thirdPartyId}/categories");
 
         return array_map(
-            fn(array $categoryData) => $this->mapToCategoryDTO($categoryData),
+            fn(array $categoryData) => $this->categoryMapper->mapToCategory($categoryData),
             $response->json()
-        );
-    }
-
-    private function mapToCategoryDTO(array $data): CategoryDTO
-    {
-        return new CategoryDTO(
-            id: (int)$data['id'],
-            label: $data['label'],
-            description: $data['description'] ?? null,
-            color: $data['color'] ?? null,
-            type: (int)$data['type'],
-            visible: (bool)$data['visible']
         );
     }
 }
