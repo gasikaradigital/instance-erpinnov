@@ -4,11 +4,13 @@ namespace App\DTOs;
 
 use App\DTOs\Proxies\LazyLoadedCategoryProxy;
 use App\DTOs\Proxies\LazyLoadedCommercialProxy;
+use App\DTOs\Proxies\LazyLoadedCountryProxy;
 
 class ThirdPartyDTO
 {
     private ?array $commercials = null;
     private ?array $categories = null;
+    private ?CountryDTO $country = null;
 
     public function __construct(
         // Identité
@@ -18,8 +20,11 @@ class ThirdPartyDTO
         public readonly ?string $firstName,
         public readonly ?string $lastName,
         public readonly ?string $nameAlias,
+
+        // Proxies
         private LazyLoadedCommercialProxy $commercialProxy,
         private LazyLoadedCategoryProxy $categoryProxy,
+        private LazyLoadedCountryProxy $countryProxy,
 
         // Contacts
         public readonly ?string $email,
@@ -90,10 +95,29 @@ class ThirdPartyDTO
      */
     public function getCommercials(): array
     {
+        return $this->commercials;
+    }
+
+    public function includeCommercials(): void
+    {
         if ($this->commercials === null) {
             $this->commercials = $this->commercialProxy->fetchCommercial();
         }
-        return $this->commercials;
+    }
+
+    /**
+     * @return Country
+     */
+    public function getCountry(): ?CountryDTO
+    {
+        return $this->country;
+    }
+
+    public function includeCountry(): void
+    {
+        if ($this->country === null) {
+            $this->country = $this->countryProxy->fetchCountry();
+        }
     }
 
     /**
@@ -101,10 +125,14 @@ class ThirdPartyDTO
      */
     public function getCategories(): array
     {
+        return $this->categories;
+    }
+
+    public function includeCategories(): void
+    {
         if ($this->categories === null) {
             $this->categories = $this->categoryProxy->fetchCategories();
         }
-        return $this->categories;
     }
 
     /**
@@ -118,7 +146,8 @@ class ThirdPartyDTO
     /**
      * @return bool
      */
-    public function hasCategories(): bool{
+    public function hasCategories(): bool
+    {
         return !empty($this->getCategories());
     }
 }
