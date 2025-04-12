@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\DTOs\CommercialUser;
+use App\DTOs\Mappers\CommercialUserMapper;
+use App\Helpers\DolibarrServiceUtils;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -10,7 +12,8 @@ class CommercialResolver
 {
     public function __construct(
         private string $dolibarrUrl,
-        private string $apiKey
+        private string $apiKey,
+        private CommercialUserMapper $commercialUserMapper
     ) {}
 
     /**
@@ -23,15 +26,6 @@ class CommercialResolver
         };
     }
 
-    private function decryptApiKey(string $encrypted): string
-{
-    $key = sodium_crypto_generichash(
-        config('app.key'), '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES
-    );
-    $nonce = substr($encrypted, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-    $ciphertext = substr($encrypted, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-    return sodium_crypto_secretbox_open($ciphertext, $nonce, $key);
-}
 
     /**
      * Récupère les représentants commerciaux d'un tiers
@@ -43,7 +37,7 @@ class CommercialResolver
     {
         try {
             $response = Http::withHeaders([
-                'DOLAPIKEY' => $this->decryptApiKey($this->apiKey)
+                'DOLAPIKEY' => DolibarrServiceUtils::decryptApiKey($this->apiKey)
             ])->get("{$this->dolibarrUrl}/api/index.php/thirdparties/{$thirdpartyId}/representatives");
 
             if (!$response->successful()) {
@@ -51,7 +45,7 @@ class CommercialResolver
             }
 
             return array_map(
-                fn(array $repData) => $this->mapToCommercialUserDTO($repData),
+                fn(array $repData) => $this->commercialUserMapper->mapToCommercialUser($repData),
                 $response->json()
             );
         } catch (\Exception $e) {
@@ -60,15 +54,4 @@ class CommercialResolver
         }
     }
 
-    private function mapToCommercialUserDTO(array $apiData): CommercialUser
-    {
-        return new CommercialUser(
-            id: $apiData['id'],
-            name: $apiData['name'] ?? '',
-            status: $apiData['status'] ?? null,
-            lastname: $apiData['lastname'] ?? null,
-            firstname: $apiData['firstname'] ?? null,
-            email: $apiData['email'] ?? null
-        );
-    }
 }
