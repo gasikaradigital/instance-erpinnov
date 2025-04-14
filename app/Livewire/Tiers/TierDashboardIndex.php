@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Tiers;
 
+use App\Services\ThirdpartyService;
 use Livewire\Component;
 use Exception;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TierDashboardIndex extends Component
 {
+
     public function render()
     {
         $user  = Auth::user();
@@ -59,12 +61,10 @@ class TierDashboardIndex extends Component
             $nombre_prospect_client = 0;
             $nombre_fournisseur = 0;
 
-            foreach($this->data as $tier)
-            {
-                switch($tier->client){
+            foreach ($this->data as $tier) {
+                switch ($tier->client) {
                     case '0':
-                        if($tier->fournisseur == 1)
-                        {
+                        if ($tier->fournisseur == 1) {
                             $nombre_fournisseur = $nombre_fournisseur + 1;
                         }
                         break;
@@ -89,7 +89,6 @@ class TierDashboardIndex extends Component
                 'fournisseur' => $nombre_fournisseur,
                 'title' => 'Liste des tiers'
             ]);
-
         } catch (Exception $e) {
             throw new \Exception("Erreur API Dolibarr : " . $e->getMessage());
             Log::error('Erreur lors de la récupération des tiers: ' . $e->getMessage());
