@@ -84,6 +84,7 @@
             @elseif(request()->routeIs([
                     'tiers',
                     'create-tiers',
+                    'info-tiers',
                     'contact',
                     'create-contact',
                     'tag-customer',
