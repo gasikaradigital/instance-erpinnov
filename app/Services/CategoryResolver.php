@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\DTOs\CategoryDTO;
 use App\DTOs\Mappers\CategoryMapper;
+use App\Helpers\DolibarrServiceUtils;
 use Illuminate\Support\Facades\Http;
 use InvalidArgumentException;
 
@@ -19,18 +20,9 @@ class CategoryResolver
     {
         return match($entityType) {
             'THIRDPARTY' => $this->getThirdPartyCategories($entityId),
+            'CONTACT'=>$this->getContactCategories($entityId),
             default     => throw new InvalidArgumentException("Unsupported entity type")
         };
-    }
-
-    private function decryptApiKey(string $encrypted): string
-    {
-        $key = sodium_crypto_generichash(
-            config('app.key'), '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES
-        );
-        $nonce = substr($encrypted, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-        $ciphertext = substr($encrypted, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-        return sodium_crypto_secretbox_open($ciphertext, $nonce, $key);
     }
 
     /**
@@ -39,8 +31,23 @@ class CategoryResolver
     public function getThirdPartyCategories(int $thirdPartyId): array
     {
         $response = Http::withHeaders([
-            'DOLAPIKEY' => $this->decryptApiKey($this->apiKey)
+            'DOLAPIKEY' => DolibarrServiceUtils::decryptApiKey($this->apiKey)
         ])->get("{$this->dolibarrUrl}/api/index.php/thirdparties/{$thirdPartyId}/categories");
+
+        return array_map(
+            fn(array $categoryData) => $this->categoryMapper->mapToCategory($categoryData),
+            $response->json()
+        );
+    }
+
+    /**
+     * @return CategoryDTO[]
+     */
+    public function getContactCategories(int $thirdPartyId): array
+    {
+        $response = Http::withHeaders([
+            'DOLAPIKEY' => DolibarrServiceUtils::decryptApiKey($this->apiKey)
+        ])->get("{$this->dolibarrUrl}/api/index.php/contacts/{$thirdPartyId}/categories");
 
         return array_map(
             fn(array $categoryData) => $this->categoryMapper->mapToCategory($categoryData),
