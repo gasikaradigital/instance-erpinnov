@@ -15,19 +15,19 @@ class TierDashboardIndex extends Component
     public function render()
     {
         $user  = Auth::user();
-        
+
         try {
             // Récupération des tiers depuis l'API Dolibarr
             $response = Http::withHeaders([
-                'DOLAPIKEY' =>  $user->api_key 
+                'DOLAPIKEY' =>  $user->api_key
             ])->get($user->url_dolibarr . '/api/index.php/thirdparties');
-            
+
             if (!$response->successful()) {
                 throw new Exception('Erreur API: ' . $response->status());
             }
-            
+
             // Conversion du tableau en objets pour faciliter l'utilisation dans la vue
-            $this->data = collect($response->json())->map(function($item) {
+            $this->data = collect($response->json())->map(function($item) use ($user) {
                 $item = (object) $item;
 
                 // Récupérer le nom du pays si country_id existe
@@ -50,10 +50,10 @@ class TierDashboardIndex extends Component
 
                 return $item;
             })->all();
-            
+
             //Récupération des nombres de tiers
             $nombre_tier = count($this->data);
-            
+
             $nombre_client = 0;
             $nombre_prospect = 0;
             $nombre_prospect_client = 0;
