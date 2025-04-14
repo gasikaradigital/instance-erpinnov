@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-header bg-light fw-bold">📊 Statistiques</div>
         <div class="card-body text-center">
-            <div style="width: 300px; margin: auto;">
+            <div style="width: 250px; margin: auto;">
                 <canvas id="tierChart"></canvas>
             </div>
             <p class="mt-3 fw-bold">Nombre total des tiers : <span

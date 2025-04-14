@@ -31,20 +31,24 @@
                                         <option value="{{ $tier['id'] }}">{{ $tier['name'] }}</option>
                                     @endforeach
                                 </select>
-                                <a href="{{ route('create-tiers') }}" class="input-group-text border-0"><i
+                                <a href="{{ route('create-tiers') }}" class="input-group-text border-0" title="{{ __('Nouveau tiers') }}"><i
                                         class="fas fa-plus"></i></a>
                             </div>
                         </div>
                         @if (count($contactList) != 0)
                             <div class="col-md-4 mb-3">
                                 <label class="form-label">Contact</label>
-                                <select class="form-select custom-form-control">
+                                <div class="input-group border rounded">
+                                <select class="form-select custom-form-control border-0">
                                     <option value="0" disabled>Sélectionner</option>
                                     @foreach ($contactList as $contact)
                                         <option value="{{ $contact['id'] }}">{{ $contact['name'] }}</option>
                                     @endforeach
                                 </select>
+                                <a href="{{ route('create-contact') }}" class="input-group-text border-0" title="{{ __('Nouveau contact') }}"><i
+                                    class="fas fa-plus"></i></a>
                             </div>
+                        </div>
                         @endif
                     </div>
             </div>
@@ -62,13 +66,6 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label class="form-label">Date de livraison</label>
-                        <div class="input-group border rounded">
-                            <input type="date" class="form-control custom-form-control border-0"
-                                wire:model="delivery_date">
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
                         <label class="form-label">Durée de validité</label>
                         <div class="input-group border rounded">
                             <input type="number" class="form-control custom-form-control border-0"
@@ -76,6 +73,14 @@
                             <span class="input-group-text border-0"><i class="fas fa-clock"></i></span>
                         </div>
                     </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Date de livraison</label>
+                        <div class="input-group border rounded">
+                            <input type="date" class="form-control custom-form-control border-0"
+                                wire:model="delivery_date">
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

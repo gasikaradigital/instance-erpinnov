@@ -23,9 +23,9 @@
     </div>
     <div class="card mt-md-5">
         <div class="card-body">
-            <h6>Tags/catégories</h6>
-
-            <div class="d-flex justify-content-end mb-2">
+            <div class="d-flex justify-content-between mb-3">
+                <h6>Tags/catégories</h6>
+                <div class="me-3">
                 <button class="btn btn-sm btn-outline-primary" id="collapse-all">
                     <i class="fas fa-compress-alt"></i> Annuler déroulement
                 </button>
@@ -34,14 +34,9 @@
                 </button>
             </div>
 
-            @if (empty($filteredCategoriesList) || count($filteredCategoriesList) === 0)
-                <div class="alert alert-secondary" role="alert">
-                    Aucun tag/catégorie de ce type n'a été créé
-                </div>
-            @else
-                <div class="tree">
-                    <ul class="list-unstyled">
-                        <?php
+            </div>
+            <div class="tree">
+                <?php
                  $items = $filteredCategoriesList;
 // Fonction récursive pour générer la hiérarchie
 function getChildren($items, $parentId) {
@@ -120,11 +115,10 @@ foreach ($rootItems as $rootItem) {
     echo '</div>';
 }
 ?>
-                </ul>
             </div>
-        @endif
+
+        </div>
     </div>
-</div>
 </div>
 <script>
     function toggleExpand(item) {
