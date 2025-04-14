@@ -1,6 +1,92 @@
 <div>
-<div class="container-flux p-6  pb-0">
-    <div class="row">
+    <style>
+/* Styles généraux pour le dashboard */
+.container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+/* Espacement uniforme des sections */
+.row {
+  margin: 0;
+  padding: 0rem 0;
+}
+
+/* Animation subtile au chargement des cartes */
+.card {
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Uniformiser les hauteurs des cartes dans la même rangée */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Animation pour les badges */
+.badge {
+  transition: all 0.2s ease;
+}
+
+.badge:hover {
+  transform: scale(1.1);
+}
+
+/* Animation pour les liens */
+a {
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Media query pour les petits écrans */
+@media (max-width: 768px) {
+  .col-md-6 {
+    padding: 0.5rem;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+}
+
+.draggable-column:active {
+  cursor: grabbing;
+}
+
+
+    </style>
+<div class="container">
+    <div class="row p-4  pt-0 pb-0">
         <!-- Statistiques -->
         <livewire:tiers.statistique :data="$data" />
         <livewire:tiers.statistique-tiers :tiers='$tier' :total_prospect='$prospect' :total_client='$client' :total_fournisseur='$fournisseur' :total_autres="0"/>
@@ -58,17 +144,16 @@
     </div>
 
     </div>
-    <div class="row p-6 pb-0 ">
+    <div class="row p-4  pt-0 pb-0">
     <div class="col-md-6  ">
         <div class="card ">
             <div class="card-header  bg-light fw-bold d-flex justify-content-between align-items-center">
                 <h5 class="card-title">Les 10 derniers Tiers</h5>
                 <div>
                     <button class="btn btn-sm btn-link">
-                        <i class="fas fa-comments"></i>
-                    </button>
-                    <button class="btn btn-sm btn-link">
-                        <i class="fas fa-list"></i>
+                        <a href="{{ route('tiers') }}">
+                            <i class="fas fa-list"></i>
+                        </a>
                     </button>
                 </div>
             </div>
@@ -141,10 +226,9 @@
                 <h5 class="card-title">Les 10 derniers Contacts</h5>
                 <div>
                     <button class="btn btn-sm btn-link">
-                        <i class="fas fa-comments"></i>
-                    </button>
-                    <button class="btn btn-sm btn-link">
-                        <i class="fas fa-list"></i>
+                        <a href="{{ route('contact') }}">
+                             <i class="fas fa-list"></i>
+                        </a>
                     </button>
                 </div>
             </div>
@@ -212,17 +296,16 @@
         </div>
     </div>
 </div>
-<div class="row p-6 pb-0 ">
+<div class="row mb-0 p-4  pt-0 pb-0 ">
     <div class="col-md-6 ">
         <div class="card ">
             <div class="card-header  bg-light fw-bold d-flex justify-content-between align-items-center">
                 <h5 class="card-title">Les 10 derniers Devis</h5>
                 <div>
                     <button class="btn btn-sm btn-link">
-                        <i class="fas fa-comments"></i>
-                    </button>
-                    <button class="btn btn-sm btn-link">
-                        <i class="fas fa-list"></i>
+                        <a href="{{ route('liste-devis') }}">
+                             <i class="fas fa-list"></i>
+                        </a>
                     </button>
                 </div>
             </div>
