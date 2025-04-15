@@ -2,13 +2,19 @@
 
 namespace App\Providers;
 
+use App\DTOs\Mappers\CategoryMapper;
+use App\DTOs\Mappers\CommercialUserMapper;
+use App\DTOs\Mappers\ContactMapper;
+use App\DTOs\Mappers\CountryMapper;
+use App\DTOs\Mappers\ThirdpartyMapper;
+use App\Helpers\DolibarrServiceUtils;
 use App\Services\CategoryResolver;
 use App\Services\CommercialResolver;
+use App\Services\ContactService;
+use App\Services\SetupResolverService;
 use App\Services\ThirdpartyService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Encryption\Encrypter;
-use Illuminate\Support\Facades\Config;
 
 class DolibarrServiceProvider extends ServiceProvider
 {
@@ -25,7 +31,8 @@ class DolibarrServiceProvider extends ServiceProvider
             $user = Auth::user();
             return new CommercialResolver(
                 $user->url_dolibarr,
-                $this->encryptApiKey($user->api_key)
+                DolibarrServiceUtils::encryptApiKey($user->api_key),
+                new CommercialUserMapper()
             );
         });
 
@@ -37,8 +44,23 @@ class DolibarrServiceProvider extends ServiceProvider
             $user = Auth::user();
             return new CategoryResolver(
                 $user->url_dolibarr,
-                $this->encryptApiKey($user->api_key)
+                DolibarrServiceUtils::encryptApiKey($user->api_key),
+                new CategoryMapper()
             );
+        });
+
+        $this->app->bind(SetupResolverService::class,function($app){
+            if (!Auth::hasUser()) {
+                throw new \RuntimeException('User not authenticated');
+            }
+
+            $user = Auth::user();
+            return new SetupResolverService(
+                $user->url_dolibarr,
+                DolibarrServiceUtils::encryptApiKey($user->api_key),
+                new CountryMapper()
+            );
+
         });
 
 
@@ -51,21 +73,32 @@ class DolibarrServiceProvider extends ServiceProvider
 
             return new ThirdPartyService(
                 $user->url_dolibarr,
-                $this->encryptApiKey($user->api_key),
-                $app->make(CommercialResolver::class),
-                $app->make(CategoryResolver::class)
+                DolibarrServiceUtils::encryptApiKey($user->api_key),
+                new ThirdpartyMapper(
+                    $this->app->make(CommercialResolver::class),
+                    $this->app->make(CategoryResolver::class),
+                    $this->app->make(SetupResolverService::class)
+                )
+            );
+        });
+
+        $this->app->bind(ContactService::class, function ($app) {
+            if (!Auth::hasUser()) {
+                throw new \RuntimeException('User not authenticated');
+            }
+
+            $user = Auth::user();
+
+            return new ContactService(
+                $user->url_dolibarr,
+                DolibarrServiceUtils::encryptApiKey($user->api_key),
+                new ContactMapper(
+                    $this->app->make(CategoryResolver::class)
+                )
             );
         });
     }
 
-    private function encryptApiKey(string $value): string
-{
-    $key = sodium_crypto_generichash(
-        config('app.key'), '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES
-    );
-    $nonce = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-    return $nonce . sodium_crypto_secretbox($value, $nonce, $key);
-}
     /**
      * Bootstrap services.
      */
