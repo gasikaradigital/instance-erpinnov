@@ -1,25 +1,111 @@
 <div>
-    <div class="container-flux p-6  pb-0">
-        <div class="row">
-            <!-- Statistiques -->
-            <livewire:tiers.statistique :data="$data" />
-            <livewire:tiers.statistique-tiers :tiers='$tier' :total_prospect='$prospect' :total_client='$client' :total_fournisseur='$fournisseur'
-                :total_autres="0" />
-            <!-- Derniers tiers modifiés -->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header bg-light fw-bold">🕒 Les 3 derniers tiers modifiés</div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            @if (count($data ?? []) > 0)
-                                @foreach (collect($data)->sortByDesc('date_modification')->take(3) as $index => $tier)
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <!-- Nom du tiers -->
-                                        <div>
-                                            <i class="bi bi-buildings me-2"></i>
-                                            <a href="{{ route('info-tiers', ['id' => $tier->id]) }}"
-                                                class="fw-bold">{{ $tier->name }}</a>
-                                        </div>
+
+    <style>
+/* Styles généraux pour le dashboard */
+.container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+/* Espacement uniforme des sections */
+.row {
+  margin: 0;
+  padding: 0rem 0;
+}
+
+/* Animation subtile au chargement des cartes */
+.card {
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Uniformiser les hauteurs des cartes dans la même rangée */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Animation pour les badges */
+.badge {
+  transition: all 0.2s ease;
+}
+
+.badge:hover {
+  transform: scale(1.1);
+}
+
+/* Animation pour les liens */
+a {
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Media query pour les petits écrans */
+@media (max-width: 768px) {
+  .col-md-6 {
+    padding: 0.5rem;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+}
+
+.draggable-column:active {
+  cursor: grabbing;
+}
+
+
+    </style>
+<div class="container">
+    <div class="row p-4  pt-0 pb-0">
+        <!-- Statistiques -->
+        <livewire:tiers.statistique :data="$data" />
+        <livewire:tiers.statistique-tiers :tiers='$tier' :total_prospect='$prospect' :total_client='$client' :total_fournisseur='$fournisseur' :total_autres="0"/>
+        <!-- Derniers tiers modifiés -->
+        <div class="col-md-6" >
+            <div class="card">
+                <div class="card-header bg-light fw-bold">🕒 Les 3 derniers tiers modifiés</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @if (count($data ?? []) > 0)
+                            @foreach (collect($data)->sortByDesc('date_modification')->take(3) as $index => $tier)
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <!-- Nom du tiers -->
+                                    <div>
+                                        <i class="bi bi-buildings me-2"></i>
+                                        <a href="{{ route('info-tiers', ['id' => $tier->id]) }}"
+                                            class="fw-bold">{{ $tier->name }}</a>
+                                    </div>
 
                                         <!-- Badges pour le statut du tiers -->
                                         <div>

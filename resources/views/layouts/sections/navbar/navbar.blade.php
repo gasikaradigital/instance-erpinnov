@@ -44,6 +44,7 @@
                         'contact',
                         'create-contact',
                         'tag-customer',
+                        'info-tiers',
                         'create-tag-customer',
                         'create-tag-supplier',
                         'tag-contact',
