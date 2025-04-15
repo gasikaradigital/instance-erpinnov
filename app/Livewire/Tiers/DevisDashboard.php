@@ -80,7 +80,7 @@ class DevisDashboard extends Component
             }
 
             // Conversion du tableau en objets pour faciliter l'utilisation dans la vue
-            $this->data = collect($response->json())->map(function ($item) {
+            $this->data = collect($response->json())->map(function($item) use ($user) {
                 $item = (object) $item;
 
                 // Récupérer le nom du pays si country_id existe
